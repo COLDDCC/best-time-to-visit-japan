@@ -7,6 +7,7 @@ import { monthlyData } from "../../data/weather.ts";
 import { regionGuides } from "../../data/regions.ts";
 import Icon from "../../components/Icon.astro";
 import Callout from "../../components/Callout.astro";
+import AffiliateCTA from "../../components/AffiliateCTA.astro";
 
 export function getStaticPaths() {
   return monthlyData.map((m) => ({
@@ -185,6 +186,13 @@ const articleSchema = JSON.stringify({
       <Callout eyebrow="Local Tip" tone="amber" class="mb-12">
         <p class="text-lg leading-relaxed">{month.localTip}</p>
       </Callout>
+
+      <!-- Affiliate CTA -->
+      <div class="mb-12 rounded-2xl bg-zinc-50 border border-zinc-200 p-6 md:p-8 text-center">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tighter text-zinc-900 mb-2">Ready to book your {month.label} trip?</h2>
+        <p class="text-zinc-500 leading-relaxed max-w-xl mx-auto mb-6">Compare live hotel and flight prices for {month.label} in Japan — prices swing with the season, so booking early usually pays off.</p>
+        <AffiliateCTA destination={month.label} className="justify-center" />
+      </div>
 
       <!-- Prev / Next month -->
       <div class="flex flex-col sm:flex-row justify-between gap-3 border-t border-zinc-100 pt-8 mb-4">

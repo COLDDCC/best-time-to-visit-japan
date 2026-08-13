@@ -1,3 +1,5 @@
+import { hotelSearchUrl } from "../../config/affiliates";
+
 const hotelData = [
   { short: "Off-Peak", sub: "Jun & Sep", price: 55, fill: "#10b981" },
   { short: "Shoulder", sub: "Mar, Oct-Nov, Dec", price: 80, fill: "#f59e0b" },
@@ -53,6 +55,15 @@ export default function HotelComparison() {
           <p className="text-xs text-zinc-500"><span className="font-medium text-zinc-600">Peak:</span> Cherry blossom (April), Golden Week (early May), and summer holidays (Jul-Aug) command premium rates. Book 2-3 months ahead.</p>
         </div>
       </div>
+      <a
+        href={hotelSearchUrl()}
+        target="_blank"
+        rel="nofollow sponsored noopener"
+        className="inline-flex items-center justify-center gap-2 px-5 py-2.5 mt-5 bg-accent-600 hover:bg-accent-700 text-white text-sm font-semibold rounded-full transition-colors no-underline"
+      >
+        Search hotels for the best-value season
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
   );
 }
