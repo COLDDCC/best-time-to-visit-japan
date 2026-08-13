@@ -1,0 +1,215 @@
+---
+import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import PageHero from "../components/PageHero.astro";
+
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+interface CalendarDay {
+  day: number;
+  crowd: 0 | 1 | 2 | 3 | 4 | 5;
+  note?: string;
+}
+
+function generateMonth(year: number, month: number): CalendarDay[] {
+  const lastDay = new Date(year, month + 1, 0);
+  const days: CalendarDay[] = [];
+  for (let d = 1; d <= lastDay.getDate(); d++) {
+    const day = new Date(year, month, d);
+    let crowd: 0 | 1 | 2 | 3 | 4 | 5 = 1;
+    let note: string | undefined;
+
+    const isWeekend = day.getDay() === 0 || day.getDay() === 6;
+    if (isWeekend) crowd = 2;
+
+    if (month === 0) {
+      if (d >= 2 && d <= 3) { crowd = 4; note = "New Year rush"; }
+    }
+    if (month === 3) {
+      if (d >= 1 && d <= 12) { crowd = 4; note = "Sakura peak"; }
+      if (d >= 25 && d <= 30) { crowd = 4; note = "GW build-up"; }
+    }
+    if (month === 4) {
+      if (d >= 1 && d <= 6) { crowd = 5; note = "Golden Week!"; }
+      if (d > 6 && d <= 12) crowd = Math.max(crowd, 2);
+    }
+    if (month === 5) {
+      crowd = Math.max(crowd, 1);
+      note = note || "Rainy build-up";
+      if (d >= 1 && d <= 7) { crowd = Math.max(crowd, 2); note = "Tsuyu start"; }
+    }
+    if (month === 6 || month === 9) {
+      crowd = Math.max(crowd, 1);
+      note = note || "Low season";
+    }
+    if (month === 7) {
+      crowd = Math.max(crowd, 3);
+      note = note || "Summer (festival) peak";
+    }
+    if (month === 8) {
+      crowd = Math.max(crowd, 3);
+      note = note || "Summer peak";
+      if (d >= 11 && d <= 16) { crowd = 5; note = "Obon!"; }
+    }
+    if (month === 8) {
+      if (d >= 29) { crowd = Math.max(crowd, 3); note = "Typhoon watch"; }
+    }
+    if (month === 10) {
+      crowd = Math.max(crowd, 1);
+      note = note || "Koyo begins";
+    }
+    if (month === 11) {
+      crowd = Math.max(crowd, 3);
+      note = note || "Koyo peak";
+      if (d >= 8 && d <= 20) { crowd = Math.max(crowd, 4); note = "Koyo peak crowds"; }
+    }
+    if (month === 12) {
+      if (d >= 28) { crowd = 4; note = "Year-end rush"; }
+    }
+
+    days.push({ day: d, crowd: crowd as 0|1|2|3|4|5, note });
+  }
+  return days;
+}
+
+function crowdColor(crowd: number) {
+  if (crowd >= 5) return "bg-red-500 text-white";
+  if (crowd >= 4) return "bg-red-300 text-red-900";
+  if (crowd >= 3) return "bg-amber-300 text-amber-900";
+  if (crowd >= 2) return "bg-emerald-200 text-emerald-900";
+  return "bg-emerald-100 text-emerald-800";
+}
+
+function crowdLabel(crowd: number) {
+  if (crowd >= 5) return "Extreme";
+  if (crowd >= 4) return "Very High";
+  if (crowd >= 3) return "Moderate";
+  if (crowd >= 2) return "Low";
+  return "Empty";
+}
+
+const eventNotes: Record<string, string> = {
+  "New Year rush": "New Year travel & shrine visits",
+  "Sakura peak": "Cherry blossom season peak",
+  "GW build-up": "Pre-Golden Week build-up",
+  "Golden Week!": "Golden Week (biggest travel week)",
+  "Tsuyu start": "Rainy season begins",
+  "Low season": "Quiet shoulder season",
+  "Summer (dinner) peak": "Summer festivals & holidays",
+  "Summer peak": "Domestic summer holidays",
+  "Obon!": "Obon family travel peak",
+  "Typhoon watch": "Typhoon season alert",
+  "Koyo begins": "Autumn leaves begin",
+  "Koyo peak": "Autumn leaves peak (crowded)",
+  "Koyo peak crowds": "Autumn leaves at their best",
+  "Year-end rush": "New Year travel rush",
+};
+
+const year = new Date().getFullYear();
+const yearMonths = months.map((_, i) => ({ label: months[i], index: i, days: generateMonth(year, i) }));
+---
+
+<BaseLayout title={`Japan Travel Crowd Calendar ${year}: Plan Around Peak Times`} description={`Estimated crowd levels across Japan's major travel regions, day by day for ${year}. Avoid Golden Week, Obon & sakura peaks and save money.`}>
+  <section class="min-h-[100dvh]">
+    <Nav />
+    <div class="max-w-7xl mx-auto px-4 py-6">
+      <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">Crowd Calendar</p>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">Japan Travel Crowd Calendar {year}</h1>
+      <p class="text-lg text-zinc-500 max-w-2xl leading-relaxed mb-4">See estimated crowd levels for every day of the year. Plan around sakura, Golden Week, and Obon — and find the quiet sweet spots.</p>
+
+      <PageHero image="/images/region-tokyo.webp" alt="Busy tourist street in Asakusa, Tokyo with crowds" overlay="Crowd Calendar" title="Avoid the 3 extreme peaks: sakura April, Golden Week, & Obon mid-August" />
+
+      <h2 class="text-2xl font-bold text-zinc-900 mb-4">Crowd Level Legend</h2>
+      <div class="flex items-center gap-4 mb-10 flex-wrap">
+        <div class="flex items-center gap-1.5 text-xs text-zinc-500">
+          <span class="w-4 h-4 rounded bg-emerald-100"></span> Empty
+        </div>
+        <div class="flex items-center gap-1.5 text-xs text-zinc-500">
+          <span class="w-4 h-4 rounded bg-emerald-200"></span> Low
+        </div>
+        <div class="flex items-center gap-1.5 text-xs text-zinc-500">
+          <span class="w-4 h-4 rounded bg-amber-300"></span> Moderate
+        </div>
+        <div class="flex items-center gap-1.5 text-xs text-zinc-500">
+          <span class="w-4 h-4 rounded bg-red-300"></span> Very High
+        </div>
+        <div class="flex items-center gap-1.5 text-xs text-zinc-500">
+          <span class="w-4 h-4 rounded bg-red-500"></span> Extreme
+        </div>
+      </div>
+
+      <h2 class="text-2xl font-bold text-zinc-900 mb-6">Monthly Crowd Levels: A National Estimate</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {yearMonths.map((m) => (
+          <div class="bg-white border border-zinc-200 rounded-2xl overflow-hidden">
+            <div class="px-4 py-3 bg-zinc-50 border-b border-zinc-100">
+              <p class="text-sm font-bold text-zinc-800">{m.label} {year}</p>
+            </div>
+            <div class="p-3">
+              <div class="grid grid-cols-7 gap-1 mb-2">
+                {weekDays.map(w => <span class="text-[10px] text-zinc-400 text-center font-medium">{w[0]}</span>)}
+              </div>
+              <div class="grid grid-cols-7 gap-1">
+                {Array.from({ length: new Date(year, m.index, 1).getDay() === 0 ? 6 : new Date(year, m.index, 1).getDay() - 1 }).map(() => <span></span>)}
+                {m.days.map((d) => (
+                  <div
+                    title={d.note ? `${crowdLabel(d.crowd)}: ${eventNotes[d.note] ?? d.note}` : crowdLabel(d.crowd)}
+                    class={`relative flex items-center justify-center text-[11px] font-medium rounded-md aspect-square cursor-default transition-transform hover:scale-110 hover:z-10 ${crowdColor(d.crowd)}`}
+                  >
+                    {d.day}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-10 gap-x-12 pt-10 mt-16 border-t border-zinc-200">
+        <div class="lg:col-span-4">
+          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 mb-5">How to read</p>
+          <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.02] text-zinc-900">
+            Read it in<br /><em class="font-normal italic text-accent-600">three colours</em>
+          </h2>
+        </div>
+
+        <div class="lg:col-span-8">
+          <p class="text-lg md:text-xl text-zinc-700 leading-relaxed max-w-2xl">
+            This calendar estimates crowd levels for the major travel regions of Japan &mdash; Tokyo, Kyoto, Osaka, Nara, and Hakone combined &mdash; for every day of the year.
+          </p>
+          <p class="text-base text-zinc-500 leading-relaxed max-w-2xl mt-4">
+            Red means queues of 1&ndash;2 hours at the famous sites and packed streets. Green means you can often have a landmark almost to yourself. Most of the year sits quietly in between.
+          </p>
+
+          <div class="mt-10 border-t border-zinc-200 divide-y divide-zinc-100">
+            <div class="py-5 flex items-baseline gap-5">
+              <span class="flex-shrink-0 w-4 h-4 rounded bg-red-500 mt-1"></span>
+              <div class="flex-1">
+                <p class="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-red-600 mb-1">Avoid</p>
+                <p class="text-lg md:text-xl font-semibold text-zinc-900 leading-snug">Sakura peak, Golden Week &amp; mid-August Obon</p>
+              </div>
+            </div>
+            <div class="py-5 flex items-baseline gap-5">
+              <span class="flex-shrink-0 w-4 h-4 rounded bg-emerald-400 mt-1"></span>
+              <div class="flex-1">
+                <p class="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-emerald-600 mb-1">The Sweet Spots</p>
+                <p class="text-lg md:text-xl font-semibold text-zinc-900 leading-snug">Early March &middot; Late June &middot; All of September &middot; Early December</p>
+              </div>
+            </div>
+            <div class="py-5 flex items-baseline gap-5">
+              <span class="flex-shrink-0 w-4 h-4 rounded bg-amber-300 mt-1"></span>
+              <div class="flex-1">
+                <p class="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-amber-600 mb-1">The Trade-off</p>
+                <p class="text-lg md:text-xl font-semibold text-zinc-900 leading-snug">Quieter months often come with rain, heat, or less iconic scenery</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>

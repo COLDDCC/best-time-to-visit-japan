@@ -1,0 +1,99 @@
+---
+import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { regionGuides } from "../data/regions.ts";
+---
+
+<BaseLayout title="Best Time to Visit Japan by Region: 10 Zones Compared" description="Japan's climate varies dramatically from Hokkaido's snow to Okinawa's tropics. Compare the best travel seasons for Tokyo, Kyoto, Hokkaido, Okinawa & more.">
+  <section class="min-h-[100dvh]">
+    <Nav />
+    <div class="max-w-7xl mx-auto px-4 py-6">
+      <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">By Region</p>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">When Is the Best Time to Visit Japan by Region?</h1>
+      <p class="text-lg text-zinc-500 max-w-2xl leading-relaxed mb-16">Japan stretches 3,000 km north to south. Hokkaido snows while Okinawa swims --- here is exactly when to go where, and what it costs.</p>
+
+      <!-- Quick nav by question -->
+      <div class="mb-16">
+        <p class="text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 mb-4">Jump to your region</p>
+        <div class="flex flex-wrap gap-2">
+          {regionGuides.map((r) => (
+            <a href={`#${r.slug}`} class="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-700 bg-white border border-zinc-200 hover:border-accent-300 hover:text-accent-600 transition-colors px-3 py-1.5 rounded-full no-underline">
+              {r.shortName}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+        <div>
+          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-accent-600 mb-3">01 &middot; The Regions</p>
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tighter text-zinc-900 leading-none">Ten climates, one island <em>chain</em></h2>
+        </div>
+        <p class="md:w-80 text-zinc-500 leading-relaxed">Hokkaido snows while Okinawa swims. Pick your zones below and see exactly when each one shines.</p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {regionGuides.map((r) => (
+          <div id={r.slug} class="bg-white border border-zinc-200 rounded-2xl overflow-hidden hover:border-accent-200 transition-colors scroll-mt-24">
+            <a href={`/region/${r.slug}`} class="relative block overflow-hidden no-underline group">
+              <img src={r.image} alt={r.imageAlt} width="1200" height="800" loading="lazy" class="w-full h-56 md:h-64 object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-zinc-950/20 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-5">
+                <p class="text-xs font-bold tracking-widest uppercase text-accent-300 mb-1">{r.shortName}</p>
+                <h3 class="text-xl md:text-2xl font-bold tracking-tight text-white leading-snug group-hover:text-accent-200 transition-colors">{r.question}</h3>
+              </div>
+            </a>
+            <div class="p-6 md:p-8 space-y-4">
+              <div class="flex items-start gap-3">
+                <span class="flex-shrink-0 px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-700">Best</span>
+                <p class="text-sm text-zinc-700">{r.best}</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="flex-shrink-0 px-2.5 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-600">Avoid</span>
+                <p class="text-sm text-zinc-600">{r.avoid}</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="flex-shrink-0 px-2.5 py-1 rounded-full text-xs font-semibold bg-zinc-100 text-zinc-600">Ideal</span>
+                <p class="text-sm text-zinc-700">{r.months} * {r.temp}</p>
+              </div>
+              <div>
+                <p class="text-xs font-semibold text-zinc-400 mb-1">Must-See</p>
+                <p class="text-sm text-zinc-700">{r.highlights}</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="flex-shrink-0 px-2.5 py-1 rounded-full text-xs font-semibold bg-sky-100 text-sky-700">Cost</span>
+                <p class="text-sm text-zinc-700">{r.budget}</p>
+              </div>
+              <div class="bg-zinc-50 rounded-lg p-3 border border-zinc-100">
+                <p class="text-xs font-semibold text-accent-600 mb-0.5">Local Tip</p>
+                <p class="text-sm text-zinc-600">{r.tip}</p>
+              </div>
+              <a href={`/region/${r.slug}`} class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors no-underline">
+                Read the full {r.shortName} guide
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tighter text-zinc-900 leading-none mt-16 mb-8">Regional travel <em>rules of thumb</em></h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div class="bg-white border border-zinc-200 rounded-xl p-5">
+          <h3 class="text-lg font-bold text-zinc-900 mb-2">Book Early for Sakura & Koyo</h3>
+          <p class="text-sm text-zinc-600">For cherry blossom season (late March-April) and autumn leaves (November), book flights and hotels 2-3 months ahead. Prices surge 40-80% during these weeks.</p>
+        </div>
+        <div class="bg-white border border-zinc-200 rounded-xl p-5">
+          <h3 class="text-lg font-bold text-zinc-900 mb-2">Avoid Golden Week & Obon</h3>
+          <p class="text-sm text-zinc-600">Golden Week (late April-May 5) and Obon (mid-August) are Japan's two biggest travel peaks. Every bullet train and hotel is packed. Travel just after and watch prices collapse.</p>
+        </div>
+        <div class="bg-white border border-zinc-200 rounded-xl p-5">
+          <h3 class="text-lg font-bold text-zinc-900 mb-2">Mix North & South</h3>
+          <p class="text-sm text-zinc-600">A 2-week trip can chase the seasons: Hokkaido in winter for snow, then Kyoto in late March for sakura, or Okinawa in spring then the Alps in autumn.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>

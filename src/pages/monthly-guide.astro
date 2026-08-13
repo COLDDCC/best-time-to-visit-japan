@@ -1,0 +1,85 @@
+---
+import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { monthlyData } from "../data/weather.ts";
+import PageHero from "../components/PageHero.astro";
+
+const seasons = [
+  { label: "Spring", sub: "Mar &middot; Apr &middot; May", months: ["march", "april", "may"], accent: "text-pink-600", bg: "bg-pink-50", bar: "bg-pink-400", blurb: "Cherry blossom sweeps from Kyushu to Hokkaido. Book early &mdash; these are the most requested weeks of the year." },
+  { label: "Summer", sub: "Jun &middot; Jul &middot; Aug", months: ["june", "july", "august"], accent: "text-sky-600", bg: "bg-sky-50", bar: "bg-sky-400", blurb: "Rainy season melts into fireworks and matsuri. Head to Hokkaido for the cool escape." },
+  { label: "Autumn", sub: "Sep &middot; Oct &middot; Nov", months: ["september", "october", "november"], accent: "text-amber-600", bg: "bg-amber-50", bar: "bg-amber-400", blurb: "The consensus best season &mdash; crisp air, maple season, and September's lowest fares." },
+  { label: "Winter", sub: "Dec &middot; Jan &middot; Feb", months: ["december", "january", "february"], accent: "text-slate-600", bg: "bg-slate-50", bar: "bg-slate-400", blurb: "Powder snow in Hokkaido, onsen towns at their coziest, temples glowing under winter light." },
+];
+---
+
+<BaseLayout title="Japan Month-by-Month Travel Guide: Weather & Crowds" description="Complete month-by-month breakdown of weather, festivals, crowds and costs for traveling in Japan. Compare all 12 months side by side.">
+  <section class="min-h-[100dvh]">
+    <Nav />
+    <div class="max-w-7xl mx-auto px-4 py-6">
+      <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">Month by Month</p>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">Japan Travel by Month</h1>
+      <p class="text-lg text-zinc-500 max-w-2xl leading-relaxed mb-8">A complete guide to weather, festivals, crowds, and where to go for every month of the year.</p>
+
+      <PageHero image="/images/region-fuji.webp" alt="Mount Fuji with cherry blossoms in the foreground at sunrise" overlay="Month by Month" title="Twelve months, four seasons — find the window that fits you" />
+
+      <!-- Editorial intro -->
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12 mt-12">
+        <div>
+          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-accent-600 mb-3">The Framework</p>
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tighter text-zinc-900 leading-none">Three dials decide <em>your month</em></h2>
+        </div>
+        <p class="md:w-80 text-zinc-500 leading-relaxed">Every month below is distilled to its essence &mdash; the crowd rating, the vibe, and the place to be &mdash; so you can find your own sweet spot.</p>
+      </div>
+
+      <!-- Month cards grouped by season -->
+      {seasons.map((s) => (
+        <div class="mb-16">
+          <div class={`${s.bg} border border-zinc-200 rounded-2xl px-6 py-6 mb-8`}>
+            <div class="flex items-center justify-between gap-4 flex-wrap">
+              <div class="flex items-center gap-4">
+                <span class={`h-10 w-1 rounded-full ${s.bar}`}></span>
+                <div>
+                  <p class={`text-sm font-semibold tracking-widest uppercase ${s.accent}`}>{s.sub}</p>
+                  <h2 class="text-3xl md:text-4xl font-bold tracking-tighter text-zinc-900 leading-none">{s.label}</h2>
+                </div>
+              </div>
+              <p class="max-w-md text-sm text-zinc-600 leading-relaxed">{s.blurb}</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {monthlyData.filter((m) => s.months.includes(m.month)).map((m) => (
+              <div class="bg-white border border-zinc-200 rounded-2xl overflow-hidden flex flex-col">
+                <a href={`/month/${m.month}`} class="relative block overflow-hidden no-underline group">
+                  <img src={m.image} alt={m.imageAlt} width="1200" height="360" loading="lazy" class="w-full h-40 md:h-44 object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-zinc-950/20 to-transparent"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-4">
+                    <h3 class="text-xl font-bold tracking-tight text-white leading-snug group-hover:text-accent-200 transition-colors">{m.label}</h3>
+                    <p class="text-xs text-white/70 mt-0.5">{m.tempLow}&deg;C &ndash; {m.tempHigh}&deg;C &middot; {m.rainDays} rain days</p>
+                  </div>
+                </a>
+                <div class="p-5 flex-1 flex flex-col">
+                  <span class={`self-start px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-widest uppercase mb-3 ${m.crowdLevel <= 2 ? 'bg-emerald-100 text-emerald-700' : m.crowdLevel <= 3 ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700'}`}>
+                    Crowd {m.crowdLevel}/5
+                  </span>
+                  <p class="text-sm font-medium text-zinc-500 mb-1">Best for</p>
+                  <p class="text-sm text-zinc-800 leading-relaxed mb-4">{m.bestFor}</p>
+                  <p class="text-xs font-semibold text-zinc-400 uppercase mb-2">Top Regions</p>
+                  <ul class="space-y-1 mb-4">
+                    {m.bestRegions.map(r => <li class="text-sm text-zinc-700 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent-500"></span>{r}</li>)}
+                  </ul>
+                  <a href={`/month/${m.month}`} class="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors no-underline">
+                    Full {m.label} guide
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>

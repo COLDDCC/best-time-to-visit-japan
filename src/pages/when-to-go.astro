@@ -1,0 +1,302 @@
+---
+import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import PageHero from "../components/PageHero.astro";
+
+const quizzes = [
+  { id: "region", q: "Which region of Japan are you most interested in?", opts: ["Tokyo & Central (Fuji, Hakone)", "Kansai (Kyoto, Osaka, Nara)", "Hokkaido (Sapporo, winter)", "Okinawa (beaches, tropical)", "Kyushu (Kagoshima, hot springs)", "Japan Alps & Hokuriku", "I want to see it all"] },
+  { id: "purpose", q: "What do you want to do most?", opts: ["Sightseeing & landmarks", "Food & culinary experiences", "Hiking & outdoor adventures", "Photography & nature", "Culture, temples & history", "Skiing & winter sports"] },
+  { id: "budget", q: "What is your budget range? (per person)", opts: ["Budget (under $1,500)", "Moderate ($1,500-$3,000)", "Comfortable ($3,000-$5,000)", "Premium ($5,000+)"] },
+  { id: "crowd", q: "How do you feel about crowds?", opts: ["I want solitude - avoid people at all costs", "I can handle moderate crowds", "I do not mind - bring on the energy"] },
+  { id: "temp", q: "What is your ideal travel temperature?", opts: ["Cool & crisp (5-15°C)", "Mild & pleasant (15-25°C)", "Warm & sunny (25-30°C)", "Snow & winter wonderland"] },
+  { id: "festival", q: "Do you want to experience a specific Japanese season or festival?", opts: ["Cherry blossoms (sakura)", "Autumn leaves (koyo)", "Summer fireworks / matsuri", "Snow & winter festivals", "No preference - I just want good weather"] },
+  { id: "duration", q: "How long is your trip?", opts: ["Short getaway (5-7 days)", "Standard vacation (10-14 days)", "Extended trip (3-4 weeks)"] },
+  { id: "origin", q: "Where are you flying from?", opts: ["North America", "Europe / UK", "Australia / NZ", "Southeast Asia", "Other"] },
+];
+---
+
+<BaseLayout title={`When Should I Visit Japan? Take the 60-Second Quiz (${new Date().getFullYear()})`} description="Answer 8 quick questions about your travel style and get a personalized best month to visit Japan. We compare weather, crowds & costs across the year.">
+  <section class="min-h-[100dvh] bg-zinc-50">
+    <Nav />
+    <div class="max-w-2xl mx-auto px-4 pt-6 pb-24">
+      <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">Free Travel Quiz</p>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">When Should You Visit Japan?</h1>
+      <p class="text-lg text-zinc-500 leading-relaxed mb-12">Answer 8 simple questions about your travel style. We will give you your ideal month, plus backup options with detailed reasons.</p>
+
+      <PageHero image="/images/month-october.webp" alt="Autumn leaves over a Japanese garden in October, the recommended month" overlay="Free Travel Quiz" title="Answer 8 quick questions to find your perfect month" />
+
+      <div class="space-y-8" id="quiz-container">
+        {quizzes.map((q, i) => (
+          <div class="bg-white border border-zinc-200 rounded-xl p-6">
+            <div class="flex items-center gap-3 mb-5">
+              <span class="flex-shrink-0 w-7 h-7 rounded-full bg-accent-100 text-accent-700 text-xs font-bold flex items-center justify-center">{i + 1}</span>
+              <p class="text-base font-semibold text-zinc-800">{q.q}</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {q.opts.map((opt, j) => (
+                <label class="flex items-center gap-3 p-3 rounded-lg border border-zinc-200 hover:border-accent-300 hover:bg-accent-50/50 cursor-pointer transition-colors has-checked:border-accent-500 has-checked:bg-accent-50 has-checked:ring-1 has-checked:ring-accent-200">
+                  <input type="radio" name={q.id} value={opt} class="w-4 h-4 text-accent-600 accent-accent-600" />
+                  <span class="text-sm text-zinc-700">{opt}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-10 text-center">
+        <button type="button" onclick="showResult()" class="inline-flex items-center gap-2 px-10 py-4 bg-accent-600 hover:bg-accent-700 text-white font-semibold text-lg rounded-full transition-colors">
+          Get My Recommendation
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
+      <div id="quiz-result" class="hidden mt-12 overflow-hidden rounded-2xl border-2 border-accent-200 bg-white shadow-sm">
+        <div class="relative h-48 md:h-60 overflow-hidden">
+          <img id="result-image" src="" alt="" width="1200" height="800" loading="eager" class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/25 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-5 md:p-7">
+            <span class="inline-block text-xs font-bold tracking-widest text-accent-300 uppercase bg-accent-600/85 px-3 py-1 rounded-full mb-3">Your Perfect Match</span>
+            <p class="text-3xl md:text-4xl font-bold text-white leading-tight" id="result-month">October or November</p>
+          </div>
+        </div>
+        <div class="p-6 md:p-8">
+          <p class="text-zinc-600 leading-relaxed" id="result-reason">Based on your preferences for mild weather, moderate crowds, and outdoor activities, autumn is your ideal window.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6" id="result-details"></div>
+          <div class="border-t border-zinc-100 mt-7 pt-6 flex flex-wrap items-center gap-x-6 gap-y-3" id="result-links"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- How It Works + Methodology -->
+  <section class="bg-white border-t border-zinc-100">
+    <div class="max-w-2xl mx-auto px-4 py-16">
+      <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">Behind the Quiz</p>
+      <h2 class="text-2xl font-bold text-zinc-900 mb-6">How We Calculate Your Result</h2>
+      <p class="text-zinc-600 leading-relaxed mb-8">
+        This quiz isn't random. Each answer you give is weighted against three data dimensions: <strong>weather suitability</strong> (temperature and rainfall patterns from Japan Meteorological Agency 10-year averages), <strong>crowd avoidance</strong> (Japanese national holiday calendar including Golden Week and Obon), and <strong>cost optimization</strong> (seasonal flight and hotel price indices). Your preferences for temperature, crowds, and budget determine which months score highest.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+        <div class="bg-zinc-50 rounded-xl p-5 border border-zinc-200">
+          <p class="text-sm font-bold text-zinc-800 mb-2">Weather Match</p>
+          <p class="text-xs text-zinc-500 leading-relaxed">Your temperature preference is matched against monthly climate normals for each region, weighted by your destination choice.</p>
+        </div>
+        <div class="bg-zinc-50 rounded-xl p-5 border border-zinc-200">
+          <p class="text-sm font-bold text-zinc-800 mb-2">Crowd Filter</p>
+          <p class="text-xs text-zinc-500 leading-relaxed">Your crowd tolerance is cross-referenced with Japan's holiday calendar (Golden Week, Obon, sakura peaks) and attraction visitor data.</p>
+        </div>
+        <div class="bg-zinc-50 rounded-xl p-5 border border-zinc-200">
+          <p class="text-sm font-bold text-zinc-800 mb-2">Cost Adjustment</p>
+          <p class="text-xs text-zinc-500 leading-relaxed">Your budget determines whether we recommend peak-season windows or off-season sweet spots like June and September.</p>
+        </div>
+      </div>
+
+      <h2 class="text-2xl font-bold text-zinc-900 mb-6">Common Traveler Profiles</h2>
+      <p class="text-zinc-600 leading-relaxed mb-6">Not sure how to answer? Here's what typical travelers choose — and what it means.</p>
+      <div class="space-y-4">
+        <div class="bg-white border border-zinc-200 rounded-xl p-5">
+          <div class="flex items-start gap-4">
+            <span class="flex-shrink-0 w-10 h-10 rounded-full bg-accent-100 text-accent-600 flex items-center justify-center text-sm font-bold">FV</span>
+            <div>
+              <p class="text-sm font-bold text-zinc-800 mb-1">First-Time Visitor</p>
+              <p class="text-xs text-zinc-500 mb-2">Prefers mild weather, moderate crowds, flexible budget. Selects Tokyo or Kansai regions.</p>
+              <p class="text-xs font-semibold text-accent-700">Typical result: April or October</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white border border-zinc-200 rounded-xl p-5">
+          <div class="flex items-start gap-4">
+            <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-bold">SK</span>
+            <div>
+              <p class="text-sm font-bold text-zinc-800 mb-1">Ski & Snow Lover</p>
+              <p class="text-xs text-zinc-500 mb-2">Wants powder and winter festivals. Selects Hokkaido, winter sports, snow options.</p>
+              <p class="text-xs font-semibold text-accent-700">Typical result: January or February</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white border border-zinc-200 rounded-xl p-5">
+          <div class="flex items-start gap-4">
+            <span class="flex-shrink-0 w-10 h-10 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center text-sm font-bold">BG</span>
+            <div>
+              <p class="text-sm font-bold text-zinc-800 mb-1">Budget Traveler</p>
+              <p class="text-xs text-zinc-500 mb-2">Prioritizes low cost over perfect weather. Selects Budget tier, high crowd tolerance.</p>
+              <p class="text-xs font-semibold text-accent-700">Typical result: June or September</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white border border-zinc-200 rounded-xl p-5">
+          <div class="flex items-start gap-4">
+            <span class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-sm font-bold">SB</span>
+            <div>
+              <p class="text-sm font-bold text-zinc-800 mb-1">Sakura / Season Chaser</p>
+              <p class="text-xs text-zinc-500 mb-2">Prioritizes seasons over weather. High crowd tolerance. Selects sakura or koyo.</p>
+              <p class="text-xs font-semibold text-accent-700">Typical result: Early April (sakura) or late November (koyo)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>
+
+<script is:inline>
+  function showResult() {
+    const region = document.querySelector('input[name="region"]:checked');
+    const purpose = document.querySelector('input[name="purpose"]:checked');
+    const budget = document.querySelector('input[name="budget"]:checked');
+    const crowd = document.querySelector('input[name="crowd"]:checked');
+    const temp = document.querySelector('input[name="temp"]:checked');
+    const festival = document.querySelector('input[name="festival"]:checked');
+    const duration = document.querySelector('input[name="duration"]:checked');
+    const origin = document.querySelector('input[name="origin"]:checked');
+
+    const resultDiv = document.getElementById('quiz-result');
+
+    if (!region || !purpose || !budget || !crowd || !temp || !festival || !duration || !origin) {
+      alert('Please answer all 8 questions to get your personalized recommendation.');
+      return;
+    }
+
+    // ===== 评分制推荐：8 题全部参与计算 =====
+    const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const MI = { Jan:0, Feb:1, Mar:2, Apr:3, May:4, Jun:5, Jul:6, Aug:7, Sep:8, Oct:9, Nov:10, Dec:11 };
+
+    const regionMonths = {
+      "Tokyo & Central (Fuji, Hakone)": ["Mar","Apr","May","Oct","Nov","Dec"],
+      "Kansai (Kyoto, Osaka, Nara)": ["Apr","May","Oct","Nov"],
+      "Hokkaido (Sapporo, winter)": ["Jan","Feb","Jun","Jul","Sep"],
+      "Okinawa (beaches, tropical)": ["Mar","Apr","May","Jun","Oct","Nov"],
+      "Kyushu (Kagoshima, hot springs)": ["Apr","May","Oct","Nov"],
+      "Japan Alps & Hokuriku": ["Apr","May","Jun","Oct","Nov"],
+      "I want to see it all": ["Apr","May","Oct","Nov"],
+    };
+    const purposeMonths = {
+      "Sightseeing & landmarks": ["Apr","May","Sep","Oct","Nov"],
+      "Food & culinary experiences": ["Apr","May","Oct","Nov","Dec"],
+      "Hiking & outdoor adventures": ["Apr","May","Jun","Sep","Oct"],
+      "Photography & nature": ["Apr","May","Oct","Nov"],
+      "Culture, temples & history": ["Feb","Apr","Sep","Oct","Nov"],
+      "Skiing & winter sports": ["Jan","Feb","Dec"],
+    };
+    const tempMonths = {
+      "Cool & crisp (5-15°C)": ["Mar","Apr","Nov"],
+      "Mild & pleasant (15-25°C)": ["Apr","May","Oct"],
+      "Warm & sunny (25-30°C)": ["Jun","Jul","Aug","Sep"],
+      "Snow & winter wonderland": ["Jan","Feb","Dec"],
+    };
+    const crowdMonths = {
+      "I want solitude - avoid people at all costs": ["Jun","Sep","Nov","Dec","Jan"],
+      "I can handle moderate crowds": ["Apr","May","Sep","Oct","Nov"],
+      "I do not mind - bring on the energy": ["Jan","Feb","May","Oct"],
+    };
+    const budgetMonths = {
+      "Budget (under $1,500)": ["Jan","Jun","Jul","Sep","Nov","Dec"],
+      "Moderate ($1,500-$3,000)": ["Apr","May","Sep","Oct","Nov"],
+      "Comfortable ($3,000-$5,000)": ["Apr","May","Oct","Nov"],
+      "Premium ($5,000+)": ["Apr","May","Jul","Aug","Oct","Nov","Dec"],
+    };
+    const weatherBySeason = {
+      spring:  ["10-20°C, cherry blossoms, occasionally windy", "High around sakura peak (Apr 1-12), busy weekends", "Shoulder pricing - moderate"],
+      summer:  ["25-32°C, humid; fireworks & festivals", "Very high in August (Obon); manageable early June", "Peak pricing in August - book early"],
+      autumn:  ["15-25°C, crisp skies, koyo colours", "Moderate; avoid late Nov at temples", "Moderate - book 3-4 weeks ahead"],
+      winter:  ["0-8°C, snow in the north, dry in Tokyo", "Low outside New Year week (Dec 28-Jan 4)", "Lowest prices of the year"],
+    };
+    const seasonOf = (i) => (i >= 2 && i <= 4) ? "spring" : (i >= 5 && i <= 7) ? "summer" : (i >= 8 && i <= 10) ? "autumn" : "winter";
+
+    // 打分：区域 / 目的 / 温度 / 人群 / 预算 五维权重叠加
+    const groups = [
+      [regionMonths[region.value], 2.0],
+      [purposeMonths[purpose.value], 1.5],
+      [tempMonths[temp.value], 1.0],
+      [crowdMonths[crowd.value], 1.0],
+      [budgetMonths[budget.value], 1.0],
+    ];
+    const scores = new Array(12).fill(0);
+    groups.forEach(([ms, w]) => (ms || []).forEach((m) => { scores[MI[m]] += w; }));
+
+    // 季节偏好：直接命中对应月份（权重 +10，覆盖其它维度）
+    let festivalMonth = -1;
+    if (festival.value.includes("Cherry")) festivalMonth = 3;
+    else if (festival.value.includes("Autumn leaves")) festivalMonth = 10;
+    else if (festival.value.includes("fireworks")) festivalMonth = 7;
+    else if (festival.value.includes("Snow")) festivalMonth = 1;
+    if (festivalMonth >= 0) scores[festivalMonth] += 10;
+
+    let best = 0;
+    for (let i = 1; i < 12; i++) if (scores[i] > scores[best]) best = i;
+    let second = -1;
+    for (let i = 0; i < 12; i++) if (i !== best && (second < 0 || scores[i] > scores[second])) second = i;
+
+    let month = MONTHS[best];
+    let reason = "";
+    const w = weatherBySeason[seasonOf(best)];
+    if (festivalMonth >= 0) {
+      month = MONTHS[festivalMonth];
+      reason = "Your season pick lands on " + MONTHS[festivalMonth] + ". We also weigh your other preferences to fine-tune the exact travel window around it.";
+    } else if (scores[second] >= scores[best] * 0.85) {
+      month = MONTHS[best] + " or " + MONTHS[second];
+      reason = "Based on your region, travel style, and budget, " + MONTHS[best] + " and " + MONTHS[second] + " tie for first across weather comfort, crowd levels, and price.";
+    } else {
+      reason = "Based on your region, travel style, and budget, " + MONTHS[best] + " scores highest across weather comfort, crowd levels, and price.";
+    }
+
+    const details = [
+      { label: "Weather", value: w[0] },
+      { label: "Crowd Level", value: w[1] },
+      { label: "Cost", value: w[2] },
+    ];
+    if (duration.value.includes("5-7")) details.push({ label: "Trip Tip", value: "Short trip? Stay in one hub (Tokyo or Osaka) and use day trips - jumping between regions eats your time." });
+    if (origin.value.includes("North America")) details.push({ label: "Note", value: "From North America flights run 11-14 hours - plan at least 7 days to beat jet lag." });
+    if (origin.value.includes("Southeast Asia")) details.push({ label: "Note", value: "From Southeast Asia it's a short 4-7 hour hop - you can even do a long weekend." });
+
+    var resultMonthEl = document.getElementById('result-month');
+    var resultReasonEl = document.getElementById('result-reason');
+    var resultDetailsEl = document.getElementById('result-details');
+    var resultImageEl = document.getElementById('result-image');
+    var resultLinksEl = document.getElementById('result-links');
+
+    if (resultMonthEl) resultMonthEl.textContent = month;
+
+    // Map result to a single concrete month for the hero image + links
+    var primaryMonth = month.split(' ')[0];
+    var slugMap = {
+      January: "january", February: "february", March: "march", April: "april",
+      May: "may", June: "june", July: "july", August: "august", September: "september",
+      October: "october", November: "november", December: "december"
+    };
+    var slug = slugMap[primaryMonth] || "october";
+
+    if (resultImageEl) {
+      resultImageEl.src = "/images/month-" + slug + ".webp";
+      resultImageEl.alt = primaryMonth + " in Japan";
+    }
+
+    if (resultReasonEl) resultReasonEl.textContent = reason;
+
+    var detailsHtml = '';
+    details.forEach(function(d) {
+      detailsHtml += '<div class="bg-zinc-50 rounded-xl border border-zinc-200 p-4"><p class="text-xs font-semibold text-zinc-400 uppercase mb-1.5">' + d.label + '</p><p class="text-sm leading-relaxed text-zinc-700">' + d.value + '</p></div>';
+    });
+    if (resultDetailsEl) resultDetailsEl.innerHTML = detailsHtml;
+
+    var links = [
+      { href: "/month/" + slug, label: "Full " + primaryMonth + " guide" },
+      { href: "/monthly-guide", label: "Compare all 12 months" },
+      { href: "/festivals", label: "Season & festivals" },
+      { href: "/crowd-calendar", label: "Crowd calendar" },
+    ];
+    var linksHtml = '';
+    links.forEach(function(l) {
+      linksHtml += '<a href="' + l.href + '" class="inline-flex items-center gap-1.5 text-sm font-semibold text-accent-600 hover:text-accent-700 transition-colors no-underline">' + l.label + '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>';
+    });
+    if (resultLinksEl) resultLinksEl.innerHTML = linksHtml;
+
+    if (resultDiv) {
+      resultDiv.classList.remove('hidden');
+      resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+</script>

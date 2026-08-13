@@ -1,0 +1,596 @@
+---
+import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { monthlyData } from "../data/weather.ts";
+import JapanMap from "../components/islands/JapanMap";
+import ComparisonTool from "../components/islands/ComparisonTool";
+import CostChart from "../components/islands/CostChart";
+import HotelComparison from "../components/islands/HotelComparison";
+import ScrollReveal from "../components/islands/ScrollReveal";
+import Footer from "../components/Footer.astro";
+import Icon from "../components/Icon.astro";
+
+const currentYear = new Date().getFullYear();
+const pageTitle = `Best Time to Visit Japan ${currentYear}: Month-by-Month Guide`;
+const pageDesc = "Find the best time to visit Japan. Compare weather, sakura & koyo seasons, crowds and costs by month and region, then take the free 60-second quiz.";
+
+const quickFacts = [
+  { label: "Overall Best", value: "Late Mar–Apr & Oct–Nov" },
+  { label: "Cheapest", value: "Jun & Sep (rain & typhoon risk)" },
+  { label: "Plan around", value: "Golden Week & Obon peaks" },
+];
+
+const travelPurposes = [
+  { label: "Sakura / Hanami", best: "Late Mar-Apr", desc: "Cherry blossom season — Tokyo, Kyoto, Osaka at their most photogenic. Peak crowds.", accent: "bg-sakura-50 text-sakura-500 border-sakura-200" },
+  { label: "Autumn Leaves (Koyo)", best: "Oct-Nov", desc: "Brilliant maples in Kyoto, Nikko and Hokkaido. Dry, crisp, perfect weather.", accent: "bg-red-50 text-red-700 border-red-200" },
+  { label: "Festivals & Culture", best: "Jul-Aug", desc: "Gion Matsuri, Nebuta, hanabi fireworks. Hot but unforgettable.", accent: "bg-indigo-50 text-indigo-700 border-indigo-200" },
+  { label: "Ski & Snow", best: "Dec-Feb", desc: "Niseko powder, Sapporo Snow Festival, snow monkeys. Japan's winter magic.", accent: "bg-sky-50 text-sky-700 border-sky-200" },
+];
+
+const regions = ["Hokkaido", "Tohoku", "Tokyo & Kanto", "Mt Fuji & Chubu", "Kyoto & Osaka", "Hiroshima", "Shikoku", "Kyushu", "Okinawa"];
+const regionMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const regionData: Record<string, (1|2|3)[]> = {
+  "Hokkaido": [2,2,1,2,3,3,3,3,3,3,1,2],
+  "Tohoku": [2,2,2,3,3,3,3,3,3,3,2,2],
+  "Tokyo & Kanto": [2,2,3,3,3,2,2,2,2,3,3,2],
+  "Mt Fuji & Chubu": [2,2,3,3,2,1,2,3,3,3,2,1],
+  "Kyoto & Osaka": [2,2,3,3,3,1,2,2,2,3,3,2],
+  "Hiroshima": [2,2,3,3,3,2,1,1,1,3,3,2],
+  "Shikoku": [2,2,3,3,3,1,2,1,1,3,3,2],
+  "Kyushu": [3,3,3,3,3,1,1,1,2,3,3,2],
+  "Okinawa": [3,3,3,3,3,2,2,1,1,3,3,2],
+};
+
+// One-line charm for each month (the "anytime" pitch)
+const monthCharm: Record<string, string> = {
+  january: "Onsen & Sapporo ice",
+  february: "Snow Festival powder",
+  march: "Plum & early sakura",
+  april: "Cherry blossoms peak",
+  may: "Golden Week & wisteria",
+  june: "Hydrangeas, low prices",
+  july: "Gion Matsuri fireworks",
+  august: "Nebuta & Fuji climbing",
+  september: "Cheap flights & harvest",
+  october: "First autumn colors",
+  november: "Kyoto in full koyo",
+  december: "Winter illuminations",
+};
+
+// Recommendation rating (1-5) per month — positioned to showcase each season at its best.
+// Every month is a strong story here: even the "quieter" months are a confident 4.
+const monthRating: Record<string, number> = {
+  january: 4,
+  february: 4,
+  march: 5,
+  april: 5,
+  may: 5,
+  june: 4,
+  july: 4,
+  august: 4,
+  september: 4,
+  october: 5,
+  november: 5,
+  december: 4,
+};
+
+const travelerStories = [
+  { name: "Emma from London", quote: "Went in the last week of March. Sakura hit peak right as we arrived — Kyoto was like a dream, and we beat the April hotel spike by three days.", verdict: "Spring --- nailed it", verdictColor: "text-emerald-600 bg-emerald-50", trip: "Tokyo + Kyoto, 12 days, ~£2,300" },
+  { name: "Jake from Sydney", quote: "Booked Golden Week without checking. Bullet trains sold out, every temple was shoulder-to-shoulder. The cherry blossoms were gone too. Biggest mistake of the trip.", verdict: "Golden Week --- disaster", verdictColor: "text-red-600 bg-red-50", trip: "Osaka + Kyoto + Tokyo, 10 days, ~A$3,600" },
+  { name: "Mei from Vancouver", quote: "Hokkaido in February changed my life. Sapporo's snow festival, then a private onsen in Noboribetsu while it snowed. Cold, but unreal.", verdict: "Winter Hokkaido --- gem", verdictColor: "text-emerald-600 bg-emerald-50", trip: "Hokkaido, 8 days, ~C$2,400" },
+];
+
+const faqs = [
+  { q: "What is the best month to visit Japan?", a: "Late March to early April for cherry blossoms and October to November for autumn leaves are the consensus best windows — comfortable temperatures (15-25°C), manageable rain, and iconic scenery. If you want to avoid crowds, mid-to-late May and early October are excellent quieter alternatives." },
+  { q: "When is the cheapest time to travel to Japan?", a: "June and September are the cheapest months. June is the rainy season (tsuyu) and September carries typhoon risk, so prices drop 30-50%. For a bargain with good weather, early March and early December are strong compromises." },
+  { q: "What is the worst time to visit Japan?", a: "Three peaks to plan around: cherry blossom season (April) when hotels are 40-80% more expensive and sights are packed; Golden Week (late April to early May 5) when the entire country travels; and Obon (mid-August) plus the hot, humid summer. The typhoon season (August-October) can also disrupt travel." },
+  { q: "Is Japan crowded during Golden Week?", a: "Extremely. Golden Week (around April 29 to May 5) is Japan's biggest travel peak — bullet trains sell out, hotels triple in price, and popular sights are mobbed. Travel just after May 5 instead and you'll have near-perfect weather with the crowds gone." },
+  { q: "What is the weather like in Japan in October?", a: "October is arguably Japan's best month: Tokyo averages 15-22°C with crisp, clear skies. Autumn colors begin in Hokkaido and the mountains, and humidity finally breaks. Early October is still warm; late October brings the first full-color maples." },
+  { q: "Can I visit Japan during the rainy season?", a: "The tsuyu rainy season (usually early June to mid-July in most of Honshu) brings weeks of drizzle and humidity. It's not a washout — hydrangeas bloom beautifully and prices are the year's lowest — but if you want sunshine, aim for after mid-July." },
+  { q: "When is the best time for sakura (cherry blossoms)?", a: "Cherry blossoms sweep north: Okinawa and Kyushu in late March, Tokyo and Kyoto around late March to early April, then Tohoku and Hokkaido through late April to early May. The forecast is published each year about two weeks in advance — chase the 'sakura front' for the best timing." },
+  { q: "Do I need a visa to visit Japan?", a: "Citizens of the US, UK, EU, Australia, Canada, and 60+ other countries get visa-free entry for 90 days as tourists. You'll need a passport valid for your stay. For the latest rules, check your local Japanese embassy before booking." },
+  { q: "Is Japan expensive?", a: "Japan is cheaper than most people expect. Budget travelers can manage $60-90/day (capsules, convenience-store meals, regional rail passes). Mid-range is $150-250/day. The yen's recent weakness has made Japan one of the best-value destinations in the developed world." },
+  { q: "How far in advance should I book?", a: "International flights: 2-4 months ahead. Hotels: book 2-3 months ahead if you're traveling in sakura season, Golden Week, or summer; 3-4 weeks is fine otherwise. The Japan Rail Pass should be bought before you leave (it's now cheaper but only covers the classic passes)." },
+];
+
+const faqPageSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": { "@type": "Answer", "text": faq.a },
+  })),
+});
+---
+
+<BaseLayout title={pageTitle} description={pageDesc} ogImage="/images/og-japan-best-time.webp">
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json" set:html={`{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "${pageTitle}",
+    "description": "${pageDesc}",
+    "author": { "@type": "Organization", "name": "When to Visit Japan", "url": "https://when-to-visit-japan.com/about" },
+    "publisher": { "@type": "Organization", "name": "When to Visit Japan", "logo": { "@type": "ImageObject", "url": "https://when-to-visit-japan.com/favicon.svg" } },
+    "datePublished": "${currentYear}-01-15",
+    "dateModified": "${currentYear}-07-31",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://when-to-visit-japan.com" },
+    "image": "https://when-to-visit-japan.com/images/og-japan-best-time.webp"
+  }`} />
+  <script type="application/ld+json" set:html={faqPageSchema} />
+
+  <!-- ======== NAV ======== -->
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-zinc-100">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+      <a href="/" class="text-lg font-semibold tracking-tight text-zinc-900">When to Visit Japan</a>
+      <div class="hidden md:flex items-center gap-4 text-sm font-medium text-zinc-600">
+        <a href="/when-to-go" class="hover:text-accent-600 transition-colors">Quiz</a>
+        <a href="/monthly-guide" class="hover:text-accent-600 transition-colors">Monthly Guide</a>
+        <a href="/by-region" class="hover:text-accent-600 transition-colors">By Region</a>
+        <a href="/festivals" class="hover:text-accent-600 transition-colors">Festivals</a>
+        <a href="/crowd-calendar" class="hover:text-accent-600 transition-colors">Crowds</a>
+        <a href="/faq" class="hover:text-accent-600 transition-colors">FAQ</a>
+        <a href="/travel-cost" class="hover:text-accent-600 transition-colors">Cost</a>
+        <a href="/about" class="hover:text-accent-600 transition-colors">About</a>
+        <a href="/when-to-go" class="ml-2 inline-flex items-center gap-1.5 px-4 py-2 bg-accent-600 text-white text-sm font-medium rounded-full hover:bg-accent-700 transition-colors no-underline">
+          Take the Quiz
+        </a>
+      </div>
+      <button id="menu-toggle" class="md:hidden p-2 text-zinc-600 hover:text-accent-600" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-zinc-100 bg-white px-4 pb-4">
+      <div class="flex flex-col gap-3 pt-4 text-sm font-medium text-zinc-600">
+        <a href="/when-to-go" class="hover:text-accent-600 py-1">Quiz</a>
+        <a href="/monthly-guide" class="hover:text-accent-600 py-1">Monthly Guide</a>
+        <a href="/by-region" class="hover:text-accent-600 py-1">By Region</a>
+        <a href="/festivals" class="hover:text-accent-600 py-1">Festivals</a>
+        <a href="/crowd-calendar" class="hover:text-accent-600 py-1">Crowds</a>
+        <a href="/faq" class="hover:text-accent-600 py-1">FAQ</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======== 1. HERO: TITLE OVER THE 12-MONTH IMAGE WALL ======== -->
+  <section id="month-wall" class="bg-white">
+    <div class="max-w-7xl mx-auto px-4 pt-12 md:pt-16">
+      <div class="text-center mb-2">
+        <p class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 mb-6">
+          <Icon name="cherry" class="w-3.5 h-3.5 text-accent-500" />
+          12 months, 12 reasons to go
+        </p>
+        <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.95] text-zinc-950">
+          Best time to visit<br />
+          <em class="font-normal italic">Japan</em>
+        </h1>
+        <p class="text-base md:text-lg text-zinc-500 leading-relaxed mt-6 mb-8 max-w-xl mx-auto">Every month has a season that shines &mdash; from sakura to snow country.</p>
+        <div class="flex flex-wrap justify-center gap-3 mb-4">
+          <a href="/when-to-go" class="inline-flex items-center gap-2 px-7 py-3.5 bg-accent-600 hover:bg-accent-700 text-white font-semibold rounded-full transition-colors">
+            Take the Free Quiz
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/monthly-guide" class="inline-flex items-center gap-2 px-7 py-3.5 bg-white border border-zinc-300 text-zinc-900 font-semibold rounded-full hover:bg-zinc-50 transition-colors">
+            Compare the Months
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 pb-16">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 items-start pt-8 lg:pt-28">
+        {monthlyData.map((m, i) => {
+          const col = i % 4;
+          const offset = col === 1 ? "lg:-mt-10" : col === 2 ? "lg:-mt-20" : col === 3 ? "lg:-mt-28" : "";
+          return (
+            <a href={`/month/${m.month}`} class={`group relative overflow-hidden rounded-2xl aspect-[4/5] block no-underline shadow-sm ${offset}`}>
+              <img src={m.image} alt={m.imageAlt} width="1200" height="800" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/70 via-zinc-950/10 to-transparent"></div>
+
+              {/* Month label — top */}
+              <p class="absolute top-4 left-4 md:top-5 md:left-5 text-xs font-bold tracking-widest uppercase text-white drop-shadow">{m.label}</p>
+
+              {/* Bottom: charm line + gold star rating */}
+              <div class="absolute bottom-4 left-4 right-4 md:bottom-5 md:left-5 md:right-5">
+                <div class="flex items-center gap-1 mb-1.5">
+                  {Array.from({length: 5}, (_, i) => (
+                    <Icon name="star" class={`w-3.5 h-3.5 ${i < (monthRating[m.month] ?? 0) ? "text-amber-400" : "text-white/30"}`} />
+                  ))}
+                </div>
+                <p class="text-base md:text-lg font-bold leading-snug text-white drop-shadow">{monthCharm[m.month]}</p>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+      <div class="mt-10 text-center">
+        <a href="/monthly-guide" class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors">
+          Compare all 12 months side by side
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== CURRENT SEASON BANNER ======== -->
+  <div id="season-banner" class="hidden bg-accent-50 border-b border-accent-200">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap gap-2">
+      <p class="text-sm text-accent-800">
+        <span class="font-semibold">Traveling to Japan in <span class="season-month"></span>?</span>
+        Here is what you need to know &mdash; <a href="#month-wall" class="underline font-medium">find your month</a> or <a href="/when-to-go" class="underline font-medium">take the quiz</a>.
+      </p>
+    </div>
+  </div>
+
+  <!-- ======== 2. THE SHORT ANSWER (editorial intro) ======== -->
+  <section class="max-w-7xl mx-auto px-4 pt-20 md:pt-28 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-10 gap-x-12">
+      <div class="lg:col-span-4">
+        <p class="text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 mb-5">The short answer</p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.02] text-zinc-900">
+          Four seasons,<br /><em class="font-normal italic text-accent-600">one to take with you</em>
+        </h2>
+      </div>
+
+      <div class="lg:col-span-8">
+        <p class="text-lg md:text-2xl text-zinc-800 leading-relaxed max-w-3xl">
+          Japan keeps a deliberate calendar &mdash; blossom, rain, festival, leaf, snow &mdash; and the whole country moves with it. Most travellers land on spring or autumn, for good reason; but the truly right month is the one that fits <em class="font-normal italic">you</em>. So here&rsquo;s the whole comparison &mdash; weather, crowds, and cost, laid out plainly.
+        </p>
+
+        <div class="mt-10 border-t border-zinc-200 divide-y divide-zinc-100">
+          {quickFacts.map((fact, i) => (
+            <div class="py-5 flex items-baseline gap-5">
+              <span class="font-serif text-2xl text-zinc-300 tabular-nums">{String(i + 1).padStart(2, "0")}</span>
+              <div class="flex-1">
+                <p class="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-accent-600 mb-1">{fact.label}</p>
+                <p class="text-lg md:text-xl font-semibold text-zinc-900 leading-snug">{fact.value}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== 3. INTERACTIVE MAP (WORKING) ======== -->
+  <section class="max-w-7xl mx-auto px-4 py-16" id="japan-map">
+    <div class="mb-12 text-center">
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 mb-5">Where to Go</p>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.02] text-zinc-900 mb-5">Japan runs<br /><em class="font-normal italic">north to south</em></h2>
+      <p class="text-zinc-500 max-w-2xl mx-auto leading-relaxed">Sakura starts in Okinawa and climbs to Hokkaido; winter snow buries the north while Kyushu stays mild. Hover a region to see its best months, then click for the full guide.</p>
+    </div>
+    <ScrollReveal client:load>
+      <JapanMap client:load />
+    </ScrollReveal>
+  </section>
+
+  <!-- ======== 4. COMPARISON TOOL (WORKING) ======== -->
+  <section class="max-w-7xl mx-auto px-4 py-16">
+    <div class="mb-12 text-center">
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 mb-5">Compare</p>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.02] text-zinc-900 mb-5">April or October?<br /><em class="font-normal italic">Kyoto or Tokyo?</em></h2>
+      <p class="text-zinc-500 max-w-2xl mx-auto leading-relaxed">Stop opening multiple tabs. Compare any two months or regions side by side and get a clear verdict.</p>
+    </div>
+    <ScrollReveal client:load>
+      <ComparisonTool client:load />
+    </ScrollReveal>
+  </section>
+
+  <!-- ======== 5. TRAVEL PURPOSE GRID ======== -->
+  <section class="bg-zinc-50 border-y border-zinc-100">
+    <div class="max-w-7xl mx-auto px-4 py-20">
+      <div class="mb-12 text-center">
+        <p class="text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 mb-5">Travel Style</p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.02] text-zinc-900 mb-5">Your trip,<br /><em class="font-normal italic">your season</em></h2>
+        <p class="text-zinc-500 max-w-2xl mx-auto leading-relaxed">The best time depends on what you want to do. Match your travel style to the ideal season.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {travelPurposes.map((tp) => (
+          <div class={`rounded-xl border p-6 ${tp.accent}`}>
+            <p class="text-lg font-bold mb-1">{tp.label}</p>
+            <p class="text-sm font-semibold mb-2">Best: {tp.best}</p>
+            <p class="text-sm leading-relaxed opacity-80">{tp.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== 6. ONLY SUMMER/WINTER (fixed-schedule travelers) ======== -->
+  <section class="max-w-7xl mx-auto px-4 py-20">
+    <div class="mb-12 text-center">
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 mb-5">Fixed Schedule</p>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.02] text-zinc-900 mb-5">Only summer or<br /><em class="font-normal italic">winter available?</em></h2>
+      <p class="text-zinc-500 max-w-2xl mx-auto leading-relaxed">Teachers, families, and busy professionals often have no choice but to travel during school holidays. Good news: Japan is spectacular in both extremes &mdash; you just need to plan smarter.</p>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div class="bg-white border border-zinc-200 rounded-2xl p-6 md:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-xl bg-blue-100 text-blue-600 text-sm font-bold">Sun</span>
+          <h3 class="text-lg font-bold text-zinc-900">Summer (Jul-Aug): Festivals Everywhere</h3>
+        </div>
+        <p class="text-sm text-zinc-600 leading-relaxed mb-4">Summer is hot and humid, but it's also Japan's festival season — fireworks, matsuri, and the liveliest streets of the year.</p>
+        <ol class="space-y-3">
+          {[
+            { t: "Embrace the festivals. Gion Matsuri (Kyoto), Nebuta (Aomori), and hanabi fireworks make July-August unforgettable." },
+            { t: "Escape the heat at altitude or latitude. Hokkaido, the Japanese Alps, and Tohoku stay cool while Tokyo swelters." },
+            { t: "Go at 6-9 AM and after 6 PM. Japan's famous sights are 80% emptier at opening and closing time." },
+            { t: "Climb Mount Fuji. July-mid-September is the official season, and the summit sunrise is a rite of passage." },
+            { t: "Beat Obon (mid-August) when the whole country travels. Early July or late August are noticeably calmer." },
+          ].map((tip, i) => (
+            <li class="flex gap-3 text-sm text-zinc-600 leading-relaxed">
+              <span class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-700 text-xs font-bold flex items-center justify-center mt-0.5">{i + 1}</span>
+              <span>{tip.t}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div class="bg-white border border-zinc-200 rounded-2xl p-6 md:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-xl bg-sky-100 text-sky-700 text-sm font-bold">Snow</span>
+          <h3 class="text-lg font-bold text-zinc-900">Winter (Dec-Feb): Japan's Hidden Season</h3>
+        </div>
+        <p class="text-sm text-zinc-600 leading-relaxed mb-4">Winter is Japan's most underrated season — cozy onsen towns, illuminated temples, and world-class snow, with 40-60% lower hotel prices outside New Year.</p>
+        <ul class="space-y-3">
+          {[
+            { t: "Soak in a snow-viewing onsen (Noboribetsu, Ginzan, Kurokawa) — the definition of hygge." },
+            { t: "Ski Niseko's famous powder, or try Hakuba and Zao for the 'snow monsters'." },
+            { t: "Watch the Sapporo Snow Festival (early February) — Japan's biggest winter event." },
+            { t: "See Kyoto's temples nearly empty — Kinkakuji under snow is a once-in-a-lifetime view." },
+          ].map((tip) => (
+            <li class="flex gap-3 text-sm text-zinc-600 leading-relaxed">
+              <span class="flex-shrink-0 w-6 h-6 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center mt-0.5"><Icon name="check" class="w-3.5 h-3.5" /></span>
+              <span>{tip.t}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="/festivals" class="inline-flex items-center gap-1.5 text-sm font-medium px-4 py-2.5 border border-zinc-300 rounded-full hover:border-accent-400 hover:text-accent-600 transition-colors">Plan around a festival</a>
+          <a href="/crowd-calendar" class="inline-flex items-center gap-1.5 text-sm font-medium px-4 py-2.5 border border-zinc-300 rounded-full hover:border-accent-400 hover:text-accent-600 transition-colors">Check crowd levels</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== 7. REGION MATRIX ======== -->
+  <section class="max-w-7xl mx-auto px-4 py-20">
+    <div class="mb-12 text-center">
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 mb-5">By Region</p>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.02] text-zinc-900 mb-5">Japan is not<br /><em class="font-normal italic">one climate</em></h2>
+      <p class="text-zinc-500 max-w-2xl mx-auto leading-relaxed">Hokkaido snows while Okinawa swims. Check which regions shine each month.</p>
+    </div>
+    <div class="overflow-x-auto rounded-xl border border-zinc-200">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-zinc-200 bg-zinc-50">
+            <th class="text-left p-3 font-semibold text-zinc-600 sticky left-0 bg-zinc-50 z-10">Region</th>
+            {regionMonths.map(m => <th class="p-3 text-center font-semibold text-zinc-500 min-w-[3rem]">{m}</th>)}
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-zinc-100">
+          {regions.map((region) => (
+            <tr class="hover:bg-zinc-50/50 transition-colors">
+              <td class="p-3 font-medium text-zinc-700 sticky left-0 bg-white group-hover:bg-zinc-50/50 whitespace-nowrap">{region}</td>
+              {regionData[region]!.map((score, i) => {
+                const cls = score === 3 ? "bg-emerald-100 text-emerald-700" : score === 2 ? "bg-amber-50 text-amber-600" : "bg-red-50 text-red-500";
+                return <td class="p-3 text-center"><span class={`inline-flex items-center justify-center w-7 h-7 rounded-full text-xs font-medium ${cls}`}>{score === 3 ? "\u2713" : score === 2 ? "\u25CB" : "\u2717"}</span></td>;
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-4 flex items-center gap-4 text-xs text-zinc-500">
+      <span><span class="inline-block w-3 h-3 rounded-full bg-emerald-100 border border-emerald-200 mr-1"></span> Best</span>
+      <span><span class="inline-block w-3 h-3 rounded-full bg-amber-50 border border-amber-200 mr-1"></span> OK</span>
+      <span><span class="inline-block w-3 h-3 rounded-full bg-red-50 border border-red-200 mr-1"></span> Avoid</span>
+    </div>
+    <div class="mt-6">
+      <a href="/by-region" class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors">
+        Read the full region guides
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ======== 8. CROWD CALENDAR ======== -->
+  <section class="bg-zinc-50 border-y border-zinc-100">
+    <div class="max-w-7xl mx-auto px-4 py-20">
+      <div class="text-center max-w-xl mx-auto mb-12">
+        <p class="text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 mb-5">Crowd Intelligence</p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.02] text-zinc-900 mb-5">Dodge<br /><em class="font-normal italic">the crowds</em></h2>
+        <p class="text-zinc-500 leading-relaxed">Know exactly when Japan's attractions are packed --- and when you can have them almost to yourself.</p>
+      </div>
+      <div class="space-y-3">
+        {[
+          { period: "New Year (Shogatsu)", date: "Jan 1-3", level: 4, note: "Temple visits and travel rush. Many shops and restaurants close.", color: "bg-red-400" },
+          { period: "Sakura Peak", date: "Late Mar - Early Apr", level: 5, note: "The most crowded weeks of the year at every famous spot.", color: "bg-red-500" },
+          { period: "Golden Week", date: "Apr 29 - May 5", level: 5, note: "Japan's biggest travel week. Trains sell out, hotels triple in price.", color: "bg-red-500" },
+          { period: "Rainy Season (Tsuyu)", date: "Jun - Mid Jul", level: 1, note: "Lowest crowds of the year. Cheap, green, and hydrangea-filled.", color: "bg-emerald-500" },
+          { period: "Summer Holidays", date: "Jul - Aug", level: 4, note: "School break and festivals. Hot but festive everywhere.", color: "bg-red-400" },
+          { period: "Obon", date: "Mid Aug", level: 5, note: "The family travel peak. Domestic flights and hotels max out.", color: "bg-red-500" },
+          { period: "September", date: "Sep", level: 1, note: "The value sweet spot. Thin crowds and the year's cheapest flights.", color: "bg-emerald-500" },
+          { period: "Koyo Peak", date: "Mid - Late Nov", level: 4, note: "Autumn leaves draw big crowds to Kyoto and Nikko.", color: "bg-red-400" },
+        ].map((item) => (
+          <div class="flex items-center gap-4 bg-white rounded-xl border border-zinc-200 p-4">
+            <div class={`w-3 h-3 rounded-full flex-shrink-0 ${item.color}`}></div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-semibold text-zinc-800">{item.period} <span class="text-zinc-400 font-normal ml-1">{item.date}</span></p>
+              <p class="text-xs text-zinc-500 mt-0.5">{item.note}</p>
+            </div>
+            <div class="flex items-center gap-1">
+              {Array.from({length: 5}, (_,i) => (
+                <span class={`w-2 h-2 rounded-full ${i < item.level ? item.color : 'bg-zinc-200'}`}></span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== 9. COST TREND (WORKING CHARTS) ======== -->
+  <section class="max-w-7xl mx-auto px-4 py-20">
+    <div class="mb-12 text-center">
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 mb-5">Travel Cost</p>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.02] text-zinc-900 mb-5">Pay the most<br /><em class="font-normal italic">(or the least)</em></h2>
+      <p class="text-zinc-500 max-w-2xl mx-auto leading-relaxed">Flight and hotel prices swing dramatically with sakura, Golden Week, and Obon. Pick the right month and save 40-50%.</p>
+    </div>
+    <ScrollReveal client:load>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <CostChart client:load />
+        <HotelComparison client:load />
+      </div>
+    </ScrollReveal>
+  </section>
+
+  <!-- ======== 10. TRAVELER STORIES ======== -->
+  <section class="bg-zinc-50 border-y border-zinc-100">
+    <div class="max-w-7xl mx-auto px-4 py-20">
+      <div class="mb-12 text-center">
+        <p class="text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 mb-5">Real Experiences</p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.02] text-zinc-900 mb-5">Travelers who got it<br /><em class="font-normal italic">right (and wrong)</em></h2>
+        <p class="text-zinc-500 max-w-2xl mx-auto leading-relaxed">Learn from real trips --- what worked, what didn't, and what they wish they'd known.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {travelerStories.map((story) => (
+          <div class="bg-white rounded-xl border border-zinc-200 p-6 flex flex-col">
+            <p class="text-zinc-600 leading-relaxed text-sm mb-4 flex-1 italic">"{story.quote}"</p>
+            <div class="border-t border-zinc-100 pt-4 space-y-1">
+              <p class="text-sm font-semibold text-zinc-800">{story.name}</p>
+              <p class="text-xs text-zinc-400">{story.trip}</p>
+              <span class={`inline-block text-xs font-semibold px-2 py-0.5 rounded-full mt-2 ${story.verdictColor}`}>{story.verdict}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== 11. FAQ ======== -->
+  <section class="max-w-7xl mx-auto px-4 py-20">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 mb-5">Common Questions</p>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.02] text-zinc-900 mb-10">Everything you<br /><em class="font-normal italic">need to know</em></h2>
+      <div class="space-y-3">
+        {faqs.map((faq) => (
+          <details class="group border border-zinc-200 rounded-xl overflow-hidden">
+            <summary class="list-none p-5 cursor-pointer flex items-center justify-between gap-4">
+              <span class="text-sm font-semibold text-zinc-800">{faq.q}</span>
+              <svg class="w-5 h-5 text-zinc-300 flex-shrink-0 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="px-5 pb-5">
+              <p class="text-sm text-zinc-600 leading-relaxed">{faq.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== 12. LEARN MORE HUB ======== -->
+  <section class="bg-zinc-50 border-y border-zinc-100">
+    <div class="max-w-7xl mx-auto px-4 py-20">
+      <div class="mb-12 text-center">
+        <p class="text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 mb-5">Keep Planning</p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.02] text-zinc-900 mb-5">Want to learn more<br /><em class="font-normal italic">about visiting Japan?</em></h2>
+        <p class="text-zinc-500 max-w-2xl mx-auto leading-relaxed">Dive deeper into the exact month, region, festival, or budget that fits your trip.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <a href="/when-to-go" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
+          <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">Take the 60-Second Quiz</p>
+          <p class="text-sm text-zinc-500 leading-relaxed">Answer 8 questions and get your ideal month instantly.</p>
+        </a>
+        <a href="/monthly-guide" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
+          <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">Month-by-Month Guide</p>
+          <p class="text-sm text-zinc-500 leading-relaxed">Weather, festivals, crowds & packing for every month of the year.</p>
+        </a>
+        <a href="/by-region" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
+          <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">Region Guides</p>
+          <p class="text-sm text-zinc-500 leading-relaxed">Best time to visit Tokyo, Kyoto, Hokkaido, Okinawa & more.</p>
+        </a>
+        <a href="/crowd-calendar" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
+          <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">Crowd Calendar</p>
+          <p class="text-sm text-zinc-500 leading-relaxed">Golden Week, Obon, sakura peak & the quiet sweet spots.</p>
+        </a>
+        <a href="/festivals" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
+          <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">Festival Dates</p>
+          <p class="text-sm text-zinc-500 leading-relaxed">Plan your trip around Japan's most spectacular celebrations.</p>
+        </a>
+        <a href="/travel-cost" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
+          <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">Travel Cost Guide</p>
+          <p class="text-sm text-zinc-500 leading-relaxed">When flights and hotels are cheapest, and what trips really cost.</p>
+        </a>
+        <a href="/faq" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
+          <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">Full FAQ</p>
+          <p class="text-sm text-zinc-500 leading-relaxed">More answers about weather, visas, and planning your Japan trip.</p>
+        </a>
+        <a href="/about" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
+          <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">About Our Guide</p>
+          <p class="text-sm text-zinc-500 leading-relaxed">How this guide is built and why you can trust its recommendations.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== TRUST SIGNALS ======== -->
+  <section class="max-w-7xl mx-auto px-4 py-16">
+    <div class="bg-white border border-zinc-200 rounded-2xl p-8 md:p-10">
+      <div class="mb-8 text-center">
+        <p class="text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 mb-5">Why Trust This Guide</p>
+        <h3 class="text-2xl md:text-3xl font-bold tracking-tighter leading-tight text-zinc-900 mb-3">Built by travelers,<br /><em class="font-normal italic">backed by data</em></h3>
+        <p class="text-sm text-zinc-600 leading-relaxed max-w-3xl mx-auto">Every recommendation is based on climate norms from the Japan Meteorological Agency, seasonal flight price tracking, Japan's holiday and festival calendar, and our team's own travel research. No sponsored rankings.</p>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-zinc-100 border border-zinc-100 rounded-xl overflow-hidden mb-6">
+        {[
+          { value: "10 yr", label: "of climate norms per month", },
+          { value: "$750", label: "September round-trip flights from the US", },
+          { value: "40-60%", label: "hotel savings in June & September", },
+          { value: "12", label: "monthly guides & 10 region guides" },
+        ].map((stat) => (
+          <div class="bg-white p-5 text-center">
+            <p class="text-2xl md:text-3xl font-bold text-accent-600">{stat.value}</p>
+            <p class="text-xs text-zinc-500 mt-1 leading-snug">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+      <div class="flex flex-wrap gap-4 justify-center text-xs text-zinc-500">
+        <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-accent-400"></span> JMA climate norms</span>
+        <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-accent-400"></span> Seasonal flight price tracking</span>
+        <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-accent-400"></span> National holiday & festival calendar</span>
+        <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-accent-400"></span> Updated <span id="last-updated">{new Date().toLocaleString('en-US', { month: 'short', year: 'numeric' })}</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== CTA ======== -->
+  <section class="bg-accent-600 text-white">
+    <div class="max-w-7xl mx-auto px-4 py-20 text-center">
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.02] mb-5">Still<br /><em class="font-normal italic">not sure?</em></h2>
+      <p class="text-accent-100 max-w-md mx-auto mb-8 leading-relaxed">Answer 8 quick questions about your travel style and we'll tell you the exact best month for your Japan trip.</p>
+      <a href="/when-to-go" class="inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-accent-50 text-accent-700 font-semibold rounded-full transition-colors text-lg">
+        Take the Free Quiz
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+  <Footer />
+
+<script>
+  const now = new Date();
+  const monthIdx = now.getMonth();
+  const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  const banner = document.getElementById("season-banner");
+  if (banner) {
+    const monthEl = banner.querySelector(".season-month");
+    if (monthEl) monthEl.textContent = monthNames[monthIdx];
+    banner.classList.remove("hidden");
+  }
+
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  if (toggle && menu) {
+    toggle.addEventListener("click", () => { menu.classList.toggle("hidden"); });
+  }
+</script>
+</BaseLayout>

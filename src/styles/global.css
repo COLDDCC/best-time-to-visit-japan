@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  /* Japan vermilion (torii-red) primary accent */
+  --color-accent-50: #fff1f1;
+  --color-accent-100: #ffdede;
+  --color-accent-200: #ffc1c2;
+  --color-accent-300: #f98f90;
+  --color-accent-400: #f24b4d;
+  --color-accent-500: #e6202a;
+  --color-accent-600: #d30f1f;
+  --color-accent-700: #ad0b1e;
+  --color-accent-800: #8f0d20;
+  --color-accent-900: #7a0e1f;
+  --color-accent-950: #43040b;
+  /* Sakura pink (used for spring accents) */
+  --color-sakura-50: #fdf2f7;
+  --color-sakura-100: #fbe4ef;
+  --color-sakura-200: #f9c9df;
+  --color-sakura-300: #f59ec5;
+  --color-sakura-400: #ef67a4;
+  --color-sakura-500: #e63d87;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-zinc-900 antialiased;
+}
+
+/* Editorial italic accent words inside headings (serif). English-facing only. */
+h1 em,
+h2 em,
+h3 em,
+display-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  @apply bg-accent-200 text-accent-950;
+}
+
+/* Focus styles for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid var(--color-accent-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+@supports not selector(:focus-visible) {
+  *:focus { outline: 2px solid var(--color-accent-500); outline-offset: 2px; }
+}
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

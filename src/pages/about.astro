@@ -1,0 +1,88 @@
+---
+import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import PageHero from "../components/PageHero.astro";
+import Callout from "../components/Callout.astro";
+---
+
+<BaseLayout title="About When to Visit Japan: Our Editorial Policy" description="Learn how When to Visit Japan researches weather, crowds, and costs — and read our editorial policy for honest, independent travel advice.">
+  <section class="min-h-[100dvh]">
+    <Nav />
+    <div class="max-w-3xl mx-auto px-4 py-6">
+      <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">About</p>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">Who's Behind This Guide</h1>
+      <p class="text-lg text-zinc-500 leading-relaxed mb-12">The story behind the data, and how this guide is researched and maintained.</p>
+
+      <PageHero image="/images/region-fuji.webp" alt="Mount Fuji with cherry blossoms in the foreground at sunrise" overlay="About" title="Data-driven Japan travel advice, researched and updated by our editorial team" />
+
+      <!-- About the team -->
+      <div class="bg-white border border-zinc-200 rounded-2xl p-8 mb-12">
+        <h2 class="text-xl font-bold text-zinc-900 mb-4">Our Editorial Team</h2>
+        <p class="text-zinc-700 leading-relaxed mb-4">
+          When to Visit Japan is written by a small editorial team of travelers and Japan specialists. Between us, we've planned trips across every main island — from the powder snow of Niseko to the summer matsuri of Aomori, from neon-lit Shinjuku to quiet temple lanes in Kyoto. We built this guide because we kept hearing the same question from friends, colleagues, and fellow travelers: <em>"When should I actually go?"</em>
+        </p>
+        <p class="text-zinc-700 leading-relaxed mb-4">
+          The answer always started with "it depends" — and that felt like a cop-out. So we set out to build something that doesn't just tell you the best month, but shows you <em>why</em>, compares your options, and lets you make the call based on what matters to <em>you</em>.
+        </p>
+        <p class="text-zinc-700 leading-relaxed">
+          Every recommendation on this site comes from a combination of aggregated climate and pricing data, festival calendars, and our own travel research. Where we haven't personally experienced a season or region, we say so and stick to what the data supports.
+        </p>
+      </div>
+
+      <!-- Methodology -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold text-zinc-900 mb-6">How We Build Our Recommendations</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="bg-white border border-zinc-200 rounded-xl p-6">
+            <p class="text-sm font-bold text-zinc-800 mb-2">Climate Data</p>
+            <p class="text-sm text-zinc-600 leading-relaxed">
+              Temperature ranges and rain-day counts are national averages based on long-term norms from the <a href="https://www.jma.go.jp/en/" target="_blank" rel="noopener" class="text-accent-600 hover:text-accent-700 underline">Japan Meteorological Agency (JMA)</a>. Region-specific detail lives on our region guides, which give representative seasonal ranges for each area.
+            </p>
+          </div>
+          <div class="bg-white border border-zinc-200 rounded-xl p-6">
+            <p class="text-sm font-bold text-zinc-800 mb-2">Flight Prices</p>
+            <p class="text-sm text-zinc-600 leading-relaxed">
+              Round-trip flight cost estimates are indicative figures based on <a href="https://www.google.com/travel/flights" target="_blank" rel="noopener" class="text-accent-600 hover:text-accent-700 underline">Google Flights</a> search patterns for US departure cities. They show typical relative price differences between seasons rather than exact fares.
+            </p>
+          </div>
+          <div class="bg-white border border-zinc-200 rounded-xl p-6">
+            <p class="text-sm font-bold text-zinc-800 mb-2">Crowd Intelligence</p>
+            <p class="text-sm text-zinc-600 leading-relaxed">
+              Crowd level estimates combine Japan's national holiday calendar with visitor statistics from the <a href="https://www.jnto.go.jp/" target="_blank" rel="noopener" class="text-accent-600 hover:text-accent-700 underline">Japan National Tourism Organization</a>. Peak periods are cross-checked against booking patterns and festival calendars.
+            </p>
+          </div>
+          <div class="bg-white border border-zinc-200 rounded-xl p-6">
+            <p class="text-sm font-bold text-zinc-800 mb-2">First-Hand Research</p>
+            <p class="text-sm text-zinc-600 leading-relaxed">
+              Our seasonal narratives and regional tips are informed by the team's own travel across Japan's major regions and cities. If we haven't been somewhere in a particular season, we don't write about it as if we have.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Editorial Policy -->
+      <Callout eyebrow="Editorial Policy" tone="neutral" class="mb-12">
+        <ul class="space-y-3 text-sm text-zinc-700 leading-relaxed">
+          <li class="flex gap-2"><span class="text-accent-600 font-bold flex-shrink-0">1.</span> Every article is researched and edited by our team before publication. We aim for accuracy over speed, and we revise content when we find errors.</li>
+          <li class="flex gap-2"><span class="text-accent-600 font-bold flex-shrink-0">2.</span> Weather, price, and crowd data are reviewed at least once a year, and festival dates are updated annually against the Japanese national calendar.</li>
+          <li class="flex gap-2"><span class="text-accent-600 font-bold flex-shrink-0">3.</span> We do not accept payment for recommendations. No sponsored rankings. No paid placements. If we recommend a time or place, it's because we believe it's the right call — period.</li>
+          <li class="flex gap-2"><span class="text-accent-600 font-bold flex-shrink-0">4.</span> Corrections: If you find an error, <a href="/contact" class="text-accent-600 hover:text-accent-700 underline">email us</a>. We'll fix it and note the correction. Accuracy matters more than pride.</li>
+        </ul>
+      </Callout>
+
+      <!-- Why This Site Exists -->
+      <div class="bg-gradient-to-br from-accent-50 to-white border border-accent-200 rounded-2xl p-8">
+        <h2 class="text-xl font-bold text-zinc-900 mb-4">Why We Built This</h2>
+        <p class="text-zinc-700 leading-relaxed">
+          Most "best time to visit" guides give you a single sentence answer. Japan isn't a single place — it stretches from the tropical beaches of Okinawa to the powder-snow slopes of Hokkaido, spans four distinct seasons, and packs its busiest travel into a handful of impossible-to-book weeks. A one-size-fits-all answer doesn't work here.
+        </p>
+        <p class="text-zinc-700 leading-relaxed mt-3">
+          We built an interactive tool, not just an article, because we believe travel planning deserves better than generic advice. Pick your region. Pick your dates. Compare. Decide. We'll give you the data — the choice is yours.
+        </p>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>

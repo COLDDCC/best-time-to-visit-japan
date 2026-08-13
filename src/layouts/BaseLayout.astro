@@ -1,0 +1,141 @@
+---
+// BaseLayout.astro - Japan travel planning content-tool hybrid
+export interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+}
+
+const { title, description, ogImage = "/og-default.png" } = Astro.props;
+// og:image converted to absolute URL (social scrapers can't parse relative paths)
+const ogImageURL = ogImage.startsWith("http") ? ogImage : new URL(ogImage, Astro.site).href;
+// Known intrinsic dimensions per og image (set once; avoids re-measuring at build)
+const ogImageSizes: Record<string, [number, number]> = {
+  "/og-default.png": [1200, 630],
+  "/images/og-japan-best-time.webp": [1600, 1200],
+  "/images/region-kyoto.webp": [1600, 1067],
+  ...Object.fromEntries([
+    ["january", [1600, 1064]], ["february", [1600, 1965]], ["march", [1600, 2135]],
+    ["april", [850, 1275]], ["may", [900, 1200]], ["june", [1600, 1188]],
+    ["july", [1600, 1200]], ["august", [1200, 797]], ["september", [1200, 800]],
+    ["october", [1280, 960]], ["november", [1452, 969]], ["december", [1000, 750]],
+  ].map(([k, v]) => [`/images/month-${k}.webp`, v])),
+  ...Object.fromEntries([
+    ["hokkaido", [921, 613]], ["tohoku", [1024, 768]], ["tokyo", [1600, 853]],
+    ["fuji", [1600, 782]], ["kyoto", [1600, 1067]], ["hiroshima", [1600, 1028]],
+    ["nara", [1600, 1280]], ["shikoku", [900, 1239]], ["kyushu", [1600, 1199]],
+    ["okinawa", [1600, 932]],
+  ].map(([k, v]) => [`/images/region-${k}.webp`, v])),
+};
+const [ogW, ogH] = ogImageSizes[ogImage] ?? [1200, 630];
+let canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
+if (canonicalURL.endsWith("/")) canonicalURL = canonicalURL.slice(0, -1);
+
+// BreadcrumbList - only for subpages
+const pageLabels: Record<string, string> = {
+  "when-to-go": "When to Go Quiz",
+  "monthly-guide": "Month-by-Month Guide",
+  "by-region": "By Region",
+  "festivals": "Festivals",
+  "crowd-calendar": "Crowd Calendar",
+  "faq": "FAQ",
+  "travel-cost": "Travel Cost",
+  "about": "About",
+  "contact": "Contact",
+  "privacy": "Privacy",
+  "404": "404",
+};
+let breadcrumbSchema = "";
+let crumbs: { name: string; item: string }[] = [];
+const pathParts = Astro.url.pathname.split('/').filter(Boolean);
+// Some URL segments (month, region) are route prefixes with no page of their own.
+// Map them to the real hub pages so breadcrumb links never point to 404s.
+const crumbTargets: Record<string, string> = {
+  "month": "/monthly-guide",
+  "region": "/by-region",
+};
+if (pathParts.length > 0) {
+  const baseUrl = canonicalURL.replace(Astro.url.pathname, '/');
+  const items = [{ "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl }];
+  crumbs.push({ name: "Home", item: baseUrl });
+  for (let i = 0; i < pathParts.length; i++) {
+    const part = pathParts[i];
+    const name = pageLabels[part] ?? part.replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
+    const rawItem = baseUrl + pathParts.slice(0, i + 1).join('/');
+    const isPrefix = i < pathParts.length - 1;
+    const item = (isPrefix && crumbTargets[part]) ? baseUrl + crumbTargets[part].replace(/^\//, '') : rawItem;
+    items.push({ "@type": "ListItem", "position": (i + 2), "name": name, "item": item });
+    crumbs.push({ name, item });
+  }
+  breadcrumbSchema = JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": items });
+}
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content={ogW} />
+    <meta property="og:image:height" content={ogH} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+    <title>{title}</title>
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <script is:inline>window.addEventListener('pageshow',function(e){if(e.persisted)location.reload();});</script>
+    <!-- Organization + WebSite Schema -->
+    <script type="application/ld+json" set:html={`{
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "When to Visit Japan",
+      "url": "https://when-to-visit-japan.com",
+      "logo": "https://when-to-visit-japan.com/favicon.svg",
+      "description": "Expert travel guide helping you find the best time to visit Japan. Month-by-month weather, sakura & koyo forecasts, crowd calendars, festival dates, and region-specific advice."
+    }`} />
+    <script type="application/ld+json" set:html={`{
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "When to Visit Japan",
+      "url": "https://when-to-visit-japan.com"
+    }`} />
+    {breadcrumbSchema && <>
+      <script type="application/ld+json" set:html={breadcrumbSchema} />
+    </>}
+  </head>
+  <body class="bg-white text-zinc-900 antialiased font-sans">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent-600 focus:text-white focus:rounded-lg focus:outline-none">Skip to content</a>
+
+    {crumbs.length > 0 && (
+      <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 pt-4">
+        <ol class="flex flex-wrap items-center gap-1.5 text-xs text-zinc-400">
+          {crumbs.map((c, i) => (
+            <li class="flex items-center gap-1.5">
+              {i > 0 && <span aria-hidden="true" class="text-zinc-300">/</span>}
+              {i < crumbs.length - 1 ? (
+                <a href={c.item} class="hover:text-accent-600 transition-colors">{c.name}</a>
+              ) : (
+                <span class="text-zinc-500 font-medium" aria-current="page">{c.name}</span>
+              )}
+            </li>
+          ))}
+        </ol>
+      </nav>
+    )}
+
+    <main id="main-content"><slot /></main>
+  </body>
+</html>

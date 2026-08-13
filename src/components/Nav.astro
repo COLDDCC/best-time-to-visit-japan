@@ -1,0 +1,54 @@
+---
+const navItems = [
+  { href: "/when-to-go", label: "Quiz" },
+  { href: "/monthly-guide", label: "Monthly Guide" },
+  { href: "/by-region", label: "By Region" },
+  { href: "/festivals", label: "Festivals" },
+  { href: "/crowd-calendar", label: "Crowds" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/travel-cost", label: "Cost" },
+  { href: "/about", label: "About" },
+];
+---
+
+<nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-zinc-100">
+  <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+    <a href="/" class="font-serif text-xl tracking-tight text-zinc-900">When to Visit Japan</a>
+    <div class="hidden md:flex items-center gap-4 text-sm font-medium text-zinc-600">
+      {navItems.map((item) => (
+        <a href={item.href} class="hover:text-accent-600 transition-colors">{item.label}</a>
+      ))}
+      <a href="/when-to-go" class="ml-2 inline-flex items-center gap-1.5 px-4 py-2 bg-accent-600 text-white text-sm font-medium rounded-full hover:bg-accent-700 transition-colors no-underline">
+        Take the Quiz
+      </a>
+    </div>
+    <button id="menu-toggle" class="md:hidden p-2 text-zinc-600 hover:text-accent-600" aria-label="Open menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden border-t border-zinc-100 bg-white px-4 pb-4">
+    <div class="flex flex-col gap-3 pt-4 text-sm font-medium text-zinc-600">
+      {navItems.map((item) => (
+        <a href={item.href} class="hover:text-accent-600 py-1">{item.label}</a>
+      ))}
+    </div>
+  </div>
+</nav>
+
+
+<script>
+  (function() {
+    var path = location.pathname;
+    document.querySelectorAll("nav a[href]").forEach(function(a) {
+      var href = a.getAttribute("href");
+      if (href === path || (href !== "/" && path.startsWith(href))) {
+        a.classList.add("text-accent-600", "font-semibold");
+      }
+    });
+    var toggle = document.getElementById("menu-toggle");
+    var menu = document.getElementById("mobile-menu");
+    if (toggle && menu) {
+      toggle.addEventListener("click", function() { menu.classList.toggle("hidden"); });
+    }
+  })();
+</script>

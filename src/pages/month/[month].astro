@@ -1,0 +1,223 @@
+---
+import "../../styles/global.css";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import { monthlyData } from "../../data/weather.ts";
+import { regionGuides } from "../../data/regions.ts";
+import Icon from "../../components/Icon.astro";
+import Callout from "../../components/Callout.astro";
+
+export function getStaticPaths() {
+  return monthlyData.map((m) => ({
+    params: { month: m.month },
+    props: { month: m },
+  }));
+}
+
+const { month } = Astro.props;
+const canonical = `https://when-to-visit-japan.com/month/${month.month}`;
+const currentYear = new Date().getFullYear();
+
+const relatedRegions = (month.bestRegionSlugs ?? [])
+  .map((slug) => regionGuides.find((r) => r.slug === slug))
+  .filter((r): r is NonNullable<typeof r> => Boolean(r));
+
+// Intrinsic aspect ratio per hero image, so width/height match the real asset (prevents CLS)
+const heroRatios: Record<string, [number, number]> = {
+  january: [1000, 700], february: [1000, 1200], march: [1000, 1300],
+  april: [1000, 1500], may: [1000, 1300], june: [1000, 700],
+  july: [1000, 800], august: [1000, 700], september: [1000, 700],
+  october: [1000, 800], november: [1000, 700], december: [1000, 800],
+};
+const [heroW, heroH] = heroRatios[month.month] ?? [1000, 700];
+
+const title = `Japan in ${month.label} ${currentYear}: Weather, Crowds & Where to Go`;
+const meta = `${month.label} in Japan: ${month.tempLow}°C to ${month.tempHigh}°C, ${month.rainDays} rain days, crowds ${month.crowdLevel}/5. Best for ${month.bestFor}.`;
+const desc = `${month.label} is best for ${month.bestFor}. Average ${month.tempLow}°C to ${month.tempHigh}°C, ${month.rainDays} rainy days, crowd level ${month.crowdLevel}/5. Our guide covers the best regions, highlights, packing and what to avoid.`;
+
+const articleSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": meta,
+  "author": { "@type": "Organization", "name": "When to Visit Japan", "url": "https://when-to-visit-japan.com/about" },
+  "publisher": { "@type": "Organization", "name": "When to Visit Japan", "logo": { "@type": "ImageObject", "url": "https://when-to-visit-japan.com/favicon.svg" } },
+  "datePublished": `${currentYear}-01-15`,
+  "dateModified": `${currentYear}-07-31`,
+  "mainEntityOfPage": { "@type": "WebPage", "@id": canonical },
+});
+---
+
+<BaseLayout title={title} description={meta} ogImage={month.image}>
+  <script type="application/ld+json" set:html={articleSchema} />
+
+  <section class="min-h-[100dvh]">
+    <Nav />
+    <div class="max-w-4xl mx-auto px-4 py-8">
+      <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">Month Guide</p>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">{title}</h1>
+      <p class="text-lg text-zinc-500 leading-relaxed mb-8">{month.label} in a nutshell &mdash; the weather, the crowds, and where to go. Then dig into the details below.</p>
+
+      <img src={month.image} alt={month.imageAlt} width={heroW} height={heroH} loading="eager" fetchpriority="high" class="w-full h-auto rounded-2xl shadow-sm border border-zinc-100 mb-12" />
+
+      <!-- Month narrative -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold text-zinc-900 mb-3">{month.spotlight.title}</h2>
+        <p class="text-zinc-600 leading-relaxed">{month.spotlight.text}</p>
+      </div>
+
+      <!-- What's on this month -->
+      <div class="mb-12 bg-zinc-50 border border-zinc-100 rounded-2xl p-6">
+        <h2 class="text-2xl font-bold text-zinc-900 mb-4">What's On in {month.label}</h2>
+        <ul class="space-y-3">
+          {month.events.map((e) => (
+            <li class="flex gap-3 text-zinc-700 leading-relaxed">
+              <span class="flex-shrink-0 w-6 h-6 rounded-full bg-accent-100 text-accent-700 flex items-center justify-center mt-0.5"><Icon name="sparkles" class="w-3.5 h-3.5" /></span>
+              <span>{e}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="text-sm text-zinc-500 mt-4"><a href="/festivals" class="text-accent-600 hover:text-accent-700 font-medium">See all festival dates for {currentYear} &rarr;</a></p>
+      </div>
+
+      <!-- Quick answer box -->
+      <Callout eyebrow="The Short Answer" tone="red" class="mb-12">
+        <p class="text-lg leading-relaxed">In {month.label}, Japan&rsquo;s temperatures average <strong class="text-accent-700">{month.tempLow}&deg;C to {month.tempHigh}&deg;C</strong>, with about {month.rainDays} rainy days and a crowd level of <strong class="text-accent-700">{month.crowdLevel}/5</strong>. It&rsquo;s best for <strong class="text-accent-700">{month.bestFor}</strong>.</p>
+      </Callout>
+
+      <!-- At a glance -->
+      <div class="grid grid-cols-3 gap-4 mb-12">
+        <div class="bg-white border border-zinc-200 rounded-xl p-5 text-center">
+          <p class="text-xs font-semibold tracking-wide text-zinc-400 uppercase mb-1">Temperature</p>
+          <p class="text-2xl font-bold text-zinc-800">{month.tempLow}&deg;<span class="text-zinc-400">–</span>{month.tempHigh}&deg;C</p>
+        </div>
+        <div class="bg-white border border-zinc-200 rounded-xl p-5 text-center">
+          <p class="text-xs font-semibold tracking-wide text-zinc-400 uppercase mb-1">Rain Days</p>
+          <p class="text-2xl font-bold text-zinc-800">{month.rainDays}</p>
+        </div>
+        <div class="bg-white border border-zinc-200 rounded-xl p-5 text-center">
+          <p class="text-xs font-semibold tracking-wide text-zinc-400 uppercase mb-1">Crowd Level</p>
+          <p class={`text-2xl font-bold ${month.crowdLevel <= 2 ? 'text-emerald-600' : month.crowdLevel <= 3 ? 'text-amber-600' : 'text-red-600'}`}>{month.crowdLevel}/5</p>
+        </div>
+      </div>
+
+      <!-- Best regions -->
+      <h2 class="text-3xl font-bold text-zinc-900 mb-6 mt-14">Where to Go in {month.label}</h2>
+      <div class="mb-12">
+        <ul class="space-y-3">
+          {month.bestRegions.map((r) => (
+            <li class="flex items-center gap-3 text-lg text-zinc-800 leading-relaxed">
+              <span class="flex-shrink-0 w-6 h-6 rounded-full bg-accent-100 text-accent-700 flex items-center justify-center"><Icon name="star" class="w-3.5 h-3.5" /></span>
+              {r}
+            </li>
+          ))}
+        </ul>
+        {relatedRegions.length > 0 && (
+          <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {relatedRegions.map((r) => (
+              <a href={`/region/${r.slug}`} class="group bg-white border border-zinc-200 rounded-xl p-4 hover:border-accent-300 transition-colors no-underline">
+                <p class="text-base font-bold text-zinc-900 group-hover:text-accent-600 transition-colors">{r.name}</p>
+                <p class="text-sm text-blue-700 font-medium mt-0.5">Best: {r.best}</p>
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <!-- Highlights vs downsides -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <Callout eyebrow="Highlights" tone="green">
+          <ul class="space-y-3">
+            {month.highlights.map((h) => (
+              <li class="flex gap-3 text-lg text-zinc-800 leading-relaxed">
+                <Icon name="check" class="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                {h}
+              </li>
+            ))}
+          </ul>
+        </Callout>
+        <Callout eyebrow="Watch Out For" tone="amber">
+          <ul class="space-y-3">
+            {month.downsides.map((d) => (
+              <li class="flex gap-3 text-lg text-zinc-800 leading-relaxed">
+                <Icon name="xmark" class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
+                {d}
+              </li>
+            ))}
+          </ul>
+        </Callout>
+      </div>
+
+      <!-- Packing -->
+      <Callout eyebrow="What to Pack" tone="red" class="mb-12">
+        <p class="text-lg leading-relaxed">{month.packing}</p>
+      </Callout>
+
+      <!-- Where to base yourself -->
+      <div class="mb-12">
+        <h2 class="text-3xl font-bold text-zinc-900 mb-6">Where to Base Yourself in {month.label}</h2>
+        <div class="bg-white border border-zinc-200 rounded-2xl p-6">
+          <p class="text-zinc-700 leading-relaxed font-medium text-lg mb-2">{month.baseCamp.title}</p>
+          <p class="text-zinc-600 leading-relaxed">{month.baseCamp.text}</p>
+        </div>
+      </div>
+
+      <!-- Day trips -->
+      <div class="mb-12">
+        <h2 class="text-3xl font-bold text-zinc-900 mb-6">Best {month.label} Day Trips</h2>
+        <ul class="space-y-3">
+          {month.dayTrips.map((d) => (
+            <li class="flex gap-3 text-zinc-700 text-lg leading-relaxed">
+              <span class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center mt-0.5"><Icon name="sparkles" class="w-3.5 h-3.5" /></span>
+              <span>{d}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Budget note -->
+      <Callout eyebrow="Money in {month.label}" tone="green" class="mb-12">
+        <p class="text-lg leading-relaxed">{month.budgetNote}</p>
+      </Callout>
+
+      <!-- Local tip -->
+      <Callout eyebrow="Local Tip" tone="amber" class="mb-12">
+        <p class="text-lg leading-relaxed">{month.localTip}</p>
+      </Callout>
+
+      <!-- Prev / Next month -->
+      <div class="flex flex-col sm:flex-row justify-between gap-3 border-t border-zinc-100 pt-8 mb-4">
+        {(() => {
+          const idx = monthlyData.findIndex((m) => m.month === month.month);
+          const prev = idx > 0 ? monthlyData[idx - 1] : null;
+          const next = idx < monthlyData.length - 1 ? monthlyData[idx + 1] : null;
+          return (
+            <>
+              {prev ? (
+                <a href={`/month/${prev.month}`} class="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 hover:text-accent-600 transition-colors no-underline">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                  Previous: {prev.label}
+                </a>
+              ) : <span />}
+              {next && (
+                <a href={`/month/${next.month}`} class="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 hover:text-accent-600 transition-colors no-underline">
+                  Next: {next.label}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              )}
+            </>
+          );
+        })()}
+      </div>
+
+      <div class="text-center">
+        <a href="/monthly-guide" class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors">
+          Compare all 12 months
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>

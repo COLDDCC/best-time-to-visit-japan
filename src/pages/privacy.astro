@@ -1,0 +1,50 @@
+---
+import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import Callout from "../components/Callout.astro";
+---
+
+<BaseLayout title="Privacy Policy — When to Visit Japan" description="Privacy policy for When to Visit Japan. We don't use tracking cookies or collect personal data. No analytics, no ads. Learn how we handle your data.">
+  <section class="min-h-[100dvh]">
+    <Nav />
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">Legal</p>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">Privacy Policy</h1>
+      <p class="text-sm text-zinc-400 mb-12">Last updated: {new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' })}</p>
+
+      <div class="space-y-8 text-sm text-zinc-700 leading-relaxed">
+        <div>
+          <h2 class="text-lg font-bold text-zinc-900 mb-3">1. What We Collect</h2>
+          <p>When to Visit Japan does not require user accounts, collect personal information, or use cookies for tracking. We do not use analytics services that collect personal data. The quiz on our site stores your answers only in your browser session — they are never sent to our servers.</p>
+        </div>
+
+        <div>
+          <h2 class="text-lg font-bold text-zinc-900 mb-3">2. Third-Party Services</h2>
+          <p>We use Google Fonts to serve the Geist typeface. Google may collect standard server log information when loading fonts. We do not use any other third-party tracking, analytics, or advertising services.</p>
+        </div>
+
+        <div>
+          <h2 class="text-lg font-bold text-zinc-900 mb-3">3. Contact Forms</h2>
+          <p>If you contact us via email, we will use your email address solely to respond to your inquiry. We do not add you to mailing lists, share your email, or use it for any purpose other than direct correspondence.</p>
+        </div>
+
+        <div>
+          <h2 class="text-lg font-bold text-zinc-900 mb-3">4. Your Rights</h2>
+          <p>You have the right to request information about any personal data we may hold about you, and to request its deletion. Since we collect essentially no personal data, this is straightforward — but we take it seriously nonetheless.</p>
+        </div>
+
+        <div>
+          <h2 class="text-lg font-bold text-zinc-900 mb-3">5. Changes to This Policy</h2>
+          <p>We will update this page if our data practices change. The last updated date at the top of this page reflects the most recent revision.</p>
+        </div>
+
+        <Callout eyebrow="Questions?" tone="red" class="mt-8">
+          <p class="leading-relaxed">If you have questions about this policy, contact us at <a href="mailto:hello@when-to-visit-japan.com" class="text-accent-600 hover:text-accent-700 underline">hello@when-to-visit-japan.com</a>.</p>
+        </Callout>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>

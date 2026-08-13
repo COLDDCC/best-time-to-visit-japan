@@ -1,0 +1,89 @@
+---
+import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import Callout from "../components/Callout.astro";
+
+const year = new Date().getFullYear();
+
+const festivals = [
+  { name: "Sapporo Snow Festival", date: `Early Feb ${year}`, type: "Winter", duration: "~1 week", crowd: "High", crowdColor: "bg-red-400", image: "/images/fest-snow.webp", imageAlt: "Illuminated snow sculptures at the Sapporo Snow Festival", desc: "Hokkaido's centerpiece winter event: hundreds of giant ice and snow sculptures, huge illuminated displays, and snow slides along Odori Park.", tips: ["Bundle up — it's -10°C or below. Visit at night for the glow, and morning to dodge the biggest crowds."] },
+  { name: "Cherry Blossom (Sakura)", date: `Late Mar - Early Apr In Tokyo`, type: "Seasonal", duration: "~1-2 weeks", crowd: "Extreme", crowdColor: "bg-red-500", image: "/images/fest-sakura.webp", imageAlt: "Cherry blossom trees in full bloom over a canal in Tokyo", desc: "Japan's iconic season. Hanami picnics under blooming sakura in Ueno, Chidorigafuchi, and Kyoto's rivers. The 'sakura front' sweeps north from Kyushu to Hokkaido.", tips: ["Time it by tracking the official sakura forecast (published ~2 weeks ahead). Ueno and Philosopher's Path at 7 AM are bliss."] },
+  { name: "Golden Week", date: `Apr 29 - May 5 ${year}`, type: "Public Holiday", duration: "7 days", crowd: "Extreme", crowdColor: "bg-red-500", image: "/images/fest-golden.webp", imageAlt: "Crowds celebrating during the Golden Week holiday in Japan", desc: "Four national holidays in one week — Japan's biggest travel period. Bullet trains sell out, hotels triple in price, and every attraction is packed.", tips: ["Avoid at all costs if you can.", "Travel the week after (May 6-) for perfect spring weather with the crowds gone."] },
+  { name: "Gion Matsuri", city: "Kyoto", date: `July ${year}`, type: "Matsuri", duration: "All month", crowd: "High", crowdColor: "bg-red-400", image: "/images/fest-gion.webp", imageAlt: "Elaborate wooden floats during the Gion Matsuri in Kyoto", desc: "One of Japan's three great festivals. The famous yamaboko floats parade through Kyoto on July 17, preceded by evening 'Yoiyama.'", tips: ["The floats parade twice — July 17 (front) and July 24 (after).", "Book a hostel with a river view or spare the crowds at the Gion area."] },
+  { name: "Hanabi (Fireworks)", dates: "Throughout Japan, Jul-Aug", type: "Seasonal", duration: "Evenings", crowd: "High", crowdColor: "bg-red-400", image: "/images/fest-hanabi.webp", imageAlt: "Colorful summer fireworks bursting over a river and city in July", desc: "Japan's summer obsession. Massive hanabi displays light up rivers and bays from Tokyo's Sumida River to Osaka's Yodo River — often with 500,000+ spectators.", tips: ["Reserve a riverside spot early or book a river cruise.", "Check the local 'hanabi taikai' calendar to plan your route."] },
+  { name: "Obon Week", date: `Mid August ${year}`, type: "Public Holiday", duration: "1 week", crowd: "Extreme", crowdColor: "bg-red-500", image: "/images/fest-obon.webp", imageAlt: "Traditional Bon odori lanterns floating at night during Obon", desc: "The Buddhist festival honoring ancestors. Families return to their hometowns — the second biggest travel rush of the year, alongside lantern-dropping ceremonies.", tips: ["Book everything 2-3 months ahead or travel in the days after Obon.", "Witness a float lantern ceremony (Toronagashi) in Kyoto or Miyagi."] },
+  { name: "Aomori Nebuta Matsuri", city: "Aomori City", date: `Aug 2-7 ${year}`, type: "Matsuri", duration: "6 days", crowd: "High", crowdColor: "bg-red-400", image: "/images/fest-nebuta.webp", imageAlt: "Illuminated painted battle floats carried during the Nebuta Matsuri in Aomori", desc: "Tohoku's loudest event: dozens of massive, painted paper battle floats lit from within, danced through Aomori's streets at night to drums and flutes.", tips: ["Catch the 'haneto' dancers — spectators are welcome to join.", "Seats sell out early in summer; a street-side vantage is unforgettable."] },
+  { name: "Shichifukujin New Year", date: "Late Dec - Early Jan", type: "Cultural", duration: "Week", crowd: "Moderate", crowdColor: "bg-amber-400", image: "/images/fest-newyear.webp", imageAlt: "Japanese shrine gates and sunrise on New Year's morning", desc: "Japan's New Year (Oshogatsu) — shrine visits, lucky decorations, and family feasts. By New Year's Eve, most shops and attractions close until Jan 3.", tips: ["Prices stay high but crowds thin after Jan 3.", "See the first-sunrise (hatsu-hinode) at a coastal spot like Mt Takao."] },
+];
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": festivals.map((f, i) => ({ "@type": "ListItem", "position": i, "name": f.name })),
+});
+---
+
+<BaseLayout title={`Japanese Festivals ${year}: Dates, Crowds & Tips`} description={`Complete calendar of Japanese festivals in ${year} with dates, crowd levels and tips. Plan around sakura, Golden Week, Gion Matsuri, Obon and Nebuta.`}>
+  <script type="application/ld+json" set:html={schema} />
+  <section class="min-h-[100dvh]">
+    <Nav />
+    <div class="max-w-7xl mx-auto px-4 py-6">
+      <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">Festivals</p>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">Japanese Festivals Calendar</h1>
+      <p class="text-lg text-zinc-500 max-w-2xl leading-relaxed mb-16">Plan your trip around Japan's famous seasons and celebrations --- or avoid the peaks --- with exact dates and crowd predictions for {year}.</p>
+
+      <h2 class="text-2xl font-bold text-zinc-900 mb-6">How to Use This Calendar</h2>
+      <Callout eyebrow="How to Use" tone="neutral" class="mb-12 max-w-3xl">
+        <p class="leading-relaxed">
+          <strong class="text-red-600">Red</strong> marks the extreme peaks &mdash; genius crowds, packed trains, and a real price surge. <strong class="text-amber-600">Amber</strong> means it's manageable with a little planning. <strong class="text-emerald-600">Green</strong> is the calm, low-cost sweet spot. For empty temples and thin wallets, aim for mid-to-late June or throughout September.
+        </p>
+      </Callout>
+
+      <h2 class="text-2xl font-bold text-zinc-900 mb-6">8 Major Festivals & Seasons in {year}</h2>
+      <div class="space-y-6">
+        {festivals.map((f) => (
+          <div class="bg-white border border-zinc-200 rounded-2xl overflow-hidden">
+            <div class="relative">
+              <img src={f.image} alt={f.imageAlt} width="1200" height="360" loading="lazy" class="w-full h-44 md:h-56 object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/60 via-transparent to-transparent"></div>
+            </div>
+            <div class="p-6 md:p-8">
+              <div class="flex items-center gap-3 mb-3 flex-wrap">
+              <h3 class="text-xl font-bold text-zinc-900">{f.name}</h3>
+              {f.city && <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-600">{f.city}</span>}
+              <span class={`px-2.5 py-1 rounded-full text-xs font-semibold text-white ${f.crowdColor}`}>{f.crowd} crowds</span>
+              </div>
+              <p class="text-sm text-zinc-500 mb-3">{f.date} {f.duration ? `* ${f.duration}` : ''}</p>
+              <p class="text-sm text-zinc-700 leading-relaxed mb-4 max-w-2xl">{f.desc}</p>
+              <div class="bg-zinc-50 rounded-lg p-4 border border-zinc-100">
+                <p class="text-xs font-semibold text-accent-600 mb-1">Travel Tips</p>
+                <ul class="space-y-1 text-sm text-zinc-600 list-disc list-inside">
+                  {f.tips.map(t => <li>{t}</li>)}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <h2 class="text-2xl font-bold text-zinc-900 mt-12 mb-6">Festival Travel Survival Tips</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div class="bg-white border border-zinc-200 rounded-xl p-5">
+          <h3 class="text-lg font-bold text-zinc-900 mb-2">The Two 'Extreme' Peaks</h3>
+          <p class="text-sm text-zinc-600">Golden Week (late April-May 5) and Obon (mid-August) shut down everyday life. Trains sell out, hotels triple, prices surge. Avoid travel during these weeks, or book 4-6 months ahead.</p>
+        </div>
+        <div class="bg-white border border-zinc-200 rounded-xl p-5">
+          <h3 class="text-lg font-bold text-zinc-900 mb-2">Plan Around Seasons, Not In</h3>
+          <p class="text-sm text-zinc-600">The best strategy: arrive 5-7 days after sakura peak or after Golden Week. You get near-perfect weather with crowds 60-80% lower and hotels at shoulder-season prices.</p>
+        </div>
+        <div class="bg-white border border-zinc-200 rounded-xl p-5">
+          <h3 class="text-lg font-bold text-zinc-900 mb-2">Cultural Festivals Are Worth It</h3>
+          <p class="text-sm text-zinc-600">Gion Matsuri, Nebuta, and fireworks (hanabi) have manageable crowds compared to sakura and offer the deepest, most joyful Japanese experiences — the ones you'll talk about for years.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>

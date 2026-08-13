@@ -1,0 +1,181 @@
+---
+import "../../styles/global.css";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import { regionGuides } from "../../data/regions.ts";
+import Icon from "../../components/Icon.astro";
+import Callout from "../../components/Callout.astro";
+
+export function getStaticPaths() {
+  return regionGuides.map((r) => ({
+    params: { slug: r.slug },
+    props: { region: r },
+  }));
+}
+
+const { region } = Astro.props;
+const canonical = `https://when-to-visit-japan.com/region/${region.slug}`;
+const currentYear = new Date().getFullYear();
+const pageTitle = /\(\d{4}\)$/.test(region.title)
+  ? region.title.replace(/ \(\d{4}\)$/, ` (${currentYear})`)
+  : `${region.title} (${currentYear})`;
+
+const related = region.related
+  .map((slug) => regionGuides.find((r) => r.slug === slug))
+  .filter((r): r is NonNullable<typeof r> => Boolean(r));
+
+// Intrinsic aspect ratio per hero image (prevents CLS from mismatched width/height)
+const heroRatios: Record<string, [number, number]> = {
+  hokkaido: [1000, 700], tohoku: [1000, 800], tokyo: [1000, 500],
+  fuji: [1000, 500], kyoto: [1000, 700], hiroshima: [1000, 600],
+  nara: [1000, 800], shikoku: [1000, 1400], kyushu: [1000, 700],
+  okinawa: [1000, 600],
+};
+const [heroW, heroH] = heroRatios[region.slug] ?? [1000, 700];
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": region.faqs.map((f) => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a },
+  })),
+});
+
+const articleSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": pageTitle,
+  "description": region.meta,
+  "author": { "@type": "Organization", "name": "When to Visit Japan", "url": "https://when-to-visit-japan.com/about" },
+  "publisher": { "@type": "Organization", "name": "When to Visit Japan", "logo": { "@type": "ImageObject", "url": "https://when-to-visit-japan.com/favicon.svg" } },
+  "datePublished": `${currentYear}-01-15`,
+  "dateModified": `${currentYear}-07-31`,
+  "mainEntityOfPage": { "@type": "WebPage", "@id": canonical },
+});
+---
+
+<BaseLayout title={pageTitle} description={region.meta} ogImage={region.image}>
+  <script type="application/ld+json" set:html={articleSchema} />
+  <script type="application/ld+json" set:html={faqSchema} />
+
+  <section class="min-h-[100dvh]">
+    <Nav />
+    <div class="max-w-4xl mx-auto px-4 py-8">
+      <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">Region Guide</p>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">{pageTitle}</h1>
+      <p class="text-lg text-zinc-500 leading-relaxed mb-10">{region.meta}</p>
+
+      <img src={region.image} alt={region.imageAlt} width={heroW} height={heroH} loading="eager" fetchpriority="high" class="w-full h-auto rounded-2xl shadow-sm border border-zinc-100 mb-12" />
+
+      <!-- Quick answer box -->
+      <Callout eyebrow="The Short Answer" tone="red" class="mb-12">
+        <p class="leading-relaxed">The best time to visit {region.shortName} is <strong class="text-accent-700">{region.best}</strong>, when temperatures are {region.temp.split(' / ')[0]} and the weather is at its most comfortable.</p>
+        <p class="leading-relaxed mt-3"><strong class="text-red-600">Plan around {region.avoid}</strong>.</p>
+      </Callout>
+
+      <!-- At a glance grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+        <div class="bg-white border border-zinc-200 rounded-xl p-5">
+          <p class="text-xs font-semibold tracking-wide text-zinc-400 uppercase mb-1">Best Months</p>
+          <p class="text-sm font-semibold text-blue-700">{region.best}</p>
+        </div>
+        <div class="bg-white border border-zinc-200 rounded-xl p-5">
+          <p class="text-xs font-semibold tracking-wide text-zinc-400 uppercase mb-1">Worst Months</p>
+          <p class="text-sm font-semibold text-red-600">{region.avoid}</p>
+        </div>
+        <div class="bg-white border border-zinc-200 rounded-xl p-5">
+          <p class="text-xs font-semibold tracking-wide text-zinc-400 uppercase mb-1">Ideal Conditions</p>
+          <p class="text-sm text-zinc-700">{region.months} &middot; {region.temp}</p>
+        </div>
+        <div class="bg-white border border-zinc-200 rounded-xl p-5">
+          <p class="text-xs font-semibold tracking-wide text-zinc-400 uppercase mb-1">Daily Cost</p>
+          <p class="text-sm text-zinc-700">{region.budget}</p>
+        </div>
+      </div>
+
+      <!-- Intro -->
+      <h2 class="text-2xl font-bold text-zinc-900 mb-4">Overview</h2>
+      <p class="text-zinc-600 leading-relaxed mb-12">{region.intro}</p>
+
+      <!-- Season breakdown -->
+      <h2 class="text-2xl font-bold text-zinc-900 mb-6">Weather by Season</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
+        {region.weather.map((w) => (
+          <div class="bg-white border border-zinc-200 rounded-xl p-5">
+            <div class="flex items-center justify-between mb-2">
+              <p class="text-sm font-bold text-zinc-800">{w.season}</p>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-zinc-100 text-zinc-600">{w.temp}</span>
+            </div>
+            <p class="text-sm text-zinc-600 leading-relaxed">{w.note}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Must do -->
+      <h2 class="text-2xl font-bold text-zinc-900 mb-6">Must-Do Experiences</h2>
+      <ul class="space-y-3 mb-12">
+        {region.mustDo.map((item) => (
+          <li class="flex gap-3 text-zinc-700 text-sm leading-relaxed">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center mt-0.5"><Icon name="check" class="w-3.5 h-3.5" /></span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Festivals -->
+      <h2 class="text-2xl font-bold text-zinc-900 mb-6">Festivals & Highlights</h2>
+      <ul class="space-y-3 mb-12">
+        {region.festivals.map((item) => (
+          <li class="flex gap-3 text-zinc-700 text-sm leading-relaxed">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center mt-0.5"><Icon name="sparkles" class="w-3.5 h-3.5" /></span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Local tip -->
+      <Callout eyebrow="Local Tip" tone="amber" class="mb-12">
+        <p class="leading-relaxed">{region.tip}</p>
+      </Callout>
+
+      <!-- FAQ -->
+      <h2 class="text-2xl font-bold text-zinc-900 mb-6">{region.shortName} FAQs</h2>
+      <div class="space-y-3 mb-12">
+        {region.faqs.map((f) => (
+          <details class="group border border-zinc-200 rounded-xl overflow-hidden">
+            <summary class="list-none p-5 cursor-pointer flex items-center justify-between gap-4">
+              <span class="text-sm font-semibold text-zinc-800">{f.q}</span>
+              <svg class="w-5 h-5 text-zinc-300 flex-shrink-0 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="px-5 pb-5">
+              <p class="text-sm text-zinc-600 leading-relaxed">{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <!-- Related regions -->
+      <h2 class="text-2xl font-bold text-zinc-900 mb-6">Related Region Guides</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {related.map((r) => (
+          <a href={`/region/${r.slug}`} class="group bg-white border border-zinc-200 rounded-xl p-5 hover:border-accent-300 transition-colors no-underline">
+            <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">{r.name}</p>
+            <p class="text-xs text-blue-700 font-medium mb-1">Best: {r.best}</p>
+            <p class="text-xs text-zinc-500 leading-relaxed">{r.highlights}</p>
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-12 text-center">
+        <a href="/by-region" class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors">
+          Compare all 10 regions
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>

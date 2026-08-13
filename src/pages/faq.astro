@@ -1,0 +1,79 @@
+---
+import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import PageHero from "../components/PageHero.astro";
+import Callout from "../components/Callout.astro";
+
+const faqs = [
+  { q: "What is the best month to visit Japan?", a: "April and October-November are widely considered the best months for a first trip. April delivers cherry blossoms with 12-20°C weather. October and November bring crisp autumn air, koyo colors, and comfortably mild temperatures. For the absolute best balance of weather, crowds, and price, the last two weeks of October or early November are hard to beat." },
+  { q: "When is the cheapest time to travel to Japan?", a: "June and September consistently offer the lowest flight and hotel prices — often 20-30% below sakura and koyo peaks. The trade-off: June is the start of the rainy season (tsuyu) and September carries some typhoon risk. If you want cheap AND reliable weather, the second half of September or late November are the sweet spots. Late January-February is also very affordable outside of ski resorts." },
+  { q: "What is the worst time to visit Japan?", a: "Three periods to seriously reconsider: Golden Week (April 29-May 5) when trains sell out and hotels triple in price, Obon (August 11-16) the summer family-travel rush, and New Year (December 28-January 4) when many restaurants and attractions close. August is also intensely hot and humid — 30-35°C with 70-80% humidity in Tokyo, Kyoto, and Osaka." },
+  { q: "Is Japan crowded during Golden Week?", a: "Extremely. Golden Week packs four national holidays into one week — Japan's busiest domestic travel period of the year. Shinkansen sell out days ahead, ryokan rooms vanish, and attractions like Senso-ji and Fushimi Inari become shoulder-to-shoulder. If your dates are flexible, arrive after May 5: the weather is still beautiful and the crowds evaporate almost overnight." },
+  { q: "What is the weather like in Japan in October?", a: "October is arguably Japan's best month. Tokyo averages 16-23°C, Kyoto 15-23°C, and Osaka 16-24°C, with clear skies and low humidity. Autumn foliage begins in the mountains from mid-October and sweeps down to the cities through November. It's still warm enough for light jackets during the day, with pleasant cool evenings. A near-perfect travel window." },
+  { q: "Can I visit Japan during cherry blossom season?", a: "Absolutely — it's the most iconic time to visit. The sakura front starts in late March in Kyushu and reaches Tokyo around late March-early April, then Kyoto and Osaka in early April, before finishing in Hokkaido in early May. Expect large crowds at famous spots like Ueno Park and Maruyama Park, and book accommodation 3-4 months ahead. For a calmer experience, visit a local park away from the famous Instagram spots." },
+  { q: "When is the rainy season in Japan?", a: "The rainy season (tsuyu) runs from early June to mid-July across Honshu, with light persistent drizzle rather than heavy downpours. Kyushu and Okinawa get it earlier (late May-June). Hokkaido mostly escapes the rainy season entirely. July-August brings intense heat and humidity to the south, and typhoon season peaks in September — particularly affecting Okinawa and the southern coasts." },
+  { q: "Do I need a visa to visit Japan?", a: "Citizens of the US, UK, Canada, Australia, EU countries, and 60+ others are visa-exempt for tourism stays up to 90 days — just arrive with a valid passport. Some nationalities require a visa; check the official Ministry of Foreign Affairs website before booking. Note that you'll receive a temporary visitor stamp on arrival, and the visa-exemption can be revoked for overstaying." },
+  { q: "Is Japan safe for tourists?", a: "Japan is one of the safest countries in the world for tourists. Violent crime is exceptionally rare, and lost wallets are routinely returned with cash intact. The main risks are: typhoons in September (check warnings, follow local guidance), heatstroke in August (hydrate constantly), and earthquakes — Japan has frequent small tremors. In a major earthquake, follow local advice and evacuate to higher ground if near the coast. Solo female travelers consistently report feeling very safe in Japan." },
+  { q: "How much does a trip to Japan cost?", a: "Budget travelers can manage $100-150/day (capsules, konbini meals, local trains). Mid-range travelers should budget $200-300/day (3-4 star hotels, izakaya dining, JR passes). Luxury travelers can expect $400+/day, especially with ryokan and kaiseki experiences. Flights from the US run $850-1,800 round-trip depending on season. A 10-day mid-range trip lands around $3,000-3,500 per person including flights." },
+  { q: "Should I book a tour or travel independently?", a: "Independent travel in Japan is genuinely easy. Trains are punctual, signage is bilingual in cities, and the JR Pass makes intercity travel simple. Translation apps handle everything else. That said, a tour or guide adds huge value for: tea ceremonies and kaiseki reservations (hard to book solo), rural areas like Tohoku or Shikoku, and deep cultural context at sites like Nara or Himeji. Most travelers do a hybrid — independent in Tokyo/Osaka, guided for specific experiences." },
+  { q: "How far in advance should I book?", a: "International flights: 2-4 months ahead for best prices. Hotels: 2-3 weeks for normal periods, but 3-4 months ahead for sakura (April), koyo (November), Golden Week, and Obon. Ryokan in popular onsen towns like Hakone and Nikko book out months ahead. JR Passes: buy before arriving in Japan — they're cheaper internationally. Attractions like Ghibli Museum and sumo tickets sell out weeks in advance." },
+];
+
+const qaPageSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a,
+    },
+  })),
+});
+
+const faqCategories = [
+  { name: "Timing & Weather", faqs: faqs.slice(0, 6) },
+  { name: "Practicalities", faqs: faqs.slice(6) },
+];
+---
+
+<BaseLayout title="Japan Travel FAQ: Everything You Need to Know Before You Go" description="Answers to 12 common Japan travel questions: best months to visit, cheapest times, visa requirements, safety, costs, weather by season & more expert advice.">
+  <!-- QAPage Schema -->
+  <script type="application/ld+json" set:html={qaPageSchema} />
+  <section class="min-h-[100dvh]">
+    <Nav />
+    <div class="max-w-3xl mx-auto px-4 py-6">
+      <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">FAQ</p>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">Japan Travel FAQ</h1>
+      <p class="text-lg text-zinc-500 leading-relaxed mb-16">Everything you need to know before planning your trip to Japan.</p>
+
+      <PageHero image="/images/region-kyoto.webp" alt="Golden temple in Kyoto reflected in a still pond" overlay="FAQ" title="Answers to the 12 questions travelers ask us most" />
+
+      {faqCategories.map((cat) => (
+        <div class="mb-12">
+          <h2 class="text-xl font-bold text-zinc-800 mb-6 pb-3 border-b border-zinc-200">{cat.name}</h2>
+          <div class="space-y-3">
+            {cat.faqs.map((faq) => (
+              <details class="group border border-zinc-200 rounded-xl overflow-hidden">
+                <summary class="list-none p-5 cursor-pointer flex items-center justify-between gap-4">
+                  <span class="text-sm font-semibold text-zinc-800">{faq.q}</span>
+                  <svg class="w-5 h-5 text-zinc-300 flex-shrink-0 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                </summary>
+                <div class="px-5 pb-5 pt-0 border-t border-zinc-100">
+                  <p class="text-sm text-zinc-600 leading-relaxed pt-4">{faq.a}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      ))}
+      <Callout eyebrow="Official Sources" tone="neutral" class="mt-10">
+        <p class="leading-relaxed">For the latest visa rules, check the official <a href="https://www.mofa.go.jp/" target="_blank" rel="noopener" class="text-accent-600 hover:text-accent-700 underline">Ministry of Foreign Affairs of Japan</a>. Weather and climate data come from the <a href="https://www.jma.go.jp/en/" target="_blank" rel="noopener" class="text-accent-600 hover:text-accent-700 underline">Japan Meteorological Agency</a>.</p>
+      </Callout>
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>

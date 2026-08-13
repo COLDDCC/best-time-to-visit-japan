@@ -1,0 +1,171 @@
+---
+import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import PageHero from "../components/PageHero.astro";
+import Callout from "../components/Callout.astro";
+
+const title = "What Does Matcha Taste Like? A First-Timer Guide";
+const description = "Matcha tastes like a blend of earthy umami, gentle bitterness and sweet green vegetal notes. A first-timer guide to drinking it in Japan.";
+const ogImage = "/images/region-kyoto.webp";
+
+const tasteProfile = [
+  { label: "Umami", grade: 9, note: "The savoury depth that makes real matcha feel rich, brothy and satisfying — not sweet, but deeply flavourful." },
+  { label: "Bitterness", grade: 6, note: "A clean, herbal bitterness. Ceremonial grades are gentle; culinary grades and long steeps get noticeably more bitter." },
+  { label: "Sweetness", grade: 4, note: "Almost no sugar sweetness — more a natural, milky roundness that appears when whisked with water or milk." },
+  { label: "Vegetal / Grassy", grade: 8, note: "Fresh, green, slightly grass-like notes — the signature 'tastes like green tea, but concentrated' sensation." },
+  { label: "Creaminess", grade: 7, note: "Not literally creamy, but whisked matcha has a smooth, almost velvet mouthfeel, especially in lattes." },
+  { label: "Astringency", grade: 5, note: "A dry, slightly mouth-drying edge on the finish. Great matcha has a quick, clean astringency — not a lingering harsh one." },
+];
+
+const forms = [
+  { name: "Matcha latte", where: "Cafés everywhere", image: "/images/matcha/matcha-latte.jpg", imageAlt: "A freshly whisked matcha latte in a glass, creamy and green", note: "Milk tames the bitterness and brings out a toasty-sweet, creamy balance. The easiest entry point for newcomers." },
+  { name: "Usucha (thin tea)", where: "Tea houses & ryokan", image: "/images/matcha/usucha.jpg", imageAlt: "Usucha, thin whisked matcha served in a traditional tea bowl", note: "The traditional everyday way — whisked with hot water, served lightly. Lean, grassy, and quietly energising." },
+  { name: "Koicha (thick tea)", where: "Tea ceremony", image: "/images/matcha/koicha.jpg", imageAlt: "Koicha, thick and concentrated matcha paste in a tea bowl", note: "A concentrated, almost soup-like paste. Intensely umami and bittersweet — the connoisseur's version." },
+  { name: "Matcha desserts", where: "Japan-wide", image: "/images/matcha/matcha-dessert.jpg", imageAlt: "A matcha dessert, from ice cream and parfait to cakes and sweets", note: "Ice cream, parfaits, mochi and castella. Sugar balances the green bitterness into something addictive." },
+];
+
+const faqs = [
+  { q: "What does matcha taste like?", a: "Matcha tastes like a concentrated green tea: earthy and savoury (umami), gently bitter, with fresh grassy and slightly sweet green notes. It's far less sweet than people expect, and more complex — somewhere between brewed green tea and a smooth, creamy broth." },
+  { q: "Does matcha taste bitter?", a: "Good ceremonial-grade matcha has only a light, pleasant bitterness balanced by umami and natural sweetness. Cheaper culinary grades, or matcha steeped too long or too hot, can taste harshly bitter and astringent." },
+  { q: "Is matcha sweet?", a: "Matcha itself contains almost no sugar. The perceived sweetness is subtle and savoury — more of a milky, round smoothness — which is why matcha lattes and desserts add sweeteners to balance the green flavour." },
+  { q: "Why does matcha taste so different from regular green tea?", a: "Regular green tea is steeped from leaves, so most of the flavour stays in the water briefly. Matcha is the whole leaf, ground into a powder and whisked in — you drink every particle, which makes the umami, bitterness and grassy notes far more intense." },
+  { q: "What does good quality matcha taste like?", a: "Premium ceremonial matcha tastes bright, smooth and deeply umami, with minimal bitterness and a lingering, slightly sweet green finish. Lower-grade matcha leans more bitter, dusty and astringent." },
+];
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((f) => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a },
+  })),
+});
+---
+
+<BaseLayout title={title} description={description} ogImage={ogImage}>
+  <script type="application/ld+json" set:html={faqSchema} />
+
+  <section class="min-h-[100dvh]">
+    <Nav />
+    <div class="max-w-7xl mx-auto px-4 py-6">
+      <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">Japan Food Guide</p>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">What does matcha <em class="font-serif italic text-accent-600">actually</em> taste like?</h1>
+      <p class="text-lg text-zinc-500 max-w-2xl leading-relaxed mb-8">An honest, first-timer-friendly breakdown &mdash; the umami, the bitterness, the grass &mdash; and how to drink it so you actually enjoy it.</p>
+
+      <PageHero image="/images/region-kyoto.webp" alt="A Kyoto tea house and garden in early spring" overlay="Matcha & Japan" title="Earthy, savoury, gently bitter — and nothing like a sugary latte until you add milk" />
+
+      <!-- The short answer -->
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12 mt-12">
+        <div>
+          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-accent-600 mb-3">The short answer</p>
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tighter text-zinc-900 leading-none">Earthy umami, a whisper of <em>bitter, a lot of green</em></h2>
+        </div>
+        <p class="md:w-96 text-zinc-600 leading-relaxed">Picture concentrated green tea &mdash; then make it smoother, savoury and a little creamy. Matcha is a flavour of layers, and almost every first-timer underestimates how complex it is.</p>
+      </div>
+
+      <p class="text-lg md:text-xl text-zinc-800 leading-relaxed max-w-3xl mb-16">
+        If you&rsquo;ve only had matcha lattes from a café chain, the real thing is a surprise. Whisked matcha tastes like <strong class="font-semibold">a savoury, grassy green tea with a clean herbal bitterness and a smooth, almost brothy depth (umami)</strong>. It isn&rsquo;t sweet on its own &mdash; the sweetness you remember from lattes comes from the milk and sugar. Done right, the bitterness stays subtle and the finish is clean, leaving a pleasant green aftertaste that makes you want another sip.
+      </p>
+
+      <!-- Taste profile -->
+      <div class="mb-16">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+          <div>
+            <p class="text-xs font-semibold tracking-[0.2em] uppercase text-accent-600 mb-3">01 &middot; Taste profile</p>
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tighter text-zinc-900 leading-none">Six flavours, <em>one bowl</em></h2>
+          </div>
+          <p class="md:w-80 text-zinc-500 leading-relaxed">Rated 0&ndash;10. Every real bowl of matcha hits each of these to some degree.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {tasteProfile.map((t) => (
+            <div class="bg-white border border-zinc-200 rounded-2xl p-6">
+              <div class="flex items-center justify-between mb-3">
+                <p class="text-base font-bold text-zinc-900">{t.label}</p>
+                <p class="text-2xl font-serif italic text-emerald-600">{t.grade}<span class="text-zinc-300 text-base">/10</span></p>
+              </div>
+              <div class="h-1.5 rounded-full bg-zinc-100 mb-4 overflow-hidden">
+                <div class="h-full rounded-full bg-emerald-500" style={`width: ${t.grade * 10}%`}></div>
+              </div>
+              <p class="text-sm text-zinc-600 leading-relaxed">{t.note}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- How you'll meet it -->
+      <div class="mb-16">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+          <div>
+            <p class="text-xs font-semibold tracking-[0.2em] uppercase text-accent-600 mb-3">02 &middot; Ways to try it</p>
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tighter text-zinc-900 leading-none">Where you&rsquo;ll <em>meet matcha</em></h2>
+          </div>
+          <p class="md:w-80 text-zinc-500 leading-relaxed">Each form changes the taste. Start mild, work up to the intense stuff.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {forms.map((f) => (
+            <div class="group bg-white border border-zinc-200 rounded-2xl overflow-hidden transition-shadow hover:shadow-md">
+              <div class="aspect-[16/10] overflow-hidden bg-zinc-100">
+                <img src={f.image} alt={f.imageAlt} loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              </div>
+              <div class="p-6">
+                <div class="flex items-baseline justify-between gap-3 mb-2">
+                  <p class="text-lg font-bold text-zinc-900">{f.name}</p>
+                  <p class="text-xs font-semibold tracking-widest uppercase text-emerald-600 flex-shrink-0">{f.where}</p>
+                </div>
+                <p class="text-sm text-zinc-600 leading-relaxed">{f.note}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="mb-16">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+          <div>
+            <p class="text-xs font-semibold tracking-[0.2em] uppercase text-accent-600 mb-3">03 &middot; FAQ</p>
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tighter text-zinc-900 leading-none">The questions <em>everyone asks</em></h2>
+          </div>
+        </div>
+        <div class="space-y-3">
+          {faqs.map((f) => (
+            <details class="group bg-white border border-zinc-200 rounded-xl overflow-hidden">
+              <summary class="flex items-center justify-between gap-4 cursor-pointer list-none p-5 text-base md:text-lg font-semibold text-zinc-900 hover:text-accent-600 transition-colors">
+                {f.q}
+                <span class="text-zinc-400 group-open:rotate-45 transition-transform flex-shrink-0">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </summary>
+              <div class="px-5 pb-5 -mt-1">
+                <p class="text-base text-zinc-600 leading-relaxed">{f.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- Funnel to core service -->
+      <Callout eyebrow="Taste it for real" tone="green" class="mt-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold tracking-tighter text-zinc-900 leading-tight mb-3">The best matcha is drunk <em class="font-serif italic text-emerald-600">in Japan</em></h2>
+            <p class="text-base text-zinc-600 leading-relaxed">Kyoto&rsquo;s Uji district is matcha&rsquo;s spiritual home. Figure out exactly when to visit Kyoto (and where else to go) with our free region guides and quiz.</p>
+          </div>
+          <div class="flex flex-col gap-3">
+            <a href="/region/kyoto" class="inline-flex items-center justify-center gap-2 bg-accent-600 hover:bg-accent-700 text-white font-medium rounded-full px-6 py-3 transition-colors no-underline">
+              Best time to visit Kyoto
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="/when-to-go" class="inline-flex items-center justify-center gap-2 border border-zinc-300 text-zinc-700 hover:border-accent-300 hover:text-accent-600 font-medium rounded-full px-6 py-3 transition-colors no-underline">
+              Take the 8-question quiz
+            </a>
+          </div>
+        </div>
+      </Callout>
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>
