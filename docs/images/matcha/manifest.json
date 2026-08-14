@@ -1,0 +1,34 @@
+{
+  "matcha-latte": {
+    "src": "/images/matcha/matcha-latte.jpg",
+    "alt": "A freshly whisked matcha latte in a glass, creamy and green",
+    "title": "Premium Photo | Green matcha latte in glass close up",
+    "sourceUrl": "https://img.freepik.com/premium-photo/green-matcha-latte-glass-close-up_711700-5717.jpg",
+    "contentType": "image/jpeg",
+    "bytes": 54549
+  },
+  "usucha": {
+    "src": "/images/matcha/usucha.jpg",
+    "alt": "Usucha, thin whisked matcha served in a traditional tea bowl",
+    "title": "Master Matcha: How to Prepare Usucha and Koicha",
+    "sourceUrl": "https://cdn.shopify.com/s/files/1/0805/7857/6667/files/green-tea-matcha-chawan-whisk-blog.webp?v=1771721948",
+    "contentType": "image/jpeg",
+    "bytes": 132457
+  },
+  "koicha": {
+    "src": "/images/matcha/koicha.jpg",
+    "alt": "Koicha, thick and concentrated matcha paste in a tea bowl",
+    "title": "IppodoTea.com (USA & CA) - Koicha, for a Next-Level Matcha Experience",
+    "sourceUrl": "https://ippodotea.com/cdn/shop/t/47/assets/koicha-thick-matcha-bowl.jpg?v=180357875452491769051685384454",
+    "contentType": "image/jpeg",
+    "bytes": 60653
+  },
+  "matcha-dessert": {
+    "src": "/images/matcha/matcha-dessert.jpg",
+    "alt": "A matcha dessert, from ice cream and parfait to cakes and sweets",
+    "title": "Green Tea Parfait Recipe at Tarah Gordon blog",
+    "sourceUrl": "https://c8.alamy.com/comp/E035P3/matcha-parfait-green-tea-icecream-and-fruit-dessert-in-a-glass-in-E035P3.jpg",
+    "contentType": "image/jpeg",
+    "bytes": 105128
+  }
+}

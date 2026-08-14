@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+Sitemap: https://when-to-visit-japan.com/sitemap-index.xml
+
+# AI crawlers — allow browsing, block training
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# Allow ChatGPT real-time browsing
+User-agent: ChatGPT-User
+Allow: /
+
+# Allow Perplexity / Claude / Gemini browsing for AI citations
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
