@@ -66,3 +66,38 @@ display-italic {
     scroll-behavior: auto !important;
   }
 }
+
+/* Long-form editorial content injected via set:html */
+.why-special h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-zinc-900);
+  margin: 1.75rem 0 0.5rem;
+}
+.why-special p {
+  color: var(--color-zinc-600);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+.why-special ul {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+.why-special ul li {
+  position: relative;
+  padding-left: 1.25rem;
+  color: var(--color-zinc-600);
+  line-height: 1.65;
+  margin-bottom: 0.4rem;
+}
+.why-special ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: var(--color-accent-400);
+}

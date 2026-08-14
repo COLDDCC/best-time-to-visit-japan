@@ -69,7 +69,7 @@ const articleSchema = JSON.stringify({
       <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">{pageTitle}</h1>
       <p class="text-lg text-zinc-500 leading-relaxed mb-10">{region.meta}</p>
 
-      <img src={region.image} alt={region.imageAlt} width={heroW} height={heroH} loading="eager" fetchpriority="high" class="w-full h-auto rounded-2xl shadow-sm border border-zinc-100 mb-12" />
+      <img src={region.image} alt={region.imageAlt} width={heroW} height={heroH} loading="lazy" decoding="async" class="w-full h-auto rounded-2xl shadow-sm border border-zinc-100 mb-12" />
 
       <!-- Quick answer box -->
       <Callout eyebrow="The Short Answer" tone="red" class="mb-12">

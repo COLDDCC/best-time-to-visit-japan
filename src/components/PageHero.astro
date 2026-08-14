@@ -10,7 +10,7 @@ const { image, alt, overlay = "Best time to visit Japan", title } = Astro.props;
 ---
 
 <div class="relative rounded-2xl overflow-hidden mb-16">
-  <img src={image} alt={alt} width="1200" height="500" fetchpriority="high" loading="eager" class="w-full h-56 md:h-72 object-cover" />
+  <img src={image} alt={alt} width="1200" height="500" loading="lazy" decoding="async" class="w-full h-56 md:h-72 object-cover" />
   <div class="absolute inset-0 bg-gradient-to-r from-zinc-950/70 via-zinc-950/20 to-transparent flex items-end">
     <div class="p-6 md:p-8">
       <p class="text-xs font-bold tracking-widest uppercase text-accent-300 mb-2">{overlay}</p>

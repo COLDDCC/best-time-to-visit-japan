@@ -48,6 +48,50 @@ const articleSchema = JSON.stringify({
   "dateModified": `${currentYear}-07-31`,
   "mainEntityOfPage": { "@type": "WebPage", "@id": canonical },
 });
+
+const monthSpotlights: Record<string, { title: string; bullets: string[] }> = {
+  march: {
+    title: "Why March Matters: Sakura Season Begins",
+    bullets: [
+      "Cherry blossoms peak late March to early April in Tokyo, Kyoto",
+      "2024 peak: Mar 28-Apr 5. 2025 forecast: Mar 25-Apr 2",
+      "Pro tip: Book hotels by mid-January for cherry-blossom week",
+      "Pack: Light layers (10-20°C), rain jacket essential",
+      "Warning: This is peak season — prices are 30-50% higher than June/September",
+    ],
+  },
+  april: {
+    title: "The Golden Week Trap",
+    bullets: [
+      "April 29 - May 5 is Japan's busiest travel week (Golden Week)",
+      "Bullet trains sell out 4+ weeks in advance",
+      "Hotels reach +40% price premium",
+      "Recommendation: End sakura trips by April 15, or visit May 6+",
+      "What to pack: Same as March + umbrella (early-May rain)",
+    ],
+  },
+  october: {
+    title: "Autumn's Perfect Window",
+    bullets: [
+      "October is many travelers' #1 month: dry, crisp, comfortable (15-25°C)",
+      "Hokkaido autumn colors start mid-October; Kyoto peaks late October",
+      "No major holidays means reasonable hotel prices (only 15-20% above June)",
+      "Pack: Medium layers, light jacket, comfortable walking shoes",
+      "Insider tip: Early October is less crowded than late October",
+    ],
+  },
+  november: {
+    title: "Koyo (Autumn Leaves) Peak",
+    bullets: [
+      "Peak autumn foliage hits November in Kyoto, Nikko, Hiroshima",
+      "Maples turn brilliant red; crowds rival cherry-blossom season",
+      "Book Kyoto accommodations by August for November stays",
+      "Pack: Medium layers (8-18°C), waterproof jacket",
+      "Best times: Nov 1-15 for Hokkaido; Nov 15-30 for Kyoto",
+    ],
+  },
+};
+const monthSpotlight = monthSpotlights[month.month];
 ---
 
 <BaseLayout title={title} description={meta} ogImage={month.image}>
@@ -60,12 +104,18 @@ const articleSchema = JSON.stringify({
       <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">{title}</h1>
       <p class="text-lg text-zinc-500 leading-relaxed mb-8">{month.label} in a nutshell &mdash; the weather, the crowds, and where to go. Then dig into the details below.</p>
 
-      <img src={month.image} alt={month.imageAlt} width={heroW} height={heroH} loading="eager" fetchpriority="high" class="w-full h-auto rounded-2xl shadow-sm border border-zinc-100 mb-12" />
+      <img src={month.image} alt={month.imageAlt} width={heroW} height={heroH} loading="lazy" decoding="async" class="w-full h-auto rounded-2xl shadow-sm border border-zinc-100 mb-12" />
 
       <!-- Month narrative -->
       <div class="mb-12">
         <h2 class="text-2xl font-bold text-zinc-900 mb-3">{month.spotlight.title}</h2>
         <p class="text-zinc-600 leading-relaxed">{month.spotlight.text}</p>
+      </div>
+
+      <!-- Why this month is special (long-form) -->
+      <div class="mb-12">
+        <h2 class="text-3xl font-bold text-zinc-900 mb-6">Why {month.label} Is Special</h2>
+        <div class="why-special" set:html={month.whySpecial} />
       </div>
 
       <!-- What's on this month -->
@@ -125,6 +175,21 @@ const articleSchema = JSON.stringify({
           </div>
         )}
       </div>
+
+      {monthSpotlight && (
+        <div class="bg-white border border-zinc-200 rounded-2xl p-6 md:p-8 mb-12">
+          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-accent-600 mb-3">Month Spotlight</p>
+          <h2 class="text-2xl font-bold text-zinc-900 mb-4">{monthSpotlight.title}</h2>
+          <ul class="space-y-3">
+            {monthSpotlight.bullets.map((b) => (
+              <li class="flex gap-3 text-zinc-700 leading-relaxed">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-accent-100 text-accent-700 flex items-center justify-center mt-0.5"><Icon name="check" class="w-3.5 h-3.5" /></span>
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <!-- Highlights vs downsides -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
