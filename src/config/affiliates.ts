@@ -16,15 +16,9 @@ export function hotelSearchUrl(destination = "Japan") {
 }
 
 export function flightSearchUrl(destination = "Tokyo") {
-  const aid = AFFILIATE_IDS.skyscanner;
-  const params = new URLSearchParams({
-    destination: destination,
-    type: "FLIGHTS",
-    insideSearch: "true",
-    cpi: aid,
-    currency: "USD",
-  });
-  return `https://www.skyscanner.com/transport/flights/${encodeURIComponent(
-    destination,
-  )}/?${params.toString()}`;
+  // Skyscanner deprecated the old single-segment "/transport/flights/{destination}/"
+  // deep-link format (it now 404s). Deep-linking to a prefilled search requires a
+  // valid origin+destination place-code pair, which this site doesn't collect, so
+  // we send users to Skyscanner's homepage instead of a broken link.
+  return "https://www.skyscanner.com/";
 }

@@ -1,0 +1,1 @@
+var e={booking:`TODO_BOOKING_AID`,skyscanner:`TODO_SKYSCANNER_AID`};function t(t=`Japan`){let n=e.booking;return`https://www.booking.com/searchresults.html?${new URLSearchParams({ss:t,group_adults:`2`,no_rooms:`1`,lang:`en-us`,aid:n}).toString()}`}function n(e=`Tokyo`){return`https://www.skyscanner.com/`}export{t as n,n as t};
