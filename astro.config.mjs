@@ -8,6 +8,9 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://best-time-japan.com",
   trailingSlash: "never",
+  build: {
+    format: "file",
+  },
   integrations: [react(), sitemap({
     filter: (page) => !page.includes("/404"),
   })],
