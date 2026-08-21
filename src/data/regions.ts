@@ -20,6 +20,7 @@ export interface RegionGuide {
   festivals: string[];
   faqs: { q: string; a: string }[];
   related: string[];
+  spots?: { name: string; slug: string; teaser: string }[];
 }
 
 export const regionGuides: RegionGuide[] = [
@@ -392,6 +393,9 @@ export const regionGuides: RegionGuide[] = [
       { q: "How many days do I need in Kyushu?", a: "5-7 days covers Fukuoka, Beppu, Kurokawa, and Kagoshima. Add 3 more if you want Yakushima's ancient forests." },
     ],
     related: ["osaka", "hiroshima", "kyoto"],
+    spots: [
+      { name: "Kotonean", slug: "kotonean", teaser: "A dolce-style kakigori café-and-bar in Hita, overlooking the Kangien heritage garden — best visited in the hot Jun-Aug stretch." },
+    ],
   },
   {
     name: "Okinawa",

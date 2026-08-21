@@ -126,6 +126,21 @@ const articleSchema = JSON.stringify({
         ))}
       </ul>
 
+      <!-- Featured spot guides -->
+      {region.spots && region.spots.length > 0 && (
+        <>
+          <h2 class="text-2xl font-bold text-zinc-900 mb-6">Spot Guides</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+            {region.spots.map((s) => (
+              <a href={`/spots/${s.slug}`} class="group bg-white border border-zinc-200 rounded-xl p-5 hover:border-accent-300 transition-colors no-underline">
+                <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">{s.name} ↗</p>
+                <p class="text-xs text-zinc-500 leading-relaxed">{s.teaser}</p>
+              </a>
+            ))}
+          </div>
+        </>
+      )}
+
       <!-- Festivals -->
       <h2 class="text-2xl font-bold text-zinc-900 mb-6">Festivals & Highlights</h2>
       <ul class="space-y-3 mb-12">
