@@ -379,6 +379,7 @@ export const regionGuides: RegionGuide[] = [
       "Watch Sakurajima, one of the world's most active volcanoes, smoke above Kagoshima Bay.",
       "Tour Beppu's 'Hells' — steaming, sulfurous hot-spring pools in colors you won't believe.",
       "Eat tonkotsu ramen and yatai (street-stall) food in Fukuoka at night.",
+      "Beat the summer heat with dolce-style kakigori at Kotonean in Hita, overlooking the Kangien heritage garden.",
     ],
     festivals: [
       "Dontaku Festival, Fukuoka — May 3-4, hundreds of thousands of participants.",
