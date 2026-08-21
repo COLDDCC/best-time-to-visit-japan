@@ -36,6 +36,7 @@ const pageLabels: Record<string, string> = {
   "when-to-go": "When to Go Quiz",
   "monthly-guide": "Month-by-Month Guide",
   "by-region": "By Region",
+  "spots": "Spot Guides",
   "festivals": "Festivals",
   "crowd-calendar": "Crowd Calendar",
   "faq": "FAQ",
@@ -53,6 +54,7 @@ const pathParts = Astro.url.pathname.split('/').filter(Boolean);
 const crumbTargets: Record<string, string> = {
   "month": "/monthly-guide",
   "region": "/by-region",
+  "spots": "/by-region",
 };
 if (pathParts.length > 0) {
   const baseUrl = canonicalURL.replace(Astro.url.pathname, '/');
