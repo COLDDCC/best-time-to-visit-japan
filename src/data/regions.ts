@@ -380,7 +380,7 @@ export const regionGuides: RegionGuide[] = [
       "Watch Sakurajima, one of the world's most active volcanoes, smoke above Kagoshima Bay.",
       "Tour Beppu's 'Hells' — steaming, sulfurous hot-spring pools in colors you won't believe.",
       "Eat tonkotsu ramen and yatai (street-stall) food in Fukuoka at night.",
-      "Beat the summer heat with dolce-style kakigori at Kotonean in Hita, overlooking the Kangien heritage garden.",
+      "Beat the summer heat — even in Kyushu's rainy-to-typhoon stretch — with dolce-style kakigori at Kotonean in Hita, overlooking the Kangien heritage garden.",
     ],
     festivals: [
       "Dontaku Festival, Fukuoka — May 3-4, hundreds of thousands of participants.",
@@ -394,7 +394,7 @@ export const regionGuides: RegionGuide[] = [
     ],
     related: ["osaka", "hiroshima", "kyoto"],
     spots: [
-      { name: "Kotonean", slug: "kotonean", teaser: "A dolce-style kakigori café-and-bar in Hita, overlooking the Kangien heritage garden — best visited in the hot Jun-Aug stretch." },
+      { name: "Kotonean", slug: "kotonean", teaser: "A dolce-style kakigori café-and-bar in Hita, overlooking the Kangien heritage garden — best visited Jun-Aug, Kyushu's rainy-to-typhoon window for sightseeing but peak season for kakigori." },
     ],
   },
   {

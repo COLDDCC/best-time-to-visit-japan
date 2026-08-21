@@ -16,7 +16,7 @@ export function getStaticPaths() {
 }
 
 const { spot } = Astro.props;
-const canonical = `https://when-to-visit-japan.com/spots/${spot.slug}`;
+const canonical = `https://best-time-japan.com/spots/${spot.slug}`;
 const parentRegion = regionGuides.find((r) => r.slug === spot.region);
 
 const spotSchema = JSON.stringify({
@@ -26,7 +26,7 @@ const spotSchema = JSON.stringify({
   "image": spot.image,
   "description": spot.meta,
   "address": spot.address,
-  "telephone": spot.phone,
+  "telephone": spot.phone.split(" ")[0],
   "priceRange": spot.priceRange,
   "url": canonical,
 });
@@ -42,7 +42,7 @@ const faqSchema = JSON.stringify({
 });
 ---
 
-<BaseLayout title={`${spot.name} — ${spot.tagline} | ${spot.city}`} description={spot.meta} ogImage={spot.image}>
+<BaseLayout title={`${spot.name} — ${spot.tagline}`} description={spot.meta} ogImage={spot.image}>
   <script type="application/ld+json" set:html={spotSchema} />
   <script type="application/ld+json" set:html={faqSchema} />
 
