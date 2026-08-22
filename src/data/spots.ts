@@ -41,6 +41,8 @@ export const spotGuides: SpotGuide[] = [
       { src: "/images/store/kotonean/exterior1.jpg", alt: "Kotonean's shop exterior in the Awakubo district of Hita" },
       { src: "/images/store/kotonean/exterior2.jpg", alt: "Kotonean's shop front with the OPEN sign lit" },
       { src: "/images/store/kotonean/exterior3.jpg", alt: "Welcome to Kotonean sidewalk sign with hours and menu" },
+      { src: "/images/store/kotonean/interior2.jpg", alt: "Strawberry and chocolate kakigori at Kotonean" },
+      { src: "/images/store/kotonean/interior3.jpg", alt: "Grape kakigori made with fruit from Okura Grape Farm" },
     ],
     bestTime: "June-August — Kyushu's rainy-to-typhoon season for sightseeing, but peak season for kakigori, when the heat makes a bowl of finely shaved ice worth the detour",
     priceRange: "¥400-2,000 JPY",
@@ -84,7 +86,7 @@ export const spotGuides: SpotGuide[] = [
       { label: "X (Twitter)", url: "https://x.com/kotonean" },
     ],
     seasonalPicks: [
-      { title: "Mango & rare cheese", note: "A classic pairing of ripe Miyazaki mango and rare cheese." },
+      { title: "Mango & rare cheese", note: "A classic pairing of ripe Miyazaki mango and rare cheese.", image: "/images/store/kotonean/interior1.jpg", imageAlt: "Mango and rare cheese kakigori at Kotonean" },
       { title: "Hita watermelon", note: "A summer-only favorite made with local Hita watermelon.", image: "/images/store/kotonean/products3.jpg", imageAlt: "Hita watermelon kakigori served beside a whole watermelon" },
       { title: "Signature dolce kakigori", note: "An original dessert-style kakigori built on Hita's clean water.", image: "/images/store/kotonean/products2.jpg", imageAlt: "Signature dolce-style kakigori topped with cream and berry sauce" },
     ],
