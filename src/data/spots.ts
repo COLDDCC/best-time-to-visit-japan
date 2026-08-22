@@ -8,7 +8,10 @@ export interface SpotGuide {
   image: string;
   imageAlt: string;
   logo?: string;
-  galleryImages?: { src: string; alt: string }[];
+  exteriorImages?: { src: string; alt: string }[];
+  interiorImages?: { src: string; alt: string }[];
+  rating?: { score: number; count: number; asOf: string; url: string };
+  highlightTags?: string[];
   bestTime: string;
   priceRange: string;
   intro: string[];
@@ -17,10 +20,10 @@ export interface SpotGuide {
   hours: string;
   address: string;
   phone: string;
+  gettingThere?: string;
   tips: string[];
-  nearby: { name: string; distance: string; note: string }[];
   reviewLinks: { label: string; url: string; note: string }[];
-  socialLinks?: { label: string; url: string }[];
+  socialLinks?: { label: string; url: string; emoji: string }[];
   seasonalPicks?: { title: string; note: string; image?: string; imageAlt?: string }[];
   disclaimer?: string;
   faqs: { q: string; a: string }[];
@@ -37,13 +40,18 @@ export const spotGuides: SpotGuide[] = [
     image: "/images/store/kotonean/hero.webp",
     imageAlt: "Fruit Parlor Kotonean brand illustration — a fruit-piled car pulling up to the shop sign",
     logo: "/images/store/kotonean/logo.webp",
-    galleryImages: [
+    exteriorImages: [
       { src: "/images/store/kotonean/exterior1.jpg", alt: "Kotonean's shop exterior in the Awakubo district of Hita" },
       { src: "/images/store/kotonean/exterior2.jpg", alt: "Kotonean's shop front with the OPEN sign lit" },
       { src: "/images/store/kotonean/exterior3.jpg", alt: "Welcome to Kotonean sidewalk sign with hours and menu" },
+    ],
+    interiorImages: [
+      { src: "/images/store/kotonean/interior1.jpg", alt: "Mango and rare cheese kakigori at Kotonean" },
       { src: "/images/store/kotonean/interior2.jpg", alt: "Strawberry and chocolate kakigori at Kotonean" },
       { src: "/images/store/kotonean/interior3.jpg", alt: "Grape kakigori made with fruit from Okura Grape Farm" },
     ],
+    rating: { score: 4.0, count: 200, asOf: "August 2026", url: "https://www.google.com/maps/search/?api=1&query=%E7%90%B4%E9%9F%B3%E5%BA%B5%20%E6%97%A5%E7%94%B0%E5%B8%82" },
+    highlightTags: ["Handmade daily", "Traditional craft", "Seasonal only", "Local ingredients", "Garden view"],
     bestTime: "June-August — Kyushu's rainy-to-typhoon season for sightseeing, but peak season for kakigori, when the heat makes a bowl of finely shaved ice worth the detour",
     priceRange: "¥400-2,000 JPY",
     intro: [
@@ -63,17 +71,12 @@ export const spotGuides: SpotGuide[] = [
     hours: "Café 10:00-18:00 · Bar 18:00-23:00 · May be closed Mondays",
     address: "2-4-38 Awakubo, Hita, Oita 877-0008",
     phone: "0973-23-6577 (main) · 080-2715-1242 (reservations, call 1-7 days ahead)",
+    gettingThere: "10-min walk from JR Hita Station, or 10-min drive from Hita IC",
     tips: [
       "Kotonean runs on reservations, especially in summer and around holidays — call about a week ahead to confirm.",
       "Lines tend to be shorter between 2-4pm; the dinner window (5-6pm) is the busiest.",
       "The garden view is the whole point — ask for a window seat when you book.",
       "Once you're seated, take your time — the Kangien garden sits right in front of you the whole visit.",
-    ],
-    nearby: [
-      { name: "Mameda-machi Historic Street", distance: "5-min walk", note: "A historic shopping street lined with small shops and local snacks." },
-      { name: "Sapporo Beer Hita Factory", distance: "15-min drive", note: "Tour the brewing process and sample the local beer." },
-      { name: "Tenryo Hita Miso Museum", distance: "10-min drive", note: "A hands-on look at Hita's miso-making tradition and craft." },
-      { name: "Sakuradaki Falls", distance: "20-min drive", note: "A natural waterfall that changes with the seasons — best known for autumn foliage." },
     ],
     reviewLinks: [
       { label: "Tabelog", url: "https://tabelog.com/oita/A4404/A440403/44008673/dtlrvwlst/", note: "Japan's leading restaurant review platform" },
@@ -81,9 +84,9 @@ export const spotGuides: SpotGuide[] = [
       { label: "Official site", url: "https://kotonean.net/", note: "Hours, menu, and announcements" },
     ],
     socialLinks: [
-      { label: "Instagram", url: "https://www.instagram.com/kotonean/" },
-      { label: "Facebook", url: "https://www.facebook.com/cafe.bar.kotonean/" },
-      { label: "X (Twitter)", url: "https://x.com/kotonean" },
+      { label: "Instagram", url: "https://www.instagram.com/kotonean/", emoji: "📷" },
+      { label: "Facebook", url: "https://www.facebook.com/cafe.bar.kotonean/", emoji: "📘" },
+      { label: "X (Twitter)", url: "https://x.com/kotonean", emoji: "🐦" },
     ],
     seasonalPicks: [
       { title: "Mango & rare cheese", note: "A classic pairing of ripe Miyazaki mango and rare cheese.", image: "/images/store/kotonean/interior1.jpg", imageAlt: "Mango and rare cheese kakigori at Kotonean" },
