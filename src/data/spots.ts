@@ -9,6 +9,8 @@ export interface SpotGuide {
   imageAlt: string;
   logo?: string;
   galleryImages?: { src: string; alt: string }[];
+  rating?: { score: number; count: number; asOf: string; url: string };
+  highlightTags?: string[];
   bestTime: string;
   priceRange: string;
   intro: string[];
@@ -17,6 +19,7 @@ export interface SpotGuide {
   hours: string;
   address: string;
   phone: string;
+  gettingThere?: string;
   tips: string[];
   nearby: { name: string; distance: string; note: string }[];
   reviewLinks: { label: string; url: string; note: string }[];
@@ -44,6 +47,8 @@ export const spotGuides: SpotGuide[] = [
       { src: "/images/store/kotonean/interior2.jpg", alt: "Strawberry and chocolate kakigori at Kotonean" },
       { src: "/images/store/kotonean/interior3.jpg", alt: "Grape kakigori made with fruit from Okura Grape Farm" },
     ],
+    rating: { score: 4.0, count: 200, asOf: "August 2026", url: "https://www.google.com/maps/search/?api=1&query=%E7%90%B4%E9%9F%B3%E5%BA%B5%20%E6%97%A5%E7%94%B0%E5%B8%82" },
+    highlightTags: ["Handmade daily", "Traditional craft", "Seasonal only", "Local ingredients", "Garden view"],
     bestTime: "June-August — Kyushu's rainy-to-typhoon season for sightseeing, but peak season for kakigori, when the heat makes a bowl of finely shaved ice worth the detour",
     priceRange: "¥400-2,000 JPY",
     intro: [
@@ -63,6 +68,7 @@ export const spotGuides: SpotGuide[] = [
     hours: "Café 10:00-18:00 · Bar 18:00-23:00 · May be closed Mondays",
     address: "2-4-38 Awakubo, Hita, Oita 877-0008",
     phone: "0973-23-6577 (main) · 080-2715-1242 (reservations, call 1-7 days ahead)",
+    gettingThere: "10-min walk from JR Hita Station, or 10-min drive from Hita IC",
     tips: [
       "Kotonean runs on reservations, especially in summer and around holidays — call about a week ahead to confirm.",
       "Lines tend to be shorter between 2-4pm; the dinner window (5-6pm) is the busiest.",
