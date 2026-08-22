@@ -68,9 +68,9 @@ export const spotGuides: SpotGuide[] = [
       { name: "Specialty coffee & Japanese tea", price: "¥400-800", note: "Local-roaster beans, hot or cold-brewed, plus green tea, oolong, and sencha." },
       { name: "Evening bar (after dark)", price: "¥600-2,000", note: "Oita sake, local beer, Japanese whisky, and house cocktails with small plates." },
     ],
-    hours: "Café 10:00-18:00 · Bar 18:00-23:00 · May be closed Mondays",
+    hours: "Café 10:00-18:00 · \nBar 18:00-23:00 · \nMay be closed Mondays",
     address: "2-4-38 Awakubo, Hita, Oita 877-0008",
-    phone: "0973-23-6577 (main) · 080-2715-1242 (reservations, call 1-7 days ahead)",
+    phone: "0973-23-6577 (main) · \n080-2715-1242 (reservations, call 1-7 days ahead)",
     gettingThere: "10-min walk from JR Hita Station, or 10-min drive from Hita IC",
     tips: [
       "Kotonean runs on reservations, especially in summer and around holidays — call about a week ahead to confirm.",
