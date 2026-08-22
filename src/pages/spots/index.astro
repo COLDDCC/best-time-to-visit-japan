@@ -1,0 +1,41 @@
+---
+import "../../styles/global.css";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import { spotGuides } from "../../data/spots.ts";
+import { regionGuides } from "../../data/regions.ts";
+---
+
+<BaseLayout title="Spot Guides: Cafés, Shops & Hidden Gems in Japan" description="Real places worth the detour — ratings, hours, directions, and how to get there, all in one place.">
+  <section class="min-h-[100dvh]">
+    <Nav />
+    <div class="max-w-7xl mx-auto px-4 py-6">
+      <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">Spot Guides</p>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">Real Places Worth the Detour</h1>
+      <p class="text-lg text-zinc-500 max-w-2xl leading-relaxed mb-16">Cafés, shops, and hidden gems we'd actually route a trip around — ratings, hours, and how to get there, all in one place.</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {spotGuides.map((s) => {
+          const parentRegion = regionGuides.find((r) => r.slug === s.region);
+          return (
+            <a href={`/spots/${s.slug}`} class="group bg-white border border-zinc-200 rounded-2xl overflow-hidden hover:border-accent-300 transition-colors no-underline">
+              <div class="relative overflow-hidden bg-zinc-50">
+                <img src={s.image} alt={s.imageAlt} loading="lazy" decoding="async" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105" />
+              </div>
+              <div class="p-6">
+                <p class="text-xs font-semibold tracking-widest uppercase text-accent-600 mb-1">{s.city}{parentRegion && ` · ${parentRegion.shortName}`}</p>
+                <h2 class="text-xl font-bold tracking-tight text-zinc-900 mb-2 group-hover:text-accent-600 transition-colors">{s.name}</h2>
+                <p class="text-sm text-zinc-500 leading-relaxed mb-3">{s.tagline}</p>
+                {s.rating && (
+                  <p class="text-sm font-semibold text-amber-700">⭐ {s.rating.score.toFixed(1)} <span class="font-normal text-zinc-400">({s.rating.count} on Google)</span></p>
+                )}
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>

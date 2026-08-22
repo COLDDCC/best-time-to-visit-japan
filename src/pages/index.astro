@@ -9,6 +9,7 @@ import HotelComparison from "../components/islands/HotelComparison";
 import ScrollReveal from "../components/islands/ScrollReveal";
 import Footer from "../components/Footer.astro";
 import Icon from "../components/Icon.astro";
+import { spotGuides } from "../data/spots.ts";
 
 const currentYear = new Date().getFullYear();
 const pageTitle = `Best Time to Visit Japan ${currentYear}: Month-by-Month Guide`;
@@ -221,6 +222,22 @@ const faqPageSchema = JSON.stringify({
       </p>
     </div>
   </div>
+
+  <!-- ======== SPOT GUIDES TEASER ======== -->
+  {spotGuides.length > 0 && (
+    <section class="max-w-7xl mx-auto px-4 py-10">
+      <div class="bg-gradient-to-br from-amber-50 via-white to-blue-50 border border-zinc-200 rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div>
+          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-accent-600 mb-3">New</p>
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tighter text-zinc-900 mb-3">Real spots, worth the detour</h2>
+          <p class="text-zinc-600 max-w-md leading-relaxed">Cafés, shops, and hidden gems — ratings, hours, and how to get there, all in one place.</p>
+        </div>
+        <a href="/spots" class="inline-flex items-center gap-2 px-8 py-5 bg-accent-600 text-white text-lg font-semibold rounded-full hover:bg-accent-700 transition-colors no-underline flex-shrink-0 whitespace-nowrap">
+          Browse Spot Guides →
+        </a>
+      </div>
+    </section>
+  )}
 
   <!-- ======== 2. THE SHORT ANSWER (editorial intro) ======== -->
   <section class="max-w-7xl mx-auto px-4 pt-20 md:pt-28 relative z-10">
@@ -508,6 +525,10 @@ const faqPageSchema = JSON.stringify({
         <a href="/by-region" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
           <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">Region Guides</p>
           <p class="text-sm text-zinc-500 leading-relaxed">Best time to visit Tokyo, Kyoto, Hokkaido, Okinawa & more.</p>
+        </a>
+        <a href="/spots" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
+          <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">Spot Guides</p>
+          <p class="text-sm text-zinc-500 leading-relaxed">Cafés, shops, and hidden gems worth routing a trip around.</p>
         </a>
         <a href="/crowd-calendar" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
           <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">Crowd Calendar</p>
