@@ -7,6 +7,8 @@ export interface SpotGuide {
   meta: string;
   image: string;
   imageAlt: string;
+  logo?: string;
+  galleryImages?: { src: string; alt: string }[];
   bestTime: string;
   priceRange: string;
   intro: string[];
@@ -19,7 +21,7 @@ export interface SpotGuide {
   nearby: { name: string; distance: string; note: string }[];
   reviewLinks: { label: string; url: string; note: string }[];
   socialLinks?: { label: string; url: string }[];
-  seasonalPicks?: { title: string; note: string }[];
+  seasonalPicks?: { title: string; note: string; image?: string; imageAlt?: string }[];
   disclaimer?: string;
   faqs: { q: string; a: string }[];
 }
@@ -32,8 +34,16 @@ export const spotGuides: SpotGuide[] = [
     city: "Hita, Oita",
     tagline: "Dolce-style kakigori by day, a quiet bar by night",
     meta: "Kotonean is a café-and-bar in Hita, Oita, known for dolce-style kakigori (shaved ice) by day and a refined bar by night, overlooking the Japan Heritage garden Kangien. Best visited June-August.",
-    image: "https://kotonean.net/wp-content/uploads/2026/02/top2026-1922x2048.png",
-    imageAlt: "Kotonean's signature kakigori with a view over the Kangien heritage garden in Hita",
+    image: "/images/store/kotonean/hero.webp",
+    imageAlt: "Fruit Parlor Kotonean brand illustration — a fruit-piled car pulling up to the shop sign",
+    logo: "/images/store/kotonean/logo.webp",
+    galleryImages: [
+      { src: "/images/store/kotonean/exterior1.jpg", alt: "Kotonean's shop exterior in the Awakubo district of Hita" },
+      { src: "/images/store/kotonean/exterior2.jpg", alt: "Kotonean's shop front with the OPEN sign lit" },
+      { src: "/images/store/kotonean/exterior3.jpg", alt: "Welcome to Kotonean sidewalk sign with hours and menu" },
+      { src: "/images/store/kotonean/interior2.jpg", alt: "Strawberry and chocolate kakigori at Kotonean" },
+      { src: "/images/store/kotonean/interior3.jpg", alt: "Grape kakigori made with fruit from Okura Grape Farm" },
+    ],
     bestTime: "June-August — Kyushu's rainy-to-typhoon season for sightseeing, but peak season for kakigori, when the heat makes a bowl of finely shaved ice worth the detour",
     priceRange: "¥400-2,000 JPY",
     intro: [
@@ -76,9 +86,9 @@ export const spotGuides: SpotGuide[] = [
       { label: "X (Twitter)", url: "https://x.com/kotonean" },
     ],
     seasonalPicks: [
-      { title: "Mango & rare cheese", note: "A classic pairing of ripe Miyazaki mango and rare cheese." },
-      { title: "Hita watermelon", note: "A summer-only favorite made with local Hita watermelon." },
-      { title: "Signature dolce kakigori", note: "An original dessert-style kakigori built on Hita's clean water." },
+      { title: "Mango & rare cheese", note: "A classic pairing of ripe Miyazaki mango and rare cheese.", image: "/images/store/kotonean/interior1.jpg", imageAlt: "Mango and rare cheese kakigori at Kotonean" },
+      { title: "Hita watermelon", note: "A summer-only favorite made with local Hita watermelon.", image: "/images/store/kotonean/products3.jpg", imageAlt: "Hita watermelon kakigori served beside a whole watermelon" },
+      { title: "Signature dolce kakigori", note: "An original dessert-style kakigori built on Hita's clean water.", image: "/images/store/kotonean/products2.jpg", imageAlt: "Signature dolce-style kakigori topped with cream and berry sauce" },
     ],
     disclaimer: "Hours, prices, and menu items are accurate as of August 2026 but can change without notice — confirm directly with Kotonean before visiting. Ratings and reviews live on the third-party platforms linked above, not on this page.",
     faqs: [

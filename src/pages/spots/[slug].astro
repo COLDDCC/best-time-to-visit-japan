@@ -17,6 +17,7 @@ export function getStaticPaths() {
 
 const { spot } = Astro.props;
 const canonical = `https://best-time-japan.com/spots/${spot.slug}`;
+const logoUrl = spot.logo ? `https://best-time-japan.com${spot.logo}` : undefined;
 const parentRegion = regionGuides.find((r) => r.slug === spot.region);
 
 const spotSchema = JSON.stringify({
@@ -29,6 +30,7 @@ const spotSchema = JSON.stringify({
   "telephone": spot.phone.split(" ")[0],
   "priceRange": spot.priceRange,
   "url": canonical,
+  ...(logoUrl ? { "logo": logoUrl } : {}),
   ...(spot.socialLinks && spot.socialLinks.length > 0
     ? { "sameAs": spot.socialLinks.map((s) => s.url) }
     : {}),
@@ -64,6 +66,15 @@ const faqSchema = JSON.stringify({
         <p class="text-zinc-600 leading-relaxed mb-6 text-base md:text-lg">{p}</p>
       ))}
 
+      <!-- Gallery -->
+      {spot.galleryImages && spot.galleryImages.length > 0 && (
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12" aria-label="Photo gallery">
+          {spot.galleryImages.map((g) => (
+            <img src={g.src} alt={g.alt} loading="lazy" decoding="async" class="w-full aspect-[4/3] object-cover rounded-xl border border-zinc-100" />
+          ))}
+        </div>
+      )}
+
       <!-- Highlights -->
       <h2 class="text-2xl font-bold text-zinc-900 mt-12 mb-6">Highlights</h2>
       <div class="space-y-6 mb-12">
@@ -96,9 +107,14 @@ const faqSchema = JSON.stringify({
           <h2 class="text-2xl font-bold text-zinc-900 mb-6">Seasonal Picks</h2>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
             {spot.seasonalPicks.map((s) => (
-              <div class="bg-white border border-zinc-200 rounded-xl p-5">
-                <p class="text-sm font-bold text-zinc-900 mb-1.5">{s.title}</p>
-                <p class="text-xs text-zinc-500 leading-relaxed">{s.note}</p>
+              <div class="bg-white border border-zinc-200 rounded-xl overflow-hidden">
+                {s.image && (
+                  <img src={s.image} alt={s.imageAlt || s.title} loading="lazy" decoding="async" class="w-full aspect-[4/3] object-cover" />
+                )}
+                <div class="p-5">
+                  <p class="text-sm font-bold text-zinc-900 mb-1.5">{s.title}</p>
+                  <p class="text-xs text-zinc-500 leading-relaxed">{s.note}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -159,7 +175,7 @@ const faqSchema = JSON.stringify({
         {spot.socialLinks && spot.socialLinks.length > 0 && (
           <div class="flex flex-wrap gap-3 mt-4 pt-4 border-t border-zinc-200">
             {spot.socialLinks.map((s) => (
-              <a href={s.url} target="_blank" rel="noopener" class="text-xs font-medium text-zinc-500 hover:text-accent-600 transition-colors no-underline">{s.label} ↗</a>
+              <a href={s.url} target="_blank" rel="noopener" class="text-sm font-medium text-zinc-500 hover:text-accent-600 transition-colors no-underline">{s.label} ↗</a>
             ))}
           </div>
         )}
