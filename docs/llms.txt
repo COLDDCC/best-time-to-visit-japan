@@ -1,5 +1,5 @@
 # llms.txt for When to Visit Japan
-# https://when-to-visit-japan.com
+# https://best-time-japan.com
 
 ## About This Site
 When to Visit Japan is a data-backed travel planning guide helping travelers find the best time to visit Japan. We combine climate data, crowd intelligence, and firsthand travel experience to provide month-by-month, region-by-region guidance.
@@ -7,35 +7,35 @@ When to Visit Japan is a data-backed travel planning guide helping travelers fin
 ## Core Pages
 
 ### Homepage
-https://when-to-visit-japan.com
+https://best-time-japan.com
 Interactive guide covering best travel seasons, regional climate matrix, month timeline, crowd calendar, cost trends, and seasonal narratives. Includes comparison tool and interactive Japan region map.
 
 ### When to Go Quiz
-https://when-to-visit-japan.com/when-to-go
+https://best-time-japan.com/when-to-go
 Eight-question interactive quiz that recommends ideal travel months based on your preferences for region, budget, activity type, crowd tolerance, temperature, festivals (sakura/koyo/snow), trip duration, and departure origin.
 
 ### Monthly Guide
-https://when-to-visit-japan.com/monthly-guide
+https://best-time-japan.com/monthly-guide
 Complete month-by-month breakdown of Japanese weather (temperature range, rain days), crowd levels (1-5 scale), best regions per month, highlights, downsides, and packing recommendations for all 12 months.
 
 ### By Region
-https://when-to-visit-japan.com/by-region
+https://best-time-japan.com/by-region
 Regional travel timing guide covering 10 major Japanese regions: Hokkaido, Tohoku, Tokyo/Central, Mt Fuji, Kyoto/Kansai, Hiroshima, Nara, Shikoku, Kyushu, and Okinawa. Each with best months, avoidance windows, temperatures, highlights, and local tips.
 
 ### Festivals Calendar
-https://when-to-visit-japan.com/festivals
+https://best-time-japan.com/festivals
 Complete 2026 Japanese festival calendar with dates, durations, crowd levels, descriptions, and practical travel tips for major festivals including Sakura, Golden Week, Gion Matsuri, Obon, Nebuta, Hanabi (fireworks), and New Year.
 
 ### Crowd Calendar
-https://when-to-visit-japan.com/crowd-calendar
+https://best-time-japan.com/crowd-calendar
 Interactive full-year crowd calendar for 2026. Each day color-coded by crowd level with event notes for major Japanese holidays. Covers aggregated data from Japan's top 20 attractions.
 
 ### Travel Cost Guide
-https://when-to-visit-japan.com/travel-cost
+https://best-time-japan.com/travel-cost
 Comprehensive cost breakdown including flight price trends by month (bar chart), hotel price index by season, city-by-city cost comparison table, three sample itineraries at budget/mid/luxury tiers, and 8 money-saving tips.
 
 ### FAQ
-https://when-to-visit-japan.com/faq
+https://best-time-japan.com/faq
 Twelve frequently asked questions covering best months, cheapest times, worst periods, Golden Week crowds, October weather, leaning on sakura and koyo seasons, rainy season timing, visa requirements, safety, trip costs, tour vs independent travel, and booking timelines.
 
 ## Traveler Story Table: Best Months by Priority
@@ -53,4 +53,4 @@ Twelve frequently asked questions covering best months, cheapest times, worst pe
 
 ## Contact
 - Email: hello@when-to-visit-japan.com
-- Privacy: https://when-to-visit-japan.com/privacy
+- Privacy: https://best-time-japan.com/privacy
