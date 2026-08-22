@@ -38,7 +38,7 @@ export const spotGuides: SpotGuide[] = [
     imageAlt: "Fruit Parlor Kotonean brand illustration — a fruit-piled car pulling up to the shop sign",
     logo: "/images/store/kotonean/logo.webp",
     galleryImages: [
-      { src: "/images/store/kotonean/exterior.jpg", alt: "Kotonean's shop exterior in the Awakubo district of Hita" },
+      { src: "/images/store/kotonean/exterior1.jpg", alt: "Kotonean's shop exterior in the Awakubo district of Hita" },
     ],
     bestTime: "June-August — Kyushu's rainy-to-typhoon season for sightseeing, but peak season for kakigori, when the heat makes a bowl of finely shaved ice worth the detour",
     priceRange: "¥400-2,000 JPY",
@@ -83,8 +83,8 @@ export const spotGuides: SpotGuide[] = [
     ],
     seasonalPicks: [
       { title: "Mango & rare cheese", note: "A classic pairing of ripe Miyazaki mango and rare cheese." },
-      { title: "Hita watermelon", note: "A summer-only favorite made with local Hita watermelon.", image: "/images/store/kotonean/products/watermelon-kakigori.jpg", imageAlt: "Hita watermelon kakigori served beside a whole watermelon" },
-      { title: "Signature dolce kakigori", note: "An original dessert-style kakigori built on Hita's clean water.", image: "/images/store/kotonean/products/dolce-kakigori.jpg", imageAlt: "Signature dolce-style kakigori topped with cream and berry sauce" },
+      { title: "Hita watermelon", note: "A summer-only favorite made with local Hita watermelon.", image: "/images/store/kotonean/products3.jpg", imageAlt: "Hita watermelon kakigori served beside a whole watermelon" },
+      { title: "Signature dolce kakigori", note: "An original dessert-style kakigori built on Hita's clean water.", image: "/images/store/kotonean/products2.jpg", imageAlt: "Signature dolce-style kakigori topped with cream and berry sauce" },
     ],
     disclaimer: "Hours, prices, and menu items are accurate as of August 2026 but can change without notice — confirm directly with Kotonean before visiting. Ratings and reviews live on the third-party platforms linked above, not on this page.",
     faqs: [
