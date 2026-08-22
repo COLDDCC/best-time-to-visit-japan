@@ -68,7 +68,7 @@ const faqSchema = JSON.stringify({
 
       <!-- Gallery -->
       {spot.galleryImages && spot.galleryImages.length > 0 && (
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12" aria-label="Photo gallery">
           {spot.galleryImages.map((g) => (
             <img src={g.src} alt={g.alt} loading="lazy" decoding="async" class="w-full aspect-[4/3] object-cover rounded-xl border border-zinc-100" />
           ))}

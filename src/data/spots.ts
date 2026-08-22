@@ -39,6 +39,8 @@ export const spotGuides: SpotGuide[] = [
     logo: "/images/store/kotonean/logo.webp",
     galleryImages: [
       { src: "/images/store/kotonean/exterior1.jpg", alt: "Kotonean's shop exterior in the Awakubo district of Hita" },
+      { src: "/images/store/kotonean/exterior2.jpg", alt: "Kotonean's shop front with the OPEN sign lit" },
+      { src: "/images/store/kotonean/exterior3.jpg", alt: "Welcome to Kotonean sidewalk sign with hours and menu" },
     ],
     bestTime: "June-August — Kyushu's rainy-to-typhoon season for sightseeing, but peak season for kakigori, when the heat makes a bowl of finely shaved ice worth the detour",
     priceRange: "¥400-2,000 JPY",
