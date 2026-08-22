@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Sitemap: https://when-to-visit-japan.com/sitemap-index.xml
+Sitemap: https://best-time-japan.com/sitemap-index.xml
 
 # AI crawlers — allow browsing, block training
 User-agent: GPTBot

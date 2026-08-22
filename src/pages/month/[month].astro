@@ -17,7 +17,7 @@ export function getStaticPaths() {
 }
 
 const { month } = Astro.props;
-const canonical = `https://when-to-visit-japan.com/month/${month.month}`;
+const canonical = `https://best-time-japan.com/month/${month.month}`;
 const currentYear = new Date().getFullYear();
 
 const relatedRegions = (month.bestRegionSlugs ?? [])
@@ -42,8 +42,8 @@ const articleSchema = JSON.stringify({
   "@type": "Article",
   "headline": title,
   "description": meta,
-  "author": { "@type": "Organization", "name": "When to Visit Japan", "url": "https://when-to-visit-japan.com/about" },
-  "publisher": { "@type": "Organization", "name": "When to Visit Japan", "logo": { "@type": "ImageObject", "url": "https://when-to-visit-japan.com/favicon.svg" } },
+  "author": { "@type": "Organization", "name": "When to Visit Japan", "url": "https://best-time-japan.com/about" },
+  "publisher": { "@type": "Organization", "name": "When to Visit Japan", "logo": { "@type": "ImageObject", "url": "https://best-time-japan.com/favicon.svg" } },
   "datePublished": `${currentYear}-01-15`,
   "dateModified": `${currentYear}-07-31`,
   "mainEntityOfPage": { "@type": "WebPage", "@id": canonical },

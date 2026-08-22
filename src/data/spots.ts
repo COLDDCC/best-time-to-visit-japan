@@ -31,7 +31,7 @@ export const spotGuides: SpotGuide[] = [
     meta: "Kotonean is a café-and-bar in Hita, Oita, known for dolce-style kakigori (shaved ice) by day and a refined bar by night, overlooking the Japan Heritage garden Kangien. Best visited June-August.",
     image: "https://kotonean.net/wp-content/uploads/2026/02/top2026-1922x2048.png",
     imageAlt: "Kotonean's signature kakigori with a view over the Kangien heritage garden in Hita",
-    bestTime: "June-August, when Kyushu's heat makes a bowl of finely shaved ice worth the detour",
+    bestTime: "June-August — Kyushu's rainy-to-typhoon season for sightseeing, but peak season for kakigori, when the heat makes a bowl of finely shaved ice worth the detour",
     priceRange: "¥400-2,000 JPY",
     intro: [
       "Kotonean sits in the Awakubo district of Hita, a two-in-one space that runs as a café by day and a bar after dark. By day it's known for exceptional handmade kakigori (shaved ice) and a refined coffee culture; once the sun goes down, it turns into an elegant bar pouring curated sake, local beers, and original cocktails.",
