@@ -29,6 +29,9 @@ const spotSchema = JSON.stringify({
   "telephone": spot.phone.split(" ")[0],
   "priceRange": spot.priceRange,
   "url": canonical,
+  ...(spot.socialLinks && spot.socialLinks.length > 0
+    ? { "sameAs": spot.socialLinks.map((s) => s.url) }
+    : {}),
 });
 
 const faqSchema = JSON.stringify({
@@ -87,6 +90,21 @@ const faqSchema = JSON.stringify({
         ))}
       </div>
 
+      <!-- Seasonal picks -->
+      {spot.seasonalPicks && spot.seasonalPicks.length > 0 && (
+        <>
+          <h2 class="text-2xl font-bold text-zinc-900 mb-6">Seasonal Picks</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+            {spot.seasonalPicks.map((s) => (
+              <div class="bg-white border border-zinc-200 rounded-xl p-5">
+                <p class="text-sm font-bold text-zinc-900 mb-1.5">{s.title}</p>
+                <p class="text-xs text-zinc-500 leading-relaxed">{s.note}</p>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
       <!-- Visit info -->
       <h2 class="text-2xl font-bold text-zinc-900 mb-6">Plan Your Visit</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
@@ -138,7 +156,27 @@ const faqSchema = JSON.stringify({
             </a>
           ))}
         </div>
+        {spot.socialLinks && spot.socialLinks.length > 0 && (
+          <div class="flex flex-wrap gap-3 mt-4 pt-4 border-t border-zinc-200">
+            {spot.socialLinks.map((s) => (
+              <a href={s.url} target="_blank" rel="noopener" class="text-xs font-medium text-zinc-500 hover:text-accent-600 transition-colors no-underline">{s.label} ↗</a>
+            ))}
+          </div>
+        )}
       </Callout>
+
+      <!-- Reservation CTA -->
+      <div class="bg-zinc-950 text-white rounded-2xl p-8 md:p-10 text-center mb-12">
+        <p class="text-lg font-semibold mb-1">Ready to visit {spot.name}?</p>
+        <p class="text-sm text-zinc-400 mb-5">One phone call away.</p>
+        <p class="text-xl font-bold tabular-nums">{spot.phone}</p>
+      </div>
+
+      {spot.disclaimer && (
+        <Callout eyebrow="A Note on This Guide" tone="amber" class="mb-12">
+          <p class="text-sm text-zinc-600 leading-relaxed">{spot.disclaimer}</p>
+        </Callout>
+      )}
 
       <!-- FAQ -->
       <h2 class="text-2xl font-bold text-zinc-900 mb-6">FAQs</h2>

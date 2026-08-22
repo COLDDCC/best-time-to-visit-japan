@@ -18,6 +18,9 @@ export interface SpotGuide {
   tips: string[];
   nearby: { name: string; distance: string; note: string }[];
   reviewLinks: { label: string; url: string; note: string }[];
+  socialLinks?: { label: string; url: string }[];
+  seasonalPicks?: { title: string; note: string }[];
+  disclaimer?: string;
   faqs: { q: string; a: string }[];
 }
 
@@ -54,10 +57,12 @@ export const spotGuides: SpotGuide[] = [
       "Kotonean runs on reservations, especially in summer and around holidays — call about a week ahead to confirm.",
       "Lines tend to be shorter between 2-4pm; the dinner window (5-6pm) is the busiest.",
       "The garden view is the whole point — ask for a window seat when you book.",
+      "Once you're seated, take your time — the Kangien garden sits right in front of you the whole visit.",
     ],
     nearby: [
       { name: "Mameda-machi Historic Street", distance: "5-min walk", note: "A historic shopping street lined with small shops and local snacks." },
       { name: "Sapporo Beer Hita Factory", distance: "15-min drive", note: "Tour the brewing process and sample the local beer." },
+      { name: "Tenryo Hita Miso Museum", distance: "10-min drive", note: "A hands-on look at Hita's miso-making tradition and craft." },
       { name: "Sakuradaki Falls", distance: "20-min drive", note: "A natural waterfall that changes with the seasons — best known for autumn foliage." },
     ],
     reviewLinks: [
@@ -65,6 +70,17 @@ export const spotGuides: SpotGuide[] = [
       { label: "Google Maps", url: "https://www.google.com/maps/search/?api=1&query=%E7%90%B4%E9%9F%B3%E5%BA%B5%20%E6%97%A5%E7%94%B0%E5%B8%82", note: "Current ratings and photos" },
       { label: "Official site", url: "https://kotonean.net/", note: "Hours, menu, and announcements" },
     ],
+    socialLinks: [
+      { label: "Instagram", url: "https://www.instagram.com/kotonean/" },
+      { label: "Facebook", url: "https://www.facebook.com/cafe.bar.kotonean/" },
+      { label: "X (Twitter)", url: "https://x.com/kotonean" },
+    ],
+    seasonalPicks: [
+      { title: "Mango & rare cheese", note: "A classic pairing of ripe Miyazaki mango and rare cheese." },
+      { title: "Hita watermelon", note: "A summer-only favorite made with local Hita watermelon." },
+      { title: "Signature dolce kakigori", note: "An original dessert-style kakigori built on Hita's clean water." },
+    ],
+    disclaimer: "Hours, prices, and menu items are accurate as of August 2026 but can change without notice — confirm directly with Kotonean before visiting. Ratings and reviews live on the third-party platforms linked above, not on this page.",
     faqs: [
       { q: "Do I need a reservation for Kotonean?", a: "It's recommended, especially in summer (peak kakigori season) and around holidays. Call the reservation line 1-7 days ahead; same-day walk-ins are possible but you may wait." },
       { q: "Is Kotonean a café or a bar?", a: "Both — it runs as a café serving kakigori and coffee from 10:00-18:00, then transitions into a bar with sake, beer, and cocktails from 18:00-23:00." },
