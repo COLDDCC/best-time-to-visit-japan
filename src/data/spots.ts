@@ -112,6 +112,14 @@ export const spotGuides: SpotGuide[] = [
     city: "Aso, Kumamoto",
     tagline: "One of the world's largest active calderas, with a crater you can (sometimes) drive right up to",
     meta: "Mount Aso is an active volcano in Kumamoto, Kyushu, ringed by one of the world's largest calderas. Best visited October-November for clear crater views and golden grasslands — crater access can close without notice.",
+    image: "/images/store/aso-volcano/hero.jpg",
+    imageAlt: "The turquoise crater lake at Mount Aso's active Nakadake crater, ringed by steam and volcanic rock",
+    exteriorImages: [
+      { src: "/images/store/aso-volcano/landmark-3.jpg", alt: "The grassy Kusasenri plain with its ponds and grazing horses, backed by Mount Aso" },
+    ],
+    interiorImages: [
+      { src: "/images/store/aso-volcano/landmark-2.jpg", alt: "The Aso Volcano Museum building, at the base of the crater road" },
+    ],
     highlightTags: ["Active volcano", "Aso-Kuju National Park", "UNESCO Global Geopark", "Grazing horses at Kusasenri", "Access depends on alert level"],
     bestTime: "Year-round for the caldera and Kusasenri grasslands — spring for fresh green after the controlled burns, October-November for the clearest crater views and golden grass, winter for frost-covered trees at Kusasenri. The Nakadake crater itself can close on short notice at any time of year when volcanic gas levels rise, so don't build a whole day around it alone.",
     priceRange: "Free (Kusasenri and most viewpoints) — roughly ¥1,700-2,400 JPY round-trip for the bus and crater shuttle when they're running",
