@@ -22,17 +22,18 @@ const parentRegion = regionGuides.find((r) => r.slug === spot.region);
 const ratingStars = spot.rating
   ? "★".repeat(Math.round(spot.rating.score)) + "☆".repeat(5 - Math.round(spot.rating.score))
   : "";
+const isAttraction = spot.kind === "attraction";
 
 const spotSchema = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "CafeOrCoffeeShop",
+  "@type": spot.kind === "attraction" ? "TouristAttraction" : "CafeOrCoffeeShop",
   "name": spot.name,
-  "image": spot.image,
   "description": spot.meta,
   "address": spot.address,
   "telephone": spot.phone.split(" ")[0],
   "priceRange": spot.priceRange,
   "url": canonical,
+  ...(spot.image ? { "image": spot.image } : {}),
   ...(logoUrl ? { "logo": logoUrl } : {}),
   ...(spot.rating ? { "aggregateRating": { "@type": "AggregateRating", "ratingValue": spot.rating.score, "reviewCount": spot.rating.count } } : {}),
   ...(spot.socialLinks && spot.socialLinks.length > 0
@@ -93,7 +94,13 @@ const faqSchema = JSON.stringify({
             ))}
           </div>
         </div>
-        <img src={spot.image} alt={spot.imageAlt} loading="lazy" decoding="async" class="order-1 md:order-2 w-full md:w-64 lg:w-72 flex-shrink-0 h-auto rounded-2xl shadow-sm border border-zinc-100 object-cover" />
+        {spot.image ? (
+          <img src={spot.image} alt={spot.imageAlt} loading="lazy" decoding="async" class="order-1 md:order-2 w-full md:w-64 lg:w-72 flex-shrink-0 h-auto rounded-2xl shadow-sm border border-zinc-100 object-cover" />
+        ) : (
+          <div class="order-1 md:order-2 w-full md:w-64 lg:w-72 flex-shrink-0 h-48 md:h-auto rounded-2xl border border-dashed border-zinc-300 bg-zinc-50 flex items-center justify-center">
+            <p class="text-xs text-zinc-400 text-center px-4">Photo coming soon</p>
+          </div>
+        )}
       </div>
 
       <div class="bg-white border-2 border-zinc-200 rounded-2xl p-6 sm:p-8 mb-12 shadow-sm">
@@ -103,7 +110,7 @@ const faqSchema = JSON.stringify({
             <p class="text-base font-semibold text-zinc-900 whitespace-pre-line">{spot.hours}</p>
           </div>
           <div>
-            <p class="text-xs font-semibold tracking-wide text-zinc-400 uppercase mb-1">Reservations</p>
+            <p class="text-xs font-semibold tracking-wide text-zinc-400 uppercase mb-1">{isAttraction ? "Visitor Info" : "Reservations"}</p>
             <p class="text-base font-semibold text-zinc-900 whitespace-pre-line">{spot.phone}</p>
           </div>
         </div>
@@ -158,7 +165,7 @@ const faqSchema = JSON.stringify({
       </div>
 
       <!-- Menu -->
-      <h2 class="text-2xl font-bold text-zinc-900 mb-2">What to Order</h2>
+      <h2 class="text-2xl font-bold text-zinc-900 mb-2">{isAttraction ? "Getting Around & Costs" : "What to Order"}</h2>
       <p class="text-sm text-zinc-500 mb-6">Prices in Japanese yen (JPY).</p>
       <div class="mb-12">
         {spot.menu.map((m) => (
@@ -222,8 +229,8 @@ const faqSchema = JSON.stringify({
 
       <!-- Other review sources not already linked up top -->
       {spot.reviewLinks.filter((r) => r.label !== "Google Maps" && r.label !== "Official site").length > 0 && (
-        <Callout eyebrow="More Reviews" tone="neutral" class="mb-12">
-          <p class="text-sm text-zinc-600 leading-relaxed mb-5">Ratings change constantly, so we don't reproduce review content here — tap through to see what's current.</p>
+        <Callout eyebrow={isAttraction ? "More Resources" : "More Reviews"} tone="neutral" class="mb-12">
+          <p class="text-sm text-zinc-600 leading-relaxed mb-5">{isAttraction ? "Access, hours, and safety restrictions change often — tap through to see what's current before you go." : "Ratings change constantly, so we don't reproduce review content here — tap through to see what's current."}</p>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {spot.reviewLinks.filter((r) => r.label !== "Google Maps" && r.label !== "Official site").map((r) => (
               <a href={r.url} target="_blank" rel="noopener" class="group flex flex-col gap-1 bg-white border border-zinc-200 rounded-lg p-4 hover:border-accent-300 transition-colors no-underline">
@@ -238,7 +245,7 @@ const faqSchema = JSON.stringify({
       <!-- Reservation CTA -->
       <div class="text-center mb-12">
         <p class="text-lg font-semibold text-zinc-900 mb-1">Ready to visit {spot.name}?</p>
-        <p class="text-sm text-zinc-500 mb-5">One phone call away.</p>
+        <p class="text-sm text-zinc-500 mb-5">{isAttraction ? "Check current conditions before you go." : "One phone call away."}</p>
         <p class="text-xl font-bold text-zinc-900 tabular-nums">{spot.phone}</p>
       </div>
 

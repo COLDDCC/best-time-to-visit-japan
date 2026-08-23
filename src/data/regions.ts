@@ -378,6 +378,7 @@ export const regionGuides: RegionGuide[] = [
     mustDo: [
       "Soak in Kurokawa Onsen's riverside baths — the most beautiful hot-spring town in Japan.",
       "Watch Sakurajima, one of the world's most active volcanoes, smoke above Kagoshima Bay.",
+      "Drive up to Mount Aso's Nakadake crater (when it's open) or walk the free Kusasenri grasslands for a safe-distance view of the smoke.",
       "Tour Beppu's 'Hells' — steaming, sulfurous hot-spring pools in colors you won't believe.",
       "Eat tonkotsu ramen and yatai (street-stall) food in Fukuoka at night.",
       "Beat the summer heat — even in Kyushu's rainy-to-typhoon stretch — with dolce-style kakigori at Kotonean in Hita, overlooking the Kangien heritage garden.",
@@ -395,6 +396,7 @@ export const regionGuides: RegionGuide[] = [
     related: ["osaka", "hiroshima", "kyoto"],
     spots: [
       { name: "Kotonean", slug: "kotonean", teaser: "A dolce-style kakigori café-and-bar in Hita, overlooking the Kangien heritage garden — best visited Jun-Aug, Kyushu's rainy-to-typhoon window for sightseeing but peak season for kakigori." },
+      { name: "Mount Aso", slug: "mount-aso", teaser: "One of the world's largest active calderas, with a crater you can drive right up to — when the alert level allows it. Best Oct-Nov for clear views, but check crater access before you go." },
     ],
   },
   {
