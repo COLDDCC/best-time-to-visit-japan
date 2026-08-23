@@ -20,6 +20,9 @@ export interface SpotGuide {
   priceRange: string;
   intro: string[];
   highlights: { title: string; body: string }[];
+  /** Optional "how to sequence a visit" blocks — for sprawling multi-viewpoint
+   * spots (a caldera, a national park) where a single café-style visit doesn't apply. */
+  itinerary?: { title: string; time: string; body: string }[];
   menu: { name: string; price: string; note: string }[];
   hours: string;
   address: string;
@@ -133,6 +136,11 @@ export const spotGuides: SpotGuide[] = [
       { title: "Nakadake's active crater", body: "A milky turquoise crater lake, constant steam, and the smell of sulfur — when it's open, this is about as close as most visitors will ever get to an active volcanic crater. Access is gated by the current alert level, so it isn't guaranteed on any given day." },
       { title: "Kusasenri grasslands", body: "A wide volcanic plain at 1,100m elevation where horses graze freely, with Nakadake smoking in the background. Open year-round, free to walk, and the safest bet if crater access is closed." },
       { title: "Aso Shrine & onsen towns", body: "One of Japan's oldest shrines sits near the caldera's edge, and nearby Uchinomaki is a quiet hot-spring town — a good base for exploring without the crowds of Beppu or Kurokawa." },
+    ],
+    itinerary: [
+      { title: "Only 90 minutes", time: "~1.5 hrs", body: "Go straight to Kusasenri. It's free, open year-round, and gives you the classic view of Nakadake's smoke over grazing horses without gambling on crater access or museum hours." },
+      { title: "Half a day", time: "~4 hrs", body: "Kusasenri first, then the 5-minute drive to the Aso Volcano Museum — budget 45 minutes for the exhibits and the live crater camera. If the crater road is open, finish with the drive or shuttle up to the rim; if not, that's a full and satisfying day on its own." },
+      { title: "A full day", time: "6-8 hrs", body: "Add Komezuka, the rice-bale-shaped grass cone that's Aso's most photographed single feature (a 10-minute stop from the roadside pull-off), then Daikanbo on the caldera's north rim for the classic wide shot of the whole caldera. Round it out with Aso Shrine and a soak at Uchinomaki onsen before heading out." },
     ],
     menu: [
       { name: "JR Aso Station → Asosanjo Terminal bus", price: "¥1,000 one-way", note: "Stops at Kusasenri along the way — the main way in if you're not driving." },
