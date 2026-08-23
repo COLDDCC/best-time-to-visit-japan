@@ -39,6 +39,55 @@ function extractPriceNumber(text) {
   return Number.isFinite(n) ? n : null;
 }
 
+// Turns a 0-based column index into a spreadsheet column letter (0 -> "A", 26 -> "AA").
+function indexToColumnLetter(index) {
+  let letters = "";
+  let n = index + 1;
+  while (n > 0) {
+    const rem = (n - 1) % 26;
+    letters = String.fromCharCode(65 + rem) + letters;
+    n = Math.floor((n - 1) / 26);
+  }
+  return letters;
+}
+
+// Turns a spreadsheet column letter into a 0-based index ("A" -> 0, "AA" -> 26).
+function columnLetterToIndex(letters) {
+  let n = 0;
+  for (const ch of String(letters).toUpperCase()) {
+    n = n * 26 + (ch.charCodeAt(0) - 64);
+  }
+  return n - 1;
+}
+
+// Feishu 电子表格 links come in two shapes:
+//   - embedded in a Wiki (知识库): https://xxx.feishu.cn/wiki/<node_token>?sheet=<sheetId>
+//     the node_token is NOT the spreadsheetToken — it has to be resolved via the wiki API.
+//   - a standalone spreadsheet: https://xxx.feishu.cn/sheets/<spreadsheetToken>?sheet=<sheetId>
+//     the token in the path IS already the spreadsheetToken.
+function parseSheetUrl(urlStr) {
+  let u;
+  try {
+    u = new URL(urlStr);
+  } catch (e) {
+    return null;
+  }
+  const sheetId = u.searchParams.get("sheet") || "";
+  const wikiMatch = u.pathname.match(/\/wiki\/([^/?]+)/);
+  const sheetsMatch = u.pathname.match(/\/sheets\/([^/?]+)/);
+  if (wikiMatch) return { type: "wiki", token: wikiMatch[1], sheetId };
+  if (sheetsMatch) return { type: "sheets", token: sheetsMatch[1], sheetId };
+  return null;
+}
+
 if (typeof module !== "undefined") {
-  module.exports = { parseHolidayList, toDateKey, isWeekendOrHoliday, extractPriceNumber };
+  module.exports = {
+    parseHolidayList,
+    toDateKey,
+    isWeekendOrHoliday,
+    extractPriceNumber,
+    indexToColumnLetter,
+    columnLetterToIndex,
+    parseSheetUrl,
+  };
 }
