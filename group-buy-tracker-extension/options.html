@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>代购团购收集助手 - 设置</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <h1>代购团购收集助手 - 设置</h1>
+
+    <section>
+      <h2>1. 飞书自建应用</h2>
+      <p class="hint">
+        在
+        <a href="https://open.feishu.cn/app" target="_blank" rel="noopener">飞书开放平台</a>
+        创建一个「企业自建应用」，开通多维表格相关权限并发布，再把应用加为你多维表格的协作者。
+      </p>
+      <label>App ID <input type="text" id="appId" /></label>
+      <label>App Secret <input type="password" id="appSecret" /></label>
+    </section>
+
+    <section>
+      <h2>2. 多维表格</h2>
+      <p class="hint">
+        打开你的多维表格，地址栏形如
+        <code>https://xxx.feishu.cn/base/&lt;app_token&gt;?table=&lt;table_id&gt;</code>，
+        把两段分别填到下面。
+      </p>
+      <label>app_token <input type="text" id="appToken" /></label>
+      <label>table_id <input type="text" id="tableId" /></label>
+    </section>
+
+    <section>
+      <h2>3. 字段名（需与表格里的列名完全一致）</h2>
+      <label>商品名称列 <input type="text" id="fieldName" /></label>
+      <label>商品图片链接列 <input type="text" id="fieldImage" /></label>
+      <label>商品链接列 <input type="text" id="fieldLink" /></label>
+      <label>平时价列 <input type="text" id="fieldNormalPrice" /></label>
+      <label>周末/节假日价列 <input type="text" id="fieldWeekendPrice" /></label>
+    </section>
+
+    <section>
+      <h2>4. 节假日（可选）</h2>
+      <p class="hint">
+        插件默认只把周六、周日当作「周末价」，法定节假日（非周末的调休放假日）可以在这里补充，
+        逗号分隔，格式 2026-01-01,2026-02-16
+      </p>
+      <label>额外节假日日期 <input type="text" id="holidayDates" placeholder="2026-01-01,2026-02-16" /></label>
+    </section>
+
+    <div class="actions">
+      <button id="save" class="primary">保存设置</button>
+      <button id="test">测试连接</button>
+    </div>
+    <p id="status" class="hint"></p>
+
+    <script src="options.js"></script>
+  </body>
+</html>
