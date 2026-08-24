@@ -187,6 +187,9 @@ export const regionGuides: RegionGuide[] = [
       { q: "How far is Fuji from Tokyo?", a: "About 2-2.5 hours by train. Lake Kawaguchi and Fujiyoshida are the best bases on the Yamanashi side." },
     ],
     related: ["tokyo", "hokkaido", "kyoto"],
+    spots: [
+      { name: "Mount Fuji", slug: "mount-fuji", teaser: "Japan's tallest peak, climbed via four official trails for a two-month season each summer — or simply photographed year-round from Chureito Pagoda and the Fuji Five Lakes." },
+    ],
   },
   {
     name: "Kyoto, Osaka & Kansai",
