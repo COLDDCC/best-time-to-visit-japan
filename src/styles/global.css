@@ -4,6 +4,19 @@
   --font-sans: "Newsreader", Georgia, "Times New Roman", serif;
   --font-mono: "Geist Mono", ui-monospace, monospace;
   --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  /* Bump the small end of the type scale site-wide. Most body copy (tips,
+     FAQs, menu items, highlights) uses text-xs/text-sm, which read as
+     uncomfortably small at their Tailwind defaults (12px/14px). Raising the
+     tokens here fixes readability everywhere those utilities are used,
+     without touching markup or the larger heading sizes. */
+  --text-xs: 0.9375rem;
+  --text-xs--line-height: 1.4375rem;
+  --text-sm: 1.0625rem;
+  --text-sm--line-height: 1.6875rem;
+  --text-base: 1.1875rem;
+  --text-base--line-height: 1.9375rem;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 2rem;
   /* Japan vermilion (torii-red) primary accent */
   --color-accent-50: #fff1f1;
   --color-accent-100: #ffdede;
