@@ -382,6 +382,7 @@ export const regionGuides: RegionGuide[] = [
       "Tour Beppu's 'Hells' — steaming, sulfurous hot-spring pools in colors you won't believe.",
       "Eat tonkotsu ramen and yatai (street-stall) food in Fukuoka at night.",
       "Beat the summer heat — even in Kyushu's rainy-to-typhoon stretch — with dolce-style kakigori at Kotonean in Hita, overlooking the Kangien heritage garden.",
+      "Step into Attack on Titan City — creator Hajime Isayama's hometown of Hita has two museums built around his work, a fully indoor, year-round option regardless of weather.",
     ],
     festivals: [
       "Dontaku Festival, Fukuoka — May 3-4, hundreds of thousands of participants.",
@@ -397,6 +398,7 @@ export const regionGuides: RegionGuide[] = [
     spots: [
       { name: "Kotonean", slug: "kotonean", teaser: "A dolce-style kakigori café-and-bar in Hita, overlooking the Kangien heritage garden — best visited Jun-Aug, Kyushu's rainy-to-typhoon window for sightseeing but peak season for kakigori." },
       { name: "Mount Aso", slug: "mount-aso", teaser: "One of the world's largest active calderas, with a crater you can drive right up to — when the alert level allows it. Best Oct-Nov for clear views, but check crater access before you go." },
+      { name: "Attack on Titan in HITA Museum ANNEX", slug: "attack-on-titan-museum-annex", teaser: "Manga creator Hajime Isayama's hometown museum in Hita — Attack on Titan City's immersive digital exhibit, original art, and Hita-exclusive merch. Indoors and open year-round." },
     ],
   },
   {
