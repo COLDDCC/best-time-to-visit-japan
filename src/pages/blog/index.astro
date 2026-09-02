@@ -9,34 +9,40 @@ const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
-const dateFormatter = new Intl.DateTimeFormat("en-US", { year: "numeric", month: "long", day: "numeric" });
+const dateFormatter = new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" });
+const WORDS_PER_MINUTE = 200;
+function readingTime(body: string | undefined) {
+  const words = (body ?? "").trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / WORDS_PER_MINUTE));
+}
 ---
 
 <BaseLayout title="Japan Travel & Culture Blog" description="Practical guides to Japanese travel etiquette and culture — onsen manners, dining customs, navigating trains, and more, for first-time visitors.">
   <section class="min-h-[100dvh]">
     <Nav />
-    <div class="max-w-7xl mx-auto px-4 py-6">
+    <div class="max-w-3xl mx-auto px-4 py-6">
       <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">Blog</p>
       <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">Japan Travel & Culture</h1>
-      <p class="text-lg text-zinc-500 max-w-2xl leading-relaxed mb-16">Practical guides to the etiquette and customs that don't fit in a packing list — written for first-time visitors.</p>
+      <p class="text-lg text-zinc-500 max-w-2xl leading-relaxed mb-12">Practical guides to the etiquette and customs that don't fit in a packing list.</p>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="divide-y divide-zinc-100 border-t border-zinc-100">
         {posts.map((post) => (
-          <a href={`/blog/${post.id}`} class="group bg-white border border-zinc-200 rounded-2xl overflow-hidden hover:border-accent-300 transition-colors no-underline flex flex-col">
-            <div class="relative overflow-hidden bg-zinc-50">
-              {post.data.image ? (
-                <img src={post.data.image} alt={post.data.imageAlt ?? post.data.title} loading="lazy" decoding="async" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105" />
-              ) : (
-                <div class="w-full h-48 flex items-center justify-center">
-                  <p class="text-xs text-zinc-400">Photo coming soon</p>
-                </div>
-              )}
+          <a href={`/blog/${post.id}`} class="group flex items-start justify-between gap-6 py-7 no-underline">
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-medium text-zinc-400 mb-2">
+                {dateFormatter.format(post.data.pubDate)} · {readingTime(post.body)} min read
+              </p>
+              <h2 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900 mb-2 leading-snug group-hover:text-accent-600 transition-colors">{post.data.title}</h2>
+              <p class="text-sm text-zinc-500 leading-relaxed line-clamp-2">{post.data.description}</p>
+              <div class="flex flex-wrap gap-2 mt-4">
+                {post.data.tags.map((tag) => (
+                  <span class="text-[0.65rem] font-semibold tracking-widest uppercase text-zinc-400 bg-zinc-100 rounded-full px-2.5 py-1">{tag}</span>
+                ))}
+              </div>
             </div>
-            <div class="p-6 flex flex-col flex-1">
-              <p class="text-xs font-semibold tracking-widest uppercase text-accent-600 mb-1">{dateFormatter.format(post.data.pubDate)}</p>
-              <h2 class="text-xl font-bold tracking-tight text-zinc-900 mb-2 group-hover:text-accent-600 transition-colors">{post.data.title}</h2>
-              <p class="text-sm text-zinc-500 leading-relaxed">{post.data.description}</p>
-            </div>
+            {post.data.image && (
+              <img src={post.data.image} alt={post.data.imageAlt ?? post.data.title} loading="lazy" decoding="async" class="w-24 h-24 md:w-32 md:h-32 object-cover rounded-lg flex-shrink-0" />
+            )}
           </a>
         ))}
       </div>

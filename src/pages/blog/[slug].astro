@@ -17,6 +17,8 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 
 const dateFormatter = new Intl.DateTimeFormat("en-US", { year: "numeric", month: "long", day: "numeric" });
+const wordCount = (post.body ?? "").trim().split(/\s+/).filter(Boolean).length;
+const readingTime = Math.max(1, Math.round(wordCount / 200));
 
 const articleSchema = JSON.stringify({
   "@context": "https://schema.org",
@@ -37,7 +39,7 @@ const articleSchema = JSON.stringify({
       <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">Blog</p>
       <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">{post.data.title}</h1>
       <p class="text-sm text-zinc-400 mb-10">
-        Published {dateFormatter.format(post.data.pubDate)}
+        Published {dateFormatter.format(post.data.pubDate)} · {readingTime} min read
         {post.data.updatedDate && <> · Updated {dateFormatter.format(post.data.updatedDate)}</>}
       </p>
 
