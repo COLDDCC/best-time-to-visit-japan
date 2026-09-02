@@ -1,0 +1,100 @@
+---
+import "../../styles/global.css";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const dateFormatter = new Intl.DateTimeFormat("en-US", { year: "numeric", month: "long", day: "numeric" });
+
+const articleSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  ...(post.data.updatedDate && { dateModified: post.data.updatedDate.toISOString() }),
+  author: { "@type": "Organization", name: "When to Visit Japan" },
+});
+---
+
+<BaseLayout title={`${post.data.title} | When to Visit Japan Blog`} description={post.data.description}>
+  <script type="application/ld+json" set:html={articleSchema} />
+  <section class="min-h-[100dvh]">
+    <Nav />
+    <article class="max-w-3xl mx-auto px-4 py-6">
+      <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">Blog</p>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">{post.data.title}</h1>
+      <p class="text-sm text-zinc-400 mb-10">
+        Published {dateFormatter.format(post.data.pubDate)}
+        {post.data.updatedDate && <> · Updated {dateFormatter.format(post.data.updatedDate)}</>}
+      </p>
+
+      {post.data.image && (
+        <img src={post.data.image} alt={post.data.imageAlt ?? post.data.title} loading="eager" decoding="async" class="w-full h-56 md:h-72 object-cover rounded-2xl mb-12" />
+      )}
+
+      <div class="post-content text-zinc-700 leading-relaxed">
+        <Content />
+      </div>
+
+      {post.data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mt-12 pt-8 border-t border-zinc-200">
+          {post.data.tags.map((tag) => (
+            <span class="text-xs font-semibold tracking-wide uppercase text-zinc-500 bg-zinc-100 rounded-full px-3 py-1">{tag}</span>
+          ))}
+        </div>
+      )}
+
+      <a href="/blog" class="inline-flex items-center gap-1.5 mt-10 text-sm font-medium text-accent-600 hover:text-accent-700 no-underline">← Back to all articles</a>
+    </article>
+  </section>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .post-content :global(h2) {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--color-zinc-900, #18181b);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  .post-content :global(p) {
+    margin-bottom: 1.25rem;
+  }
+  .post-content :global(ul),
+  .post-content :global(ol) {
+    margin: 0 0 1.25rem 1.25rem;
+    list-style: disc;
+  }
+  .post-content :global(ol) {
+    list-style: decimal;
+  }
+  .post-content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+  .post-content :global(li > p) {
+    margin-bottom: 0;
+  }
+  .post-content :global(strong) {
+    color: var(--color-zinc-900, #18181b);
+    font-weight: 600;
+  }
+  .post-content :global(a) {
+    color: var(--color-accent-600, #dc2626);
+    text-decoration: underline;
+  }
+</style>
