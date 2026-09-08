@@ -8,6 +8,7 @@ import { regionGuides } from "../../data/regions.ts";
 import Icon from "../../components/Icon.astro";
 import Callout from "../../components/Callout.astro";
 import AffiliateCTA from "../../components/AffiliateCTA.astro";
+import CurrentWeather from "../../components/CurrentWeather.astro";
 
 export function getStaticPaths() {
   return monthlyData.map((m) => ({
@@ -140,6 +141,9 @@ const monthSpotlight = monthSpotlights[month.month];
       <p class="text-lg text-zinc-500 leading-relaxed mb-8">{month.label} in a nutshell &mdash; the weather, the crowds, and where to go. Then dig into the details below.</p>
 
       <img src={month.image} alt={month.imageAlt} width={heroW} height={heroH} loading="lazy" decoding="async" class="w-full h-auto rounded-2xl shadow-sm border border-zinc-100 mb-12" />
+
+      <!-- Live current weather -->
+      <CurrentWeather />
 
       <!-- Month narrative -->
       <div class="mb-12">
