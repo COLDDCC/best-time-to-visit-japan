@@ -3,6 +3,8 @@ title: "Japan's Legal Drinking Age: What Every Visitor Should Know"
 description: "Japan's drinking age is 20, not 18 — even though adulthood starts at 18. How it's enforced, what changes for tourists, and the rules around public drinking and vending machines."
 pubDate: 2026-09-02
 tags: ["culture", "practical", "law"]
+image: "/images/blog/在东京🇯🇵喝酒-在近百年历史的hall喝酒_1_七七七七_来自小红书网页版.jpg"
+imageAlt: "Interior of a historic drinking hall in Tokyo"
 ---
 
 ## The age is 20, not 18
