@@ -33,9 +33,33 @@ const heroRatios: Record<string, [number, number]> = {
 };
 const [heroW, heroH] = heroRatios[month.month] ?? [1000, 700];
 
-const title = `Japan in ${month.label} ${currentYear}: Weather, Crowds & Where to Go`;
+// Matches how people actually search ("what season is japan in november", "japan weather in june")
+const seasonMap: Record<string, string> = {
+  january: "winter", february: "winter", march: "early spring",
+  april: "spring", may: "spring", june: "the rainy season (tsuyu), at the start of summer",
+  july: "summer", august: "summer", september: "early autumn, with lingering typhoon risk",
+  october: "autumn", november: "autumn", december: "winter",
+};
+const season = seasonMap[month.month] ?? "";
+
+const title = `Japan Weather in ${month.label} ${currentYear}: Season, Crowds & Where to Go`;
 const meta = `${month.label} in Japan: ${month.tempLow}°C to ${month.tempHigh}°C, ${month.rainDays} rain days, crowds ${month.crowdLevel}/5. Best for ${month.bestFor}.`;
 const desc = `${month.label} is best for ${month.bestFor}. Average ${month.tempLow}°C to ${month.tempHigh}°C, ${month.rainDays} rainy days, crowd level ${month.crowdLevel}/5. Our guide covers the best regions, highlights, packing and what to avoid.`;
+
+const monthFaqs = [
+  {
+    q: `What is the weather like in Japan in ${month.label}?`,
+    a: `In ${month.label}, Japan averages ${month.tempLow}°C to ${month.tempHigh}°C with about ${month.rainDays} rainy days. It's best for ${month.bestFor}.`,
+  },
+  {
+    q: `What season is Japan in ${month.label}?`,
+    a: `${month.label} falls in ${season} in Japan.`,
+  },
+  {
+    q: `Is ${month.label} a good time to visit Japan?`,
+    a: `${month.label} is best for ${month.bestFor}, with a crowd level of ${month.crowdLevel} out of 5. Check the highlights and watch-outs below to see if it fits your trip.`,
+  },
+];
 
 const articleSchema = JSON.stringify({
   "@context": "https://schema.org",
@@ -47,6 +71,16 @@ const articleSchema = JSON.stringify({
   "datePublished": `${currentYear}-01-15`,
   "dateModified": `${currentYear}-07-31`,
   "mainEntityOfPage": { "@type": "WebPage", "@id": canonical },
+});
+
+const monthFaqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": monthFaqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": { "@type": "Answer", "text": faq.a },
+  })),
 });
 
 const monthSpotlights: Record<string, { title: string; bullets: string[] }> = {
@@ -96,6 +130,7 @@ const monthSpotlight = monthSpotlights[month.month];
 
 <BaseLayout title={title} description={meta} ogImage={month.image}>
   <script type="application/ld+json" set:html={articleSchema} />
+  <script type="application/ld+json" set:html={monthFaqSchema} />
 
   <section class="min-h-[100dvh]">
     <Nav />
@@ -251,6 +286,24 @@ const monthSpotlight = monthSpotlights[month.month];
       <Callout eyebrow="Local Tip" tone="amber" class="mb-12">
         <p class="text-lg leading-relaxed">{month.localTip}</p>
       </Callout>
+
+      <!-- FAQ -->
+      <div class="mb-12">
+        <h2 class="text-3xl font-bold text-zinc-900 mb-6">{month.label} FAQ</h2>
+        <div class="space-y-3">
+          {monthFaqs.map((faq) => (
+            <details class="group border border-zinc-200 rounded-xl overflow-hidden">
+              <summary class="list-none p-5 cursor-pointer flex items-center justify-between gap-4">
+                <span class="text-sm font-semibold text-zinc-800">{faq.q}</span>
+                <svg class="w-5 h-5 text-zinc-300 flex-shrink-0 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+              </summary>
+              <div class="px-5 pb-5 pt-0 border-t border-zinc-100">
+                <p class="text-sm text-zinc-600 leading-relaxed pt-4">{faq.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
 
       <!-- Affiliate CTA -->
       <div class="mb-12 rounded-2xl bg-zinc-50 border border-zinc-200 p-6 md:p-8 text-center">
