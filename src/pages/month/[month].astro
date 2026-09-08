@@ -282,7 +282,7 @@ const monthSpotlight = monthSpotlights[month.month];
       </div>
 
       <!-- Budget note -->
-      <Callout eyebrow="Money in {month.label}" tone="green" class="mb-12">
+      <Callout eyebrow={`Money in ${month.label}`} tone="green" class="mb-12">
         <p class="text-lg leading-relaxed">{month.budgetNote}</p>
       </Callout>
 
