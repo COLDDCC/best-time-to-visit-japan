@@ -3,6 +3,8 @@ title: "What to See in Japan This September 2026: Silver Week, Early Koyo & Harv
 description: "September 2026 brings a rare 5-day Silver Week (Sept 19-23), Hokkaido's first autumn color, and the cheapest flights of the year — here's what's actually worth planning around."
 pubDate: 2026-09-02
 tags: ["travel", "seasonal", "itinerary"]
+image: "/images/blog/what-to-see-japan-september-2026,.jpg"
+imageAlt: "Early autumn color in Japan"
 ---
 
 September is Japan's quietest bargain month most years — but 2026 has one thing that changes the calculus: **Silver Week**.
