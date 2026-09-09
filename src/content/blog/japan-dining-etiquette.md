@@ -3,6 +3,8 @@ title: "Japanese Dining Etiquette: Chopsticks, Izakaya Manners, and What Not to 
 description: "The chopstick rules, ordering customs, and table manners that matter in Japan — and why almost none of them will get you actually scolded if you slip up."
 pubDate: 2026-09-02
 tags: ["culture", "food", "etiquette"]
+image: "/images/blog/japan-dining-etiquette.jpg"
+imageAlt: "Table setting for a traditional Japanese meal"
 ---
 
 Most "rules" you'll read online are minor. These two actually matter — both tied to funeral customs:
