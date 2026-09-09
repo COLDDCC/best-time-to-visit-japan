@@ -70,7 +70,7 @@ function RegionCard({ region, active, setActive, layout = "square" }: { region: 
       <p className={`text-xs font-semibold mb-1 ${isActive ? "text-accent-600" : "text-blue-600"}`}>
         Best: {region.best}
       </p>
-      <p className="text-[11px] text-zinc-400">{region.temp}</p>
+      <p className="text-[13px] text-zinc-400">{region.temp}</p>
     </a>
   );
 }

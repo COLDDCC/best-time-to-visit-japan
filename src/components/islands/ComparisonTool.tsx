@@ -102,7 +102,7 @@ export default function ComparisonTool() {
             <div className="space-y-2 text-xs">
               <div className="flex justify-between"><span className="text-zinc-400">Temperature</span><span className="font-medium text-zinc-700">{itemA.tempLow}&deg;&ndash;{itemA.tempHigh}&deg;C</span></div>
               <div className="flex justify-between"><span className="text-zinc-400">Rain days</span><span className="font-medium text-zinc-700">{itemA.rainDays}</span></div>
-              <div className="flex justify-between"><span className="text-zinc-400">Crowds</span><span className={`px-2 py-0.5 rounded-full text-[11px] font-semibold ${crowdColor(itemA.crowdLevel)}`}>{crowdLabel(itemA.crowdLevel)}</span></div>
+              <div className="flex justify-between"><span className="text-zinc-400">Crowds</span><span className={`px-2 py-0.5 rounded-full text-[13px] font-semibold ${crowdColor(itemA.crowdLevel)}`}>{crowdLabel(itemA.crowdLevel)}</span></div>
               <div className="flex justify-between"><span className="text-zinc-400">Cost</span><span className="font-medium text-zinc-700">{itemA.costLevel}</span></div>
               <div className="flex justify-between"><span className="text-zinc-400">Best for</span><span className="font-medium text-zinc-700 text-right max-w-[120px]">{itemA.bestFor}</span></div>
             </div>
@@ -123,7 +123,7 @@ export default function ComparisonTool() {
             <div className="space-y-2 text-xs">
               <div className="flex justify-between"><span className="text-zinc-400">Temperature</span><span className="font-medium text-zinc-700">{itemB.tempLow}&deg;&ndash;{itemB.tempHigh}&deg;C</span></div>
               <div className="flex justify-between"><span className="text-zinc-400">Rain days</span><span className="font-medium text-zinc-700">{itemB.rainDays}</span></div>
-              <div className="flex justify-between"><span className="text-zinc-400">Crowds</span><span className={`px-2 py-0.5 rounded-full text-[11px] font-semibold ${crowdColor(itemB.crowdLevel)}`}>{crowdLabel(itemB.crowdLevel)}</span></div>
+              <div className="flex justify-between"><span className="text-zinc-400">Crowds</span><span className={`px-2 py-0.5 rounded-full text-[13px] font-semibold ${crowdColor(itemB.crowdLevel)}`}>{crowdLabel(itemB.crowdLevel)}</span></div>
               <div className="flex justify-between"><span className="text-zinc-400">Cost</span><span className="font-medium text-zinc-700">{itemB.costLevel}</span></div>
               <div className="flex justify-between"><span className="text-zinc-400">Best for</span><span className="font-medium text-zinc-700 text-right max-w-[120px]">{itemB.bestFor}</span></div>
             </div>

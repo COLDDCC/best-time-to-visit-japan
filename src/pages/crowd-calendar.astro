@@ -151,14 +151,14 @@ const yearMonths = months.map((_, i) => ({ label: months[i], index: i, days: gen
             </div>
             <div class="p-3">
               <div class="grid grid-cols-7 gap-1 mb-2">
-                {weekDays.map(w => <span class="text-[10px] text-zinc-400 text-center font-medium">{w[0]}</span>)}
+                {weekDays.map(w => <span class="text-[13px] text-zinc-400 text-center font-medium">{w[0]}</span>)}
               </div>
               <div class="grid grid-cols-7 gap-1">
                 {Array.from({ length: new Date(year, m.index, 1).getDay() === 0 ? 6 : new Date(year, m.index, 1).getDay() - 1 }).map(() => <span></span>)}
                 {m.days.map((d) => (
                   <div
                     title={d.note ? `${crowdLabel(d.crowd)}: ${eventNotes[d.note] ?? d.note}` : crowdLabel(d.crowd)}
-                    class={`relative flex items-center justify-center text-[11px] font-medium rounded-md aspect-square cursor-default transition-transform hover:scale-110 hover:z-10 ${crowdColor(d.crowd)}`}
+                    class={`relative flex items-center justify-center text-[13px] font-medium rounded-md aspect-square cursor-default transition-transform hover:scale-110 hover:z-10 ${crowdColor(d.crowd)}`}
                   >
                     {d.day}
                   </div>
@@ -189,21 +189,21 @@ const yearMonths = months.map((_, i) => ({ label: months[i], index: i, days: gen
             <div class="py-5 flex items-baseline gap-5">
               <span class="flex-shrink-0 w-4 h-4 rounded bg-red-500 mt-1"></span>
               <div class="flex-1">
-                <p class="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-red-600 mb-1">Avoid</p>
+                <p class="text-[0.8125rem] font-semibold tracking-[0.18em] uppercase text-red-600 mb-1">Avoid</p>
                 <p class="text-lg md:text-xl font-semibold text-zinc-900 leading-snug">Sakura peak, Golden Week &amp; mid-August Obon</p>
               </div>
             </div>
             <div class="py-5 flex items-baseline gap-5">
               <span class="flex-shrink-0 w-4 h-4 rounded bg-emerald-400 mt-1"></span>
               <div class="flex-1">
-                <p class="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-emerald-600 mb-1">The Sweet Spots</p>
+                <p class="text-[0.8125rem] font-semibold tracking-[0.18em] uppercase text-emerald-600 mb-1">The Sweet Spots</p>
                 <p class="text-lg md:text-xl font-semibold text-zinc-900 leading-snug">Early March &middot; Late June &middot; All of September &middot; Early December</p>
               </div>
             </div>
             <div class="py-5 flex items-baseline gap-5">
               <span class="flex-shrink-0 w-4 h-4 rounded bg-amber-300 mt-1"></span>
               <div class="flex-1">
-                <p class="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-amber-600 mb-1">The Trade-off</p>
+                <p class="text-[0.8125rem] font-semibold tracking-[0.18em] uppercase text-amber-600 mb-1">The Trade-off</p>
                 <p class="text-lg md:text-xl font-semibold text-zinc-900 leading-snug">Quieter months often come with rain, heat, or less iconic scenery</p>
               </div>
             </div>
