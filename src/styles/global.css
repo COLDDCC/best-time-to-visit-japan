@@ -40,6 +40,11 @@
 
 html {
   scroll-behavior: smooth;
+  /* Scale the whole page up, not just the small-text tokens below —
+     every Tailwind size/spacing utility is rem-based, so bumping the
+     root font-size grows headings, nav, buttons, and layout spacing
+     together instead of leaving them at their unscaled defaults. */
+  font-size: 125%;
 }
 
 body {
