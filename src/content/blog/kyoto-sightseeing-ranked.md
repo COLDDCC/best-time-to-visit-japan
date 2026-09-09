@@ -3,6 +3,8 @@ title: "Kyoto Sightseeing, Ranked: What's Actually Worth Your Time"
 description: "A candid, tier-by-tier ranking of Kyoto's most-hyped sights — from genuinely essential temples to the Instagram spots that don't hold up in person."
 pubDate: 2026-09-02
 tags: ["kyoto", "spots", "itinerary"]
+image: "/images/blog/kyoto-sightseeing-ranked.jpg"
+imageAlt: "Kyoto temple sightseeing"
 ---
 
 Kyoto has more "must-see" lists than any city has sights worth seeing. This one is different: a straight ranking, from genuinely essential to skip-it, based on an actual visit rather than which spots photograph well from one angle. See our [Kyoto region guide](/region/kyoto) for logistics and timing.
