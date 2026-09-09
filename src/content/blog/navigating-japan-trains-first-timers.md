@@ -3,6 +3,8 @@ title: "Navigating Japan's Trains as a First-Timer: IC Cards, Shinkansen, and No
 description: "How Japan's train system actually works for visitors — IC cards vs the JR Pass, reading platform signs, and what to do when you board the wrong train."
 pubDate: 2026-09-02
 tags: ["travel", "trains", "practical"]
+image: "/images/blog/navigating-japan-trains-first-timers.jpg"
+imageAlt: "Shinkansen train platform in Japan"
 ---
 
 Japan's rail network looks intimidating — dozens of overlapping lines, multiple operators — but it's one of the most tourist-friendly systems in the world once you know a few things.
