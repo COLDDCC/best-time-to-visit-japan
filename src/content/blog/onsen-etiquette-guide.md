@@ -3,6 +3,8 @@ title: "Onsen Etiquette: A First-Timer's Guide to Japanese Hot Springs"
 description: "Everything to know before your first Japanese onsen — washing before you soak, tattoo policies, towel rules, and the mistakes that make locals wince."
 pubDate: 2026-09-02
 tags: ["culture", "onsen", "etiquette"]
+image: "/images/blog/onsen-etiquette-guide.jpg"
+imageAlt: "Traditional outdoor onsen hot spring bath"
 ---
 
 The rules aren't complicated, but they're rarely explained to visitors. Here's what matters.
