@@ -3,6 +3,8 @@ title: "Jodogahama: The Impossibly Blue Beach in Iwate Most Visitors Never See"
 description: "White volcanic rock and Tiffany-blue water on Japan's Sanriku coast — how to get to Jodogahama from Tokyo, what it costs, and what to actually do once you're there."
 pubDate: 2026-09-02
 tags: ["tohoku", "iwate", "nature", "spots"]
+image: "/images/blog/jodogahama-iwate-blue-beach.jpg"
+imageAlt: "White rock pillars and blue water at Jodogahama beach in Iwate"
 ---
 
 White rhyolite rock, intruded roughly 52 million years ago and later carved into jagged pillars by rising sea levels, scattered across water so clear and blue it looks tropical — except this is Iwate Prefecture, on Japan's northeastern Sanriku coast. Local tradition credits a 17th-century Zen priest with naming it: he reportedly compared the view to Jodo, the Buddhist Pure Land, and the name stuck — though the story predates any confirmed written record, so take it as legend rather than history.
