@@ -29,7 +29,7 @@ export default function JapanMap() {
   return (
     <div className="bg-white border border-zinc-200 rounded-2xl p-6 md:p-8 overflow-hidden">
       <p className="text-sm font-semibold text-zinc-700 mb-2">Interactive Japan Map</p>
-      <p className="text-xs text-zinc-400 mb-6">Hover or tap a region to see the best time to visit.</p>
+      <p className="text-xs text-zinc-600 mb-6">Hover or tap a region to see the best time to visit.</p>
 
       <div className="grid grid-cols-5 sm:grid-cols-5 gap-2 md:gap-3 max-w-3xl mx-auto">
         <div className="col-span-5"><RegionCard region={regions[0]} active={active} setActive={setActive} layout="wide" /></div>
@@ -70,7 +70,7 @@ function RegionCard({ region, active, setActive, layout = "square" }: { region: 
       <p className={`text-xs font-semibold mb-1 ${isActive ? "text-accent-600" : "text-blue-600"}`}>
         Best: {region.best}
       </p>
-      <p className="text-[13px] text-zinc-400">{region.temp}</p>
+      <p className="text-[13px] text-zinc-600">{region.temp}</p>
     </a>
   );
 }

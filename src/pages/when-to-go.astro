@@ -23,7 +23,7 @@ const quizzes = [
     <div class="max-w-2xl mx-auto px-4 pt-6 pb-24">
       <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">Free Travel Quiz</p>
       <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">When Should You Visit Japan?</h1>
-      <p class="text-lg text-zinc-500 leading-relaxed mb-12">Answer 8 simple questions about your travel style. We will give you your ideal month, plus backup options with detailed reasons.</p>
+      <p class="text-lg text-zinc-700 leading-relaxed mb-12">Answer 8 simple questions about your travel style. We will give you your ideal month, plus backup options with detailed reasons.</p>
 
       <PageHero image="/images/month-october.webp" alt="Autumn leaves over a Japanese garden in October, the recommended month" overlay="Free Travel Quiz" title="Answer 8 quick questions to find your perfect month" />
 
@@ -81,15 +81,15 @@ const quizzes = [
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
         <div class="bg-zinc-50 rounded-xl p-5 border border-zinc-200">
           <p class="text-sm font-bold text-zinc-800 mb-2">Weather Match</p>
-          <p class="text-xs text-zinc-500 leading-relaxed">Your temperature preference is matched against monthly climate normals for each region, weighted by your destination choice.</p>
+          <p class="text-xs text-zinc-700 leading-relaxed">Your temperature preference is matched against monthly climate normals for each region, weighted by your destination choice.</p>
         </div>
         <div class="bg-zinc-50 rounded-xl p-5 border border-zinc-200">
           <p class="text-sm font-bold text-zinc-800 mb-2">Crowd Filter</p>
-          <p class="text-xs text-zinc-500 leading-relaxed">Your crowd tolerance is cross-referenced with Japan's holiday calendar (Golden Week, Obon, sakura peaks) and attraction visitor data.</p>
+          <p class="text-xs text-zinc-700 leading-relaxed">Your crowd tolerance is cross-referenced with Japan's holiday calendar (Golden Week, Obon, sakura peaks) and attraction visitor data.</p>
         </div>
         <div class="bg-zinc-50 rounded-xl p-5 border border-zinc-200">
           <p class="text-sm font-bold text-zinc-800 mb-2">Cost Adjustment</p>
-          <p class="text-xs text-zinc-500 leading-relaxed">Your budget determines whether we recommend peak-season windows or off-season sweet spots like June and September.</p>
+          <p class="text-xs text-zinc-700 leading-relaxed">Your budget determines whether we recommend peak-season windows or off-season sweet spots like June and September.</p>
         </div>
       </div>
 
@@ -101,7 +101,7 @@ const quizzes = [
             <span class="flex-shrink-0 w-10 h-10 rounded-full bg-accent-100 text-accent-600 flex items-center justify-center text-sm font-bold">FV</span>
             <div>
               <p class="text-sm font-bold text-zinc-800 mb-1">First-Time Visitor</p>
-              <p class="text-xs text-zinc-500 mb-2">Prefers mild weather, moderate crowds, flexible budget. Selects Tokyo or Kansai regions.</p>
+              <p class="text-xs text-zinc-700 mb-2">Prefers mild weather, moderate crowds, flexible budget. Selects Tokyo or Kansai regions.</p>
               <p class="text-xs font-semibold text-accent-700">Typical result: April or October</p>
             </div>
           </div>
@@ -111,7 +111,7 @@ const quizzes = [
             <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-bold">SK</span>
             <div>
               <p class="text-sm font-bold text-zinc-800 mb-1">Ski & Snow Lover</p>
-              <p class="text-xs text-zinc-500 mb-2">Wants powder and winter festivals. Selects Hokkaido, winter sports, snow options.</p>
+              <p class="text-xs text-zinc-700 mb-2">Wants powder and winter festivals. Selects Hokkaido, winter sports, snow options.</p>
               <p class="text-xs font-semibold text-accent-700">Typical result: January or February</p>
             </div>
           </div>
@@ -121,7 +121,7 @@ const quizzes = [
             <span class="flex-shrink-0 w-10 h-10 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center text-sm font-bold">BG</span>
             <div>
               <p class="text-sm font-bold text-zinc-800 mb-1">Budget Traveler</p>
-              <p class="text-xs text-zinc-500 mb-2">Prioritizes low cost over perfect weather. Selects Budget tier, high crowd tolerance.</p>
+              <p class="text-xs text-zinc-700 mb-2">Prioritizes low cost over perfect weather. Selects Budget tier, high crowd tolerance.</p>
               <p class="text-xs font-semibold text-accent-700">Typical result: June or September</p>
             </div>
           </div>
@@ -131,7 +131,7 @@ const quizzes = [
             <span class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-sm font-bold">SB</span>
             <div>
               <p class="text-sm font-bold text-zinc-800 mb-1">Sakura / Season Chaser</p>
-              <p class="text-xs text-zinc-500 mb-2">Prioritizes seasons over weather. High crowd tolerance. Selects sakura or koyo.</p>
+              <p class="text-xs text-zinc-700 mb-2">Prioritizes seasons over weather. High crowd tolerance. Selects sakura or koyo.</p>
               <p class="text-xs font-semibold text-accent-700">Typical result: Early April (sakura) or late November (koyo)</p>
             </div>
           </div>
@@ -278,7 +278,7 @@ const quizzes = [
 
     var detailsHtml = '';
     details.forEach(function(d) {
-      detailsHtml += '<div class="bg-zinc-50 rounded-xl border border-zinc-200 p-4"><p class="text-xs font-semibold text-zinc-400 uppercase mb-1.5">' + d.label + '</p><p class="text-sm leading-relaxed text-zinc-700">' + d.value + '</p></div>';
+      detailsHtml += '<div class="bg-zinc-50 rounded-xl border border-zinc-200 p-4"><p class="text-xs font-semibold text-zinc-600 uppercase mb-1.5">' + d.label + '</p><p class="text-sm leading-relaxed text-zinc-700">' + d.value + '</p></div>';
     });
     if (resultDetailsEl) resultDetailsEl.innerHTML = detailsHtml;
 

@@ -118,31 +118,31 @@ const yearMonths = months.map((_, i) => ({ label: months[i], index: i, days: gen
     <div class="max-w-7xl mx-auto px-4 py-6">
       <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">Crowd Calendar</p>
       <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">Japan Travel Crowd Calendar {year}</h1>
-      <p class="text-lg text-zinc-500 max-w-2xl leading-relaxed mb-4">See estimated crowd levels for every day of the year. Plan around sakura, Golden Week, and Obon — and find the quiet sweet spots.</p>
+      <p class="text-lg text-zinc-700 max-w-2xl leading-relaxed mb-4">See estimated crowd levels for every day of the year. Plan around sakura, Golden Week, and Obon — and find the quiet sweet spots.</p>
 
       <PageHero image="/images/region-tokyo.webp" alt="Busy tourist street in Asakusa, Tokyo with crowds" overlay="Crowd Calendar" title="Avoid the 3 extreme peaks: sakura April, Golden Week, & Obon mid-August" />
 
       <h2 class="text-2xl font-bold text-zinc-900 mb-4">Crowd Level Legend</h2>
       <div class="flex items-center gap-4 mb-10 flex-wrap">
-        <div class="flex items-center gap-1.5 text-xs text-zinc-500">
+        <div class="flex items-center gap-1.5 text-xs text-zinc-700">
           <span class="w-4 h-4 rounded bg-emerald-100"></span> Empty
         </div>
-        <div class="flex items-center gap-1.5 text-xs text-zinc-500">
+        <div class="flex items-center gap-1.5 text-xs text-zinc-700">
           <span class="w-4 h-4 rounded bg-emerald-200"></span> Low
         </div>
-        <div class="flex items-center gap-1.5 text-xs text-zinc-500">
+        <div class="flex items-center gap-1.5 text-xs text-zinc-700">
           <span class="w-4 h-4 rounded bg-amber-300"></span> Moderate
         </div>
-        <div class="flex items-center gap-1.5 text-xs text-zinc-500">
+        <div class="flex items-center gap-1.5 text-xs text-zinc-700">
           <span class="w-4 h-4 rounded bg-red-300"></span> Very High
         </div>
-        <div class="flex items-center gap-1.5 text-xs text-zinc-500">
+        <div class="flex items-center gap-1.5 text-xs text-zinc-700">
           <span class="w-4 h-4 rounded bg-red-500"></span> Extreme
         </div>
       </div>
 
       <h2 class="text-2xl font-bold text-zinc-900 mb-6">National Crowd Calendar by Month</h2>
-      <p class="text-base text-zinc-500 max-w-2xl leading-relaxed mb-8">Peak travel periods across Japan. Note: Individual attractions (temples, gardens) reach capacity 2-3 hours before national averages. For specific temples in Kyoto or Tokyo attractions, plan to visit at opening time or after 5pm.</p>
+      <p class="text-base text-zinc-700 max-w-2xl leading-relaxed mb-8">Peak travel periods across Japan. Note: Individual attractions (temples, gardens) reach capacity 2-3 hours before national averages. For specific temples in Kyoto or Tokyo attractions, plan to visit at opening time or after 5pm.</p>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {yearMonths.map((m) => (
           <div class="bg-white border border-zinc-200 rounded-2xl overflow-hidden">
@@ -151,7 +151,7 @@ const yearMonths = months.map((_, i) => ({ label: months[i], index: i, days: gen
             </div>
             <div class="p-3">
               <div class="grid grid-cols-7 gap-1 mb-2">
-                {weekDays.map(w => <span class="text-[13px] text-zinc-400 text-center font-medium">{w[0]}</span>)}
+                {weekDays.map(w => <span class="text-[13px] text-zinc-600 text-center font-medium">{w[0]}</span>)}
               </div>
               <div class="grid grid-cols-7 gap-1">
                 {Array.from({ length: new Date(year, m.index, 1).getDay() === 0 ? 6 : new Date(year, m.index, 1).getDay() - 1 }).map(() => <span></span>)}
@@ -171,7 +171,7 @@ const yearMonths = months.map((_, i) => ({ label: months[i], index: i, days: gen
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-10 gap-x-12 pt-10 mt-16 border-t border-zinc-200">
         <div class="lg:col-span-4">
-          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 mb-5">How to read</p>
+          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-zinc-600 mb-5">How to read</p>
           <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.02] text-zinc-900">
             Read it in<br /><em class="font-normal italic text-accent-600">three colours</em>
           </h2>
@@ -181,7 +181,7 @@ const yearMonths = months.map((_, i) => ({ label: months[i], index: i, days: gen
           <p class="text-lg md:text-xl text-zinc-700 leading-relaxed max-w-2xl">
             This calendar estimates crowd levels for the major travel regions of Japan &mdash; Tokyo, Kyoto, Osaka, Nara, and Hakone combined &mdash; for every day of the year.
           </p>
-          <p class="text-base text-zinc-500 leading-relaxed max-w-2xl mt-4">
+          <p class="text-base text-zinc-700 leading-relaxed max-w-2xl mt-4">
             Red means queues of 1&ndash;2 hours at the famous sites and packed streets. Green means you can often have a landmark almost to yourself. Most of the year sits quietly in between.
           </p>
 

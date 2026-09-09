@@ -20,7 +20,7 @@ const seasons = [
     <div class="max-w-7xl mx-auto px-4 py-6">
       <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">Month by Month</p>
       <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">Japan Travel by Month</h1>
-      <p class="text-lg text-zinc-500 max-w-2xl leading-relaxed mb-8">A complete guide to weather, festivals, crowds, and where to go for every month of the year.</p>
+      <p class="text-lg text-zinc-700 max-w-2xl leading-relaxed mb-8">A complete guide to weather, festivals, crowds, and where to go for every month of the year.</p>
 
       <PageHero image="/images/region-fuji.webp" alt="Mount Fuji with cherry blossoms in the foreground at sunrise" overlay="Month by Month" title="Twelve months, four seasons — find the window that fits you" />
 
@@ -30,7 +30,7 @@ const seasons = [
           <p class="text-xs font-semibold tracking-[0.2em] uppercase text-accent-600 mb-3">The Framework</p>
           <h2 class="text-3xl md:text-4xl font-bold tracking-tighter text-zinc-900 leading-none">Three dials decide <em>your month</em></h2>
         </div>
-        <p class="md:w-80 text-zinc-500 leading-relaxed">Every month below is distilled to its essence &mdash; the crowd rating, the vibe, and the place to be &mdash; so you can find your own sweet spot.</p>
+        <p class="md:w-80 text-zinc-700 leading-relaxed">Every month below is distilled to its essence &mdash; the crowd rating, the vibe, and the place to be &mdash; so you can find your own sweet spot.</p>
       </div>
 
       <!-- Month cards grouped by season -->
@@ -63,9 +63,9 @@ const seasons = [
                   <span class={`self-start px-2.5 py-0.5 rounded-full text-[13px] font-semibold tracking-widest uppercase mb-3 ${m.crowdLevel <= 2 ? 'bg-emerald-100 text-emerald-700' : m.crowdLevel <= 3 ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700'}`}>
                     Crowd {m.crowdLevel}/5
                   </span>
-                  <p class="text-sm font-medium text-zinc-500 mb-1">Best for</p>
+                  <p class="text-sm font-medium text-zinc-700 mb-1">Best for</p>
                   <p class="text-sm text-zinc-800 leading-relaxed mb-4">{m.bestFor}</p>
-                  <p class="text-xs font-semibold text-zinc-400 uppercase mb-2">Top Regions</p>
+                  <p class="text-xs font-semibold text-zinc-600 uppercase mb-2">Top Regions</p>
                   <ul class="space-y-1 mb-4">
                     {m.bestRegions.map(r => <li class="text-sm text-zinc-700 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent-500"></span>{r}</li>)}
                   </ul>

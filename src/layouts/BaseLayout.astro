@@ -124,14 +124,14 @@ if (pathParts.length > 0) {
 
     {crumbs.length > 0 && (
       <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 pt-4">
-        <ol class="flex flex-wrap items-center gap-1.5 text-xs text-zinc-400">
+        <ol class="flex flex-wrap items-center gap-1.5 text-xs text-zinc-600">
           {crumbs.map((c, i) => (
             <li class="flex items-center gap-1.5">
               {i > 0 && <span aria-hidden="true" class="text-zinc-300">/</span>}
               {i < crumbs.length - 1 ? (
                 <a href={c.item} class="hover:text-accent-600 transition-colors">{c.name}</a>
               ) : (
-                <span class="text-zinc-500 font-medium" aria-current="page">{c.name}</span>
+                <span class="text-zinc-700 font-medium" aria-current="page">{c.name}</span>
               )}
             </li>
           ))}

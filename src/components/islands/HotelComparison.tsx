@@ -44,15 +44,15 @@ export default function HotelComparison() {
       <div className="grid grid-cols-1 gap-2 mt-5">
         <div className="flex items-start gap-2">
           <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 mt-1 flex-shrink-0" />
-          <p className="text-xs text-zinc-500"><span className="font-medium text-zinc-600">Off-Peak:</span> June and September (rainy/typhoon risk) are the cheapest months. Often 40-50% below cherry-blossom peak.</p>
+          <p className="text-xs text-zinc-700"><span className="font-medium text-zinc-600">Off-Peak:</span> June and September (rainy/typhoon risk) are the cheapest months. Often 40-50% below cherry-blossom peak.</p>
         </div>
         <div className="flex items-start gap-2">
           <div className="w-2.5 h-2.5 rounded-full bg-amber-400 mt-1 flex-shrink-0" />
-          <p className="text-xs text-zinc-500"><span className="font-medium text-zinc-600">Shoulder:</span> March, October-December. Good availability and standard rates. Book 2-4 weeks ahead.</p>
+          <p className="text-xs text-zinc-700"><span className="font-medium text-zinc-600">Shoulder:</span> March, October-December. Good availability and standard rates. Book 2-4 weeks ahead.</p>
         </div>
         <div className="flex items-start gap-2">
           <div className="w-2.5 h-2.5 rounded-full bg-red-400 mt-1 flex-shrink-0" />
-          <p className="text-xs text-zinc-500"><span className="font-medium text-zinc-600">Peak:</span> Cherry blossom (April), Golden Week (early May), and summer holidays (Jul-Aug) command premium rates. Book 2-3 months ahead.</p>
+          <p className="text-xs text-zinc-700"><span className="font-medium text-zinc-600">Peak:</span> Cherry blossom (April), Golden Week (early May), and summer holidays (Jul-Aug) command premium rates. Book 2-3 months ahead.</p>
         </div>
       </div>
       <a

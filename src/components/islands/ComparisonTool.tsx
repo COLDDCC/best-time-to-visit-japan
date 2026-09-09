@@ -61,7 +61,7 @@ export default function ComparisonTool() {
   return (
     <div className="bg-white border border-zinc-200 rounded-2xl p-6 md:p-8">
       <p className="text-sm font-semibold text-zinc-700 mb-1">Compare Side by Side</p>
-      <p className="text-xs text-zinc-400 mb-6">Pick two to compare and we&rsquo;ll help you decide.</p>
+      <p className="text-xs text-zinc-600 mb-6">Pick two to compare and we&rsquo;ll help you decide.</p>
 
       <div className="flex gap-2 mb-6">
         <button
@@ -100,19 +100,19 @@ export default function ComparisonTool() {
           <p className="text-sm font-bold text-zinc-800 mb-3">{itemA.label}</p>
           {mode === "months" && (
             <div className="space-y-2 text-xs">
-              <div className="flex justify-between"><span className="text-zinc-400">Temperature</span><span className="font-medium text-zinc-700">{itemA.tempLow}&deg;&ndash;{itemA.tempHigh}&deg;C</span></div>
-              <div className="flex justify-between"><span className="text-zinc-400">Rain days</span><span className="font-medium text-zinc-700">{itemA.rainDays}</span></div>
-              <div className="flex justify-between"><span className="text-zinc-400">Crowds</span><span className={`px-2 py-0.5 rounded-full text-[13px] font-semibold ${crowdColor(itemA.crowdLevel)}`}>{crowdLabel(itemA.crowdLevel)}</span></div>
-              <div className="flex justify-between"><span className="text-zinc-400">Cost</span><span className="font-medium text-zinc-700">{itemA.costLevel}</span></div>
-              <div className="flex justify-between"><span className="text-zinc-400">Best for</span><span className="font-medium text-zinc-700 text-right max-w-[120px]">{itemA.bestFor}</span></div>
+              <div className="flex justify-between"><span className="text-zinc-600">Temperature</span><span className="font-medium text-zinc-700">{itemA.tempLow}&deg;&ndash;{itemA.tempHigh}&deg;C</span></div>
+              <div className="flex justify-between"><span className="text-zinc-600">Rain days</span><span className="font-medium text-zinc-700">{itemA.rainDays}</span></div>
+              <div className="flex justify-between"><span className="text-zinc-600">Crowds</span><span className={`px-2 py-0.5 rounded-full text-[13px] font-semibold ${crowdColor(itemA.crowdLevel)}`}>{crowdLabel(itemA.crowdLevel)}</span></div>
+              <div className="flex justify-between"><span className="text-zinc-600">Cost</span><span className="font-medium text-zinc-700">{itemA.costLevel}</span></div>
+              <div className="flex justify-between"><span className="text-zinc-600">Best for</span><span className="font-medium text-zinc-700 text-right max-w-[120px]">{itemA.bestFor}</span></div>
             </div>
           )}
           {mode === "regions" && (
             <div className="space-y-2 text-xs">
-              <div className="flex justify-between"><span className="text-zinc-400">Best months</span><span className="font-medium text-blue-600">{itemA.best}</span></div>
-              <div className="flex justify-between"><span className="text-zinc-400">Avoid</span><span className="font-medium text-red-500">{itemA.avoid}</span></div>
-              <div className="flex justify-between"><span className="text-zinc-400">Temperature</span><span className="font-medium text-zinc-700">{itemA.temp}</span></div>
-              <div className="flex justify-between"><span className="text-zinc-400">Highlight</span><span className="font-medium text-zinc-700 text-right max-w-[120px]">{itemA.highlight}</span></div>
+              <div className="flex justify-between"><span className="text-zinc-600">Best months</span><span className="font-medium text-blue-600">{itemA.best}</span></div>
+              <div className="flex justify-between"><span className="text-zinc-600">Avoid</span><span className="font-medium text-red-500">{itemA.avoid}</span></div>
+              <div className="flex justify-between"><span className="text-zinc-600">Temperature</span><span className="font-medium text-zinc-700">{itemA.temp}</span></div>
+              <div className="flex justify-between"><span className="text-zinc-600">Highlight</span><span className="font-medium text-zinc-700 text-right max-w-[120px]">{itemA.highlight}</span></div>
             </div>
           )}
         </div>
@@ -121,19 +121,19 @@ export default function ComparisonTool() {
           <p className="text-sm font-bold text-zinc-800 mb-3">{itemB.label}</p>
           {mode === "months" && (
             <div className="space-y-2 text-xs">
-              <div className="flex justify-between"><span className="text-zinc-400">Temperature</span><span className="font-medium text-zinc-700">{itemB.tempLow}&deg;&ndash;{itemB.tempHigh}&deg;C</span></div>
-              <div className="flex justify-between"><span className="text-zinc-400">Rain days</span><span className="font-medium text-zinc-700">{itemB.rainDays}</span></div>
-              <div className="flex justify-between"><span className="text-zinc-400">Crowds</span><span className={`px-2 py-0.5 rounded-full text-[13px] font-semibold ${crowdColor(itemB.crowdLevel)}`}>{crowdLabel(itemB.crowdLevel)}</span></div>
-              <div className="flex justify-between"><span className="text-zinc-400">Cost</span><span className="font-medium text-zinc-700">{itemB.costLevel}</span></div>
-              <div className="flex justify-between"><span className="text-zinc-400">Best for</span><span className="font-medium text-zinc-700 text-right max-w-[120px]">{itemB.bestFor}</span></div>
+              <div className="flex justify-between"><span className="text-zinc-600">Temperature</span><span className="font-medium text-zinc-700">{itemB.tempLow}&deg;&ndash;{itemB.tempHigh}&deg;C</span></div>
+              <div className="flex justify-between"><span className="text-zinc-600">Rain days</span><span className="font-medium text-zinc-700">{itemB.rainDays}</span></div>
+              <div className="flex justify-between"><span className="text-zinc-600">Crowds</span><span className={`px-2 py-0.5 rounded-full text-[13px] font-semibold ${crowdColor(itemB.crowdLevel)}`}>{crowdLabel(itemB.crowdLevel)}</span></div>
+              <div className="flex justify-between"><span className="text-zinc-600">Cost</span><span className="font-medium text-zinc-700">{itemB.costLevel}</span></div>
+              <div className="flex justify-between"><span className="text-zinc-600">Best for</span><span className="font-medium text-zinc-700 text-right max-w-[120px]">{itemB.bestFor}</span></div>
             </div>
           )}
           {mode === "regions" && (
             <div className="space-y-2 text-xs">
-              <div className="flex justify-between"><span className="text-zinc-400">Best months</span><span className="font-medium text-blue-600">{itemB.best}</span></div>
-              <div className="flex justify-between"><span className="text-zinc-400">Avoid</span><span className="font-medium text-red-500">{itemB.avoid}</span></div>
-              <div className="flex justify-between"><span className="text-zinc-400">Temperature</span><span className="font-medium text-zinc-700">{itemB.temp}</span></div>
-              <div className="flex justify-between"><span className="text-zinc-400">Highlight</span><span className="font-medium text-zinc-700 text-right max-w-[120px]">{itemB.highlight}</span></div>
+              <div className="flex justify-between"><span className="text-zinc-600">Best months</span><span className="font-medium text-blue-600">{itemB.best}</span></div>
+              <div className="flex justify-between"><span className="text-zinc-600">Avoid</span><span className="font-medium text-red-500">{itemB.avoid}</span></div>
+              <div className="flex justify-between"><span className="text-zinc-600">Temperature</span><span className="font-medium text-zinc-700">{itemB.temp}</span></div>
+              <div className="flex justify-between"><span className="text-zinc-600">Highlight</span><span className="font-medium text-zinc-700 text-right max-w-[120px]">{itemB.highlight}</span></div>
             </div>
           )}
         </div>

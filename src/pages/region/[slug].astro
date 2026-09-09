@@ -67,7 +67,7 @@ const articleSchema = JSON.stringify({
     <div class="max-w-4xl mx-auto px-4 py-8">
       <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">Region Guide</p>
       <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">{pageTitle}</h1>
-      <p class="text-lg text-zinc-500 leading-relaxed mb-10">{region.meta}</p>
+      <p class="text-lg text-zinc-700 leading-relaxed mb-10">{region.meta}</p>
 
       <img src={region.image} alt={region.imageAlt} width={heroW} height={heroH} loading="lazy" decoding="async" class="w-full h-auto rounded-2xl shadow-sm border border-zinc-100 mb-12" />
 
@@ -80,19 +80,19 @@ const articleSchema = JSON.stringify({
       <!-- At a glance grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
         <div class="bg-white border border-zinc-200 rounded-xl p-5">
-          <p class="text-xs font-semibold tracking-wide text-zinc-400 uppercase mb-1">Best Months</p>
+          <p class="text-xs font-semibold tracking-wide text-zinc-600 uppercase mb-1">Best Months</p>
           <p class="text-sm font-semibold text-blue-700">{region.best}</p>
         </div>
         <div class="bg-white border border-zinc-200 rounded-xl p-5">
-          <p class="text-xs font-semibold tracking-wide text-zinc-400 uppercase mb-1">Worst Months</p>
+          <p class="text-xs font-semibold tracking-wide text-zinc-600 uppercase mb-1">Worst Months</p>
           <p class="text-sm font-semibold text-red-600">{region.avoid}</p>
         </div>
         <div class="bg-white border border-zinc-200 rounded-xl p-5">
-          <p class="text-xs font-semibold tracking-wide text-zinc-400 uppercase mb-1">Ideal Conditions</p>
+          <p class="text-xs font-semibold tracking-wide text-zinc-600 uppercase mb-1">Ideal Conditions</p>
           <p class="text-sm text-zinc-700">{region.months} &middot; {region.temp}</p>
         </div>
         <div class="bg-white border border-zinc-200 rounded-xl p-5">
-          <p class="text-xs font-semibold tracking-wide text-zinc-400 uppercase mb-1">Daily Cost</p>
+          <p class="text-xs font-semibold tracking-wide text-zinc-600 uppercase mb-1">Daily Cost</p>
           <p class="text-sm text-zinc-700">{region.budget}</p>
         </div>
       </div>
@@ -134,7 +134,7 @@ const articleSchema = JSON.stringify({
             {region.spots.map((s) => (
               <a href={`/spots/${s.slug}`} class="group bg-white border border-zinc-200 rounded-xl p-5 hover:border-accent-300 transition-colors no-underline">
                 <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">{s.name} ↗</p>
-                <p class="text-xs text-zinc-500 leading-relaxed">{s.teaser}</p>
+                <p class="text-xs text-zinc-700 leading-relaxed">{s.teaser}</p>
               </a>
             ))}
           </div>
@@ -160,7 +160,7 @@ const articleSchema = JSON.stringify({
       <!-- Affiliate CTA -->
       <div class="mb-12 rounded-2xl bg-zinc-50 border border-zinc-200 p-6 md:p-8 text-center">
         <h2 class="text-2xl md:text-3xl font-bold tracking-tighter text-zinc-900 mb-2">Book a stay in {region.name}</h2>
-        <p class="text-zinc-500 leading-relaxed max-w-xl mx-auto mb-6">Compare live hotel prices and flights to {region.name} — rates move with the season, so checking ahead saves real money.</p>
+        <p class="text-zinc-700 leading-relaxed max-w-xl mx-auto mb-6">Compare live hotel prices and flights to {region.name} — rates move with the season, so checking ahead saves real money.</p>
         <AffiliateCTA destination={region.name} className="justify-center" />
       </div>
 
@@ -187,7 +187,7 @@ const articleSchema = JSON.stringify({
           <a href={`/region/${r.slug}`} class="group bg-white border border-zinc-200 rounded-xl p-5 hover:border-accent-300 transition-colors no-underline">
             <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">{r.name}</p>
             <p class="text-xs text-blue-700 font-medium mb-1">Best: {r.best}</p>
-            <p class="text-xs text-zinc-500 leading-relaxed">{r.highlights}</p>
+            <p class="text-xs text-zinc-700 leading-relaxed">{r.highlights}</p>
           </a>
         ))}
       </div>

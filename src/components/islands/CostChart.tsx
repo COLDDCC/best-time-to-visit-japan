@@ -50,7 +50,7 @@ export default function CostChart() {
           })}
         </svg>
       </div>
-      <p className="text-xs text-zinc-400 mt-3">Source: Aggregated Google Flights data, US departure cities.</p>
+      <p className="text-xs text-zinc-600 mt-3">Source: Aggregated Google Flights data, US departure cities.</p>
       <a
         href={flightSearchUrl()}
         target="_blank"
