@@ -4,8 +4,15 @@
   /* Body copy, nav, buttons, labels — anything meant to be read quickly
      rather than admired. Newsreader (below, as --font-heading) stays on
      headings only: nice for a big display line, tiring for paragraphs,
-     dense price tables, or calendar grids. */
-  --font-sans: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
+     dense price tables, or calendar grids.
+     System-font stack (same approach apple.com's own CSS uses): San
+     Francisco isn't ours to redistribute — Apple's font license limits
+     it to software built for Apple platforms — but -apple-system /
+     BlinkMacSystemFont pulls the real SF Pro straight from the OS on
+     Mac/iOS/Safari at zero cost and zero licensing risk. Segoe UI and
+     Roboto do the same on Windows and Android. Inter is the fallback
+     for everyone else, so nobody lands on a generic browser default. */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, monospace;
   --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
   --font-heading: "Newsreader", Georgia, "Times New Roman", serif;
