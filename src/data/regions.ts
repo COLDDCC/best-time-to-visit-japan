@@ -231,6 +231,9 @@ export const regionGuides: RegionGuide[] = [
       { q: "How many days do I need in Kyoto?", a: "3 days covers the top sites. Add a day each for Nara and Osaka, or base yourself in Osaka to save money." },
     ],
     related: ["tokyo", "hiroshima", "nara"],
+    spots: [
+      { name: "Kinkaku-ji (Golden Pavilion)", slug: "kinkaku-ji", teaser: "A gold leaf-covered pavilion floating on its own reflection — a compact, one-way garden walk, at its best right at opening or after 3:30pm before the tour groups arrive." },
+    ],
   },
   {
     name: "Hiroshima & Chugoku",
