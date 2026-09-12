@@ -64,6 +64,9 @@ export const regionGuides: RegionGuide[] = [
       { q: "How many days do I need in Hokkaido?", a: "5-7 days covers Sapporo, Otaru, and a ski or hiking base. Give yourself 10-14 days if you also want Furano, Biei, and Daisetsuzan in summer." },
     ],
     related: ["tohoku", "tokyo", "fuji"],
+    spots: [
+      { name: "Farm Tomita", slug: "farm-tomita", teaser: "Hokkaido's most famous lavender fields in Nakafurano — free entry, peak color late June-early August, lavender soft serve at the shop." },
+    ],
   },
   {
     name: "Tohoku (Sendai, Aomori, Yamagata)",
@@ -105,6 +108,9 @@ export const regionGuides: RegionGuide[] = [
       { q: "Is Tohoku crowded?", a: "Much less than western Japan. Even festival weeks feel manageable compared to Kyoto's year-round crush, and outside festival dates you'll often have sights to yourself." },
     ],
     related: ["hokkaido", "tokyo", "fuji"],
+    spots: [
+      { name: "Matsushima Bay", slug: "matsushima-bay", teaser: "One of Japan's \"Three Views\" — roughly 260 pine-covered islets, best seen on a 50-minute bay cruise from Matsushima-Kaigan, a 40-min train ride from Sendai." },
+    ],
   },
   {
     name: "Tokyo & Kanto",
@@ -146,6 +152,9 @@ export const regionGuides: RegionGuide[] = [
       { q: "How long should I stay in Tokyo?", a: "Plan 4-5 days for the city core plus at least one day trip to Hakone or Nikko. Even a full week won't exhaust the city." },
     ],
     related: ["kyoto", "fuji", "hiroshima"],
+    spots: [
+      { name: "Senso-ji", slug: "senso-ji", teaser: "Tokyo's oldest temple, in Asakusa — a giant lantern gate, the 250m Nakamise-dori shopping street, and a free main hall open 6:30am-5pm daily." },
+    ],
   },
   {
     name: "Mount Fuji & Chubu",
@@ -275,6 +284,9 @@ export const regionGuides: RegionGuide[] = [
       { q: "Is Miyajima worth the trip?", a: "Absolutely — the floating torii and Mt Misen views are iconic, and the island's free-roaming deer make it a highlight of western Japan." },
     ],
     related: ["kyoto", "osaka", "nara"],
+    spots: [
+      { name: "Itsukushima Shrine", slug: "itsukushima-shrine", teaser: "Miyajima's vermilion shrine, built over the tideline with a torii gate that floats at high tide — reachable only by a short ferry from Miyajimaguchi." },
+    ],
   },
   {
     name: "Nara (Kansai Highlights)",
@@ -316,6 +328,9 @@ export const regionGuides: RegionGuide[] = [
       { q: "What's the best season for the deer park?", a: "Autumn is the biggest draw — maple leaves frame the park and temples. Winter offers far fewer people." },
     ],
     related: ["kyoto", "osaka", "hiroshima"],
+    spots: [
+      { name: "Todai-ji", slug: "todai-ji", teaser: "Home to the world's largest bronze Buddha, inside one of the largest wooden buildings on Earth — a 5-min walk from Kintetsu Nara Station through the deer of Nara Park." },
+    ],
   },
   {
     name: "Shikoku & Seto Inland Sea",
@@ -357,6 +372,9 @@ export const regionGuides: RegionGuide[] = [
       { q: "Is Shikoku good for a first-time visitor?", a: "Yes, if you want a calm, authentic Japan beyond the big cities. Pair it with Hiroshima (1-hour ferry) and Kansai for a balanced route." },
     ],
     related: ["hiroshima", "kyoto", "osaka"],
+    spots: [
+      { name: "Iya Kazurabashi (Vine Bridge)", slug: "iya-kazurabashi", teaser: "A 45m hand-woven vine suspension bridge swaying 14m above the Iya River, rebuilt from scratch every three years — a rental car makes the rest of the valley far more reachable." },
+    ],
   },
   {
     name: "Kyushu (Fukuoka, Kagoshima, Beppu)",
@@ -445,5 +463,8 @@ export const regionGuides: RegionGuide[] = [
       { q: "Is Okinawa safe from typhoons?", a: "No — June to October is the active season, and storms can close flights and ferries for days. Travel insurance and flexible plans are essential in summer." },
     ],
     related: ["kyushu", "hiroshima", "osaka"],
+    spots: [
+      { name: "Okinawa Churaumi Aquarium", slug: "churaumi-aquarium", teaser: "One of the world's largest aquarium tanks, with whale sharks and manta rays overhead — inside Ocean Expo Park, about 2 hours by car from Naha." },
+    ],
   },
 ];
