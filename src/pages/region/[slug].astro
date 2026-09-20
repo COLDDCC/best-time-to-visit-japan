@@ -7,6 +7,7 @@ import { regionGuides } from "../../data/regions.ts";
 import Icon from "../../components/Icon.astro";
 import Callout from "../../components/Callout.astro";
 import AffiliateCTA from "../../components/AffiliateCTA.astro";
+import KoyoPromo from "../../components/KoyoPromo.astro";
 
 export function getStaticPaths() {
   return regionGuides.map((r) => ({
@@ -125,6 +126,9 @@ const articleSchema = JSON.stringify({
           </li>
         ))}
       </ul>
+
+      <!-- Kyoto koyo date checker -->
+      {region.slug === "kyoto" && <KoyoPromo variant="callout" class="mb-12" />}
 
       <!-- Featured spot guides -->
       {region.spots && region.spots.length > 0 && (

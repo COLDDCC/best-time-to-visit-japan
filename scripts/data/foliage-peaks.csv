@@ -1,0 +1,34 @@
+# Observed peak (見頃) windows for the Kyoto koyo pages.
+#
+# One row per spot per season. Fill peak_start / peak_end / source_url / source_label
+# and leave a row blank (or delete it) for any year you cannot source — a gap is fine,
+# a guess is not. Then run:  node scripts/import-foliage.mjs
+#
+# peak_start / peak_end : ISO dates, e.g. 2024-11-22
+# source_url            : must open and actually show those dates
+# source_label          : short, shown to readers, e.g. "Weathernews 見頃情報 2024"
+# note                  : optional, e.g. "Typhoon stripped leaves early"
+#
+# Record OBSERVED in-season status, NOT the September 見頃予想 forecast.
+slug,year,peak_start,peak_end,source_url,source_label,note
+tofukuji,2019,,,,,
+tofukuji,2020,,,,,
+tofukuji,2021,,,,,
+tofukuji,2022,,,,,
+tofukuji,2023,,,,,
+tofukuji,2024,,,,,
+tofukuji,2025,,,,,
+eikando,2019,,,,,
+eikando,2020,,,,,
+eikando,2021,,,,,
+eikando,2022,,,,,
+eikando,2023,,,,,
+eikando,2024,,,,,
+eikando,2025,,,,,
+arashiyama,2019,,,,,
+arashiyama,2020,,,,,
+arashiyama,2021,,,,,
+arashiyama,2022,,,,,
+arashiyama,2023,,,,,
+arashiyama,2024,,,,,
+arashiyama,2025,,,,,

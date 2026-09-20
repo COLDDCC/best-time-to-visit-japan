@@ -4,9 +4,11 @@ export interface Props {
   title: string;
   description: string;
   ogImage?: string;
+  /** Keeps a page out of the index while it's still a placeholder. */
+  noindex?: boolean;
 }
 
-const { title, description, ogImage = "/og-default.png" } = Astro.props;
+const { title, description, ogImage = "/og-default.png", noindex = false } = Astro.props;
 // og:image converted to absolute URL (social scrapers can't parse relative paths)
 const ogImageURL = ogImage.startsWith("http") ? ogImage : new URL(ogImage, Astro.site).href;
 // Known intrinsic dimensions per og image (set once; avoids re-measuring at build)
@@ -42,6 +44,7 @@ const pageLabels: Record<string, string> = {
   "blog": "Blog",
   "faq": "FAQ",
   "travel-cost": "Travel Cost",
+  "koyo": "Kyoto Autumn Leaves",
   "about": "About",
   "contact": "Contact",
   "privacy": "Privacy",
@@ -56,6 +59,7 @@ const crumbTargets: Record<string, string> = {
   "month": "/monthly-guide",
   "region": "/by-region",
   "spots": "/by-region",
+  "koyo": "/koyo/kyoto",
 };
 if (pathParts.length > 0) {
   const baseUrl = canonicalURL.replace(Astro.url.pathname, '/');
@@ -80,7 +84,7 @@ if (pathParts.length > 0) {
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={noindex ? "noindex, follow" : "index, follow"} />
     <link rel="canonical" href={canonicalURL} />
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />

@@ -1,0 +1,19 @@
+# JMA Kyoto Local Meteorological Observatory かえで紅葉日 (maple coloring date).
+#
+# Source: 気象庁 生物季節観測  https://www.data.jma.go.jp/sakura/data/
+#   - 累年表 (PDF): https://www.data.jma.go.jp/sakura/pdf/015.pdf
+#   - Pick the 京都 row and copy the coloring date for each year.
+#
+# This is the whole-city baseline used to say "this spot peaks N days after the
+# observatory tree turns". It tracks ONE tree and is never presented as a temple's
+# own peak date. Two overlapping years minimum before the comparison renders.
+#
+# date: ISO, e.g. 2024-11-28
+year,date
+2019,
+2020,
+2021,
+2022,
+2023,
+2024,
+2025,

@@ -10,8 +10,13 @@ import ScrollReveal from "../components/islands/ScrollReveal";
 import Footer from "../components/Footer.astro";
 import Icon from "../components/Icon.astro";
 import { spotGuides } from "../data/spots.ts";
+import KoyoPromo from "../components/KoyoPromo.astro";
 
 const currentYear = new Date().getFullYear();
+// Seasonal entry point: the koyo date checker only earns homepage space in
+// October-November, evaluated at build time (the site rebuilds on every push).
+const currentMonth = new Date().getMonth() + 1;
+const showKoyoCard = currentMonth === 10 || currentMonth === 11;
 const pageTitle = `Best Time to Visit Japan ${currentYear}: Month-by-Month Guide`;
 const pageDesc = "Find the best time to visit Japan. Compare weather, sakura & koyo seasons, crowds and costs by month and region, then take the free 60-second quiz.";
 
@@ -268,6 +273,13 @@ const faqPageSchema = JSON.stringify({
       </div>
     </div>
   </section>
+
+  <!-- ======== 2b. SEASONAL: KYOTO KOYO (Oct-Nov only) ======== -->
+  {showKoyoCard && (
+    <section class="max-w-7xl mx-auto px-4 pt-4 pb-8">
+      <KoyoPromo variant="card" class="max-w-3xl mx-auto" />
+    </section>
+  )}
 
   <!-- ======== 3. INTERACTIVE MAP (WORKING) ======== -->
   <section class="max-w-7xl mx-auto px-4 py-16" id="japan-map">

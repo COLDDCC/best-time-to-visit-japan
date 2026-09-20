@@ -1,0 +1,62 @@
+---
+/**
+ * Entry point to the Kyoto koyo page group.
+ *
+ * Renders nothing until at least one spot has enough sourced seasons to publish,
+ * so no page on the site can link to an empty hub. Every figure in the copy is
+ * computed from the records.
+ */
+import Callout from "./Callout.astro";
+import { hubRows, formatOrdinal, bestSharedOrdinal, publishedFoliageSpots } from "../data/foliage.ts";
+
+interface Props {
+  /** "callout" for in-article placement, "card" for a grid slot. */
+  variant?: "callout" | "card";
+  class?: string;
+}
+
+const { variant = "callout", class: className = "" } = Astro.props;
+
+const rows = hubRows();
+const hasData = rows.length > 0;
+
+const spotCount = rows.length;
+const windowFrom = hasData ? Math.min(...rows.map((r) => r.stats.meanStart)) : 0;
+const windowTo = hasData ? Math.max(...rows.map((r) => r.stats.meanEnd)) : 0;
+const sharedDate = hasData ? formatOrdinal(bestSharedOrdinal(publishedFoliageSpots)) : "";
+const seasons = hasData ? Math.max(...rows.map((r) => r.stats.years)) : 0;
+---
+
+{hasData && (variant === "callout" ? (
+  <Callout eyebrow="Kyoto koyo, by the date" tone="amber" class={className}>
+    <p class="text-lg leading-relaxed text-zinc-800 mb-3">
+      &ldquo;Mid-to-late November&rdquo; is three weeks wide. Across {seasons} recorded seasons,
+      peak colour at Kyoto&rsquo;s {spotCount} biggest spot{spotCount === 1 ? "" : "s"} has run
+      roughly {formatOrdinal(windowFrom)}&ndash;{formatOrdinal(windowTo)} &mdash; and{" "}
+      {sharedDate} was at peak in more of those seasons than any other date.
+    </p>
+    <p class="text-sm">
+      <a href="/koyo/kyoto" class="text-accent-600 hover:text-accent-700 font-semibold">
+        Check your own dates against every past season &rarr;
+      </a>
+    </p>
+  </Callout>
+) : (
+  <a
+    href="/koyo/kyoto"
+    class={`block bg-gradient-to-br from-amber-50 via-white to-red-50 border-2 border-amber-200 rounded-2xl p-6 sm:p-7 no-underline hover:border-amber-300 transition-colors ${className}`}
+  >
+    <span class="block text-xs font-semibold tracking-[0.2em] uppercase text-accent-600 mb-3">
+      In season now
+    </span>
+    <span class="block text-xl sm:text-2xl font-bold text-zinc-900 mb-2 leading-snug">
+      Will you catch Kyoto&rsquo;s autumn leaves at peak?
+    </span>
+    <span class="block text-sm text-zinc-700 leading-relaxed mb-4">
+      Pick your date and see what actually happened on it at {spotCount} Kyoto spot
+      {spotCount === 1 ? "" : "s"} across {seasons} recorded seasons &mdash; not a forecast, a
+      record.
+    </span>
+    <span class="text-sm font-semibold text-accent-600">Check your dates &rarr;</span>
+  </a>
+))}

@@ -1,0 +1,274 @@
+---
+import "../../styles/global.css";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import Callout from "../../components/Callout.astro";
+import AffiliateCTA from "../../components/AffiliateCTA.astro";
+import PeakChecker from "../../components/islands/PeakChecker.tsx";
+import {
+  hubRows,
+  publishedFoliageSpots,
+  foliageSpots,
+  bestSharedOrdinal,
+  hitCount,
+  formatOrdinal,
+  MIN_RECORDS_TO_PUBLISH,
+} from "../../data/foliage.ts";
+
+const rows = hubRows();
+const hasData = rows.length > 0;
+
+// Route-planning advice, derived rather than written: which spot turns first,
+// which turns last, and the single date that was at peak across the most seasons.
+const earliest = hasData ? rows[0] : null;
+const latest = hasData ? rows[rows.length - 1] : null;
+const spreadDays = earliest && latest ? latest.stats.meanStart - earliest.stats.meanStart : 0;
+const sharedOrdinal = hasData ? bestSharedOrdinal(publishedFoliageSpots) : 0;
+const sharedBreakdown = hasData
+  ? publishedFoliageSpots.map((spot) => ({
+      spot,
+      hits: hitCount(spot, sharedOrdinal),
+      years: spot.records.length,
+    }))
+  : [];
+
+// The season year is derived so the title doesn't rot after this autumn; the
+// site rebuilds on every push, so it rolls over on its own.
+const seasonYear = new Date().getFullYear();
+const title = `Kyoto Autumn Leaves ${seasonYear}: Peak Dates by Spot`;
+const description = hasData
+  ? "Observed peak-colour dates for Kyoto's autumn leaves, spot by spot and season by season. Check any date against what actually happened in past years."
+  : "Observed peak-colour dates for Kyoto's autumn leaves, spot by spot. Records are being compiled from Japanese in-season foliage reports.";
+
+const itemListSchema = hasData
+  ? JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": title,
+      "itemListElement": rows.map((row, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "name": row.spot.name,
+        "url": `https://best-time-japan.com/koyo/${row.spot.slug}`,
+      })),
+    })
+  : "";
+---
+
+<BaseLayout title={title} description={description} noindex={!hasData}>
+  {itemListSchema && <script type="application/ld+json" set:html={itemListSchema} />}
+
+  <section class="min-h-[100dvh]">
+    <Nav />
+    <div class="max-w-4xl mx-auto px-4 py-8">
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-accent-600 mb-4">
+        Kyoto Koyo · 京都の紅葉
+      </p>
+      <h1 class="text-3xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-[1.05]">
+        Kyoto Autumn Leaves {seasonYear}: Peak Dates by Spot
+      </h1>
+      <p class="text-lg text-zinc-700 leading-relaxed mb-10">
+        Everyone tells you Kyoto&rsquo;s maples peak &ldquo;mid-to-late November.&rdquo; That is
+        three weeks wide and useless if your trip is four days long. This page records the peak
+        window each spot actually hit, season by season, so you can check your own dates.
+      </p>
+
+      {hasData ? (
+        <>
+          <!-- The core tool: all spots, one date -->
+          <div class="mb-12">
+            <PeakChecker spots={publishedFoliageSpots} client:visible />
+          </div>
+
+          <!-- Comparison table -->
+          <h2 class="text-2xl font-bold text-zinc-900 mb-2">Every spot side by side</h2>
+          <p class="text-sm text-zinc-700 mb-6">
+            Averages and extremes are computed from the recorded seasons on each spot&rsquo;s page,
+            earliest-peaking spot first.
+          </p>
+
+          <!-- Phone: one card per spot. A six-column table only scrolls sideways here. -->
+          <div class="space-y-3 mb-12 sm:hidden">
+            {rows.map((row) => (
+              <div class="border border-zinc-200 rounded-xl p-5">
+                <a
+                  href={`/koyo/${row.spot.slug}`}
+                  class="text-base font-bold text-accent-600 hover:text-accent-700 underline underline-offset-2"
+                >{row.spot.name}</a>
+                <span class="block text-xs text-zinc-600 mt-0.5 mb-4">{row.spot.nameJa}</span>
+                <dl class="grid grid-cols-2 gap-x-4 gap-y-3 m-0">
+                  <div class="col-span-2">
+                    <dt class="text-[0.6875rem] font-semibold tracking-wide text-zinc-600 uppercase">Average peak</dt>
+                    <dd class="text-base font-semibold text-zinc-900 tabular-nums m-0 whitespace-nowrap">
+                      {formatOrdinal(row.stats.meanStart)}&ndash;{formatOrdinal(row.stats.meanEnd)}
+                      <span class="text-xs font-normal text-zinc-600">&middot; {row.stats.years} seasons</span>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt class="text-[0.6875rem] font-semibold tracking-wide text-zinc-600 uppercase">Earliest start</dt>
+                    <dd class="text-sm text-zinc-700 tabular-nums m-0">{formatOrdinal(row.stats.earliestStart)}</dd>
+                  </div>
+                  <div>
+                    <dt class="text-[0.6875rem] font-semibold tracking-wide text-zinc-600 uppercase">Latest end</dt>
+                    <dd class="text-sm text-zinc-700 tabular-nums m-0">{formatOrdinal(row.stats.latestEnd)}</dd>
+                  </div>
+                  {row.jma && (
+                    <div class="col-span-2">
+                      <dt class="text-[0.6875rem] font-semibold tracking-wide text-zinc-600 uppercase">Vs. JMA baseline</dt>
+                      <dd class="text-sm text-zinc-700 m-0">
+                        {row.jma.meanOffsetDays === 0
+                          ? "same day"
+                          : `${Math.abs(row.jma.meanOffsetDays)} day${Math.abs(row.jma.meanOffsetDays) === 1 ? "" : "s"} ${row.jma.meanOffsetDays > 0 ? "later" : "earlier"}`}
+                      </dd>
+                    </div>
+                  )}
+                </dl>
+              </div>
+            ))}
+          </div>
+
+          <div class="hidden sm:block overflow-x-auto mb-12">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="border-b-2 border-zinc-200 text-left">
+                  <th class="py-3 pr-4 font-semibold text-zinc-900">Spot</th>
+                  <th class="py-3 pr-4 font-semibold text-zinc-900 whitespace-nowrap">Average peak</th>
+                  <th class="py-3 pr-4 font-semibold text-zinc-900 whitespace-nowrap">Earliest start</th>
+                  <th class="py-3 pr-4 font-semibold text-zinc-900 whitespace-nowrap">Latest end</th>
+                  <th class="py-3 pr-4 font-semibold text-zinc-900 whitespace-nowrap">Vs. baseline</th>
+                  <th class="py-3 font-semibold text-zinc-900 whitespace-nowrap">Years</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((row) => (
+                  <tr class="border-b border-zinc-100">
+                    <td class="py-3 pr-4">
+                      <a
+                        href={`/koyo/${row.spot.slug}`}
+                        class="font-semibold text-accent-600 hover:text-accent-700 underline underline-offset-2"
+                      >{row.spot.name}</a>
+                      <span class="block text-xs text-zinc-600 mt-0.5">{row.spot.nameJa}</span>
+                    </td>
+                    <td class="py-3 pr-4 text-zinc-700 tabular-nums whitespace-nowrap">
+                      {formatOrdinal(row.stats.meanStart)}&ndash;{formatOrdinal(row.stats.meanEnd)}
+                    </td>
+                    <td class="py-3 pr-4 text-zinc-700 tabular-nums whitespace-nowrap">{formatOrdinal(row.stats.earliestStart)}</td>
+                    <td class="py-3 pr-4 text-zinc-700 tabular-nums whitespace-nowrap">{formatOrdinal(row.stats.latestEnd)}</td>
+                    <td class="py-3 pr-4 text-zinc-700 tabular-nums whitespace-nowrap">
+                      {row.jma
+                        ? row.jma.meanOffsetDays === 0
+                          ? "same day"
+                          : `${Math.abs(row.jma.meanOffsetDays)}d ${row.jma.meanOffsetDays > 0 ? "later" : "earlier"}`
+                        : "—"}
+                    </td>
+                    <td class="py-3 text-zinc-700 tabular-nums">{row.stats.years}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Route planning, derived from the table -->
+          <h2 class="text-2xl font-bold text-zinc-900 mb-6">How to sequence these on one trip</h2>
+          <div class="space-y-4 mb-12 text-base text-zinc-700 leading-relaxed">
+            {spreadDays > 0 ? (
+              <p>
+                On average {earliest!.spot.name} turns first and {latest!.spot.name} last, about{" "}
+                {spreadDays} day{spreadDays === 1 ? "" : "s"} apart. On a trip that straddles that
+                gap, front-load {earliest!.spot.name} and leave {latest!.spot.name} for your last
+                days &mdash; the reverse order risks catching one place bare and the other still
+                green.
+              </p>
+            ) : (
+              <p>
+                These spots have peaked on essentially the same schedule in the recorded seasons,
+                so the order you visit them in matters less than the week you pick. Use the date
+                checker above to find that week.
+              </p>
+            )}
+            <p>
+              If you only get one day for autumn colour, {formatOrdinal(sharedOrdinal)} is the date
+              that was at peak across the most spot-seasons on record &mdash;{" "}
+              {sharedBreakdown.map((b, i) => (
+                <>
+                  {i > 0 && (i === sharedBreakdown.length - 1 ? ", and " : ", ")}
+                  {b.spot.name} in {b.hits} of {b.years}
+                </>
+              ))}. That is a count of what happened, not a prediction for the coming season.
+            </p>
+            <p>
+              An early arrival is generally the safer mistake. Colour builds over days and holds for
+              a week or so at most spots, but once a wind or rain event strips the maples the season
+              ends quickly &mdash; being three days early is recoverable, being three days late
+              often isn&rsquo;t.
+            </p>
+          </div>
+
+          <div class="text-center mb-12">
+            <p class="text-lg font-semibold text-zinc-900 mb-1">Kyoto books out for these dates</p>
+            <p class="text-sm text-zinc-700 mb-5">
+              Peak koyo is Kyoto&rsquo;s second-busiest season after sakura. Rooms inside the
+              windows above go months ahead.
+            </p>
+            <AffiliateCTA destination="Kyoto" className="justify-center" />
+          </div>
+        </>
+      ) : (
+        <Callout eyebrow="Records being compiled" tone="amber" class="mb-12">
+          <p class="text-sm text-zinc-700 leading-relaxed mb-4">
+            This page publishes observed peak-colour windows &mdash; the dates Japanese in-season
+            foliage reports judged each spot to be at 見頃 &mdash; with a link to the source for
+            every single year. None of it is estimated, which means the page stays empty until
+            those sources have been read and entered.
+          </p>
+          <p class="text-sm text-zinc-700 leading-relaxed">
+            Each spot goes live once it has at least {MIN_RECORDS_TO_PUBLISH} sourced seasons.
+            {" "}{foliageSpots.length} Kyoto spot{foliageSpots.length === 1 ? " is" : "s are"}{" "}
+            queued: {foliageSpots.map((s, i) => (
+              <>
+                {i > 0 && (i === foliageSpots.length - 1 ? " and " : ", ")}
+                <span class="font-semibold text-zinc-900">{s.name}</span> ({s.nameJa})
+              </>
+            ))}.
+          </p>
+        </Callout>
+      )}
+
+      <!-- Methodology -->
+      <Callout eyebrow="How this page is put together" tone="neutral" class="mb-12">
+        <div class="text-xs text-zinc-600 leading-relaxed space-y-3">
+          <p>
+            <strong class="text-zinc-800">見頃 is a window, not a day.</strong> Japanese foliage
+            reporting marks a site as 見頃 (worth seeing) for a span of days. We record that span as
+            reported and never interpolate between two reports.
+          </p>
+          <p>
+            <strong class="text-zinc-800">Counts, not percentages.</strong> With a handful of
+            seasons per spot, a percentage would imply precision the sample cannot support, so
+            every figure here is &ldquo;N of M years&rdquo;.
+          </p>
+          <p>
+            <strong class="text-zinc-800">Nothing here is a forecast.</strong> For the season
+            you&rsquo;re actually travelling in, check{" "}
+            <a href="https://weathernews.jp/koyo/" target="_blank" rel="noopener" class="text-accent-600 underline underline-offset-2">ウェザーニュース 紅葉情報 &#8599;</a>{" "}
+            or{" "}
+            <a href="https://tenki.jp/kouyou/" target="_blank" rel="noopener" class="text-accent-600 underline underline-offset-2">日本気象協会 tenki.jp &#8599;</a>.
+          </p>
+        </div>
+      </Callout>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <a href="/month/november" class="block border border-zinc-200 rounded-xl p-5 no-underline hover:border-accent-300 transition-colors">
+          <span class="block text-sm font-bold text-zinc-900 mb-1">Japan in November</span>
+          <span class="block text-xs text-zinc-600">Weather, crowds and what else is on during koyo season.</span>
+        </a>
+        <a href="/region/kyoto" class="block border border-zinc-200 rounded-xl p-5 no-underline hover:border-accent-300 transition-colors">
+          <span class="block text-sm font-bold text-zinc-900 mb-1">Best time to visit Kyoto</span>
+          <span class="block text-xs text-zinc-600">The full year in Kyoto, season by season.</span>
+        </a>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>

@@ -9,6 +9,7 @@ import Icon from "../../components/Icon.astro";
 import Callout from "../../components/Callout.astro";
 import AffiliateCTA from "../../components/AffiliateCTA.astro";
 import CurrentWeather from "../../components/CurrentWeather.astro";
+import KoyoPromo from "../../components/KoyoPromo.astro";
 
 export function getStaticPaths() {
   return monthlyData.map((m) => ({
@@ -175,6 +176,11 @@ const monthSpotlight = monthSpotlights[month.month];
       <Callout eyebrow="The Short Answer" tone="red" class="mb-12">
         <p class="text-lg leading-relaxed">In {month.label}, Japan&rsquo;s temperatures average <strong class="text-accent-700">{month.tempLow}&deg;C to {month.tempHigh}&deg;C</strong>, with about {month.rainDays} rainy days and a crowd level of <strong class="text-accent-700">{month.crowdLevel}/5</strong>. It&rsquo;s best for <strong class="text-accent-700">{month.bestFor}</strong>.</p>
       </Callout>
+
+      <!-- Kyoto koyo date checker - the autumn-colour months only -->
+      {["october", "november", "december"].includes(month.month) && (
+        <KoyoPromo variant="callout" class="mb-12" />
+      )}
 
       <!-- At a glance -->
       <div class="grid grid-cols-3 gap-4 mb-12">
