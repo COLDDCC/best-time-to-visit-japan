@@ -3,6 +3,7 @@
 # Source: 気象庁 生物季節観測  https://www.data.jma.go.jp/sakura/data/
 #   - 累年表 (PDF): https://www.data.jma.go.jp/sakura/pdf/015.pdf
 #   - Pick the 京都 row and copy the coloring date for each year.
+#   - 2021 is blank because the 累年表 records no value for 京都 that year (欠測).
 #
 # This is the whole-city baseline used to say "this spot peaks N days after the
 # observatory tree turns". It tracks ONE tree and is never presented as a temple's
@@ -10,10 +11,10 @@
 #
 # date: ISO, e.g. 2024-11-28
 year,date
-2019,
-2020,
+2019,2019-12-10
+2020,2020-12-07
 2021,
-2022,
-2023,
-2024,
-2025,
+2022,2022-12-12
+2023,2023-12-13
+2024,2024-12-20
+2025,2025-12-10

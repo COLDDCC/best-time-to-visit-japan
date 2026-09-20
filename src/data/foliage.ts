@@ -74,7 +74,15 @@ export interface FoliageSpot {
  * Source: 気象庁 生物季節観測 https://www.data.jma.go.jp/sakura/data/
  * Fill via `scripts/data/jma-kyoto-maple.csv` (see scripts/data/README.md).
  */
-export const jmaKyotoMapleColoring: { year: number; date: string }[] = [];
+export const jmaKyotoMapleColoring: { year: number; date: string }[] = [
+  { year: 2019, date: "2019-12-10" },
+  { year: 2020, date: "2020-12-07" },
+  // 2021 is absent: the 累年表 records no value for 京都 that season.
+  { year: 2022, date: "2022-12-12" },
+  { year: 2023, date: "2023-12-13" },
+  { year: 2024, date: "2024-12-20" },
+  { year: 2025, date: "2025-12-10" },
+];
 
 /**
  * TODO before flipping any spot to `draft: false`:
@@ -112,7 +120,9 @@ export const foliageSpots: FoliageSpot[] = [
         body: "Tofuku-ji is a 10-minute walk from a station on two lines, which makes it an easy half-day stop for domestic visitors too. Tuesday to Thursday is materially calmer than any weekend in the peak window.",
       },
     ],
-    access: "Tofukuji Station, served by the JR Nara Line and the Keihan Main Line, is the closest station; Toba-kaido Station on the Keihan line is a similar walk and far less crowded when the peak-season queues back up at Tofukuji.",
+    access: "Tofukuji Station, served by the JR Nara Line and the Keihan Main Line, is the closest station at a 10-minute walk; Toba-kaido Station on the Keihan line is the same 10 minutes by the temple's own reckoning and far less crowded when the peak-season queues back up at Tofukuji. The temple closes every on-site car park from 25 October to 10 December, so arriving by train is the only realistic option in the peak window.",
+    admission:
+      "The temple charges a higher autumn rate over its 秋期 period, 14 November to 6 December 2026: ¥1,000 for adults and ¥500 for children to enter Tsutenkyo and Kaisando, which is the bridge and the ravine view. The Hojo garden is ticketed separately at ¥600 for adults and ¥300 for children from 1 November 2026. The combined ticket sold the rest of the year is withdrawn for those weeks, so seeing both means buying both.",
     crowdNote:
       "Tofuku-ji runs a one-way visitor route through the peak weeks and can hold visitors at the gate when the bridge is full. Budget more time than the temple's own estimate on any weekend in the peak window.",
     faqs: [
@@ -157,7 +167,9 @@ export const foliageSpots: FoliageSpot[] = [
         body: "Eikando and Nanzen-ji are a short walk apart at the southern end of the path, so a single Higashiyama morning covers both plus the canal walk — which colours up on roughly the same schedule.",
       },
     ],
-    access: "In Sakyo-ku, at the southern end of the Philosopher's Path near Nanzen-ji. Keage Station on the Tozai subway line is the nearest rail access; Kyoto city buses stop close to the temple on the Higashiyama routes.",
+    access: "In Sakyo-ku, at the southern end of the Philosopher's Path near Nanzen-ji. Keage Station on the Tozai subway line is the nearest rail access but still a 15-minute walk; the city bus is much closer — route 5 from Kyoto Station, Sanjo or Kyoto-Kawaramachi stops at Nanzenji-Eikandomichi, three minutes from the gate. Private cars and coaches are turned away for the whole autumn exhibition period.",
+    admission:
+      "Autumn is ticketed as a separate 秋の寺宝展, 11 November to 6 December 2026, at ¥1,500 for adults — appreciably more than the ¥1,000 charged the rest of the year. The evening illumination, 20 November to 6 December 2026, is its own ¥1,000 adult ticket, and the two are not continuous: the temple clears the grounds between them, so day and night are two separate admissions.",
     crowdNote:
       "Eikando is the single busiest night-viewing temple in Kyoto during the peak weeks. Weekend evenings inside the peak window are the worst combination on this page.",
     faqs: [
