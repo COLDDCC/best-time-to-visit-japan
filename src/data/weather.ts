@@ -20,6 +20,8 @@ export interface MonthData {
   budgetNote: string;
   localTip: string;
   packing: string;
+  /** Month-specific FAQs appended to the generic ones (rendered + FAQPage schema). */
+  extraFaqs?: { q: string; a: string }[];
 }
 
 export const monthlyData: MonthData[] = [
@@ -388,6 +390,21 @@ export const monthlyData: MonthData[] = [
     budgetNote: "June and September are the year's cheapest months. Hotels drop 30-50% below spring rates and international flights bottom out — a silver lining that makes the rain genuinely worth it for budget travelers.",
     localTip: "Buy a cheap folding umbrella (105-500 yen at convenience stores) and pack a fast-dry jacket. Rain in tsuyu is steady, not torrential — museums, sento baths and department stores all make great rainy-day plans.",
     packing: "Rain jacket, umbrella, breathable clothing, water shoes for Okinawa",
+    // Rainy-season dates: JMA 1991-2020 normals (midpoint of a ~5-day transition).
+    extraFaqs: [
+      {
+        q: "When does the rainy season start and end in Japan?",
+        a: "Using the Japan Meteorological Agency's 1991-2020 normals, the rainy season (tsuyu) starts around May 10 in Okinawa, late May to early June in Kyushu, around June 5-6 in Kansai (Kyoto, Osaka), around June 7 in Kanto (Tokyo) and June 12-15 in Tohoku. It usually ends around June 21 in Okinawa and July 17-19 in Kansai and Kanto. Hokkaido has no official rainy season. Actual dates shift by a week or more from year to year.",
+      },
+      {
+        q: "Does it rain every day in Japan in June?",
+        a: "No. June has the most rainy days of the year in much of Honshu, but the rain comes and goes, and many days are overcast or drizzly rather than stormy. Plan one indoor option per day (museums, department stores, onsen) and keep outdoor sights flexible.",
+      },
+      {
+        q: "Is early June or late June better for visiting Japan?",
+        a: "For Tokyo, Kyoto and Osaka, the first days of June often come before the rainy season normally starts (around June 5-7). For Okinawa, late June is better: the rainy season there normally ends around June 21. Hokkaido is a good choice all month because it has no official rainy season.",
+      },
+    ],
   },
   {
     month: "july",
@@ -693,6 +710,20 @@ export const monthlyData: MonthData[] = [
     budgetNote: "November prices approach spring levels in Kyoto but stay moderate elsewhere. Early November (before the 15th) is cheaper than the peak color window — a smart trade for value travelers.",
     localTip: "Kiyomizu-dera's night illuminations are the season's highlight — go on a weekday evening when queues shrink. The best empty shot of the year is Rurikoin's maple window at 8 AM opening.",
     packing: "Warm layers, jacket, scarf, comfortable walking shoes",
+    extraFaqs: [
+      {
+        q: "When do autumn leaves peak in Japan in November?",
+        a: "Autumn color moves from north to south and from mountains down to cities. Hokkaido and high mountain areas peak in October. In Tokyo, ginkgo trees turn yellow from mid to late November and maples follow in late November to early December. In Kyoto, the peak usually falls between mid-November and early December, with the last week of November the most reliable bet.",
+      },
+      {
+        q: "Will the autumn leaves be late in 2026?",
+        a: "Possibly. The Japan Meteorological Corporation's first 2026 forecast (September 2) expects a warmer-than-usual autumn, with peaks around average or later in many regions. Tokyo's maples are forecast to peak on roughly the usual date. Forecasts are updated through the season, so check the latest one before fixing your Kyoto dates, and leave a few flexible days at the end of November.",
+      },
+      {
+        q: "Is Kyoto worth visiting in early November?",
+        a: "Yes, but expect mostly green maples in central Kyoto during the first half of the month. Early November is quieter and cheaper than the peak window, and higher areas such as Kurama and Ohara, or a side trip north, turn earlier. If autumn color is your main goal, aim for the second half of November.",
+      },
+    ],
   },
   {
     month: "december",

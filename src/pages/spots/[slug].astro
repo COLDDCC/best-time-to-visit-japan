@@ -16,7 +16,7 @@ export function getStaticPaths() {
 }
 
 const { spot } = Astro.props;
-const canonical = `https://best-time-japan.com/spots/${spot.slug}`;
+const canonical = `https://best-time-japan.com/spots/${spot.slug}/`;
 const logoUrl = spot.logo ? `https://best-time-japan.com${spot.logo}` : undefined;
 const parentRegion = regionGuides.find((r) => r.slug === spot.region);
 const ratingStars = spot.rating
@@ -293,7 +293,7 @@ const faqSchema = JSON.stringify({
       <!-- Back to region -->
       {parentRegion && (
         <div class="mt-12 text-center">
-          <a href={`/region/${parentRegion.slug}`} class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors">
+          <a href={`/region/${parentRegion.slug}/`} class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors">
             <Icon name="arrow-left" class="w-4 h-4" />
             Best time to visit {parentRegion.shortName}
           </a>

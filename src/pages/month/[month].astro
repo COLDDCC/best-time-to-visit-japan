@@ -18,7 +18,7 @@ export function getStaticPaths() {
 }
 
 const { month } = Astro.props;
-const canonical = `https://best-time-japan.com/month/${month.month}`;
+const canonical = `https://best-time-japan.com/month/${month.month}/`;
 const currentYear = new Date().getFullYear();
 
 const relatedRegions = (month.bestRegionSlugs ?? [])
@@ -39,7 +39,7 @@ const seasonMap: Record<string, string> = {
   january: "winter", february: "winter", march: "early spring",
   april: "spring", may: "spring", june: "the rainy season (tsuyu), at the start of summer",
   july: "summer", august: "summer", september: "early autumn, with lingering typhoon risk",
-  october: "autumn", november: "autumn", december: "winter",
+  october: "autumn", november: "autumn — the peak of autumn-leaf (koyo) season", december: "winter",
 };
 const season = seasonMap[month.month] ?? "";
 
@@ -60,6 +60,7 @@ const monthFaqs = [
     q: `Is ${month.label} a good time to visit Japan?`,
     a: `${month.label} is best for ${month.bestFor}, with a crowd level of ${month.crowdLevel} out of 5. Check the highlights and watch-outs below to see if it fits your trip.`,
   },
+  ...(month.extraFaqs ?? []),
 ];
 
 const articleSchema = JSON.stringify({
@@ -67,7 +68,7 @@ const articleSchema = JSON.stringify({
   "@type": "Article",
   "headline": title,
   "description": meta,
-  "author": { "@type": "Organization", "name": "When to Visit Japan", "url": "https://best-time-japan.com/about" },
+  "author": { "@type": "Organization", "name": "When to Visit Japan", "url": "https://best-time-japan.com/about/" },
   "publisher": { "@type": "Organization", "name": "When to Visit Japan", "logo": { "@type": "ImageObject", "url": "https://best-time-japan.com/favicon.svg" } },
   "datePublished": `${currentYear}-01-15`,
   "dateModified": `${currentYear}-07-31`,
@@ -168,7 +169,7 @@ const monthSpotlight = monthSpotlights[month.month];
             </li>
           ))}
         </ul>
-        <p class="text-sm text-zinc-700 mt-4"><a href="/festivals" class="text-accent-600 hover:text-accent-700 font-medium">See all festival dates for {currentYear} &rarr;</a></p>
+        <p class="text-sm text-zinc-700 mt-4"><a href="/festivals/" class="text-accent-600 hover:text-accent-700 font-medium">See all festival dates for {currentYear} &rarr;</a></p>
       </div>
 
       <!-- Quick answer box -->
@@ -206,7 +207,7 @@ const monthSpotlight = monthSpotlights[month.month];
         {relatedRegions.length > 0 && (
           <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {relatedRegions.map((r) => (
-              <a href={`/region/${r.slug}`} class="group bg-white border border-zinc-200 rounded-xl p-4 hover:border-accent-300 transition-colors no-underline">
+              <a href={`/region/${r.slug}/`} class="group bg-white border border-zinc-200 rounded-xl p-4 hover:border-accent-300 transition-colors no-underline">
                 <p class="text-base font-bold text-zinc-900 group-hover:text-accent-600 transition-colors">{r.name}</p>
                 <p class="text-sm text-blue-700 font-medium mt-0.5">Best: {r.best}</p>
               </a>
@@ -325,13 +326,13 @@ const monthSpotlight = monthSpotlights[month.month];
           return (
             <>
               {prev ? (
-                <a href={`/month/${prev.month}`} class="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-700 hover:text-accent-600 transition-colors no-underline">
+                <a href={`/month/${prev.month}/`} class="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-700 hover:text-accent-600 transition-colors no-underline">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                   Previous: {prev.label}
                 </a>
               ) : <span />}
               {next && (
-                <a href={`/month/${next.month}`} class="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-700 hover:text-accent-600 transition-colors no-underline">
+                <a href={`/month/${next.month}/`} class="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-700 hover:text-accent-600 transition-colors no-underline">
                   Next: {next.label}
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
@@ -342,7 +343,7 @@ const monthSpotlight = monthSpotlights[month.month];
       </div>
 
       <div class="text-center">
-        <a href="/monthly-guide" class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors">
+        <a href="/monthly-guide/" class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors">
           Compare all 12 months
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>

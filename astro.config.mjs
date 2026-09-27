@@ -7,7 +7,7 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: "https://best-time-japan.com",
-  trailingSlash: "never",
+  trailingSlash: "always",
   integrations: [react(), sitemap({
     filter: (page) => !page.includes("/404"),
   })],

@@ -7,7 +7,7 @@ image: "/images/blog/kyoto-sightseeing-ranked.jpg"
 imageAlt: "Kyoto temple sightseeing"
 ---
 
-Kyoto has more "must-see" lists than any city has sights worth seeing. This one is different: a straight ranking, from genuinely essential to skip-it, based on an actual visit rather than which spots photograph well from one angle. See our [Kyoto region guide](/region/kyoto) for logistics and timing.
+Kyoto has more "must-see" lists than any city has sights worth seeing. This one is different: a straight ranking, from genuinely essential to skip-it, based on an actual visit rather than which spots photograph well from one angle. See our [Kyoto region guide](/region/kyoto/) for logistics and timing.
 
 ## Essential
 **Sanzen-in** — Modest admission, a large grounds, and a wall of green moss and maple that catches most first-time visitors off guard. Atmospheric enough to justify paying extra for the tea-seating area if you want to sit with the view rather than just walk through. Expect a queue for it on busy days.

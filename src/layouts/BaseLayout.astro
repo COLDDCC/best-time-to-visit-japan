@@ -28,8 +28,10 @@ const ogImageSizes: Record<string, [number, number]> = {
   ].map(([k, v]) => [`/images/region-${k}.webp`, v])),
 };
 const [ogW, ogH] = ogImageSizes[ogImage] ?? [1200, 630];
+// GitHub Pages serves each page at its directory URL (/month/june/) and 301s the
+// slashless form there, so the canonical must carry the trailing slash too.
 let canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
-if (canonicalURL.endsWith("/")) canonicalURL = canonicalURL.slice(0, -1);
+if (!canonicalURL.endsWith("/")) canonicalURL += "/";
 
 // BreadcrumbList - only for subpages
 const pageLabels: Record<string, string> = {
@@ -58,15 +60,15 @@ const crumbTargets: Record<string, string> = {
   "spots": "/by-region",
 };
 if (pathParts.length > 0) {
-  const baseUrl = canonicalURL.replace(Astro.url.pathname, '/');
+  const baseUrl = new URL("/", Astro.site).href;
   const items = [{ "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl }];
   crumbs.push({ name: "Home", item: baseUrl });
   for (let i = 0; i < pathParts.length; i++) {
     const part = pathParts[i];
     const name = pageLabels[part] ?? part.replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
-    const rawItem = baseUrl + pathParts.slice(0, i + 1).join('/');
+    const rawItem = baseUrl + pathParts.slice(0, i + 1).join('/') + '/';
     const isPrefix = i < pathParts.length - 1;
-    const item = (isPrefix && crumbTargets[part]) ? baseUrl + crumbTargets[part].replace(/^\//, '') : rawItem;
+    const item = (isPrefix && crumbTargets[part]) ? baseUrl + crumbTargets[part].replace(/^\//, '') + '/' : rawItem;
     items.push({ "@type": "ListItem", "position": (i + 2), "name": name, "item": item });
     crumbs.push({ name, item });
   }
@@ -105,7 +107,7 @@ if (pathParts.length > 0) {
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "When to Visit Japan",
-      "url": "https://best-time-japan.com",
+      "url": "https://best-time-japan.com/",
       "logo": "https://best-time-japan.com/favicon.svg",
       "description": "Expert travel guide helping you find the best time to visit Japan. Month-by-month weather, sakura & koyo forecasts, crowd calendars, festival dates, and region-specific advice."
     }`} />
@@ -113,7 +115,7 @@ if (pathParts.length > 0) {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "When to Visit Japan",
-      "url": "https://best-time-japan.com"
+      "url": "https://best-time-japan.com/"
     }`} />
     {breadcrumbSchema && <>
       <script type="application/ld+json" set:html={breadcrumbSchema} />

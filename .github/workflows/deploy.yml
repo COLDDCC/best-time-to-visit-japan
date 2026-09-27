@@ -7,6 +7,10 @@ on:
       - 'docs/**'
       - '**.md'
   workflow_dispatch:
+  # Rebuild on the 1st and 16th so the homepage "Planning a trip soon?" months
+  # (computed at build time) roll forward without a manual push.
+  schedule:
+    - cron: '23 0 1,16 * *'
 
 permissions:
   contents: write

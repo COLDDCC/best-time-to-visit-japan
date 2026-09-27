@@ -16,7 +16,7 @@ export function getStaticPaths() {
 }
 
 const { region } = Astro.props;
-const canonical = `https://best-time-japan.com/region/${region.slug}`;
+const canonical = `https://best-time-japan.com/region/${region.slug}/`;
 const currentYear = new Date().getFullYear();
 const pageTitle = /\(\d{4}\)$/.test(region.title)
   ? region.title.replace(/ \(\d{4}\)$/, ` (${currentYear})`)
@@ -50,7 +50,7 @@ const articleSchema = JSON.stringify({
   "@type": "Article",
   "headline": pageTitle,
   "description": region.meta,
-  "author": { "@type": "Organization", "name": "When to Visit Japan", "url": "https://best-time-japan.com/about" },
+  "author": { "@type": "Organization", "name": "When to Visit Japan", "url": "https://best-time-japan.com/about/" },
   "publisher": { "@type": "Organization", "name": "When to Visit Japan", "logo": { "@type": "ImageObject", "url": "https://best-time-japan.com/favicon.svg" } },
   "datePublished": `${currentYear}-01-15`,
   "dateModified": `${currentYear}-07-31`,
@@ -132,7 +132,7 @@ const articleSchema = JSON.stringify({
           <h2 class="text-2xl font-bold text-zinc-900 mb-6">Spot Guides</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
             {region.spots.map((s) => (
-              <a href={`/spots/${s.slug}`} class="group bg-white border border-zinc-200 rounded-xl p-5 hover:border-accent-300 transition-colors no-underline">
+              <a href={`/spots/${s.slug}/`} class="group bg-white border border-zinc-200 rounded-xl p-5 hover:border-accent-300 transition-colors no-underline">
                 <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">{s.name} ↗</p>
                 <p class="text-xs text-zinc-700 leading-relaxed">{s.teaser}</p>
               </a>
@@ -184,7 +184,7 @@ const articleSchema = JSON.stringify({
       <h2 class="text-2xl font-bold text-zinc-900 mb-6">Related Region Guides</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {related.map((r) => (
-          <a href={`/region/${r.slug}`} class="group bg-white border border-zinc-200 rounded-xl p-5 hover:border-accent-300 transition-colors no-underline">
+          <a href={`/region/${r.slug}/`} class="group bg-white border border-zinc-200 rounded-xl p-5 hover:border-accent-300 transition-colors no-underline">
             <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">{r.name}</p>
             <p class="text-xs text-blue-700 font-medium mb-1">Best: {r.best}</p>
             <p class="text-xs text-zinc-700 leading-relaxed">{r.highlights}</p>
@@ -193,7 +193,7 @@ const articleSchema = JSON.stringify({
       </div>
 
       <div class="mt-12 text-center">
-        <a href="/by-region" class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors">
+        <a href="/by-region/" class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors">
           Compare all 10 regions
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
