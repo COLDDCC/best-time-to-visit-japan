@@ -10,6 +10,8 @@ import Callout from "../../components/Callout.astro";
 import AffiliateCTA from "../../components/AffiliateCTA.astro";
 import CurrentWeather from "../../components/CurrentWeather.astro";
 import KoyoPromo from "../../components/KoyoPromo.astro";
+import ClimateTable from "../../components/ClimateTable.astro";
+import { monthSpread, spreadPhrase } from "../../data/climate-summary.ts";
 
 export function getStaticPaths() {
   return monthlyData.map((m) => ({
@@ -44,14 +46,20 @@ const seasonMap: Record<string, string> = {
 };
 const season = seasonMap[month.month] ?? "";
 
+// Japan runs ~3,000 km north to south, so a single nationwide average is close to
+// meaningless in most months. These are the real ends of the range, straight off
+// the JMA normals, and they drive the copy and metadata below.
+const spread = monthSpread(month.month);
+const spreadText = spread ? spreadPhrase(spread) : "";
+
 const title = `Japan Weather in ${month.label} ${currentYear}: Season, Crowds & Where to Go`;
-const meta = `${month.label} in Japan: ${month.tempLow}°C to ${month.tempHigh}°C, ${month.rainDays} rain days, crowds ${month.crowdLevel}/5. Best for ${month.bestFor}.`;
-const desc = `${month.label} is best for ${month.bestFor}. Average ${month.tempLow}°C to ${month.tempHigh}°C, ${month.rainDays} rainy days, crowd level ${month.crowdLevel}/5. Our guide covers the best regions, highlights, packing and what to avoid.`;
+const meta = `${month.label} in Japan: daytime highs ${spreadText}, crowds ${month.crowdLevel}/5. City-by-city averages from the Japan Meteorological Agency.`;
+const desc = `${month.label} is best for ${month.bestFor}. Daytime highs run ${spreadText}, with a crowd level of ${month.crowdLevel}/5. Our guide covers city-by-city weather, the best regions, highlights, packing and what to avoid.`;
 
 const monthFaqs = [
   {
     q: `What is the weather like in Japan in ${month.label}?`,
-    a: `In ${month.label}, Japan averages ${month.tempLow}°C to ${month.tempHigh}°C with about ${month.rainDays} rainy days. It's best for ${month.bestFor}.`,
+    a: `It depends where you are — in ${month.label} average daytime highs run ${spreadText}. ${spread ? `${spread.wettest.city} is the wettest of the cities we track, with about ${spread.wettest.rainDays} days of rain, and ${spread.driest.city} the driest at about ${spread.driest.rainDays}.` : ""} ${month.label} is best for ${month.bestFor}.`,
   },
   {
     q: `What season is Japan in ${month.label}?`,
@@ -174,7 +182,7 @@ const monthSpotlight = monthSpotlights[month.month];
 
       <!-- Quick answer box -->
       <Callout eyebrow="The Short Answer" tone="red" class="mb-12">
-        <p class="text-lg leading-relaxed">In {month.label}, Japan&rsquo;s temperatures average <strong class="text-accent-700">{month.tempLow}&deg;C to {month.tempHigh}&deg;C</strong>, with about {month.rainDays} rainy days and a crowd level of <strong class="text-accent-700">{month.crowdLevel}/5</strong>. It&rsquo;s best for <strong class="text-accent-700">{month.bestFor}</strong>.</p>
+        <p class="text-lg leading-relaxed">There is no single answer for the whole country. In {month.label} average daytime highs run <strong class="text-accent-700">{spreadText}</strong>, on a crowd level of <strong class="text-accent-700">{month.crowdLevel}/5</strong>. It&rsquo;s best for <strong class="text-accent-700">{month.bestFor}</strong>.</p>
       </Callout>
 
       <!-- Kyoto koyo date checker - the autumn-colour months only -->
@@ -185,18 +193,37 @@ const monthSpotlight = monthSpotlights[month.month];
       <!-- At a glance -->
       <div class="grid grid-cols-3 gap-4 mb-12">
         <div class="bg-white border border-zinc-200 rounded-xl p-5 text-center">
-          <p class="text-xs font-semibold tracking-wide text-zinc-600 uppercase mb-1">Temperature</p>
-          <p class="text-2xl font-bold text-zinc-800">{month.tempLow}&deg;<span class="text-zinc-600">–</span>{month.tempHigh}&deg;C</p>
+          <p class="text-xs font-semibold tracking-wide text-zinc-600 uppercase mb-1">Coldest</p>
+          <p class="text-2xl font-bold text-zinc-800">{spread?.coldest.high}&deg;C</p>
+          <p class="text-xs text-zinc-500 mt-0.5">{spread?.coldest.city}</p>
         </div>
         <div class="bg-white border border-zinc-200 rounded-xl p-5 text-center">
-          <p class="text-xs font-semibold tracking-wide text-zinc-600 uppercase mb-1">Rain Days</p>
-          <p class="text-2xl font-bold text-zinc-800">{month.rainDays}</p>
+          <p class="text-xs font-semibold tracking-wide text-zinc-600 uppercase mb-1">Warmest</p>
+          <p class="text-2xl font-bold text-zinc-800">{spread?.warmest.high}&deg;C</p>
+          <p class="text-xs text-zinc-500 mt-0.5">{spread?.warmest.city}</p>
         </div>
         <div class="bg-white border border-zinc-200 rounded-xl p-5 text-center">
           <p class="text-xs font-semibold tracking-wide text-zinc-600 uppercase mb-1">Crowd Level</p>
           <p class={`text-2xl font-bold ${month.crowdLevel <= 2 ? 'text-emerald-600' : month.crowdLevel <= 3 ? 'text-amber-600' : 'text-red-600'}`}>{month.crowdLevel}/5</p>
         </div>
       </div>
+
+      <!-- City-by-city climate normals -->
+      <h2 id="weather" class="text-3xl font-bold text-zinc-900 mb-3 mt-14">Japan Weather in {month.label}, City by City</h2>
+      <p class="text-zinc-600 leading-relaxed mb-2">
+        Japan stretches about 3,000&nbsp;km from Hokkaido to Okinawa, so &ldquo;the weather in {month.label}&rdquo;
+        depends entirely on where you land. These are 30-year averages from the Japan Meteorological
+        Agency for each city&rsquo;s own observatory.
+      </p>
+      {spread && (
+        <p class="text-zinc-600 leading-relaxed mb-6">
+          {spread.wettest.city} is the wettest of these in {month.label}, with rain on about {spread.wettest.rainDays} days,
+          and {spread.driest.city} the driest at around {spread.driest.rainDays}.
+          {spread.mostHotDays && <> {spread.mostHotDays.city} logs roughly {spread.mostHotDays.days} days at or above 30&deg;C.</>}
+          {spread.mostFrostDays && <> {spread.mostFrostDays.city} drops below freezing overnight on about {spread.mostFrostDays.days} nights.</>}
+        </p>
+      )}
+      <ClimateTable mode="month" month={month.month} class="mb-12" />
 
       <!-- Best regions -->
       <h2 class="text-3xl font-bold text-zinc-900 mb-6 mt-14">Where to Go in {month.label}</h2>

@@ -1,0 +1,141 @@
+---
+/**
+ * JMA climate normals as a table, in one of two cuts:
+ *
+ *  - `month`: every city in one month — the "where is warm in November?" view,
+ *    used on the month pages.
+ *  - `city`: one city across all twelve months — the "when should I go to
+ *    Kyoto?" view, used on the region pages.
+ *
+ * Every figure comes from `src/data/climate.ts`, which is generated from the
+ * JMA's own tables. Nothing here computes a number the source doesn't publish.
+ */
+import {
+  cityClimates,
+  climateByMonth,
+  CLIMATE_NORMALS_PERIOD,
+  type CityClimate,
+} from "../data/climate.ts";
+
+interface Props {
+  mode: "month" | "city";
+  /** Required when mode is "month": the month slug, e.g. "november". */
+  month?: string;
+  /** Required when mode is "city": the city slug, e.g. "kyoto". */
+  citySlug?: string;
+  class?: string;
+}
+
+const { mode, month, citySlug, class: className = "" } = Astro.props;
+
+const label = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+type Row = {
+  key: string;
+  head: string;
+  sub: string;
+  high: number;
+  low: number;
+  rainDays: number;
+  precipMm: number;
+};
+
+let rows: Row[] = [];
+let sources: CityClimate[] = [];
+
+if (mode === "month" && month) {
+  rows = climateByMonth(month).map(({ city, data }) => ({
+    key: city.slug,
+    head: city.city,
+    sub: city.regionSlug ? label(city.regionSlug) : "",
+    high: data.meanHighC,
+    low: data.meanLowC,
+    rainDays: data.rainDays,
+    precipMm: data.precipMm,
+  }));
+  sources = cityClimates;
+} else if (mode === "city" && citySlug) {
+  const city = cityClimates.find((c) => c.slug === citySlug);
+  if (city) {
+    rows = city.months.map((m) => ({
+      key: m.month,
+      head: label(m.month),
+      sub: "",
+      high: m.meanHighC,
+      low: m.meanLowC,
+      rainDays: m.rainDays,
+      precipMm: m.precipMm,
+    }));
+    sources = [city];
+  }
+}
+
+// One shared scale keeps the bars comparable down the column.
+const warmest = Math.max(...rows.map((r) => r.high), 1);
+const coldest = Math.min(...rows.map((r) => r.low), 0);
+const span = warmest - coldest || 1;
+---
+
+{rows.length > 0 && (
+  <div class={className}>
+    <div class="overflow-x-auto -mx-4 px-4 md:mx-0 md:px-0">
+      <table class="w-full text-sm border-collapse">
+        <thead>
+          <tr class="border-b border-zinc-200">
+            <th scope="col" class="text-left font-semibold text-zinc-700 py-2.5 pr-3">
+              {mode === "month" ? "City" : "Month"}
+            </th>
+            <th scope="col" class="text-right font-semibold text-zinc-700 py-2.5 px-2 sm:px-3">Avg high</th>
+            <th scope="col" class="text-right font-semibold text-zinc-700 py-2.5 px-2 sm:px-3">Avg low</th>
+            <th scope="col" class="text-right font-semibold text-zinc-700 py-2.5 px-2 sm:px-3">Rain days</th>
+            <th scope="col" class="hidden sm:table-cell text-right font-semibold text-zinc-700 py-2.5 pl-3 whitespace-nowrap">Rainfall</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr class="border-b border-zinc-100 last:border-0">
+              <th scope="row" class="text-left font-medium text-zinc-800 py-2.5 pr-3 whitespace-nowrap">
+                {r.head}
+                {r.sub && <span class="hidden sm:inline text-zinc-500 font-normal"> · {r.sub}</span>}
+              </th>
+              <td class="py-2.5 px-2 sm:px-3 text-right tabular-nums">
+                <span class="inline-flex items-center gap-2 justify-end">
+                  <span
+                    aria-hidden="true"
+                    class="hidden sm:block h-1.5 rounded-full bg-accent-400"
+                    style={`width:${Math.max(4, ((r.high - coldest) / span) * 48)}px`}
+                  ></span>
+                  <span class="font-semibold text-zinc-800">{r.high}&deg;</span>
+                </span>
+              </td>
+              <td class="py-2.5 px-2 sm:px-3 text-right tabular-nums text-zinc-600">{r.low}&deg;</td>
+              <td class="py-2.5 px-2 sm:px-3 text-right tabular-nums text-zinc-600">{r.rainDays}</td>
+              <td class="hidden sm:table-cell py-2.5 pl-3 text-right tabular-nums text-zinc-600 whitespace-nowrap">{r.precipMm} mm</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-xs text-zinc-500 leading-relaxed mt-3">
+      Japan Meteorological Agency climate normals, {CLIMATE_NORMALS_PERIOD} — 30-year averages for
+      each city&rsquo;s own observatory, not a forecast. &ldquo;Rain days&rdquo; counts days with
+      1&nbsp;mm or more of precipitation.{" "}
+      {sources.length === 1 ? (
+        <a
+          href={sources[0].sourceUrl}
+          rel="nofollow noopener"
+          target="_blank"
+          class="text-accent-600 hover:text-accent-700 underline"
+        >{sources[0].city} station table</a>
+      ) : (
+        <a
+          href="https://www.data.jma.go.jp/stats/etrn/index.php"
+          rel="nofollow noopener"
+          target="_blank"
+          class="text-accent-600 hover:text-accent-700 underline"
+        >JMA station tables</a>
+      )}.
+    </p>
+  </div>
+)}

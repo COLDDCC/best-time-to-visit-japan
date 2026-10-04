@@ -5,6 +5,8 @@ import Nav from "../../components/Nav.astro";
 import Footer from "../../components/Footer.astro";
 import { regionGuides } from "../../data/regions.ts";
 import Icon from "../../components/Icon.astro";
+import ClimateTable from "../../components/ClimateTable.astro";
+import { climateForRegion } from "../../data/climate.ts";
 import Callout from "../../components/Callout.astro";
 import AffiliateCTA from "../../components/AffiliateCTA.astro";
 import KoyoPromo from "../../components/KoyoPromo.astro";
@@ -17,6 +19,11 @@ export function getStaticPaths() {
 }
 
 const { region } = Astro.props;
+
+// The JMA observatory that stands in for this region. Some regions (Shikoku,
+// Kyushu, the Fuji Five Lakes) have no single station, so the city is named
+// on the page rather than quietly presented as the whole region's weather.
+const climate = climateForRegion(region.slug);
 const canonical = `https://best-time-japan.com/region/${region.slug}`;
 const currentYear = new Date().getFullYear();
 const pageTitle = /\(\d{4}\)$/.test(region.title)
@@ -115,6 +122,19 @@ const articleSchema = JSON.stringify({
           </div>
         ))}
       </div>
+
+      <!-- Month-by-month climate normals -->
+      {climate && (
+        <>
+          <h2 class="text-2xl font-bold text-zinc-900 mb-3">{climate.city} Weather Month by Month</h2>
+          <p class="text-zinc-600 leading-relaxed mb-6 text-sm">
+            Thirty-year averages from the Japan Meteorological Agency&rsquo;s {climate.city} observatory,
+            which is the station a Japanese forecast for {region.shortName} refers to. Mountains and
+            coast inside the region will run colder and wetter than the city figure.
+          </p>
+          <ClimateTable mode="city" citySlug={climate.slug} class="mb-12" />
+        </>
+      )}
 
       <!-- Must do -->
       <h2 class="text-2xl font-bold text-zinc-900 mb-6">Must-Do Experiences</h2>

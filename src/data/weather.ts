@@ -1,6 +1,13 @@
 export interface MonthData {
   month: string;
   label: string;
+  /**
+   * Superseded by `climate.ts`. These were single nationwide figures, which is
+   * close to meaningless for a country spanning Sapporo to Naha, so the month,
+   * region and monthly-guide pages now read JMA per-city normals instead.
+   * Kept only because `monthlyData` entries still carry them; don't add new
+   * uses, and don't present them to readers as "Japan's" weather.
+   */
   tempLow: number;
   tempHigh: number;
   rainDays: number;
