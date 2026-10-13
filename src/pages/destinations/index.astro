@@ -1,0 +1,23 @@
+---
+import '../../styles/global.css';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import DestinationDirectory from '../../components/DestinationDirectory.astro';
+import { areaCount, placeCount, updated } from '../../data/directory';
+---
+<BaseLayout title="Japan Destination Directory: All 47 Prefectures & Local Places" description="Explore Japan by region, prefecture, local area and individual attraction. Find places such as Kusasenri and connect to detailed travel guides.">
+  <Nav />
+  <main class="max-w-5xl mx-auto px-4 py-6">
+    <p class="text-sm font-medium text-accent-600 mb-3">Explore Japan · Place directory</p>
+    <h1 class="text-3xl md:text-5xl font-bold tracking-tight mb-4">Find your next place in Japan</h1>
+    <p class="text-zinc-600 mb-5">Region → prefecture → local area → place. Browse all 47 prefectures, {areaCount} areas and {placeCount} place entries. Open an area to see its attractions.</p>
+    <DestinationDirectory />
+    <aside class="border-t border-zinc-200 mt-8 pt-5 text-sm text-zinc-600 space-y-2">
+      <p>This is a growing directory, not a complete inventory of every place in Japan. Areas are tourism groupings and may span several municipalities; some places appear in more than one nearby area.</p>
+      <p>Place names and source links are drawn from <a href="https://www.japan.travel/en/destinations/" class="underline">JNTO</a> and local tourism sources. Directory snapshot: {updated}. “Guide to come” means our detailed article is not available yet.</p>
+      <p>Planning when to go? <a href="/by-region" class="underline">Compare regional travel seasons →</a></p>
+    </aside>
+  </main>
+  <Footer />
+</BaseLayout>

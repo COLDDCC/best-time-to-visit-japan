@@ -15,6 +15,7 @@ import { regionGuides } from "../../data/regions.ts";
       <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">Real Places Worth the Detour</h1>
       <p class="text-lg text-zinc-700 max-w-2xl leading-relaxed mb-16">Cafés, shops, and hidden gems we'd actually route a trip around — ratings, hours, and how to get there, all in one place.</p>
 
+      <a href="/destinations" class="inline-flex text-sm font-semibold text-accent-600 border border-accent-200 rounded-lg px-4 py-3 mb-8">Explore the full Japan place directory →</a>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {spotGuides.map((s) => {
           const parentRegion = regionGuides.find((r) => r.slug === s.region);

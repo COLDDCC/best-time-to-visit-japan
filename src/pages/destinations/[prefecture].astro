@@ -1,0 +1,21 @@
+---
+import '../../styles/global.css';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import DestinationDirectory from '../../components/DestinationDirectory.astro';
+import { prefectures, regions } from '../../data/directory';
+export function getStaticPaths(){return prefectures.map(p=>({params:{prefecture:p.slug},props:{prefecture:p}}));}
+const { prefecture:p }=Astro.props;
+---
+<BaseLayout title={`${p.name} Destination Directory: Local Areas & Attractions`} description={`Explore ${p.name}, Japan by local area and attraction. Browse place names, official tourism sources and available travel guides.`}>
+  <Nav />
+  <main class="max-w-5xl mx-auto px-4 py-6">
+    <p class="text-sm text-zinc-600 mb-3"><a href="/destinations" class="underline">Japan destinations</a> / {regions[p.region]} / {p.name}</p>
+    <h1 class="text-3xl md:text-5xl font-bold tracking-tight mb-4">Explore {p.name}</h1>
+    <p class="text-zinc-600 mb-5">Choose a local area, then an individual place. Detailed guides are linked where available.</p>
+    <DestinationDirectory selected={p.slug} />
+    <p class="text-sm text-zinc-600 mt-8">A growing place directory using tourism area groupings. Source: <a href={p.source} class="underline" target="_blank" rel="noopener noreferrer">JNTO’s {p.name} overview ↗</a>. More places and guides will be added over time.</p>
+  </main>
+  <Footer />
+</BaseLayout>

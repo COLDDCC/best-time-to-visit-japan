@@ -1,0 +1,84 @@
+---
+import { prefectures, regions } from '../data/directory';
+const { selected } = Astro.props;
+const list=selected ? prefectures.filter(p=>p.slug===selected) : prefectures;
+const regionKeys=[...new Set(list.map(p=>p.region))];
+const count=list.reduce((n,p)=>n+p.areas.reduce((n,a)=>n+a.spots.length,0),0);
+---
+<div id="place-directory">
+  <div class="directory-controls">
+    <label>Find a place<input id="place-search" type="search" placeholder="Try Kusasenri, 草千里, Kyoto…" autocomplete="off" /></label>
+    {!selected && <label>Region<select id="place-region"><option value="">All regions</option>{regionKeys.map(r=><option value={r}>{regions[r]}</option>)}</select></label>}
+    <label class="guide-filter"><input id="guide-only" type="checkbox" /> With a guide</label>
+    <button id="clear-directory" type="button">Clear filters</button>
+  </div>
+  <p id="directory-count" class="directory-count" aria-live="polite">{count} place entries · {list.length} prefecture{list.length===1?'':'s'}</p>
+  <p id="directory-empty" hidden>No places match. Try an English place name, a prefecture name, or clear the filters.</p>
+  {regionKeys.map(key=><section class="directory-region" data-region={key}>
+    <h2>{regions[key]}</h2>
+    {list.filter(p=>p.region===key).map(p=><details class="directory-prefecture" open={!!selected}>
+      <summary><span>{p.name} <small>{p.aliases?.split(' ')[0]}</small></span><span class="directory-meta">{p.areas.length} areas · {p.areas.reduce((n,a)=>n+a.spots.length,0)} places</span></summary>
+      <div class="prefecture-body">
+        <div class="directory-source"><a href={p.source} target="_blank" rel="noopener noreferrer">Official {p.name} tourism overview ↗</a>{!selected && <a href={`/destinations/${p.slug}`}>Open {p.name} directory →</a>}</div>
+        {p.areas.map(a=><details class="directory-area">
+          <summary><span>{a.name}</span><span class="directory-meta">{a.spots.length} places</span></summary>
+          <div class="area-body">
+            <a class="area-source" href={a.source} target="_blank" rel="noopener noreferrer">Official area information ↗</a>
+            {a.spots.length ? <ul>{a.spots.map(s=><li class="directory-place" data-search={`${regions[p.region]} ${p.name} ${p.aliases??''} ${a.name} ${a.aliases??''} ${s.name} ${s.aliases??''}`.toLowerCase()} data-guide={s.guide?'yes':'no'}>
+              <div><span class="place-name">{s.name}</span>{s.aliases && <small class="place-alias">{s.aliases.split(' ').slice(0,2).join(' · ')}</small>}</div>
+              <div class="place-links">{s.guide ? <a class="guide-link" href={s.guide}>Read guide →</a> : <span class="pending-guide">Guide to come</span>}<a href={s.source} target="_blank" rel="noopener noreferrer" aria-label={`Official information for ${s.name}`}>Source ↗</a></div>
+            </li>)}</ul> : <p class="area-empty">Individual places for this area are still being added.</p>}
+          </div>
+        </details>)}
+      </div>
+    </details>)}
+  </section>)}
+</div>
+<script>
+  const root=document.getElementById('place-directory');
+  if(root) {
+    const search=root.querySelector<HTMLInputElement>('#place-search')!;
+    const region=root.querySelector<HTMLSelectElement>('#place-region');
+    const guides=root.querySelector<HTMLInputElement>('#guide-only')!;
+    const normalize=(v:string)=>v.normalize('NFKC').toLowerCase().replace(/[’']/g,'');
+    const details=[...root.querySelectorAll<HTMLDetailsElement>('details')];
+    const initial=new Map(details.map(d=>[d,d.open]));
+    function filter() {
+      const terms=normalize(search.value).trim().split(/\s+/).filter(Boolean);
+      const active=terms.length>0 || guides.checked || !!region?.value;
+      let count=0;
+      root!.querySelectorAll<HTMLElement>('.directory-region').forEach(section=> {
+        const regionMatch=!region?.value || section.dataset.region===region.value;
+        section.querySelectorAll<HTMLElement>('.directory-place').forEach(place=>{
+          place.hidden=!(regionMatch && (!guides.checked || place.dataset.guide==='yes') && terms.every(t=>normalize(place.dataset.search??'').includes(t)));
+          if(!place.hidden) count++;
+        });
+        section.querySelectorAll<HTMLDetailsElement>('.directory-area').forEach(a=>{
+          const visible=!!a.querySelector('.directory-place:not([hidden])');
+          a.hidden=active && !visible;
+          a.open=active ? visible : initial.get(a)!;
+        });
+        section.querySelectorAll<HTMLDetailsElement>('.directory-prefecture').forEach(p=>{
+          const visible=!!p.querySelector('.directory-area:not([hidden])');
+          p.hidden=!regionMatch || !visible;
+          p.open=active ? visible : initial.get(p)!;
+        });
+        section.hidden=!regionMatch || !section.querySelector('.directory-prefecture:not([hidden])');
+      });
+      root!.querySelector('#directory-count')!.textContent=`${count} place entries${active?' matching your filters':''}`;
+      (root!.querySelector('#directory-empty') as HTMLElement).hidden=count!==0;
+    }
+    search.addEventListener('input',filter); region?.addEventListener('change',filter); guides.addEventListener('change',filter);
+    root.querySelector('#clear-directory')!.addEventListener('click',()=>{search.value=''; if(region)region.value=''; guides.checked=false; filter(); search.focus();});
+  }
+</script>
+<style>
+  [hidden]{display:none!important} .directory-controls{display:flex;flex-wrap:wrap;gap:1rem;align-items:end;padding:1rem;background:#fafafa;border:1px solid #e4e4e7;border-radius:1rem}
+  label{display:flex;flex-direction:column;gap:.4rem;font-size:.8rem;font-weight:600} label:first-child{flex:1;min-width:220px} input[type=search],select{padding:.7rem .8rem;border:1px solid #d4d4d8;border-radius:.5rem;background:white;font-size:1rem;color:#27272a;width:100%}
+  .guide-filter{flex-direction:row;align-items:center;min-height:44px;gap:.5rem} button{padding:.7rem;font-size:.85rem;text-decoration:underline;cursor:pointer} :is(a,button,input,select,summary):focus-visible{outline:3px solid #2563eb;outline-offset:3px}
+  .directory-count{font-size:.85rem;color:#52525b;margin:1rem 0}.directory-region{margin:1.5rem 0}.directory-region h2{font-size:1.35rem;font-weight:700;margin-bottom:.6rem}.directory-prefecture{border:1px solid #e4e4e7;border-radius:.7rem;margin:.5rem 0;background:white}
+  summary{cursor:pointer;padding:.9rem 1rem;min-height:48px;display:list-item;list-style:disclosure-closed inside} details[open]>summary{list-style-type:disclosure-open} summary>span:first-child{font-weight:600} summary small{font-weight:400;color:#71717a;margin-left:.5rem}
+  .directory-meta{float:right;font-size:.75rem;color:#71717a;line-height:1.8}.prefecture-body{padding:0 1rem 1rem}.directory-source{display:flex;justify-content:space-between;gap:.7rem;flex-wrap:wrap;font-size:.8rem;padding:.5rem 0 1rem;color:#52525b}
+  .directory-area{border-top:1px solid #e4e4e7}.directory-area summary{padding-left:.3rem}.area-body{padding:.2rem .3rem .8rem}.area-source{display:inline-block;font-size:.75rem;color:#52525b;margin-bottom:.5rem}.directory-place{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.7rem 0;border-top:1px solid #f4f4f5}.place-name{font-size:.95rem;font-weight:500}.place-alias{display:block;font-size:.75rem;color:#71717a}.place-links{display:flex;gap:1rem;align-items:center;flex-shrink:0;font-size:.75rem}.guide-link{color:#2563eb;font-weight:600}.pending-guide{color:#71717a}.area-empty{font-size:.85rem;color:#71717a}a:hover{text-decoration:underline}
+  @media(max-width:600px){.directory-meta{float:none;display:block;margin-left:1rem}.directory-place{align-items:flex-start;flex-direction:column;gap:.4rem}.place-links{width:100%;justify-content:space-between}.directory-source{flex-direction:column}.directory-controls{gap:.7rem}label:first-child{min-width:100%}}
+</style>
