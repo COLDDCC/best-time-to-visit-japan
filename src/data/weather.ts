@@ -642,10 +642,10 @@ export const monthlyData: MonthData[] = [
     crowdLevel: 4,
     bestFor: "peak autumn leaves in Kyoto & Tokyo, gardens and crisp clear days",
     image: "/images/month-november.webp",
-    imageAlt: "Bright red maple leaves at Kiyomizu-dera in Kyoto in November",
+    imageAlt: "Kiyomizu-dera temple in Kyoto",
     highlights: [
-      "Peak koyo in Kyoto, Nara & Nikko",
-      "Dry, crisp, brilliant weather",
+      "Autumn gardens in Kyoto and Nara; check local color reports",
+      "Cool city sightseeing, with regional weather differences",
       "Cultural festivals & illumination events",
     ],
     downsides: [
@@ -657,7 +657,7 @@ export const monthlyData: MonthData[] = [
     bestRegionSlugs: ["kyoto", "tokyo", "nara"],
     spotlight: {
       title: "Kyoto's koyo peak, temple by temple",
-      text: "November is autumn's climax. The maples peak at Kiyomizu-dera, Kinkaku-ji and the gardens of Kyoto, with Nikko and Nara not far behind, all under dry, brilliant blue skies. Expect company at every famous viewpoint — go at first light to earn the empty postcard shot.",
+      text: "November is a popular month for Kyoto’s autumn gardens. Color timing varies by location, elevation and year, so check local foliage reports. Allow for crowds at famous sites and keep plans flexible for rain.",
     },
     whySpecial: `<h3>Autumn color needs a local plan</h3>
 <p>November is a popular time for autumn gardens in Kyoto, Nara and Tokyo. Timing varies with location, elevation and the weather that year: northern and high-elevation places can turn earlier. Check local foliage reports rather than assuming the same dates work everywhere.</p>
@@ -666,8 +666,8 @@ export const monthlyData: MonthData[] = [
 <h3>Photography and sightseeing</h3>
 <p>Check each garden’s actual opening hours and any booking rules. Popular foliage sites can be busy; allow extra time rather than relying on a fixed queue estimate.</p>`,
     events: [
-      "Peak koyo in Kyoto, Nikko, Nara & the Fuji Five Lakes",
-      "Autumn illuminations at Kiyomizu-dera & Shofuku-ji",
+      "Autumn foliage viewing; timing varies by destination and year",
+      "Seasonal temple illuminations; check each organizer’s current program",
       "Nara's deer park in golden light — seasonal food stalls arrive",
       "Chrysanthemum (kiku) displays in Tokyo and across Japan",
     ],
@@ -681,7 +681,7 @@ export const monthlyData: MonthData[] = [
       "Nikko — the final, most dramatic koyo of the main season",
     ],
     budgetNote: "November prices approach spring levels in Kyoto but stay moderate elsewhere. Early November (before the 15th) is cheaper than the peak color window — a smart trade for value travelers.",
-    localTip: "Kiyomizu-dera's night illuminations are the season's highlight — go on a weekday evening when queues shrink. The best empty shot of the year is Rurikoin's maple window at 8 AM opening.",
+    localTip: "Check official opening times, reservation requirements and current foliage reports before choosing a temple visit. Evening illumination dates and admission arrangements vary by venue and year.",
     packing: "Warm layers, jacket, scarf, comfortable walking shoes",
   },
   {
