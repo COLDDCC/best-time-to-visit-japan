@@ -140,7 +140,7 @@ const monthSpotlight = monthSpotlights[month.month];
     <Nav />
     <div class="max-w-4xl mx-auto px-4 py-8">
       <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">Month Guide</p>
-      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">{title}</h1>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none break-words">{title}</h1>
       <p class="text-lg text-zinc-700 leading-relaxed mb-8">{month.label} in a nutshell &mdash; the weather, the crowds, and where to go. Then dig into the details below.</p>
 
       <img src={month.image} alt={month.imageAlt} width={heroW} height={heroH} loading="lazy" decoding="async" class="w-full h-auto rounded-2xl shadow-sm border border-zinc-100 mb-12" />

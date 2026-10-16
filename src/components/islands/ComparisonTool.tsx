@@ -78,7 +78,7 @@ export default function ComparisonTool() {
         </button>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
         <select
           value={a}
           onChange={(e) => setA(e.target.value)}
@@ -95,7 +95,7 @@ export default function ComparisonTool() {
         </select>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
         <div className="bg-zinc-50 rounded-xl p-5 border border-zinc-200">
           <p className="text-sm font-bold text-zinc-800 mb-3">{itemA.label}</p>
           {mode === "months" && (
