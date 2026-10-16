@@ -8,6 +8,8 @@ import { regionGuides } from "../../data/regions.ts";
 import Icon from "../../components/Icon.astro";
 import Callout from "../../components/Callout.astro";
 import AffiliateCTA from "../../components/AffiliateCTA.astro";
+import LateYearWeather from "../../components/LateYearWeather.astro";
+import { lateYearGuides } from "../../data/late-year-weather";
 import CurrentWeather from "../../components/CurrentWeather.astro";
 
 export function getStaticPaths() {
@@ -43,14 +45,16 @@ const seasonMap: Record<string, string> = {
 };
 const season = seasonMap[month.month] ?? "";
 
-const title = `Japan Weather in ${month.label} ${currentYear}: Season, Crowds & Where to Go`;
-const meta = `${month.label} in Japan: ${month.tempLow}°C to ${month.tempHigh}°C, ${month.rainDays} rain days, crowds ${month.crowdLevel}/5. Best for ${month.bestFor}.`;
-const desc = `${month.label} is best for ${month.bestFor}. Average ${month.tempLow}°C to ${month.tempHigh}°C, ${month.rainDays} rainy days, crowd level ${month.crowdLevel}/5. Our guide covers the best regions, highlights, packing and what to avoid.`;
+const seasonalGuide = month.month === "november" ? lateYearGuides.november : month.month === "december" ? lateYearGuides.december : null;
+const title = seasonalGuide ? `Japan Weather in ${month.label}: Temperatures, ${month.month === "november" ? "Rain" : "Snow"} & What to Wear` : `Japan Weather in ${month.label} ${currentYear}: Season, Crowds & Where to Go`;
+const meta = seasonalGuide ? `Japan weather in ${month.label}: compare city temperatures and precipitation, learn what to expect from ${month.month === "november" ? "rain" : "snow"}, and plan what to wear.` : `${month.label} in Japan: ${month.tempLow}°C to ${month.tempHigh}°C, ${month.rainDays} rain days, crowds ${month.crowdLevel}/5. Best for ${month.bestFor}.`;
+
 
 const monthFaqs = [
+  ...(seasonalGuide ? [{ q: month.month === "november" ? "Is Japan rainy in November?" : "Does it snow in Japan in December?", a: seasonalGuide.answer }, { q: `What should I wear in Japan in ${month.label}?`, a: seasonalGuide.packing }] : []),
   {
     q: `What is the weather like in Japan in ${month.label}?`,
-    a: `In ${month.label}, Japan averages ${month.tempLow}°C to ${month.tempHigh}°C with about ${month.rainDays} rainy days. It's best for ${month.bestFor}.`,
+    a: seasonalGuide ? seasonalGuide.answer : `In ${month.label}, Japan averages ${month.tempLow}°C to ${month.tempHigh}°C with about ${month.rainDays} rainy days. It's best for ${month.bestFor}.`,
   },
   {
     q: `What season is Japan in ${month.label}?`,
@@ -69,8 +73,7 @@ const articleSchema = JSON.stringify({
   "description": meta,
   "author": { "@type": "Organization", "name": "When to Visit Japan", "url": "https://best-time-japan.com/about" },
   "publisher": { "@type": "Organization", "name": "When to Visit Japan", "logo": { "@type": "ImageObject", "url": "https://best-time-japan.com/favicon.svg" } },
-  "datePublished": `${currentYear}-01-15`,
-  "dateModified": `${currentYear}-07-31`,
+  ...(seasonalGuide && { "dateModified": "2026-10-15" }),
   "mainEntityOfPage": { "@type": "WebPage", "@id": canonical },
 });
 
@@ -122,7 +125,7 @@ const monthSpotlights: Record<string, { title: string; bullets: string[] }> = {
       "Maples turn brilliant red; crowds rival cherry-blossom season",
       "Book Kyoto accommodations by August for November stays",
       "Pack: Medium layers (8-18°C), waterproof jacket",
-      "Best times: Nov 1-15 for Hokkaido; Nov 15-30 for Kyoto",
+      "Foliage timing varies by location and year; check local reports before booking",
     ],
   },
 };
@@ -141,6 +144,8 @@ const monthSpotlight = monthSpotlights[month.month];
       <p class="text-lg text-zinc-700 leading-relaxed mb-8">{month.label} in a nutshell &mdash; the weather, the crowds, and where to go. Then dig into the details below.</p>
 
       <img src={month.image} alt={month.imageAlt} width={heroW} height={heroH} loading="lazy" decoding="async" class="w-full h-auto rounded-2xl shadow-sm border border-zinc-100 mb-12" />
+
+      {seasonalGuide && <LateYearWeather month={month.month} />}
 
       <!-- Live current weather -->
       <CurrentWeather />
@@ -172,7 +177,7 @@ const monthSpotlight = monthSpotlights[month.month];
       </div>
 
       <!-- Quick answer box -->
-      <Callout eyebrow="The Short Answer" tone="red" class="mb-12">
+      {!seasonalGuide && <><Callout eyebrow="The Short Answer" tone="red" class="mb-12">
         <p class="text-lg leading-relaxed">In {month.label}, Japan&rsquo;s temperatures average <strong class="text-accent-700">{month.tempLow}&deg;C to {month.tempHigh}&deg;C</strong>, with about {month.rainDays} rainy days and a crowd level of <strong class="text-accent-700">{month.crowdLevel}/5</strong>. It&rsquo;s best for <strong class="text-accent-700">{month.bestFor}</strong>.</p>
       </Callout>
 
@@ -191,6 +196,8 @@ const monthSpotlight = monthSpotlights[month.month];
           <p class={`text-2xl font-bold ${month.crowdLevel <= 2 ? 'text-emerald-600' : month.crowdLevel <= 3 ? 'text-amber-600' : 'text-red-600'}`}>{month.crowdLevel}/5</p>
         </div>
       </div>
+
+      </>}
 
       <!-- Best regions -->
       <h2 class="text-3xl font-bold text-zinc-900 mb-6 mt-14">Where to Go in {month.label}</h2>
@@ -256,7 +263,7 @@ const monthSpotlight = monthSpotlights[month.month];
 
       <!-- Packing -->
       <Callout eyebrow="What to Pack" tone="red" class="mb-12">
-        <p class="text-lg leading-relaxed">{month.packing}</p>
+        <p class="text-lg leading-relaxed">{seasonalGuide ? seasonalGuide.packing : month.packing}</p>
       </Callout>
 
       <!-- Where to base yourself -->

@@ -659,22 +659,12 @@ export const monthlyData: MonthData[] = [
       title: "Kyoto's koyo peak, temple by temple",
       text: "November is autumn's climax. The maples peak at Kiyomizu-dera, Kinkaku-ji and the gardens of Kyoto, with Nikko and Nara not far behind, all under dry, brilliant blue skies. Expect company at every famous viewpoint — go at first light to earn the empty postcard shot.",
     },
-    whySpecial: `<h3>Kyoto's koyo peak — and the queues that come with it</h3>
-<p>November is Kyoto's second peak season, second only to April's sakura. Eikando, Tofuku-ji and the temple commonly anglicized as Reiun-in ("the maple temple") draw lines that reach 1-2 hours at weekend midday, and the peak color window — roughly November 10 to December 5 — packs every famous viewpoint. The workarounds are reliable: go on a Tuesday-Thursday (about 50% thinner than weekends), arrive at opening, and save the night illuminations — Kiyomizu-dera and Shofuku-ji — for weekday evenings when queues shrink after dark.</p>
-<h3>Photography weather</h3>
-<p>November has Japan's best photographic conditions of the year: 8 rain days on average, crisp 7-15°C air, and low, golden sun that rakes across temple gardens. The classic empty shot — a famous maple frame with no one in it — is genuinely achievable before 8 AM. Rurikoin's famous round window needs the 8 AM opening queue. For a quieter alternative to Kyoto's circuit, Nara's Todai-ji and deer park light up gold with a fraction of the footfall.</p>
-<h3>Photo opportunities</h3>
-<ul>
-<li>Maples at first light against still-dry stone — Kiyomizu-dera's hillside at 7 AM.</li>
-<li>The round-window view at Rurikoin, in the 8 AM opening group.</li>
-<li>Nara's deer and golden leaves in late-afternoon side light.</li>
-</ul>
-<h3>Local tips</h3>
-<ul>
-<li>Tuesday-Thursday travel cuts temple queues by half — worth moving your itinerary.</li>
-<li>Kinkaku-ji and Eikando shine in the afternoon light; Tofuku-ji in the morning.</li>
-<li>Early November (before the 15th) is quieter and cheaper — still beautiful, less packed.</li>
-</ul>`,
+    whySpecial: `<h3>Autumn color needs a local plan</h3>
+<p>November is a popular time for autumn gardens in Kyoto, Nara and Tokyo. Timing varies with location, elevation and the weather that year: northern and high-elevation places can turn earlier. Check local foliage reports rather than assuming the same dates work everywhere.</p>
+<h3>Plan outdoor visits around the weather</h3>
+<p>Tokyo and Osaka are relatively dry compared with October, but rain remains possible and the Sea of Japan coast is wetter. Keep an indoor alternative for a wet day and warm layers for evening walks.</p>
+<h3>Photography and sightseeing</h3>
+<p>Check each garden’s actual opening hours and any booking rules. Popular foliage sites can be busy; allow extra time rather than relying on a fixed queue estimate.</p>`,
     events: [
       "Peak koyo in Kyoto, Nikko, Nara & the Fuji Five Lakes",
       "Autumn illuminations at Kiyomizu-dera & Shofuku-ji",
@@ -720,22 +710,12 @@ export const monthlyData: MonthData[] = [
       title: "Illuminations, Christmas lights and a countdown to Shogatsu",
       text: "December is Japan's most atmospheric month. Cities dress up in winter illuminations — Tokyo's Shibuya and Roppongi, Osaka's Midosuji — and Christmas markets bring mulled wine to the streets. It is also the calm before Shogatsu: book early for New Year, and expect many shops to close from December 28 through January 3.",
     },
-    whySpecial: `<h3>Illuminations — the earlier the brighter</h3>
-<p>December's signature is the winter illumination, and there's a pro trick: the displays are brightest in early December. From Christmas onward, many run on reduced power and switch off early — the Roppongi Hills and Shibuya Blue Cave displays are at full strength the first two weeks of the month. Osaka's Midosuji runs its grand avenue of lights through year-end, and the Christmas markets at Hibiya Park in Tokyo and Umeda in Osaka give the season its European-accented centerpiece.</p>
-<h3>Ski season starts, before the crowds</h3>
-<p>December is when Honshu's ski season opens — Niseko has been going since late November, but Hakuba, Nozawa Onsen and Shiga Kogen come online in mid-December with softer prices and thinner runs than February. It's also the best-value month of winter: hotel rates stay at annual lows until the December 24-25 spike, and onsen towns like Ginzan and Kusatsu are at their coziest under snow.</p>
-<h3>Photo opportunities</h3>
-<ul>
-<li>Illumination light trails at night — use a small tripod for 1-2 second exposures.</li>
-<li>Snow-dusted shrine roofs at first light, before melt.</li>
-<li>Christmas market stalls with warm bokeh in late afternoon.</li>
-</ul>
-<h3>Local tips</h3>
-<ul>
-<li>Many shops and restaurants close Dec 28-Jan 3 — stock up and reserve before New Year.</li>
-<li>Christmas (Dec 25) is a commercial, not religious, holiday — KFC and cake, not church.</li>
-<li>New Year week is Japan's annual travel peak — book trains and hotels months out if you'll be there.</li>
-</ul>`,
+    whySpecial: `<h3>City evenings and winter lights</h3>
+<p>Winter illuminations are one reason to visit in December. Check the organizer’s current dates, location and opening times before planning your evening; programs differ from year to year. Bring warmer layers for standing outdoors.</p>
+<h3>Snow-country trips require current reports</h3>
+<p>December can offer winter scenery in northern and mountainous Japan, but resort openings and snow cover depend on conditions. Verify open lifts, transport and accommodation before building a trip around skiing or snow-viewing baths.</p>
+<h3>Plan for the year end</h3>
+<p>Opening hours and transport demand can change around New Year. Confirm each attraction, restaurant and long-distance journey individually rather than assuming a single closure period applies everywhere.</p>`,
     events: [
       "Winter illuminations — Shibuya, Roppongi, Caretta Shiodome in Tokyo",
       "Christmas markets — Hibiya Park in Tokyo, Midosuji in Osaka",

@@ -48,7 +48,7 @@ const articleSchema = JSON.stringify({
       )}
 
       <div class="post-content text-zinc-700 leading-relaxed">
-        <Content />
+        <div class="table-scroll"><Content /></div>
       </div>
 
       {post.data.tags.length > 0 && (
@@ -99,4 +99,11 @@ const articleSchema = JSON.stringify({
     color: var(--color-accent-600, #dc2626);
     text-decoration: underline;
   }
+</style>
+
+<style>
+  .post-content :global(.table-scroll) { overflow-x: auto; }
+  .post-content :global(table) { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: .9rem; }
+  .post-content :global(th), .post-content :global(td) { padding: .75rem; border-bottom: 1px solid #d4d4d8; text-align: left; vertical-align: top; }
+  .post-content :global(th) { background: #f4f4f5; font-weight: 600; }
 </style>

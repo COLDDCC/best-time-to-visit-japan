@@ -1,0 +1,26 @@
+---
+import { lateYearCities, lateYearGuides, climateSource } from "../data/late-year-weather";
+const { month } = Astro.props as { month: "november" | "december" };
+const guide = lateYearGuides[month];
+const label = month === "november" ? "November" : "December";
+---
+<section class="mb-12 rounded-2xl border border-zinc-200 bg-zinc-50 p-5 md:p-8" aria-labelledby="weather-answer">
+  <p class="text-sm font-semibold uppercase tracking-wide text-accent-600 mb-3">Weather at a glance</p>
+  <h2 id="weather-answer" class="text-2xl font-bold mb-4">What is Japan’s weather like in {label}?</h2>
+  <p class="leading-relaxed mb-6">{guide.answer}</p>
+  <h3 class="text-xl font-bold mb-3">{label} temperatures and precipitation by city</h3>
+  <div class="overflow-x-auto mb-4">
+    <table class="w-full text-sm text-left border-collapse">
+      <caption class="text-left text-zinc-600 mb-3">1991–2020 climate averages; temperatures in °C</caption>
+      <thead><tr>{["City / station", "Average high", "Average low", "Precipitation (mm)"].map(h => <th scope="col" class="p-3 border-b border-zinc-300 whitespace-nowrap">{h}</th>)}</tr></thead>
+      <tbody>{lateYearCities.map(city => <tr><th scope="row" class="p-3 border-b border-zinc-200">{city.name}</th>{city[month].map(value => <td class="p-3 border-b border-zinc-200">{value.toFixed(1)}</td>)}</tr>)}</tbody>
+    </table>
+  </div>
+  <p class="text-sm text-zinc-600 mb-6">Source: <a href={climateSource} class="underline">Japan Meteorological Agency</a>, 1991–2020 normals. Precipitation includes rain and melted snow; it is not a rainy-day count. These averages are not a forecast for your travel dates. Kyoto needs its own station data and should not be treated as identical to Osaka.</p>
+  <h3 class="text-xl font-bold mb-3">Early, mid and late {label}</h3>
+  <ul class="list-disc pl-5 space-y-3 mb-6">{guide.timing.map(item => <li>{item}</li>)}</ul>
+  <h3 class="text-xl font-bold mb-3">What to wear and pack</h3>
+  <p class="leading-relaxed mb-6">{guide.packing}</p>
+  <div class="flex flex-wrap gap-3">{guide.links.map(([slug, text]) => <a href={`/blog/${slug}`} class="rounded-lg border border-zinc-300 bg-white px-4 py-3 text-accent-600 font-medium underline">{text}</a>)}</div>
+  <p class="mt-5 text-sm">Comparing months? Read the <a href={`/month/${month === "november" ? "december" : "november"}`} class="underline">{month === "november" ? "December" : "November"} weather guide</a>.</p>
+</section>
