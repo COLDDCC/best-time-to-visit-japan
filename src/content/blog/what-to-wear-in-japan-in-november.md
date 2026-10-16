@@ -59,3 +59,7 @@ Choose shoes that are easy to remove for places that require it. Carry a small b
 ## Sources and how to use these figures
 
 Weather figures use [Japan Meteorological Agency climate normals for 1991–2020](https://www.data.jma.go.jp/stats/en/normal/normal.html). They describe long-term conditions at individual stations, not the forecast for your holiday. Precipitation includes rain and melted snow; monthly totals do not tell you how many days will be wet. Check the [JMA forecast](https://www.jma.go.jp/bosai/forecast/) near departure and again during your trip.
+
+## Choosing your travel dates
+
+Compare [Japan in November vs December](/blog/japan-in-november-vs-december), or use our [late-November to early-December guide](/blog/japan-weather-late-november-early-december) for a trip spanning both months.
