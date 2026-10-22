@@ -145,6 +145,18 @@ const monthSpotlight = monthSpotlights[month.month];
 
       <img src={month.image} alt={month.imageAlt} width={heroW} height={heroH} loading="lazy" decoding="async" class="w-full h-auto rounded-2xl shadow-sm border border-zinc-100 mb-12" />
 
+      {seasonalGuide && (
+        <nav aria-label={`${month.label} travel guides`} class="mb-8 rounded-2xl border border-zinc-200 bg-zinc-50 p-4 md:p-5">
+          <p class="text-sm font-bold text-zinc-900 mb-3">Plan your {month.label} trip</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <a class="rounded-lg bg-white border border-zinc-200 px-4 py-3 text-sm font-semibold text-accent-700 hover:border-accent-300" href={`/blog/what-to-wear-in-japan-in-${month.month}`}>What to wear &amp; pack →</a>
+            <a class="rounded-lg bg-white border border-zinc-200 px-4 py-3 text-sm font-semibold text-accent-700 hover:border-accent-300" href={month.month === "november" ? "/blog/is-japan-rainy-in-november" : "/blog/does-it-snow-in-japan-in-december"}>{month.month === "november" ? "Does it rain in November?" : "Where does it snow in December?"} →</a>
+            <a class="rounded-lg bg-white border border-zinc-200 px-4 py-3 text-sm font-semibold text-accent-700 hover:border-accent-300" href="/blog/japan-in-november-vs-december">November vs December →</a>
+            <a class="rounded-lg bg-white border border-zinc-200 px-4 py-3 text-sm font-semibold text-accent-700 hover:border-accent-300" href="/blog/japan-weather-late-november-early-december">Traveling between both months? →</a>
+          </div>
+        </nav>
+      )}
+
       {seasonalGuide && <LateYearWeather month={month.month} />}
 
       <!-- Live current weather -->
