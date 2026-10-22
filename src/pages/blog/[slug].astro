@@ -39,18 +39,18 @@ const articleSchema = JSON.stringify({
     <Nav />
     <article class="max-w-3xl mx-auto px-4 py-6">
       <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">Blog</p>
-      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none">{post.data.title}</h1>
-      <p class="text-sm text-zinc-600 mb-10">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 mb-4 leading-tight break-words">{post.data.title}</h1>
+      <p class="text-sm text-zinc-600 mb-5">
         Published {dateFormatter.format(post.data.pubDate)} · {readingTime} min read
         {post.data.updatedDate && <> · Updated {dateFormatter.format(post.data.updatedDate)}</>}
       </p>
 
       {post.data.image && (
-        <img src={post.data.image} alt={post.data.imageAlt ?? post.data.title} loading="eager" decoding="async" class="w-full h-56 md:h-72 object-cover rounded-2xl mb-12" />
+        <img src={post.data.image} alt={post.data.imageAlt ?? post.data.title} loading="eager" decoding="async" class="w-full h-44 sm:h-56 md:h-64 object-cover rounded-2xl mb-6" />
       )}
 
       <div class="post-content text-zinc-700 leading-relaxed">
-        <div class="table-scroll"><Content /></div>
+        <div <Content />
       </div>
 
       {post.data.tags.length > 0 && (
@@ -104,8 +104,8 @@ const articleSchema = JSON.stringify({
 </style>
 
 <style>
-  .post-content :global(.table-scroll) { overflow-x: auto; }
+  .post-content :global(table) { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
   .post-content :global(table) { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: .9rem; }
-  .post-content :global(th), .post-content :global(td) { padding: .75rem; border-bottom: 1px solid #d4d4d8; text-align: left; vertical-align: top; }
+  .post-content :global(th), .post-content :global(td) { padding: .65rem; min-width: 6rem; border-bottom: 1px solid #d4d4d8; text-align: left; vertical-align: top; }
   .post-content :global(th) { background: #f4f4f5; font-weight: 600; }
 </style>
