@@ -2,12 +2,27 @@
 title: "Japan in November vs December: Weather, Autumn Leaves & Snow"
 description: "Compare November and December in Japan by city temperatures, rainfall, autumn leaves, snow and clothing to choose the right month for your trip."
 pubDate: 2026-10-15
+updatedDate: 2026-10-22
 tags: ["weather", "november", "december", "planning"]
 ---
 
 **Choose November if your priority is milder city sightseeing and autumn gardens. Choose December if you prefer winter illuminations or a trip focused on northern or mountain snow destinations, while checking current snow conditions.** For Tokyo and Osaka, December is colder and has lower average precipitation. Neither month has one weather pattern across the whole country.
 
 If your trip crosses both months, use our [late-November to early-December guide](/blog/japan-weather-late-november-early-december).
+
+## November vs December in Japan: decide in 30 seconds
+
+| If you care most about… | Better starting choice | Why |
+|---|---|---|
+| Comfortable walking in Tokyo or Osaka | **November** | Both cities have milder average temperatures |
+| Lower monthly precipitation in Tokyo or Osaka | **December** | Tokyo: 57.9 vs 96.3 mm; Osaka: 55.5 vs 72.5 mm |
+| Autumn leaves in central Japan | **November** | Generally a more suitable planning window; check local foliage reports |
+| Winter illuminations | **December** | More winter-focused events; confirm specific dates |
+| Snow-country trip | **December**, conditionally | Better seasonal fit, but snowfall and resort opening are not guaranteed |
+| Okinawa warmth | **November** | Naha averages are warmer than in December |
+
+**Our pick for a first-time city trip:** November for comfortable outdoor days; December for a colder winter atmosphere. For both months, choose destinations before relying on national averages.
+
 
 ## November or December: a quick comparison
 
