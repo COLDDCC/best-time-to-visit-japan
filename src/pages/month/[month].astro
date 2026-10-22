@@ -140,13 +140,13 @@ const monthSpotlight = monthSpotlights[month.month];
     <Nav />
     <div class="max-w-4xl mx-auto px-4 py-8">
       <p class="text-sm font-medium tracking-wide text-accent-600 uppercase mb-4">Month Guide</p>
-      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-4 leading-none break-words">{title}</h1>
-      <p class="text-lg text-zinc-700 leading-relaxed mb-8">{month.label} in a nutshell &mdash; the weather, the crowds, and where to go. Then dig into the details below.</p>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 mb-3 leading-tight break-words">{title}</h1>
+      <p class="text-base md:text-lg text-zinc-700 leading-relaxed mb-5">{month.label} in a nutshell &mdash; the weather, the crowds, and where to go. Then dig into the details below.</p>
 
-      <img src={month.image} alt={month.imageAlt} width={heroW} height={heroH} loading="lazy" decoding="async" class="w-full h-auto rounded-2xl shadow-sm border border-zinc-100 mb-12" />
+      <img src={month.image} alt={month.imageAlt} width={heroW} height={heroH} loading="eager" fetchpriority="high" decoding="async" class="w-full h-44 sm:h-64 md:h-80 object-cover rounded-2xl shadow-sm border border-zinc-100 mb-6" />
 
       {seasonalGuide && (
-        <nav aria-label={`${month.label} travel guides`} class="mb-8 rounded-2xl border border-zinc-200 bg-zinc-50 p-4 md:p-5">
+        <nav aria-label={`${month.label} travel guides`} class="mb-6 rounded-2xl border border-zinc-200 bg-zinc-50 p-4 md:p-5">
           <p class="text-sm font-bold text-zinc-900 mb-3">Plan your {month.label} trip</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
             <a class="rounded-lg bg-white border border-zinc-200 px-4 py-3 text-sm font-semibold text-accent-700 hover:border-accent-300" href={`/blog/what-to-wear-in-japan-in-${month.month}`}>What to wear &amp; pack →</a>
