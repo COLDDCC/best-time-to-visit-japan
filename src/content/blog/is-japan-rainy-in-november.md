@@ -8,21 +8,21 @@ tags: ["weather", "november", "rain"]
 
 **November is relatively dry in Tokyo and Osaka compared with September and October, but it is not dry everywhere in Japan.** The Sea of Japan coast can be much wetter. Pack for your destinations, rather than relying on one national rainfall average.
 
-## November rain at a glance
+## November rain: the answer by city
 
-| Your question | Quick answer |
-|---|---|
-| Is November Japan's rainy season? | No. The main early-summer rainy season is over, but rain is still possible. |
-| Is Tokyo rainy in November? | It is much drier than October on average: 96.3 mm versus 234.8 mm of monthly precipitation. |
-| Is Osaka rainy in November? | November averages 72.5 mm of precipitation, compared with 136.0 mm in October. |
-| Where is it wetter? | Niigata on the Sea of Japan coast averages 203.5 mm in November. |
-| Should I pack an umbrella? | Yes, a small umbrella is sensible for city trips; bring waterproof layers for exposed routes. |
+| City | Average November precipitation | What it means for your trip |
+|---|---:|---|
+| Osaka | **72.5 mm** | Relatively dry compared with October; keep a compact umbrella |
+| Tokyo | **96.3 mm** | Often suitable for outdoor sightseeing, with occasional wet days |
+| Sapporo | **113.8 mm** | Colder; some precipitation may fall as snow |
+| Naha, Okinawa | **119.1 mm** | Warmer, but rain remains possible |
+| Niigata | **203.5 mm** | Wetter Sea of Japan coast; plan indoor alternatives |
 
-**Bottom line:** November is a good month for outdoor sightseeing in Tokyo and Osaka if you are prepared for occasional rain. It is not uniformly dry across Japan, and historical averages cannot predict your travel dates.
+**Quick decision:** For a Tokyo–Kyoto–Osaka trip, November is generally a reasonable choice for outdoor sightseeing. Rain is possible, so pack a small umbrella and keep one indoor backup. Kyoto has its own climate observations; Osaka's figure is not a Kyoto measurement.
 
-*Figures are Japan Meteorological Agency 1991–2020 station normals, not a November 2026 forecast. Precipitation includes melted snow.*
+*Source: [JMA 1991–2020 climate normals](https://www.data.jma.go.jp/stats/en/normal/normal.html). These are monthly precipitation totals, not the number of rainy days or a forecast for your dates. In colder regions, precipitation includes melted snow.*
 
-For temperatures, clothing and a broader trip overview, start with our [Japan weather in November guide](/month/november).
+**Is November Japan's rainy season?** No—the main early-summer rainy season has ended. For detailed clothing advice, see [what to wear in Japan in November](/blog/what-to-wear-in-japan-in-november).
 
 ## Is November Japan’s rainy season?
 
