@@ -2,12 +2,34 @@
 title: "What to Wear in Japan in December: Cities, Snow & Packing"
 description: "A December Japan packing guide for Tokyo, Kyoto, Osaka, Hokkaido and Okinawa, with separate checklists for city sightseeing and snow-country trips."
 pubDate: 2026-10-15
+updatedDate: 2026-10-22
 tags: ["packing", "weather", "december"]
 ---
 
 **For Tokyo, Kyoto and Osaka in December, plan a warm coat, sweater, long trousers and comfortable closed shoes. For Hokkaido or snow-country travel, add winter footwear, gloves, a hat and warmer layers. Okinawa requires a much lighter approach.**
 
 Start with the [December weather guide](/month/december) to understand the differences along your route.
+
+## December packing: choose your destination
+
+| Destination | Typical December high / low | What to wear |
+|---|---|---|
+| Tokyo | 12.0°C / 3.8°C | Warm coat, sweater, long trousers, closed walking shoes |
+| Osaka | 12.3°C / 5.3°C | Warm coat and removable layers; scarf for colder evenings |
+| Sapporo | 2.0°C / −4.0°C | Insulated coat, gloves, hat, warm layers and suitable winter footwear |
+| Naha, Okinawa | 21.5°C / 16.8°C | Lighter layers and a jacket for wind or evenings |
+
+*JMA 1991–2020 station normals. These are average daily highs and lows, not a forecast. Check Kyoto and other destinations separately.*
+
+### Quick December packing checklist
+
+- [ ] Warm outer coat for Tokyo, Kyoto or Osaka
+- [ ] Long sleeves, sweater and long trousers
+- [ ] Comfortable shoes suitable for the local forecast
+- [ ] Scarf and optional gloves for outdoor evenings
+- [ ] Waterproof winter footwear and insulating accessories for snow country
+- [ ] Lightweight alternatives for Okinawa
+
 
 ## How cold is Japan in December?
 
