@@ -28,10 +28,12 @@ const articleSchema = JSON.stringify({
   datePublished: post.data.pubDate.toISOString(),
   ...(post.data.updatedDate && { dateModified: post.data.updatedDate.toISOString() }),
   author: { "@type": "Organization", name: "When to Visit Japan" },
+  mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).href,
+  ...(post.data.image && { image: new URL(post.data.image, Astro.site).href }),
 });
 ---
 
-<BaseLayout title={`${post.data.title} | When to Visit Japan Blog`} description={post.data.description}>
+<BaseLayout title={`${post.data.title} | When to Visit Japan`} description={post.data.description} ogImage={post.data.image}>
   <script type="application/ld+json" set:html={articleSchema} />
   <section class="min-h-[100dvh]">
     <Nav />
