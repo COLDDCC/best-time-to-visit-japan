@@ -29,7 +29,7 @@ const ogImageSizes: Record<string, [number, number]> = {
 };
 const [ogW, ogH] = ogImageSizes[ogImage] ?? [1200, 630];
 let canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
-if (canonicalURL.endsWith("/")) canonicalURL = canonicalURL.slice(0, -1);
+if (canonicalURL.endsWith("/") && Astro.url.pathname !== "/") canonicalURL = canonicalURL.slice(0, -1);
 
 // BreadcrumbList - only for subpages
 const pageLabels: Record<string, string> = {
