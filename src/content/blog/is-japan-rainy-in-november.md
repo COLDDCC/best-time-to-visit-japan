@@ -3,6 +3,8 @@ title: "Is Japan Rainy in November? Rainfall by City & What to Expect"
 description: "Is November rainy in Japan? Compare rainfall in Tokyo, Osaka, Sapporo, Niigata and Okinawa, plus packing advice and rainy-day planning."
 pubDate: 2026-10-15
 updatedDate: 2026-10-22
+image: "/images/month-october.webp"
+imageAlt: "Vivid red, gold and green Japanese maple leaves on a stone surface"
 tags: ["weather", "november", "rain"]
 ---
 
@@ -34,11 +36,6 @@ tags: ["weather", "november", "rain"]
 *Source: [JMA 1991–2020 climate normals](https://www.data.jma.go.jp/stats/en/normal/normal.html). These are monthly precipitation totals, not the number of rainy days or a forecast for your dates. In colder regions, precipitation includes melted snow.*
 
 **Is November Japan's rainy season?** No—the main early-summer rainy season has ended. For detailed clothing advice, see [what to wear in Japan in November](/blog/what-to-wear-in-japan-in-november).
-
-<figure>
-  <img src="/images/month-october.webp" alt="Red, yellow and green maple leaves scattered across a stone surface" width="1280" height="960" loading="lazy" decoding="async" />
-  <figcaption>Autumn travel inspiration: keep garden and foliage walks flexible around the local forecast. This illustrative photo does not show conditions for your travel dates.</figcaption>
-</figure>
 
 ## Is November Japan’s rainy season?
 
