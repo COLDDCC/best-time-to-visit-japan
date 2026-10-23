@@ -8,7 +8,7 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://best-time-japan.com",
   trailingSlash: "never",
-  i18n: { defaultLocale: "en", locales: ["en", "ja"], routing: { prefixDefaultLocale: false } },
+  i18n: { defaultLocale: "en", locales: ["en", "ja", "zh-cn"], routing: { prefixDefaultLocale: false } },
   integrations: [react(), sitemap({
     filter: (page) => !page.includes("/404"),
   })],

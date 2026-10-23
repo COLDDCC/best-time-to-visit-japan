@@ -1,0 +1,7 @@
+---
+import ChineseGuide from '../../../components/ChineseGuide.astro';
+import { regionsZh } from '../../../i18n/zh-cn';
+export function getStaticPaths(){return regionsZh.map(r=>({params:{slug:r.slug}}))}
+const {slug}=Astro.params;
+---
+<ChineseGuide kind="region" slug={slug} />

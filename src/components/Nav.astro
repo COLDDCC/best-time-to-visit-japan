@@ -1,9 +1,10 @@
 ---
-import { japanesePath } from "../i18n/ja";
-const isJa = /^\/ja(?:\/|$)/.test(Astro.url.pathname);
-const enPath = isJa ? (Astro.url.pathname.replace(/^\/ja/, "") || "/") : Astro.url.pathname;
-const jaPath = japanesePath(enPath);
-const navItems = isJa ? [
+import { routeLocale, localeLinks } from '../i18n/routing';
+const {lang,prefix,englishPath:enPath}=routeLocale(Astro.url.pathname);
+const isJa=lang==='ja';
+const isZh=lang==='zh-CN';
+const alternates=localeLinks(Astro.url.pathname);
+const navItems = isZh ? [{href:"/zh-cn/monthly-guide",label:"月份指南"},{href:"/zh-cn/by-region",label:"地区指南"},{href:"/zh-cn/faq",label:"常见问题"}] : isJa ? [
  {href:"/ja/monthly-guide",label:"月別ガイド"},{href:"/ja/by-region",label:"地域別ガイド"},{href:"/ja/faq",label:"よくある質問"},
 ] : [
   { href: "/when-to-go", label: "Quiz" },
@@ -22,20 +23,22 @@ const navItems = isJa ? [
 
 <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-zinc-100">
   <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-    <a href={isJa ? "/ja" : "/"} class="font-serif text-sm sm:text-xl tracking-tight text-zinc-900 min-w-0">{isJa ? "日本旅行のベストシーズン" : "When to Visit Japan"}</a>
+    <a href={prefix || "/"} class="font-serif text-sm sm:text-xl tracking-tight text-zinc-900 min-w-0">{isZh ? "日本最佳旅行时间" : isJa ? "日本旅行のベストシーズン" : "When to Visit Japan"}</a>
     <div class="hidden xl:flex items-center gap-4 text-sm font-medium text-zinc-600">
       {navItems.map((item) => (
         <a href={item.href} class="hover:text-accent-600 transition-colors">{item.label}</a>
       ))}
       <a href="/when-to-go" class="ml-2 inline-flex items-center gap-1.5 px-4 py-2 bg-accent-600 text-white text-sm font-medium rounded-full hover:bg-accent-700 transition-colors no-underline">
-        {isJa ? "旅の診断（英語）" : "Take the Quiz"}
+        {isZh ? "旅行时间测试（英文）" : isJa ? "旅の診断（英語）" : "Take the Quiz"}
       </a>
     </div>
-    {jaPath && <div class="flex items-center gap-2 text-xs shrink-0 px-2" aria-label="Language">
-      <a href={enPath} lang="en" aria-current={!isJa ? "page" : undefined} class={!isJa ? "font-bold underline" : "text-zinc-600"}>EN</a>
-      <a href={jaPath} lang="ja" aria-current={isJa ? "page" : undefined} class={isJa ? "font-bold underline" : "text-zinc-600"}>日本語</a>
-    </div>}
-    <button id="menu-toggle" class="xl:hidden p-2 text-zinc-600 hover:text-accent-600" aria-label={isJa ? "メニューを開く" : "Open menu"} aria-expanded="false" aria-controls="mobile-menu">
+    {alternates.length > 0 && <details class="relative text-xs shrink-0 mx-2">
+      <summary class="cursor-pointer py-2 px-1">{isZh?'简体中文':isJa?'日本語':'English'} ▾</summary>
+      <div class="absolute right-0 top-full min-w-32 bg-white shadow-lg border border-zinc-200 rounded-xl p-2 flex flex-col gap-1" aria-label="Language">
+        {alternates.map(l=><a href={l.href} lang={l.code} aria-current={l.code===lang?'page':undefined} class="px-3 py-2 hover:bg-zinc-50 rounded-lg">{l.label}</a>)}
+      </div>
+    </details>}
+    <button id="menu-toggle" class="xl:hidden p-2 text-zinc-600 hover:text-accent-600" aria-label={isZh ? "打开菜单" : isJa ? "メニューを開く" : "Open menu"} aria-expanded="false" aria-controls="mobile-menu">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
   </div>
