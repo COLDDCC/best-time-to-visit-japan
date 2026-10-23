@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
-const dateFormatter = new Intl.DateTimeFormat("en-US", { year: "numeric", month: "long", day: "numeric" });
+const dateFormatter = new Intl.DateTimeFormat("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
 const wordCount = (post.body ?? "").trim().split(/\s+/).filter(Boolean).length;
 const readingTime = Math.max(1, Math.round(wordCount / 200));
 
@@ -50,7 +50,7 @@ const articleSchema = JSON.stringify({
       )}
 
       <div class="post-content text-zinc-700 leading-relaxed">
-        <div <Content />
+        <Content />
       </div>
 
       {post.data.tags.length > 0 && (
@@ -107,5 +107,25 @@ const articleSchema = JSON.stringify({
   .post-content :global(table) { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
   .post-content :global(table) { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: .9rem; }
   .post-content :global(th), .post-content :global(td) { padding: .65rem; min-width: 6rem; border-bottom: 1px solid #d4d4d8; text-align: left; vertical-align: top; }
-  .post-content :global(th) { background: #f4f4f5; font-weight: 600; }
+  .post-content :global(th) { background: #f0f7f7; color: #164e50; font-weight: 700; }
+</style>
+
+<style>
+  .post-content :global(figure) { margin: 2rem 0; }
+  .post-content :global(figure img) { width: 100%; height: auto; max-height: 340px; object-fit: cover; border-radius: 1rem; }
+  .post-content :global(figcaption) { margin-top: .7rem; font-size: .85rem; color: #52525b; line-height: 1.6; }
+  .post-content :global(tbody tr:nth-child(even)) { background: #fafafa; }
+  .post-content :global(.rain-chart) { padding: 1.25rem; background: #f0f7f7; border: 1px solid #cfe3e3; border-radius: 1rem; }
+  .post-content :global(.chart-title) { margin: 0 0 .25rem; font-size: 1.1rem; color: #164e50; font-weight: 700; }
+  .post-content :global(.chart-subtitle) { font-size: .85rem; color: #52525b; margin: 0 0 1.25rem; }
+  .post-content :global(.rain-row) { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr) 4.5rem; align-items: center; gap: .75rem; margin: .9rem 0; font-size: .9rem; }
+  .post-content :global(.rain-track) { height: .9rem; border-radius: 1rem; background: #dce9e9; overflow: hidden; }
+  .post-content :global(.rain-bar) { display: block; height: 100%; background: #327a7d; border-radius: 1rem; }
+  .post-content :global(.rain-value) { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .post-content :global(.rain-chart figcaption) { border-top: 1px solid #cfe3e3; padding-top: .75rem; }
+  @media (max-width: 480px) {
+    .post-content :global(.rain-chart) { padding: 1rem; }
+    .post-content :global(.rain-row) { grid-template-columns: 4.25rem minmax(0, 1fr) 4rem; gap: .5rem; font-size: .8rem; }
+    .post-content :global(th), .post-content :global(td) { padding: .6rem .5rem; font-size: .85rem; }
+  }
 </style>

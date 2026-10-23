@@ -12,6 +12,7 @@ export default defineConfig({
     filter: (page) => !page.includes("/404"),
   })],
   vite: {
+    server: { allowedHosts: ["terminal.local"] },
     plugins: [tailwindcss()],
   },
 });

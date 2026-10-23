@@ -6,7 +6,18 @@ updatedDate: 2026-10-22
 tags: ["weather", "november", "rain"]
 ---
 
-**November is relatively dry in Tokyo and Osaka compared with September and October, but it is not dry everywhere in Japan.** The Sea of Japan coast can be much wetter. Pack for your destinations, rather than relying on one national rainfall average.
+**November is relatively dry in Tokyo and Osaka compared with October, but it is not dry everywhere in Japan.** The Sea of Japan coast can be much wetter. Pack for your destinations, rather than relying on one national rainfall average.
+
+<figure class="rain-chart" aria-labelledby="november-rain-chart-title">
+  <p id="november-rain-chart-title" class="chart-title">November rain: compare five cities</p>
+  <p class="chart-subtitle">Average monthly precipitation · millimetres · shorter bar = less precipitation</p>
+  <div class="rain-row"><span>Osaka</span><span class="rain-track" aria-hidden="true"><span class="rain-bar" style="width:35.63%"></span></span><strong class="rain-value">72.5 mm</strong></div>
+  <div class="rain-row"><span>Tokyo</span><span class="rain-track" aria-hidden="true"><span class="rain-bar" style="width:47.32%"></span></span><strong class="rain-value">96.3 mm</strong></div>
+  <div class="rain-row"><span>Sapporo</span><span class="rain-track" aria-hidden="true"><span class="rain-bar" style="width:55.92%"></span></span><strong class="rain-value">113.8 mm</strong></div>
+  <div class="rain-row"><span>Naha</span><span class="rain-track" aria-hidden="true"><span class="rain-bar" style="width:58.53%"></span></span><strong class="rain-value">119.1 mm</strong></div>
+  <div class="rain-row"><span>Niigata</span><span class="rain-track" aria-hidden="true"><span class="rain-bar" style="width:100%"></span></span><strong class="rain-value">203.5 mm</strong></div>
+  <figcaption>Source: <a href="https://www.data.jma.go.jp/stats/en/normal/normal.html">JMA 1991–2020 normals</a>. Precipitation includes melted snow. These totals do not measure rainy-day probability.</figcaption>
+</figure>
 
 ## November rain: the answer by city
 
@@ -23,6 +34,11 @@ tags: ["weather", "november", "rain"]
 *Source: [JMA 1991–2020 climate normals](https://www.data.jma.go.jp/stats/en/normal/normal.html). These are monthly precipitation totals, not the number of rainy days or a forecast for your dates. In colder regions, precipitation includes melted snow.*
 
 **Is November Japan's rainy season?** No—the main early-summer rainy season has ended. For detailed clothing advice, see [what to wear in Japan in November](/blog/what-to-wear-in-japan-in-november).
+
+<figure>
+  <img src="/images/month-october.webp" alt="Red, yellow and green maple leaves scattered across a stone surface" width="1280" height="960" loading="lazy" decoding="async" />
+  <figcaption>Autumn travel inspiration: keep garden and foliage walks flexible around the local forecast. This illustrative photo does not show conditions for your travel dates.</figcaption>
+</figure>
 
 ## Is November Japan’s rainy season?
 
@@ -60,15 +76,25 @@ Kyoto needs its own station record. Nearby Osaka offers regional context, but it
 
 ## Should you bring an umbrella or rain jacket?
 
-A compact umbrella is useful for city sightseeing. A water-resistant jacket is practical on exposed paths, and comfortable shoes with grip help on wet pavement and stone steps. For a snow-country route, waterproof footwear and warm layers matter more than an umbrella alone.
+| Your route | Bring | Why it helps |
+|---|---|---|
+| Tokyo, Osaka & city sightseeing | Compact umbrella + shoes with grip | Easy to carry between indoor stops; wet paving can be slippery |
+| Kyoto temple paths & garden walks | Umbrella + water-resistant outer layer | Many paths and steps are exposed to rain |
+| Niigata & the Sea of Japan coast | Waterproof outer layer + rain-tolerant footwear | Higher November precipitation than Tokyo or Osaka |
+| Hokkaido & mountain routes | Waterproof footwear + warm layers | Precipitation may include snow; check for ice and local conditions |
 
-Read our [November packing guide](/blog/what-to-wear-in-japan-in-november) for the differences between central Japan, Hokkaido and Okinawa.
+Read our [November packing guide](/blog/what-to-wear-in-japan-in-november) for regional clothing advice.
 
 ## What if it rains during your trip?
 
-Build a flexible itinerary instead of trying to predict every day months ahead. Keep a museum, indoor exhibition or shopping visit as an alternative, and swap it with an outdoor garden visit when the short-range forecast becomes clearer. Check opening times and any reservation rules before making the swap.
+| Outdoor plan | Rainy-day alternative | Before you swap |
+|---|---|---|
+| Garden or foliage walk | Museum or indoor exhibition | Check opening days and ticket reservations |
+| Long neighbourhood walk | Covered shopping area, café or indoor attraction | Keep travel between stops short |
+| Temple grounds and stone steps | An indoor cultural visit | Check which areas are sheltered; wear shoes with grip |
+| Hike or mountain day trip | Move the trip to a clearer day | Check local rain, wind, snow and ice conditions before setting out |
 
-For hiking or mountain day trips, check local conditions as well as the city forecast. Persistent rain, wind, snow or ice may justify changing the route entirely.
+**Plan one indoor backup per city.** Use the short-range forecast to decide which day suits an outdoor visit, and check reservation rules before changing plans.
 
 ## Simple November rain packing checklist
 
