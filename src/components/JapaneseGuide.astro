@@ -1,0 +1,73 @@
+---
+import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import { monthlyData } from '../data/weather';
+import { monthsJa, regionsJa } from '../i18n/ja';
+const { kind='home', slug='' } = Astro.props;
+const month=monthsJa.find(m=>m.slug===slug);
+const weather=monthlyData.find(m=>m.month===slug);
+const region=regionsJa.find(r=>r.slug===slug);
+const titles:Record<string,string>={home:'日本旅行はいつがいい？目的別のベストシーズン',months:'日本の月別旅行ガイド：天気・混雑・服装を比較',regions:'日本の地域別ベストシーズン',faq:'日本旅行の時期選び：よくある質問'};
+const heading=kind==='month' ? `${month!.name}の日本旅行：天気・服装・おすすめの楽しみ方` : kind==='region' ? `${region!.name}旅行のベストシーズン` : titles[kind];
+const intro=kind==='month'?month!.summary:kind==='region'?region!.intro:kind==='months'?'12か月を一覧で比較。行きたい場所と、やりたいことから旅の時期を選びましょう。':kind==='regions'?'同じ月でも、北海道と沖縄では旅の条件が異なります。行き先ごとに季節を選びましょう。':'街歩きなら春・秋、雪景色なら冬、祭りや高原なら夏が候補です。桜・紅葉は地域と標高で見頃が変わります。';
+const hero=kind==='month'?weather!.image:kind==='region'?region!.image:'/images/region-fuji.webp';
+const faqs=[
+ ['日本旅行のベストシーズンはいつ？','街歩き中心なら春と秋が候補です。桜、紅葉、雪、海など目的によって適した時期が変わるため、まず行き先と体験を決めましょう。'],
+ ['混雑を避けたいときは？','大型連休、お盆、年末年始、人気の花や紅葉の見頃は混雑しやすい時期です。平日や朝の時間帯も検討し、宿の料金と空き状況を実際の日付で比較しましょう。'],
+ ['梅雨の旅行は避けたほうがいい？','雨の日の代替案があれば楽しめます。庭園や美術館を組み合わせ、屋外だけの予定にしないことがポイントです。梅雨の時期や影響は地域によって異なります。'],
+ ['このページの気温はどの地域のもの？','月別の数値は東京向けの月別参考値です。日本全体の平均や旅行日の予報ではありません。北海道、山間部、沖縄などは別に確認してください。'],
+ ['11月と12月、どちらがおすすめ？','本州の紅葉や秋の街歩きなら11月、イルミネーションや冬の温泉なら12月が候補です。雪を目的にするなら、地域・標高と実際の積雪状況を確認しましょう。'],
+ ['最新の予報や警報はどこで確認する？','出発前に気象庁の天気予報・警報を確認し、交通機関や観光施設の公式案内も合わせて確認してください。'],
+];
+---
+<BaseLayout title={`${heading} | When to Visit Japan`} description={intro} ogImage={hero}>
+ <Nav />
+ <div class="ja-guide max-w-7xl mx-auto px-4 py-6 md:py-10">
+  <p class="text-sm text-accent-600 font-semibold mb-3">日本の季節を、旅の目的から選ぶ</p>
+  <h1 class="text-3xl md:text-5xl font-bold leading-snug tracking-tight max-w-4xl">{heading}</h1>
+  <p class="mt-4 text-zinc-600 leading-relaxed max-w-3xl">{intro}</p>
+  {kind==='month' && <p class="mt-3 p-3 rounded-xl bg-accent-50 text-sm"><strong>東京の気温目安：{weather!.tempLow}〜{weather!.tempHigh}℃</strong><br/>服装：{month!.packing}</p>}
+  <img src={hero} alt={kind==='month'?`${month!.name}の日本の季節の風景`:kind==='region'?`${region!.name}の風景`:'富士山の風景'} width="1200" height="420" loading="eager" fetchpriority="high" class="w-full h-48 md:h-72 object-cover rounded-2xl mt-5" />
+
+  {kind==='home' && <>
+   <section class="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-5" aria-label="目的別の短い答え">
+    {[
+     ['街歩き','春・秋','/ja/monthly-guide'],['桜・紅葉','地域別に見頃を確認','/ja/by-region'],['雪・温泉','冬、積雪は地域次第','/ja/region/hokkaido'],['祭り・高原','夏、暑さへの備えを','/ja/month/july']
+    ].map(([a,b,c])=><a href={c} class="p-4 bg-accent-50 border border-accent-100 rounded-xl"><strong class="block text-sm text-accent-700">{a}</strong><span class="block mt-1 font-semibold">{b}</span></a>)}
+   </section>
+   <div class="flex flex-wrap gap-3 mt-6"><a href="/ja/monthly-guide" class="ja-button">12か月を比較する →</a><a href="/ja/by-region" class="ja-outline">行き先から選ぶ →</a></div>
+  </>}
+
+  {kind==='month' && <>
+   <section class="mt-6 grid md:grid-cols-3 gap-4" aria-label="旅の要点">
+    <div class="ja-panel"><h2>楽しみ方</h2><p>{month!.best}</p></div>
+    <div class="ja-panel"><h2>東京の気温の目安</h2><p>{weather!.tempLow}〜{weather!.tempHigh}℃</p><small>旅行日の予報ではありません</small></div>
+    <div class="ja-panel"><h2>服装の考え方</h2><p>{month!.packing}</p></div>
+   </section>
+   <section class="ja-panel mt-5"><h2>計画するときの注意点</h2><p>{month!.note}</p><p class="mt-2">東京の月別データでは降雨日数の目安は{weather!.rainDays}日です。雨の定義や観測期間によって値は変わるため、旅行日の降水確率としては使えません。</p></section>
+   <section class="mt-8"><h2 class="text-2xl font-bold mb-4">行き先で変わる旅の条件</h2><div class="ja-table-wrap"><table><thead><tr><th>エリア</th><th>予定を決める前に</th></tr></thead><tbody><tr><td><a href="/ja/region/hokkaido">北海道・北日本</a></td><td>都市と山の気温差、雪や路面、交通情報を確認。</td></tr><tr><td><a href="/ja/region/tokyo">東京・本州の街歩き</a></td><td>朝晩の気温差と、目的地の混雑・営業情報を確認。</td></tr><tr><td><a href="/ja/region/okinawa">沖縄・南の島</a></td><td>本州の気温を流用せず、風・波・天候を個別に確認。</td></tr></tbody></table></div></section>
+   <div class="flex flex-wrap gap-3 mt-6"><a href="/ja/monthly-guide" class="ja-button">ほかの月と比較 →</a><a href={`/month/${slug}`} lang="en" class="ja-outline">詳しい英語版を読む ↗</a></div>
+  </>}
+
+  {['home','months'].includes(kind) && <section class="mt-10" aria-labelledby="month-table"><h2 id="month-table" class="text-2xl font-bold mb-2">12か月をひと目で比較</h2><p class="text-sm text-zinc-600 mb-4">気温・降雨日数は東京の月別参考値です。全国平均や天気予報ではありません。</p>
+   <div class="ja-table-wrap"><table><thead><tr><th>月</th><th>楽しみ方</th><th>東京の気温目安</th><th>降雨日数の目安</th><th>気をつけたいこと</th></tr></thead><tbody>{monthsJa.map(m=>{const w=monthlyData.find(x=>x.month===m.slug)!; return <tr><th><a href={`/ja/month/${m.slug}`}>{m.name} →</a></th><td>{m.best}</td><td class="whitespace-nowrap">{w.tempLow}〜{w.tempHigh}℃</td><td>{w.rainDays}日</td><td>{m.note}</td></tr>})}</tbody></table></div>
+  </section>}
+
+  {['home','regions'].includes(kind) && <section class="mt-10"><h2 class="text-2xl font-bold mb-4">行き先から季節を選ぶ</h2><div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">{regionsJa.map(r=><a href={`/ja/region/${r.slug}`} class="border border-zinc-200 rounded-2xl overflow-hidden hover:border-accent-500"><img src={r.image} alt={`${r.name}の風景`} loading="lazy" width="600" height="300" class="w-full h-36 object-cover"/><div class="p-4"><h3 class="font-bold text-lg">{r.name} →</h3><p class="text-sm mt-1 text-zinc-600">{r.season}</p></div></a>)}</div></section>}
+
+  {kind==='region' && <>
+   <section class="ja-panel mt-6"><h2>時期選びの短い答え</h2><p class="text-lg font-semibold">{region!.season}</p><ul class="list-disc pl-5 mt-3 space-y-2">{region!.tips.map(t=><li>{t}</li>)}</ul></section>
+   <section class="mt-8"><h2 class="text-2xl font-bold mb-4">季節ごとに確認すること</h2><div class="ja-table-wrap"><table><thead><tr><th>季節</th><th>選ぶ基準</th><th>月別の目安</th></tr></thead><tbody><tr><th>春</th><td>花の見頃、連休の日程、朝晩の寒さ</td><td><a href="/ja/month/april">4月を見る →</a></td></tr><tr><th>夏</th><td>暑さ、雨、祭り、屋外の休憩場所</td><td><a href="/ja/month/july">7月を見る →</a></td></tr><tr><th>秋</th><td>紅葉の標高差、台風情報、日没</td><td><a href="/ja/month/november">11月を見る →</a></td></tr><tr><th>冬</th><td>積雪、路面、交通機関、年末年始の営業</td><td><a href="/ja/month/december">12月を見る →</a></td></tr></tbody></table></div></section>
+   <div class="flex flex-wrap gap-3 mt-6"><a href="/ja/by-region" class="ja-button">ほかの地域を見る →</a><a href={`/region/${slug}`} lang="en" class="ja-outline">詳しい英語版を読む ↗</a></div>
+  </>}
+
+  {['home','faq'].includes(kind) && <section class="mt-10"><h2 class="text-2xl font-bold mb-4">時期選びのよくある質問</h2>{faqs.slice(0,kind==='faq'?6:3).map(([q,a])=><details class="border-b border-zinc-200 py-4"><summary class="font-semibold cursor-pointer">{q}</summary><p class="mt-3 text-zinc-600 leading-relaxed max-w-3xl">{a}</p></details>)}{kind==='home' && <a href="/ja/faq" class="inline-block mt-4 text-accent-700 font-medium">よくある質問をすべて見る →</a>}</section>}
+  <aside class="mt-10 p-5 bg-zinc-50 rounded-xl text-sm text-zinc-600 leading-relaxed"><strong>出発前の確認</strong><p>季節の目安と、旅行当日の予報は異なります。<a href="https://www.jma.go.jp/bosai/forecast/" target="_blank" rel="noopener noreferrer" class="underline">気象庁の天気予報</a>と、交通機関・施設の公式案内をご確認ください。</p></aside>
+ </div>
+ <Footer />
+</BaseLayout>
+<style>
+ .ja-guide{line-height:1.85}.ja-guide h1{font-size:clamp(1.625rem,4vw,2.75rem);line-height:1.35}.ja-guide h1,.ja-guide h2,.ja-guide h3{font-family:system-ui,"Yu Gothic",Meiryo,sans-serif;line-height:1.5}.ja-panel{border:1px solid #e4e4e7;border-radius:16px;padding:20px}.ja-panel h2{font-size:1rem;font-weight:700;margin-bottom:8px}.ja-panel small{font-size:.75rem;color:#71717a}.ja-table-wrap{overflow-x:auto;border:1px solid #e4e4e7;border-radius:14px}.ja-table-wrap table{border-collapse:collapse;width:100%;font-size:14px;text-align:left;min-width:560px}.ja-table-wrap th,.ja-table-wrap td{padding:14px;border-bottom:1px solid #e4e4e7;vertical-align:top}.ja-table-wrap thead{background:#f4f4f5}.ja-table-wrap a{color:#b04430;font-weight:600}.ja-button,.ja-outline{padding:10px 18px;border-radius:999px;font-weight:600;font-size:14px;display:inline-block}.ja-button{background:#b04430;color:#fff}.ja-outline{border:1px solid #d4d4d8;color:#3f3f46}
+</style>

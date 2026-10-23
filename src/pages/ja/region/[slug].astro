@@ -1,0 +1,7 @@
+---
+import JapaneseGuide from '../../../components/JapaneseGuide.astro';
+import { regionsJa } from '../../../i18n/ja';
+export function getStaticPaths(){return regionsJa.map(r=>({params:{slug:r.slug}}))}
+const {slug}=Astro.params;
+---
+<JapaneseGuide kind="region" slug={slug} />

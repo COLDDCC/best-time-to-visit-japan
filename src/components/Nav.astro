@@ -1,5 +1,11 @@
 ---
-const navItems = [
+import { japanesePath } from "../i18n/ja";
+const isJa = /^\/ja(?:\/|$)/.test(Astro.url.pathname);
+const enPath = isJa ? (Astro.url.pathname.replace(/^\/ja/, "") || "/") : Astro.url.pathname;
+const jaPath = japanesePath(enPath);
+const navItems = isJa ? [
+ {href:"/ja/monthly-guide",label:"月別ガイド"},{href:"/ja/by-region",label:"地域別ガイド"},{href:"/ja/faq",label:"よくある質問"},
+] : [
   { href: "/when-to-go", label: "Quiz" },
   { href: "/monthly-guide", label: "Monthly Guide" },
   { href: "/by-region", label: "By Region" },
@@ -16,16 +22,20 @@ const navItems = [
 
 <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-zinc-100">
   <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-    <a href="/" class="font-serif text-xl tracking-tight text-zinc-900">When to Visit Japan</a>
+    <a href={isJa ? "/ja" : "/"} class="font-serif text-sm sm:text-xl tracking-tight text-zinc-900 min-w-0">{isJa ? "日本旅行のベストシーズン" : "When to Visit Japan"}</a>
     <div class="hidden xl:flex items-center gap-4 text-sm font-medium text-zinc-600">
       {navItems.map((item) => (
         <a href={item.href} class="hover:text-accent-600 transition-colors">{item.label}</a>
       ))}
       <a href="/when-to-go" class="ml-2 inline-flex items-center gap-1.5 px-4 py-2 bg-accent-600 text-white text-sm font-medium rounded-full hover:bg-accent-700 transition-colors no-underline">
-        Take the Quiz
+        {isJa ? "旅の診断（英語）" : "Take the Quiz"}
       </a>
     </div>
-    <button id="menu-toggle" class="xl:hidden p-2 text-zinc-600 hover:text-accent-600" aria-label="Open menu">
+    {jaPath && <div class="flex items-center gap-2 text-xs shrink-0 px-2" aria-label="Language">
+      <a href={enPath} lang="en" aria-current={!isJa ? "page" : undefined} class={!isJa ? "font-bold underline" : "text-zinc-600"}>EN</a>
+      <a href={jaPath} lang="ja" aria-current={isJa ? "page" : undefined} class={isJa ? "font-bold underline" : "text-zinc-600"}>日本語</a>
+    </div>}
+    <button id="menu-toggle" class="xl:hidden p-2 text-zinc-600 hover:text-accent-600" aria-label={isJa ? "メニューを開く" : "Open menu"} aria-expanded="false" aria-controls="mobile-menu">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
   </div>
@@ -51,7 +61,7 @@ const navItems = [
     var toggle = document.getElementById("menu-toggle");
     var menu = document.getElementById("mobile-menu");
     if (toggle && menu) {
-      toggle.addEventListener("click", function() { menu.classList.toggle("hidden"); });
+      toggle.addEventListener("click", function() { menu.classList.toggle("hidden"); toggle.setAttribute("aria-expanded", String(!menu.classList.contains("hidden"))); });
     }
   })();
 </script>

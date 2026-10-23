@@ -1,4 +1,5 @@
 ---
+import { japanesePath, monthsJa, regionsJa } from "../i18n/ja";
 // BaseLayout.astro - Japan travel planning content-tool hybrid
 export interface Props {
   title: string;
@@ -6,6 +7,11 @@ export interface Props {
   ogImage?: string;
 }
 
+const isJa = /^\/ja(?:\/|$)/.test(Astro.url.pathname);
+const lang = isJa ? "ja" : "en";
+const englishPath = isJa ? (Astro.url.pathname.replace(/^\/ja/, "") || "/") : Astro.url.pathname;
+const jaPath = japanesePath(englishPath);
+const enCanonical = new URL(englishPath === "/" ? "/" : englishPath.replace(/\/$/, ""), Astro.site).href;
 const { title, description, ogImage = "/og-default.png" } = Astro.props;
 // og:image converted to absolute URL (social scrapers can't parse relative paths)
 const ogImageURL = ogImage.startsWith("http") ? ogImage : new URL(ogImage, Astro.site).href;
@@ -49,7 +55,12 @@ const pageLabels: Record<string, string> = {
 };
 let breadcrumbSchema = "";
 let crumbs: { name: string; item: string }[] = [];
-const pathParts = Astro.url.pathname.split('/').filter(Boolean);
+const pathParts = englishPath.split('/').filter(Boolean);
+if (isJa) {
+ Object.assign(pageLabels, {"monthly-guide":"月別ガイド","by-region":"地域別ガイド","faq":"よくある質問","month":"月別ガイド","region":"地域別ガイド"});
+ for(const m of monthsJa) pageLabels[m.slug]=m.name;
+ for(const r of regionsJa) pageLabels[r.slug]=r.name;
+}
 // Some URL segments (month, region) are route prefixes with no page of their own.
 // Map them to the real hub pages so breadcrumb links never point to 404s.
 const crumbTargets: Record<string, string> = {
@@ -58,9 +69,9 @@ const crumbTargets: Record<string, string> = {
   "spots": "/by-region",
 };
 if (pathParts.length > 0) {
-  const baseUrl = canonicalURL.replace(Astro.url.pathname, '/');
-  const items = [{ "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl }];
-  crumbs.push({ name: "Home", item: baseUrl });
+  const baseUrl = new URL(isJa ? '/ja/' : '/', Astro.site).href;
+  const items = [{ "@type": "ListItem", "position": 1, "name": isJa ? "ホーム" : "Home", "item": baseUrl }];
+  crumbs.push({ name: isJa ? "ホーム" : "Home", item: baseUrl });
   for (let i = 0; i < pathParts.length; i++) {
     const part = pathParts[i];
     const name = pageLabels[part] ?? part.replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
@@ -75,13 +86,19 @@ if (pathParts.length > 0) {
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonicalURL} />
+    {jaPath && <>
+      <link rel="alternate" hreflang="en" href={enCanonical} />
+      <link rel="alternate" hreflang="ja" href={new URL(jaPath, Astro.site).href} />
+      <link rel="alternate" hreflang="x-default" href={enCanonical} />
+    </>}
+    <meta property="og:locale" content={isJa ? "ja_JP" : "en_US"} />
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -120,10 +137,10 @@ if (pathParts.length > 0) {
     </>}
   </head>
   <body class="bg-white text-zinc-900 antialiased font-sans">
-  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent-600 focus:text-white focus:rounded-lg focus:outline-none">Skip to content</a>
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent-600 focus:text-white focus:rounded-lg focus:outline-none">{isJa ? "本文へ移動" : "Skip to content"}</a>
 
     {crumbs.length > 0 && (
-      <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 pt-4">
+      <nav aria-label={isJa ? "パンくずリスト" : "Breadcrumb"} class="max-w-7xl mx-auto px-4 pt-4">
         <ol class="flex flex-wrap items-center gap-1.5 text-xs text-zinc-600">
           {crumbs.map((c, i) => (
             <li class="flex items-center gap-1.5">

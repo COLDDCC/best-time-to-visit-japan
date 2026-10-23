@@ -1,6 +1,7 @@
 ---
+const isJa = /^\/ja(?:\/|$)/.test(Astro.url.pathname);
 const currentYear = new Date().getFullYear();
-const footerLinks = [
+const footerLinks = isJa ? [{href:"/ja",label:"ホーム"},{href:"/ja/monthly-guide",label:"月別ガイド"},{href:"/ja/by-region",label:"地域別ガイド"},{href:"/ja/faq",label:"よくある質問"},{href:"/about",label:"運営方針（英語）"},{href:"/contact",label:"お問い合わせ（英語）"}] : [
   { href: "/", label: "Home" },
   { href: "/when-to-go", label: "Quiz" },
   { href: "/monthly-guide", label: "Monthly Guide" },
@@ -27,8 +28,8 @@ const footerLinks = [
           <a href={link.href} class="hover:text-zinc-300 transition-colors">{link.label}</a>
         ))}
       </div>
-      <p class="text-zinc-600">&copy; {currentYear} When to Visit Japan. All times local.</p>
+      <p class="text-zinc-600">&copy; {currentYear} {isJa ? "日本旅行のベストシーズン。時刻は現地時間です。" : "When to Visit Japan. All times local."}</p>
     </div>
-    <p class="mt-6 text-center text-xs text-zinc-600">This site contains <a href="/about#editorial-policy" class="underline hover:text-zinc-400">affiliate links</a>.</p>
+    <p class="mt-6 text-center text-xs text-zinc-600">{isJa ? "当サイトはアフィリエイトリンクを含みます。" : "This site contains affiliate links."} <a href="/about#editorial-policy" class="underline hover:text-zinc-400">{isJa ? "運営方針（英語）" : "Editorial policy"}</a></p>
   </div>
 </div>
