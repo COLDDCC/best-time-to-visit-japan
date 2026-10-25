@@ -37,6 +37,9 @@ jobs:
       - name: Check SEO URLs and internal links
         run: npm run test:seo
 
+      - name: Check packing calculations
+        run: npm run test:packing
+
       - name: Copy build output into docs/
         run: |
           rm -rf docs
