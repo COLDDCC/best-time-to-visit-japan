@@ -692,8 +692,8 @@ export const monthlyData: MonthData[] = [
     rainDays: 6,
     crowdLevel: 3,
     bestFor: "winter illuminations, New Year decorations and quiet winter landscapes",
-    image: "/images/month-december.webp",
-    imageAlt: "Blue Pond in Biei, Hokkaido, frozen under fresh winter snow in December",
+    image: "/images/region-hokkaido.webp",
+    imageAlt: "Sapporo skyline at dusk, Hokkaido",
     highlights: [
       "Winter illumination displays (Tokyo, Osaka)",
       "Christmas markets in Tokyo & Osaka",

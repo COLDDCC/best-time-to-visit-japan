@@ -8,6 +8,7 @@ import { regionGuides } from "../../data/regions.ts";
 import Icon from "../../components/Icon.astro";
 import Callout from "../../components/Callout.astro";
 import AffiliateCTA from "../../components/AffiliateCTA.astro";
+import TravelVisualGuide from "../../components/TravelVisualGuide.astro";
 import LateYearWeather from "../../components/LateYearWeather.astro";
 import { lateYearGuides } from "../../data/late-year-weather";
 import CurrentWeather from "../../components/CurrentWeather.astro";
@@ -159,7 +160,7 @@ const monthSpotlight = monthSpotlights[month.month];
         </nav>
       )}
 
-      {seasonalGuide && <LateYearWeather month={month.month} />}
+      {seasonalGuide && <><TravelVisualGuide month={month.month} /><LateYearWeather month={month.month} /></>}
 
       <!-- Live current weather -->
       <CurrentWeather />

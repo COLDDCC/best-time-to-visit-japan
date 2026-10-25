@@ -44,9 +44,14 @@ These are climate averages rather than forecasts or temperature limits. Wind, ra
 
 ## What to wear in Tokyo, Osaka and Kyoto
 
-For a typical city sightseeing day, combine a long-sleeved base layer, sweater or fleece and warm outer coat. Wear long trousers and comfortable walking shoes. Add a scarf and gloves for cold evenings if needed.
+| Part of your day | Outfit starting point | Keep accessible |
+|---|---|---|
+| Morning sightseeing | Long sleeves, sweater or fleece, warm outer coat | Scarf if needed |
+| Walking between attractions | Long trousers and comfortable closed walking shoes | A removable layer |
+| Heated train, café or shop | Remove the outer layer as needed | A bag for your coat or sweater |
+| Evening illuminations | Warm coat and an extra layer if standing still | Scarf and gloves for the forecast |
 
-Thermal underwear is a personal choice, not something every traveler needs every day. Choose layers you can remove when entering heated trains, shops and restaurants. Someone who feels cold easily may want more insulation than someone walking briskly all afternoon.
+Thermal underwear is a personal choice. Adjust warmth to the local forecast, your activity and how easily you feel cold.
 
 Check Kyoto’s local forecast separately: Osaka’s figures provide context, not an exact substitute. For temple visits and outdoor gardens, think about long periods outside and grip on wet surfaces as well as the air temperature.
 
@@ -60,7 +65,14 @@ Read [Does it snow in Japan in December?](/blog/does-it-snow-in-japan-in-decembe
 
 ## Can you wear sneakers in December?
 
-Comfortable sneakers may suit dry city sightseeing if they keep your feet warm enough. They are a different proposition in snow, slush or ice: waterproofing, insulation and grip matter there. Check conditions at each destination before deciding to travel with only one pair.
+| Conditions on your route | Footwear starting point |
+|---|---|
+| Dry city walking | Comfortable closed shoes or sneakers, if warm enough for you |
+| Wet city streets | Rain-tolerant footwear with grip |
+| Snow, slush or ice | Waterproof, insulated winter footwear appropriate to the conditions |
+| Skiing or winter hiking | Activity-specific equipment; check the operator or route requirements |
+
+Check each destination before deciding to travel with only one pair.
 
 Do not assume that normal city footwear is adequate for a snowy day trip. If a route requires winter equipment or is closed, change the plan rather than relying on shoes alone.
 

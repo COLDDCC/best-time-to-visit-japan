@@ -18,7 +18,9 @@ const label = month === "november" ? "November" : "December";
   </div>
   <p class="text-sm text-zinc-600 mb-6">Source: <a href={climateSource} class="underline">Japan Meteorological Agency</a>, 1991–2020 normals. Precipitation includes rain and melted snow; it is not a rainy-day count. These averages are not a forecast for your travel dates. Kyoto needs its own station data and should not be treated as identical to Osaka.</p>
   <h3 class="text-xl font-bold mb-3">Early, mid and late {label}</h3>
-  <ul class="list-disc pl-5 space-y-3 mb-6">{guide.timing.map(item => <li>{item}</li>)}</ul>
+  <div class="overflow-x-auto mb-6" tabindex="0" role="region" aria-label={`${label} timing comparison`}>
+    <table class="w-full text-sm text-left border-collapse"><thead><tr><th scope="col" class="p-3 border-b border-zinc-300">When</th><th scope="col" class="p-3 border-b border-zinc-300">What to prepare</th></tr></thead><tbody>{guide.timing.map(item => { const split = item.indexOf(':'); return <tr><th scope="row" class="p-3 border-b border-zinc-200 whitespace-nowrap">{item.slice(0, split)}</th><td class="p-3 border-b border-zinc-200 leading-relaxed">{item.slice(split + 1).trim()}</td></tr>; })}</tbody></table>
+  </div>
   <h3 class="text-xl font-bold mb-3">What to wear and pack</h3>
   <p class="leading-relaxed mb-6">{guide.packing}</p>
   <div class="flex flex-wrap gap-3">{guide.links.map(([slug, text]) => <a href={`/blog/${slug}/`} class="rounded-lg border border-zinc-300 bg-white px-4 py-3 text-accent-600 font-medium underline">{text}</a>)}</div>

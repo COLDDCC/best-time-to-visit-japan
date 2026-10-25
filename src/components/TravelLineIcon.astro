@@ -1,0 +1,19 @@
+---
+import jacket from '../assets/travel-icons/jacket.svg?raw';
+import shirt from '../assets/travel-icons/shirt.svg?raw';
+import shoe from '../assets/travel-icons/shoe.svg?raw';
+import umbrella from '../assets/travel-icons/umbrella.svg?raw';
+import sun from '../assets/travel-icons/sun.svg?raw';
+import cloudRain from '../assets/travel-icons/cloud-rain.svg?raw';
+import snowflake from '../assets/travel-icons/snowflake.svg?raw';
+import wind from '../assets/travel-icons/wind.svg?raw';
+const icons = { jacket, shirt, shoe, umbrella, sun, 'cloud-rain': cloudRain, snowflake, wind };
+export interface Props { name: keyof typeof icons; }
+const { name } = Astro.props;
+// Source: tabler/tabler-icons, MIT. Full license is retained beside the SVGs.
+---
+<span class="line-icon" aria-hidden="true" set:html={icons[name]} />
+<style>
+.line-icon { display: inline-flex; width: 100%; height: 100%; }
+.line-icon :global(svg) { width: 100%; height: 100%; stroke-width: 1.35; }
+</style>

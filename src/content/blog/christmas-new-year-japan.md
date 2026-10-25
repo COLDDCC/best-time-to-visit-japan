@@ -5,8 +5,8 @@ description: "Compare a Christmas city break with a New Year visit using a date-
 quickAnswer: "Choose a December city break for winter lights; choose New Year if shrine visits are a priority and you can plan around busy travel and holiday closures. Check each venue's opening dates before fixing your route."
 pubDate: 2026-10-25
 tags: ["december", "january", "planning"]
-image: "/images/month-december.webp"
-imageAlt: "Japan winter travel scenery"
+image: "/images/region-hokkaido.webp"
+imageAlt: "Sapporo skyline at dusk, Hokkaido"
 faqs:
   - question: "Is everything closed in Japan over New Year?"
     answer: "No, but some businesses close for several days. Opening dates vary by venue. Check every must-see attraction, restaurant and transport operator rather than applying one nationwide schedule."
