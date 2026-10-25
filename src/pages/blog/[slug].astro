@@ -83,6 +83,23 @@ const articleSchema = JSON.stringify({
   <Footer />
 </BaseLayout>
 
+<script>
+  // Markdown task lists are disabled by default. Make packing lists usable,
+  // and retain progress on this device when local storage is available.
+  const storageKey = `packing:${location.pathname}`;
+  const boxes = Array.from(document.querySelectorAll<HTMLInputElement>('.post-content input[type="checkbox"]'));
+  let saved: boolean[] = [];
+  try { saved = JSON.parse(localStorage.getItem(storageKey) ?? '[]'); } catch {}
+  boxes.forEach((box, index) => {
+    box.disabled = false;
+    box.setAttribute('aria-label', box.closest('li')?.textContent?.trim() || `Packing item ${index + 1}`);
+    box.checked = Array.isArray(saved) && saved[index] === true;
+    box.addEventListener('change', () => {
+      try { localStorage.setItem(storageKey, JSON.stringify(boxes.map(item => item.checked))); } catch {}
+    });
+  });
+</script>
+
 <style>
   .post-hero { display: block; width: 100%; aspect-ratio: 16 / 9; height: auto; max-height: 360px; object-fit: cover; border-radius: 1rem; margin: 0 0 1rem; }
 
