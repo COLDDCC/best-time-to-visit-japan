@@ -1,13 +1,13 @@
 ---
 title: "Japan Weather in Late November & Early December: A Trip Guide"
-description: "Planning a Japan trip across November and December? Compare regional weather, pack flexible layers, and plan autumn sightseeing and snow-country extensions."
+seoTitle: "Japan Weather: Late November to Early December"
+description: "Crossing both months? Compare city climate tables, layer your packing list and keep outdoor plans flexible with this route-based guide."
 pubDate: 2026-10-15
 tags: ["weather", "november", "december", "planning"]
+quickAnswer: "For a late-November to early-December Japan trip, pack for cool-to-cold city days and colder evenings, with extra winter protection if your route includes Hokkaido or mountains. Tokyo and Osaka generally cool toward winter, but there is no sudden nationwide weather change on December 1."
 ---
 
-**For a late-November to early-December Japan trip, pack for cool-to-cold city days and colder evenings, with extra winter protection if your route includes Hokkaido or mountains.** Tokyo and Osaka generally cool toward winter, but there is no sudden nationwide weather change on December 1.
-
-This guide is for trips that cross the month boundary. For choosing one month over the other, read [Japan in November vs December](/blog/japan-in-november-vs-december).
+This guide is for trips that cross the month boundary. For choosing one month over the other, read [Japan in November vs December](/blog/japan-in-november-vs-december/).
 
 ## What weather should you expect?
 
@@ -28,7 +28,7 @@ Bring removable layers for daytime sightseeing and a warmer layer for evenings o
 
 A practical schedule keeps outdoor gardens and longer walks movable within each city stay. Put an indoor alternative on the same day’s shortlist so that a rainy period does not force a long, last-minute journey. Confirm opening hours and reservations before swapping activities.
 
-See the [November weather guide](/month/november) and [December weather guide](/month/december) for regional context.
+See the [November weather guide](/month/november/) and [December weather guide](/month/december/) for regional context.
 
 ## Will there still be autumn leaves?
 
@@ -40,13 +40,13 @@ Use current reports for the specific park or temple. Elevation matters: a nearby
 
 Rain is possible in either month. Tokyo and Osaka have lower December precipitation normals than November, while the Sea of Japan coast follows a different winter pattern. Those monthly totals cannot predict how many wet days you will experience during a particular ten-day trip.
 
-Carry compact rain protection and shoes with grip. Read [November rainfall by city](/blog/is-japan-rainy-in-november) before assuming that all Japan is dry at this time.
+Carry compact rain protection and shoes with grip. Read [November rainfall by city](/blog/is-japan-rainy-in-november/) before assuming that all Japan is dry at this time.
 
 ## Adding Hokkaido or a mountain destination
 
 Treat a northern or high-elevation extension as a distinct winter leg of the journey. Bring appropriate warmth and footwear, and check route access as well as the weather. A dry Tokyo afternoon says little about mountain snow or ice.
 
-For skiing, verify the resort’s current opening status, lifts and available runs. Early-season snow cover can vary. Do not assume that a scheduled opening means the full resort is operating. Our [December snow guide](/blog/does-it-snow-in-japan-in-december) explains what to check.
+For skiing, verify the resort’s current opening status, lifts and available runs. Early-season snow cover can vary. Do not assume that a scheduled opening means the full resort is operating. Our [December snow guide](/blog/does-it-snow-in-japan-in-december/) explains what to check.
 
 ## What should you pack for both months?
 
@@ -56,7 +56,7 @@ For skiing, verify the resort’s current opening status, lifts and available ru
 - Compact rain protection.
 - A scarf, hat or gloves if your route and cold tolerance call for them.
 
-Keep layers accessible on transfer days. Heated interiors and cold outdoor evenings can require several clothing adjustments in one day. Compare the [November packing list](/blog/what-to-wear-in-japan-in-november) and [December packing list](/blog/what-to-wear-in-japan-in-december) when deciding what to bring.
+Keep layers accessible on transfer days. Heated interiors and cold outdoor evenings can require several clothing adjustments in one day. Compare the [November packing list](/blog/what-to-wear-in-japan-in-november/) and [December packing list](/blog/what-to-wear-in-japan-in-december/) when deciding what to bring.
 
 ## A practical checklist before departure
 

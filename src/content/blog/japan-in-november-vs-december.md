@@ -1,14 +1,14 @@
 ---
 title: "Japan in November vs December: Weather, Autumn Leaves & Snow"
-description: "Compare November and December in Japan by city temperatures, rainfall, autumn leaves, snow and clothing to choose the right month for your trip."
+seoTitle: "Japan in November vs December: Which Month Is Better?"
+description: "Choose your month with a side-by-side weather table, foliage and snow trade-offs, and packing guides for each route."
 pubDate: 2026-10-15
-updatedDate: 2026-10-22
+updatedDate: 2026-10-25
 tags: ["weather", "november", "december", "planning"]
+quickAnswer: "Choose November if your priority is milder city sightseeing and autumn gardens. Choose December if you prefer winter illuminations or a trip focused on northern or mountain snow destinations, while checking current snow conditions. For Tokyo and Osaka, December is colder and has lower average precipitation. Neither month has one weather pattern across the whole country."
 ---
 
-**Choose November if your priority is milder city sightseeing and autumn gardens. Choose December if you prefer winter illuminations or a trip focused on northern or mountain snow destinations, while checking current snow conditions.** For Tokyo and Osaka, December is colder and has lower average precipitation. Neither month has one weather pattern across the whole country.
-
-If your trip crosses both months, use our [late-November to early-December guide](/blog/japan-weather-late-november-early-december).
+If your trip crosses both months, use our [late-November to early-December guide](/blog/japan-weather-late-november-early-december/).
 
 ## November vs December in Japan: decide in 30 seconds
 
@@ -50,13 +50,13 @@ The following figures are monthly mean temperatures at individual JMA stations, 
 | Niigata | 10.5°C | 5.3°C |
 | Naha, Okinawa | 22.5°C | 19.0°C |
 
-For daily high and low averages, see the [November weather page](/month/november) and [December weather page](/month/december). Kyoto needs a separate station record; Osaka is useful regional context but should not be substituted for Kyoto’s exact conditions.
+For daily high and low averages, see the [November weather page](/month/november/) and [December weather page](/month/december/). Kyoto needs a separate station record; Osaka is useful regional context but should not be substituted for Kyoto’s exact conditions.
 
 ## Which month is less rainy?
 
 Tokyo’s precipitation normal falls from 96.3 mm in November to 57.9 mm in December. Osaka’s falls from 72.5 mm to 55.5 mm. On those routes, December is the drier month by monthly totals.
 
-That conclusion does not apply everywhere: Niigata’s normal rises from 203.5 mm to 225.9 mm. Precipitation includes rain and melted snow, so these totals do not describe snowy ground conditions or the number of wet days. Read [Is Japan rainy in November?](/blog/is-japan-rainy-in-november) for the regional comparison.
+That conclusion does not apply everywhere: Niigata’s normal rises from 203.5 mm to 225.9 mm. Precipitation includes rain and melted snow, so these totals do not describe snowy ground conditions or the number of wet days. Read [Is Japan rainy in November?](/blog/is-japan-rainy-in-november/) for the regional comparison.
 
 ## Which month is better for autumn leaves?
 
@@ -68,13 +68,13 @@ Plan around current local reports rather than a fixed national peak. A late-Nove
 
 December fits a winter-focused trip more naturally, especially in northern and mountain regions. However, early-season resort access and snow cover depend on the weather. Verify the resort’s actual open terrain, transport and cancellation terms before booking a ski-centered itinerary.
 
-Tokyo and Osaka should be planned as cold city breaks, not guaranteed snow destinations. Our [December snow guide](/blog/does-it-snow-in-japan-in-december) explains the differences between city sightseeing and snow-country travel.
+Tokyo and Osaka should be planned as cold city breaks, not guaranteed snow destinations. Our [December snow guide](/blog/does-it-snow-in-japan-in-december/) explains the differences between city sightseeing and snow-country travel.
 
 ## What changes in your suitcase?
 
 For November city trips, build around long sleeves, a removable sweater and jacket. In December, a warmer coat and accessories become more useful. Your destination and personal cold tolerance still matter more than a generic list.
 
-Use the [November packing guide](/blog/what-to-wear-in-japan-in-november) or [December packing guide](/blog/what-to-wear-in-japan-in-december), especially when combining Okinawa with northern Japan.
+Use the [November packing guide](/blog/what-to-wear-in-japan-in-november/) or [December packing guide](/blog/what-to-wear-in-japan-in-december/), especially when combining Okinawa with northern Japan.
 
 ## Is either month cheaper or quieter?
 

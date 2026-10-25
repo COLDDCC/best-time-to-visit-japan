@@ -1,4 +1,5 @@
 ---
+import { pagePath } from "../utils/urls";
 import { monthsJa, regionsJa } from "../i18n/ja";
 import { monthsZh, regionsZh } from "../i18n/zh-cn";
 import { routeLocale, localeLinks } from "../i18n/routing";
@@ -13,7 +14,7 @@ const {lang, prefix, englishPath} = routeLocale(Astro.url.pathname);
 const isJa = lang === 'ja';
 const isZh = lang === 'zh-CN';
 const alternates=localeLinks(Astro.url.pathname);
-const enCanonical = new URL(englishPath === "/" ? "/" : englishPath.replace(/\/$/, ""), Astro.site).href;
+const enCanonical = new URL(pagePath(englishPath), Astro.site).href;
 const { title, description, ogImage = "/og-default.png" } = Astro.props;
 // og:image converted to absolute URL (social scrapers can't parse relative paths)
 const ogImageURL = ogImage.startsWith("http") ? ogImage : new URL(ogImage, Astro.site).href;
@@ -36,8 +37,7 @@ const ogImageSizes: Record<string, [number, number]> = {
   ].map(([k, v]) => [`/images/region-${k}.webp`, v])),
 };
 const [ogW, ogH] = ogImageSizes[ogImage] ?? [1200, 630];
-let canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
-if (canonicalURL.endsWith("/") && Astro.url.pathname !== "/") canonicalURL = canonicalURL.slice(0, -1);
+const canonicalURL = new URL(pagePath(Astro.url.pathname), Astro.site).href;
 
 // BreadcrumbList - only for subpages
 const pageLabels: Record<string, string> = {
@@ -79,7 +79,7 @@ if (pathParts.length > 0) {
     const name = pageLabels[part] ?? part.replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
     const rawItem = baseUrl + pathParts.slice(0, i + 1).join('/');
     const isPrefix = i < pathParts.length - 1;
-    const item = (isPrefix && crumbTargets[part]) ? baseUrl + crumbTargets[part].replace(/^\//, '') : rawItem;
+    const item = pagePath((isPrefix && crumbTargets[part]) ? baseUrl + crumbTargets[part].replace(/^\//, '') : rawItem);
     items.push({ "@type": "ListItem", "position": (i + 2), "name": name, "item": item });
     crumbs.push({ name, item });
   }

@@ -116,7 +116,7 @@ const faqPageSchema = JSON.stringify({
     "publisher": { "@type": "Organization", "name": "When to Visit Japan", "logo": { "@type": "ImageObject", "url": "https://best-time-japan.com/favicon.svg" } },
     "datePublished": "${currentYear}-01-15",
     "dateModified": "${currentYear}-07-31",
-    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://best-time-japan.com" },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://best-time-japan.com/" },
     "image": "https://best-time-japan.com/images/og-japan-best-time.webp"
   }`} />
   <script type="application/ld+json" set:html={faqPageSchema} />
@@ -126,15 +126,15 @@ const faqPageSchema = JSON.stringify({
     <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
       <a href="/" class="text-lg font-semibold tracking-tight text-zinc-900">When to Visit Japan</a>
       <div class="hidden xl:flex items-center gap-4 text-sm font-medium text-zinc-600">
-        <a href="/when-to-go" class="hover:text-accent-600 transition-colors">Quiz</a>
-        <a href="/monthly-guide" class="hover:text-accent-600 transition-colors">Monthly Guide</a>
-        <a href="/by-region" class="hover:text-accent-600 transition-colors">By Region</a>
-        <a href="/festivals" class="hover:text-accent-600 transition-colors">Festivals</a>
-        <a href="/crowd-calendar" class="hover:text-accent-600 transition-colors">Crowds</a>
-        <a href="/faq" class="hover:text-accent-600 transition-colors">FAQ</a>
-        <a href="/travel-cost" class="hover:text-accent-600 transition-colors">Cost</a>
-        <a href="/about" class="hover:text-accent-600 transition-colors">About</a>
-        <a href="/when-to-go" class="ml-2 inline-flex items-center gap-1.5 px-4 py-2 bg-accent-600 text-white text-sm font-medium rounded-full hover:bg-accent-700 transition-colors no-underline">
+        <a href="/when-to-go/" class="hover:text-accent-600 transition-colors">Quiz</a>
+        <a href="/monthly-guide/" class="hover:text-accent-600 transition-colors">Monthly Guide</a>
+        <a href="/by-region/" class="hover:text-accent-600 transition-colors">By Region</a>
+        <a href="/festivals/" class="hover:text-accent-600 transition-colors">Festivals</a>
+        <a href="/crowd-calendar/" class="hover:text-accent-600 transition-colors">Crowds</a>
+        <a href="/faq/" class="hover:text-accent-600 transition-colors">FAQ</a>
+        <a href="/travel-cost/" class="hover:text-accent-600 transition-colors">Cost</a>
+        <a href="/about/" class="hover:text-accent-600 transition-colors">About</a>
+        <a href="/when-to-go/" class="ml-2 inline-flex items-center gap-1.5 px-4 py-2 bg-accent-600 text-white text-sm font-medium rounded-full hover:bg-accent-700 transition-colors no-underline">
           Take the Quiz
         </a>
       </div>
@@ -144,12 +144,12 @@ const faqPageSchema = JSON.stringify({
     </div>
     <div id="mobile-menu" class="hidden xl:hidden border-t border-zinc-100 bg-white px-4 pb-4">
       <div class="flex flex-col gap-3 pt-4 text-sm font-medium text-zinc-600">
-        <a href="/when-to-go" class="hover:text-accent-600 py-1">Quiz</a>
-        <a href="/monthly-guide" class="hover:text-accent-600 py-1">Monthly Guide</a>
-        <a href="/by-region" class="hover:text-accent-600 py-1">By Region</a>
-        <a href="/festivals" class="hover:text-accent-600 py-1">Festivals</a>
-        <a href="/crowd-calendar" class="hover:text-accent-600 py-1">Crowds</a>
-        <a href="/faq" class="hover:text-accent-600 py-1">FAQ</a>
+        <a href="/when-to-go/" class="hover:text-accent-600 py-1">Quiz</a>
+        <a href="/monthly-guide/" class="hover:text-accent-600 py-1">Monthly Guide</a>
+        <a href="/by-region/" class="hover:text-accent-600 py-1">By Region</a>
+        <a href="/festivals/" class="hover:text-accent-600 py-1">Festivals</a>
+        <a href="/crowd-calendar/" class="hover:text-accent-600 py-1">Crowds</a>
+        <a href="/faq/" class="hover:text-accent-600 py-1">FAQ</a>
       </div>
     </div>
   </nav>
@@ -168,11 +168,11 @@ const faqPageSchema = JSON.stringify({
         </h1>
         <p class="text-base md:text-lg text-zinc-700 leading-relaxed mt-6 mb-8 max-w-xl mx-auto">Every month has a season that shines &mdash; from sakura to snow country.</p>
         <div class="flex flex-wrap justify-center gap-3 mb-4">
-          <a href="/when-to-go" class="inline-flex items-center gap-2 px-7 py-3.5 bg-accent-600 hover:bg-accent-700 text-white font-semibold rounded-full transition-colors">
+          <a href="/when-to-go/" class="inline-flex items-center gap-2 px-7 py-3.5 bg-accent-600 hover:bg-accent-700 text-white font-semibold rounded-full transition-colors">
             Take the Free Quiz
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="/monthly-guide" class="inline-flex items-center gap-2 px-7 py-3.5 bg-white border border-zinc-300 text-zinc-900 font-semibold rounded-full hover:bg-zinc-50 transition-colors">
+          <a href="/monthly-guide/" class="inline-flex items-center gap-2 px-7 py-3.5 bg-white border border-zinc-300 text-zinc-900 font-semibold rounded-full hover:bg-zinc-50 transition-colors">
             Compare the Months
           </a>
         </div>
@@ -184,7 +184,7 @@ const faqPageSchema = JSON.stringify({
           const col = i % 4;
           const offset = col === 1 ? "lg:-mt-10" : col === 2 ? "lg:-mt-20" : col === 3 ? "lg:-mt-28" : "";
           return (
-            <a href={`/month/${m.month}`} class={`group relative overflow-hidden rounded-2xl aspect-[4/5] block no-underline shadow-sm ${offset}`}>
+            <a href={`/month/${m.month}/`} class={`group relative overflow-hidden rounded-2xl aspect-[4/5] block no-underline shadow-sm ${offset}`}>
               <img src={m.image} alt={m.imageAlt} width="1200" height="800" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
               <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/70 via-zinc-950/10 to-transparent"></div>
 
@@ -205,7 +205,7 @@ const faqPageSchema = JSON.stringify({
         })}
       </div>
       <div class="mt-10 text-center">
-        <a href="/monthly-guide" class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors">
+        <a href="/monthly-guide/" class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors">
           Compare all 12 months side by side
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -218,7 +218,7 @@ const faqPageSchema = JSON.stringify({
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap gap-2">
       <p class="text-sm text-accent-800">
         <span class="font-semibold">Traveling to Japan in <span class="season-month"></span>?</span>
-        Here is what you need to know &mdash; <a href="#month-wall" class="underline font-medium">find your month</a> or <a href="/when-to-go" class="underline font-medium">take the quiz</a>.
+        Here is what you need to know &mdash; <a href="#month-wall" class="underline font-medium">find your month</a> or <a href="/when-to-go/" class="underline font-medium">take the quiz</a>.
       </p>
     </div>
   </div>
@@ -232,7 +232,7 @@ const faqPageSchema = JSON.stringify({
           <h2 class="text-3xl md:text-4xl font-bold tracking-tighter text-zinc-900 mb-3">Real spots, worth the detour</h2>
           <p class="text-zinc-600 max-w-md leading-relaxed">Cafés, shops, and hidden gems — ratings, hours, and how to get there, all in one place.</p>
         </div>
-        <a href="/spots" class="inline-flex items-center gap-2 px-8 py-5 bg-accent-600 text-white text-lg font-semibold rounded-full hover:bg-accent-700 transition-colors no-underline max-w-full whitespace-normal justify-center text-center">
+        <a href="/spots/" class="inline-flex items-center gap-2 px-8 py-5 bg-accent-600 text-white text-lg font-semibold rounded-full hover:bg-accent-700 transition-colors no-underline max-w-full whitespace-normal justify-center text-center">
           Browse Spot Guides →
         </a>
       </div>
@@ -362,8 +362,8 @@ const faqPageSchema = JSON.stringify({
           ))}
         </ul>
         <div class="mt-6 flex flex-wrap gap-3">
-          <a href="/festivals" class="inline-flex items-center gap-1.5 text-sm font-medium px-4 py-2.5 border border-zinc-300 rounded-full hover:border-accent-400 hover:text-accent-600 transition-colors">Plan around a festival</a>
-          <a href="/crowd-calendar" class="inline-flex items-center gap-1.5 text-sm font-medium px-4 py-2.5 border border-zinc-300 rounded-full hover:border-accent-400 hover:text-accent-600 transition-colors">Check crowd levels</a>
+          <a href="/festivals/" class="inline-flex items-center gap-1.5 text-sm font-medium px-4 py-2.5 border border-zinc-300 rounded-full hover:border-accent-400 hover:text-accent-600 transition-colors">Plan around a festival</a>
+          <a href="/crowd-calendar/" class="inline-flex items-center gap-1.5 text-sm font-medium px-4 py-2.5 border border-zinc-300 rounded-full hover:border-accent-400 hover:text-accent-600 transition-colors">Check crowd levels</a>
         </div>
       </div>
     </div>
@@ -403,7 +403,7 @@ const faqPageSchema = JSON.stringify({
       <span><span class="inline-block w-3 h-3 rounded-full bg-red-50 border border-red-200 mr-1"></span> Avoid</span>
     </div>
     <div class="mt-6">
-      <a href="/by-region" class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors">
+      <a href="/by-region/" class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors">
         Read the full region guides
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -514,39 +514,39 @@ const faqPageSchema = JSON.stringify({
         <p class="text-zinc-700 max-w-2xl mx-auto leading-relaxed">Dive deeper into the exact month, region, festival, or budget that fits your trip.</p>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <a href="/when-to-go" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
+        <a href="/when-to-go/" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
           <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">Take the 60-Second Quiz</p>
           <p class="text-sm text-zinc-700 leading-relaxed">Answer 8 questions and get your ideal month instantly.</p>
         </a>
-        <a href="/monthly-guide" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
+        <a href="/monthly-guide/" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
           <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">Month-by-Month Guide</p>
           <p class="text-sm text-zinc-700 leading-relaxed">Weather, festivals, crowds & packing for every month of the year.</p>
         </a>
-        <a href="/by-region" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
+        <a href="/by-region/" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
           <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">Region Guides</p>
           <p class="text-sm text-zinc-700 leading-relaxed">Best time to visit Tokyo, Kyoto, Hokkaido, Okinawa & more.</p>
         </a>
-        <a href="/spots" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
+        <a href="/spots/" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
           <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">Spot Guides</p>
           <p class="text-sm text-zinc-700 leading-relaxed">Cafés, shops, and hidden gems worth routing a trip around.</p>
         </a>
-        <a href="/crowd-calendar" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
+        <a href="/crowd-calendar/" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
           <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">Crowd Calendar</p>
           <p class="text-sm text-zinc-700 leading-relaxed">Golden Week, Obon, sakura peak & the quiet sweet spots.</p>
         </a>
-        <a href="/festivals" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
+        <a href="/festivals/" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
           <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">Festival Dates</p>
           <p class="text-sm text-zinc-700 leading-relaxed">Plan your trip around Japan's most spectacular celebrations.</p>
         </a>
-        <a href="/travel-cost" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
+        <a href="/travel-cost/" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
           <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">Travel Cost Guide</p>
           <p class="text-sm text-zinc-700 leading-relaxed">When flights and hotels are cheapest, and what trips really cost.</p>
         </a>
-        <a href="/faq" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
+        <a href="/faq/" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
           <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">Full FAQ</p>
           <p class="text-sm text-zinc-700 leading-relaxed">More answers about weather, visas, and planning your Japan trip.</p>
         </a>
-        <a href="/about" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
+        <a href="/about/" class="group bg-white border border-zinc-200 rounded-xl p-6 hover:border-accent-300 transition-colors no-underline">
           <p class="text-sm font-bold text-zinc-900 mb-1 group-hover:text-accent-600 transition-colors">About Our Guide</p>
           <p class="text-sm text-zinc-700 leading-relaxed">How this guide is built and why you can trust its recommendations.</p>
         </a>
@@ -589,7 +589,7 @@ const faqPageSchema = JSON.stringify({
     <div class="max-w-7xl mx-auto px-4 py-20 text-center">
       <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.02] mb-5">Still<br /><em class="font-normal italic">not sure?</em></h2>
       <p class="text-accent-100 max-w-md mx-auto mb-8 leading-relaxed">Answer 8 quick questions about your travel style and we'll tell you the exact best month for your Japan trip.</p>
-      <a href="/when-to-go" class="inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-accent-50 text-accent-700 font-semibold rounded-full transition-colors text-lg">
+      <a href="/when-to-go/" class="inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-accent-50 text-accent-700 font-semibold rounded-full transition-colors text-lg">
         Take the Free Quiz
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -600,8 +600,8 @@ const faqPageSchema = JSON.stringify({
     <h2 id="late-year-travel" class="text-3xl font-bold mb-4">Visiting Japan in November or December?</h2>
     <p class="text-zinc-600 mb-6">Compare temperatures by city, understand rain and snow, and pack for your route.</p>
     <div class="grid sm:grid-cols-2 gap-4">
-      <a href="/month/november" class="border border-zinc-200 rounded-xl p-6 block"><h3 class="text-xl font-bold mb-2">Japan in November →</h3><p>Cool city days, regional rainfall and autumn layers.</p></a>
-      <a href="/month/december" class="border border-zinc-200 rounded-xl p-6 block"><h3 class="text-xl font-bold mb-2">Japan in December →</h3><p>Winter temperatures, snow expectations and warm clothing.</p></a>
+      <a href="/month/november/" class="border border-zinc-200 rounded-xl p-6 block"><h3 class="text-xl font-bold mb-2">Japan in November →</h3><p>Cool city days, regional rainfall and autumn layers.</p></a>
+      <a href="/month/december/" class="border border-zinc-200 rounded-xl p-6 block"><h3 class="text-xl font-bold mb-2">Japan in December →</h3><p>Winter temperatures, snow expectations and warm clothing.</p></a>
     </div>
   </section>
   <Footer />

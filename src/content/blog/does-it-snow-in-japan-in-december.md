@@ -1,13 +1,13 @@
 ---
 title: "Does It Snow in Japan in December? Where to Expect Snow"
-description: "Where does it snow in Japan in December? Understand Hokkaido, mountain resorts, Tokyo and Osaka, and why early-season snow is not guaranteed."
+seoTitle: "Does It Snow in Japan in December? Where to Go"
+description: "Compare Tokyo with northern and mountain destinations, then use the snow-trip checks before committing to an early-season ski itinerary."
 pubDate: 2026-10-15
 tags: ["weather", "december", "snow"]
+quickAnswer: "Yes, snow falls in parts of Japan in December, especially northern and mountainous regions. But you should not plan a Tokyo or Osaka holiday around guaranteed snow. Location, elevation and the point in the month make a large difference."
 ---
 
-**Yes, snow falls in parts of Japan in December, especially northern and mountainous regions. But you should not plan a Tokyo or Osaka holiday around guaranteed snow.** Location, elevation and the point in the month make a large difference.
-
-Our [Japan weather in December guide](/month/december) compares city temperatures and precipitation before you choose your route.
+Our [Japan weather in December guide](/month/december/) compares city temperatures and precipitation before you choose your route.
 
 ## Where is snow more likely?
 
@@ -47,7 +47,7 @@ Use local snow-depth reports and resort updates for decisions about skiing and w
 
 ## What should you pack for snow?
 
-Bring insulated layers, a warm outer coat, gloves, a hat and waterproof footwear with appropriate grip. Snow-country footwear requirements differ from those for dry Tokyo pavements. Read our [December clothing guide](/blog/what-to-wear-in-japan-in-december) before combining the two in one trip.
+Bring insulated layers, a warm outer coat, gloves, a hat and waterproof footwear with appropriate grip. Snow-country footwear requirements differ from those for dry Tokyo pavements. Read our [December clothing guide](/blog/what-to-wear-in-japan-in-december/) before combining the two in one trip.
 
 Allow flexibility for winter transport disruption and check route-specific notices. Mountain roads, walking trails and city transit have different conditions; a clear forecast at your hotel is not enough to judge a high-elevation outing.
 
@@ -57,7 +57,7 @@ Allow flexibility for winter transport disruption and check route-specific notic
 
 **Is Hokkaido colder than Tokyo?** Yes in the December station normals: Sapporo’s monthly mean is −0.9°C, compared with Tokyo’s 7.7°C.
 
-**Should I travel in November instead?** Choose based on your intended activities. Read the [November guide](/month/november) for cool-weather sightseeing and autumn travel.
+**Should I travel in November instead?** Choose based on your intended activities. Read the [November guide](/month/november/) for cool-weather sightseeing and autumn travel.
 
 ## Sources and how to use these figures
 
@@ -65,4 +65,4 @@ Weather figures use [Japan Meteorological Agency climate normals for 1991–2020
 
 ## Choosing your travel dates
 
-Compare [Japan in November vs December](/blog/japan-in-november-vs-december), or use our [late-November to early-December guide](/blog/japan-weather-late-november-early-december) for a trip spanning both months.
+Compare [Japan in November vs December](/blog/japan-in-november-vs-december/), or use our [late-November to early-December guide](/blog/japan-weather-late-november-early-december/) for a trip spanning both months.

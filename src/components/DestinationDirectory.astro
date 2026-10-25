@@ -1,4 +1,5 @@
 ---
+import { pagePath } from '../utils/urls';
 import { prefectures, regions } from '../data/directory';
 const { selected } = Astro.props;
 const list=selected ? prefectures.filter(p=>p.slug===selected) : prefectures;
@@ -19,14 +20,14 @@ const count=list.reduce((n,p)=>n+p.areas.reduce((n,a)=>n+a.spots.length,0),0);
     {list.filter(p=>p.region===key).map(p=><details class="directory-prefecture" open={!!selected}>
       <summary><span>{p.name} <small>{p.aliases?.split(' ')[0]}</small></span><span class="directory-meta">{p.areas.length} areas · {p.areas.reduce((n,a)=>n+a.spots.length,0)} places</span></summary>
       <div class="prefecture-body">
-        <div class="directory-source"><a href={p.source} target="_blank" rel="noopener noreferrer">Official {p.name} tourism overview ↗</a>{!selected && <a href={`/destinations/${p.slug}`}>Open {p.name} directory →</a>}</div>
+        <div class="directory-source"><a href={p.source} target="_blank" rel="noopener noreferrer">Official {p.name} tourism overview ↗</a>{!selected && <a href={`/destinations/${p.slug}/`}>Open {p.name} directory →</a>}</div>
         {p.areas.map(a=><details class="directory-area">
           <summary><span>{a.name}</span><span class="directory-meta">{a.spots.length} places</span></summary>
           <div class="area-body">
             <a class="area-source" href={a.source} target="_blank" rel="noopener noreferrer">Official area information ↗</a>
             {a.spots.length ? <ul>{a.spots.map(s=><li class="directory-place" data-search={`${regions[p.region]} ${p.name} ${p.aliases??''} ${a.name} ${a.aliases??''} ${s.name} ${s.aliases??''}`.toLowerCase()} data-guide={s.guide?'yes':'no'}>
               <div><span class="place-name">{s.name}</span>{s.aliases && <small class="place-alias">{s.aliases.split(' ').slice(0,2).join(' · ')}</small>}</div>
-              <div class="place-links">{s.guide ? <a class="guide-link" href={s.guide}>Read guide →</a> : <span class="pending-guide">Guide to come</span>}<a href={s.source} target="_blank" rel="noopener noreferrer" aria-label={`Official information for ${s.name}`}>Source ↗</a></div>
+              <div class="place-links">{s.guide ? <a class="guide-link" href={pagePath(s.guide)}>Read guide →</a> : <span class="pending-guide">Guide to come</span>}<a href={s.source} target="_blank" rel="noopener noreferrer" aria-label={`Official information for ${s.name}`}>Source ↗</a></div>
             </li>)}</ul> : <p class="area-empty">Individual places for this area are still being added.</p>}
           </div>
         </details>)}

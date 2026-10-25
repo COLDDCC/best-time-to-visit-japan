@@ -1,3 +1,4 @@
+import { pagePath } from "../utils/urls";
 import { japanesePath } from './ja';
 export const locales = [
  {code:'en',label:'English',prefix:''},
@@ -12,5 +13,5 @@ export function routeLocale(path:string){
 export function localeLinks(path:string){
  const {englishPath}=routeLocale(path);
  if(!japanesePath(englishPath))return [];
- return locales.map(l=>({...l,href:l.prefix+(englishPath==='/'?'':englishPath)||'/'}));
+ return locales.map(l=>({...l,href:pagePath(l.prefix+(englishPath==='/'?'':englishPath)||'/')}));
 }

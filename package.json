@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "fetch:matcha": "node scripts/fetch-matcha-images.mjs",
-    "astro": "astro"
+    "astro": "astro",
+    "test:seo": "node scripts/check-seo.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.2",

@@ -11,7 +11,7 @@ const { prefecture:p }=Astro.props;
 <BaseLayout title={`${p.name} Destination Directory: Local Areas & Attractions`} description={`Explore ${p.name}, Japan by local area and attraction. Browse place names, official tourism sources and available travel guides.`}>
   <Nav />
   <main class="max-w-5xl mx-auto px-4 py-6">
-    <p class="text-sm text-zinc-600 mb-3"><a href="/destinations" class="underline">Japan destinations</a> / {regions[p.region]} / {p.name}</p>
+    <p class="text-sm text-zinc-600 mb-3"><a href="/destinations/" class="underline">Japan destinations</a> / {regions[p.region]} / {p.name}</p>
     <h1 class="text-3xl md:text-5xl font-bold tracking-tight mb-4">Explore {p.name}</h1>
     <p class="text-zinc-600 mb-5">Choose a local area, then an individual place. Detailed guides are linked where available.</p>
     <DestinationDirectory selected={p.slug} />

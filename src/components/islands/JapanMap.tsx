@@ -44,7 +44,7 @@ export default function JapanMap() {
       </div>
 
       <div className="text-center mt-6">
-        <a href="/by-region" className="text-sm font-medium text-accent-600 hover:text-accent-700 inline-flex items-center gap-1">
+        <a href="/by-region/" className="text-sm font-medium text-accent-600 hover:text-accent-700 inline-flex items-center gap-1">
           See all regions with detailed guides
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -57,7 +57,7 @@ function RegionCard({ region, active, setActive, layout = "square" }: { region: 
   const isActive = active === region.key;
   return (
     <a
-      href={`/region/${region.slug}`}
+      href={`/region/${region.slug}/`}
       className={`block rounded-xl border p-3 md:p-4 text-left transition-all cursor-pointer hover:shadow-md ${
         isActive ? "border-accent-400 bg-accent-50 shadow-md ring-1 ring-accent-200" : "border-zinc-200 bg-white hover:border-accent-200"
       }`}

@@ -1,14 +1,14 @@
 ---
 title: "What to Wear in Japan in December: Cities, Snow & Packing"
-description: "A December Japan packing guide for Tokyo, Kyoto, Osaka, Hokkaido and Okinawa, with separate checklists for city sightseeing and snow-country trips."
+seoTitle: "What to Wear in Japan in December: Packing List"
+description: "Use separate city and snow-country checklists, compare regional temperatures, and choose shoes and layers for your December route."
 pubDate: 2026-10-15
-updatedDate: 2026-10-22
+updatedDate: 2026-10-25
 tags: ["packing", "weather", "december"]
+quickAnswer: "For Tokyo, Kyoto and Osaka in December, plan a warm coat, sweater, long trousers and comfortable closed shoes. For Hokkaido or snow-country travel, add winter footwear, gloves, a hat and warmer layers. Okinawa requires a much lighter approach."
 ---
 
-**For Tokyo, Kyoto and Osaka in December, plan a warm coat, sweater, long trousers and comfortable closed shoes. For Hokkaido or snow-country travel, add winter footwear, gloves, a hat and warmer layers. Okinawa requires a much lighter approach.**
-
-Start with the [December weather guide](/month/december) to understand the differences along your route.
+Start with the [December weather guide](/month/december/) to understand the differences along your route.
 
 ## December packing: choose your destination
 
@@ -56,7 +56,7 @@ For outdoor winter conditions, pack an insulating layer, a warm coat, hat, glove
 
 Check whether your itinerary includes maintained city streets, a resort or outdoor trails. Skiing and winter hiking need activity-specific equipment. A generic holiday packing list is not enough for exposed mountain travel.
 
-Read [Does it snow in Japan in December?](/blog/does-it-snow-in-japan-in-december) before choosing a destination around snow. Conditions and resort access vary during the month.
+Read [Does it snow in Japan in December?](/blog/does-it-snow-in-japan-in-december/) before choosing a destination around snow. Conditions and resort access vary during the month.
 
 ## Can you wear sneakers in December?
 
@@ -85,7 +85,7 @@ If combining Okinawa and Hokkaido, pack distinct warm- and cold-weather options.
 
 For outdoor illuminations, take an extra warm layer if you expect to stand still. Keep gloves accessible rather than buried in your suitcase. Inside trains and buildings, removable layers let you adjust without changing your whole outfit.
 
-Recheck the forecast before every region change. A clear day in Tokyo says little about a mountain destination several hours away. For a trip beginning in late autumn, compare the [November clothing guide](/blog/what-to-wear-in-japan-in-november).
+Recheck the forecast before every region change. A clear day in Tokyo says little about a mountain destination several hours away. For a trip beginning in late autumn, compare the [November clothing guide](/blog/what-to-wear-in-japan-in-november/).
 
 ## Sources and how to use these figures
 
@@ -93,4 +93,4 @@ Weather figures use [Japan Meteorological Agency climate normals for 1991–2020
 
 ## Choosing your travel dates
 
-Compare [Japan in November vs December](/blog/japan-in-november-vs-december), or use our [late-November to early-December guide](/blog/japan-weather-late-november-early-december) for a trip spanning both months.
+Compare [Japan in November vs December](/blog/japan-in-november-vs-december/), or use our [late-November to early-December guide](/blog/japan-weather-late-november-early-december/) for a trip spanning both months.

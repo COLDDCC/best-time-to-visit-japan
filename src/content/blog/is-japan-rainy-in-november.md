@@ -1,14 +1,14 @@
 ---
 title: "Is Japan Rainy in November? Rainfall by City & What to Expect"
-description: "Is November rainy in Japan? Compare rainfall in Tokyo, Osaka, Sapporo, Niigata and Okinawa, plus packing advice and rainy-day planning."
+seoTitle: "Is Japan Rainy in November? 5-City Rain Comparison"
+description: "Bring an umbrella? Compare five cities using JMA rainfall data, then use the rain checklist and indoor backup table to plan your route."
 pubDate: 2026-10-15
-updatedDate: 2026-10-22
+updatedDate: 2026-10-25
 image: "/images/month-october.webp"
 imageAlt: "Vivid red, gold and green Japanese maple leaves on a stone surface"
 tags: ["weather", "november", "rain"]
+quickAnswer: "November is relatively dry in Tokyo and Osaka compared with October, but it is not dry everywhere in Japan. The Sea of Japan coast can be much wetter. Pack for your destinations, rather than relying on one national rainfall average."
 ---
-
-**November is relatively dry in Tokyo and Osaka compared with October, but it is not dry everywhere in Japan.** The Sea of Japan coast can be much wetter. Pack for your destinations, rather than relying on one national rainfall average.
 
 <figure class="rain-chart" aria-labelledby="november-rain-chart-title">
   <p id="november-rain-chart-title" class="chart-title">November rain: compare five cities</p>
@@ -35,7 +35,7 @@ tags: ["weather", "november", "rain"]
 
 *Source: [JMA 1991–2020 climate normals](https://www.data.jma.go.jp/stats/en/normal/normal.html). These are monthly precipitation totals, not the number of rainy days or a forecast for your dates. In colder regions, precipitation includes melted snow.*
 
-**Is November Japan's rainy season?** No—the main early-summer rainy season has ended. For detailed clothing advice, see [what to wear in Japan in November](/blog/what-to-wear-in-japan-in-november).
+**Is November Japan's rainy season?** No—the main early-summer rainy season has ended. For detailed clothing advice, see [what to wear in Japan in November](/blog/what-to-wear-in-japan-in-november/).
 
 ## Is November Japan’s rainy season?
 
@@ -80,7 +80,7 @@ Kyoto needs its own station record. Nearby Osaka offers regional context, but it
 | Niigata & the Sea of Japan coast | Waterproof outer layer + rain-tolerant footwear | Higher November precipitation than Tokyo or Osaka |
 | Hokkaido & mountain routes | Waterproof footwear + warm layers | Precipitation may include snow; check for ice and local conditions |
 
-Read our [November packing guide](/blog/what-to-wear-in-japan-in-november) for regional clothing advice.
+Read our [November packing guide](/blog/what-to-wear-in-japan-in-november/) for regional clothing advice.
 
 ## What if it rains during your trip?
 
@@ -102,7 +102,7 @@ Read our [November packing guide](/blog/what-to-wear-in-japan-in-november) for r
 - [ ] Waterproof and insulated footwear if visiting snowy mountain areas
 - [ ] Check the destination-specific forecast shortly before travel
 
-For a region-by-region clothing list, see [what to wear in Japan in November](/blog/what-to-wear-in-japan-in-november).
+For a region-by-region clothing list, see [what to wear in Japan in November](/blog/what-to-wear-in-japan-in-november/).
 
 ## Quick questions
 
@@ -110,7 +110,7 @@ For a region-by-region clothing list, see [what to wear in Japan in November](/b
 
 **Do I need waterproof shoes?** Comfortable shoes that tolerate some rain are helpful in cities. Choose more protective footwear for snow, slush or outdoor routes.
 
-**Is December a better choice to avoid rain?** Tokyo and Osaka have lower December precipitation normals, but it is colder. Compare the [December weather guide](/month/december) before choosing solely on rainfall.
+**Is December a better choice to avoid rain?** Tokyo and Osaka have lower December precipitation normals, but it is colder. Compare the [December weather guide](/month/december/) before choosing solely on rainfall.
 
 ## Sources and how to use these figures
 
@@ -118,4 +118,4 @@ Weather figures use [Japan Meteorological Agency climate normals for 1991–2020
 
 ## Choosing your travel dates
 
-Compare [Japan in November vs December](/blog/japan-in-november-vs-december), or use our [late-November to early-December guide](/blog/japan-weather-late-november-early-december) for a trip spanning both months.
+Compare [Japan in November vs December](/blog/japan-in-november-vs-december/), or use our [late-November to early-December guide](/blog/japan-weather-late-november-early-december/) for a trip spanning both months.

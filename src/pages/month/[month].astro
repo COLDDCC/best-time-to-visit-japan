@@ -20,8 +20,10 @@ export function getStaticPaths() {
 }
 
 const { month } = Astro.props;
-const canonical = `https://best-time-japan.com/month/${month.month}`;
-const currentYear = new Date().getFullYear();
+const canonical = `https://best-time-japan.com/month/${month.month}/`;
+// Roll planning titles to next year in November (UTC), on the next build.
+const buildDate = new Date();
+const currentYear = buildDate.getUTCFullYear() + (buildDate.getUTCMonth() >= 10 ? 1 : 0);
 
 const relatedRegions = (month.bestRegionSlugs ?? [])
   .map((slug) => regionGuides.find((r) => r.slug === slug))
@@ -46,7 +48,7 @@ const seasonMap: Record<string, string> = {
 const season = seasonMap[month.month] ?? "";
 
 const seasonalGuide = month.month === "november" ? lateYearGuides.november : month.month === "december" ? lateYearGuides.december : null;
-const title = seasonalGuide ? `Japan Weather in ${month.label}: Temperatures, ${month.month === "november" ? "Rain" : "Snow"} & What to Wear` : `Japan Weather in ${month.label} ${currentYear}: Season, Crowds & Where to Go`;
+const title = seasonalGuide ? `Japan Weather in ${month.label}: Temperatures, ${month.month === "november" ? "Rain" : "Snow"} & What to Wear` : `Japan in ${month.label} ${currentYear}: Weather & Travel Guide`;
 const meta = seasonalGuide ? `Japan weather in ${month.label}: compare city temperatures and precipitation, learn what to expect from ${month.month === "november" ? "rain" : "snow"}, and plan what to wear.` : `${month.label} in Japan: ${month.tempLow}°C to ${month.tempHigh}°C, ${month.rainDays} rain days, crowds ${month.crowdLevel}/5. Best for ${month.bestFor}.`;
 
 
@@ -92,7 +94,7 @@ const monthSpotlights: Record<string, { title: string; bullets: string[] }> = {
     title: "Why March Matters: Sakura Season Begins",
     bullets: [
       "Cherry blossoms peak late March to early April in Tokyo, Kyoto",
-      "2024 peak: Mar 28-Apr 5. 2025 forecast: Mar 25-Apr 2",
+      "Check the latest local flowering reports; historical timing is not a forecast",
       "Pro tip: Book hotels by mid-January for cherry-blossom week",
       "Pack: Light layers (10-20°C), rain jacket essential",
       "Warning: This is peak season — prices are 30-50% higher than June/September",
@@ -149,10 +151,10 @@ const monthSpotlight = monthSpotlights[month.month];
         <nav aria-label={`${month.label} travel guides`} class="mb-6 rounded-2xl border border-zinc-200 bg-zinc-50 p-4 md:p-5">
           <p class="text-sm font-bold text-zinc-900 mb-3">Plan your {month.label} trip</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            <a class="rounded-lg bg-white border border-zinc-200 px-4 py-3 text-sm font-semibold text-accent-700 hover:border-accent-300" href={`/blog/what-to-wear-in-japan-in-${month.month}`}>What to wear &amp; pack →</a>
-            <a class="rounded-lg bg-white border border-zinc-200 px-4 py-3 text-sm font-semibold text-accent-700 hover:border-accent-300" href={month.month === "november" ? "/blog/is-japan-rainy-in-november" : "/blog/does-it-snow-in-japan-in-december"}>{month.month === "november" ? "Does it rain in November?" : "Where does it snow in December?"} →</a>
-            <a class="rounded-lg bg-white border border-zinc-200 px-4 py-3 text-sm font-semibold text-accent-700 hover:border-accent-300" href="/blog/japan-in-november-vs-december">November vs December →</a>
-            <a class="rounded-lg bg-white border border-zinc-200 px-4 py-3 text-sm font-semibold text-accent-700 hover:border-accent-300" href="/blog/japan-weather-late-november-early-december">Traveling between both months? →</a>
+            <a class="rounded-lg bg-white border border-zinc-200 px-4 py-3 text-sm font-semibold text-accent-700 hover:border-accent-300" href={`/blog/what-to-wear-in-japan-in-${month.month}/`}>What to wear &amp; pack →</a>
+            <a class="rounded-lg bg-white border border-zinc-200 px-4 py-3 text-sm font-semibold text-accent-700 hover:border-accent-300" href={month.month === "november" ? "/blog/is-japan-rainy-in-november/" : "/blog/does-it-snow-in-japan-in-december/"}>{month.month === "november" ? "Does it rain in November?" : "Where does it snow in December?"} →</a>
+            <a class="rounded-lg bg-white border border-zinc-200 px-4 py-3 text-sm font-semibold text-accent-700 hover:border-accent-300" href="/blog/japan-in-november-vs-december/">November vs December →</a>
+            <a class="rounded-lg bg-white border border-zinc-200 px-4 py-3 text-sm font-semibold text-accent-700 hover:border-accent-300" href="/blog/japan-weather-late-november-early-december/">Traveling between both months? →</a>
           </div>
         </nav>
       )}
@@ -185,7 +187,7 @@ const monthSpotlight = monthSpotlights[month.month];
             </li>
           ))}
         </ul>
-        <p class="text-sm text-zinc-700 mt-4"><a href="/festivals" class="text-accent-600 hover:text-accent-700 font-medium">See all festival dates for {currentYear} &rarr;</a></p>
+        <p class="text-sm text-zinc-700 mt-4"><a href="/festivals/" class="text-accent-600 hover:text-accent-700 font-medium">See all festival dates for {currentYear} &rarr;</a></p>
       </div>
 
       <!-- Quick answer box -->
@@ -225,7 +227,7 @@ const monthSpotlight = monthSpotlights[month.month];
         {relatedRegions.length > 0 && (
           <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {relatedRegions.map((r) => (
-              <a href={`/region/${r.slug}`} class="group bg-white border border-zinc-200 rounded-xl p-4 hover:border-accent-300 transition-colors no-underline">
+              <a href={`/region/${r.slug}/`} class="group bg-white border border-zinc-200 rounded-xl p-4 hover:border-accent-300 transition-colors no-underline">
                 <p class="text-base font-bold text-zinc-900 group-hover:text-accent-600 transition-colors">{r.name}</p>
                 <p class="text-sm text-blue-700 font-medium mt-0.5">Best: {r.best}</p>
               </a>
@@ -344,13 +346,13 @@ const monthSpotlight = monthSpotlights[month.month];
           return (
             <>
               {prev ? (
-                <a href={`/month/${prev.month}`} class="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-700 hover:text-accent-600 transition-colors no-underline">
+                <a href={`/month/${prev.month}/`} class="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-700 hover:text-accent-600 transition-colors no-underline">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                   Previous: {prev.label}
                 </a>
               ) : <span />}
               {next && (
-                <a href={`/month/${next.month}`} class="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-700 hover:text-accent-600 transition-colors no-underline">
+                <a href={`/month/${next.month}/`} class="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-700 hover:text-accent-600 transition-colors no-underline">
                   Next: {next.label}
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
@@ -361,7 +363,7 @@ const monthSpotlight = monthSpotlights[month.month];
       </div>
 
       <div class="text-center">
-        <a href="/monthly-guide" class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors">
+        <a href="/monthly-guide/" class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors">
           Compare all 12 months
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
