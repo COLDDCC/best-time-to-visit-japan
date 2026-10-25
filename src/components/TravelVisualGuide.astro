@@ -29,7 +29,7 @@ const icons = ['shirt','jacket','shoe','umbrella'] as const;
     const values=lateYearCities.find(c=>c.name===r.station)![m];
     return <div class="route-panel" data-month={m} data-route={r.id}>
       <div class="climate-note"><div class="weather-symbol"><TravelLineIcon name={r.id==='north'?'snowflake':r.id==='south'?'sun':'wind'} /></div><div><p class="route-tone">{r.tone}</p><h3>{r.label} <span>in {m==='november'?'November':'December'}</span></h3><p class="temperature">{values[0].toFixed(1)}° <span>/ {values[1].toFixed(1)}°C</span></p><p class="micro">{r.station} · average daily high / low</p></div></div>
-      <ol class="outfit-items">{r[m].map((item,i)=><li><span class="item-number">0{i+1}</span><span class="garment"><TravelLineIcon name={r.id === 'north' && i === 3 ? 'snowflake' : icons[i]} /></span><span class="item-label">{item}</span></li>)}</ol>
+      <ol class="outfit-items">{r[m].map((item,i)=><li><span class="item-number">0{i+1}</span><span class="garment"><TravelLineIcon name={i === 0 && r.id !== 'south' ? 'long-sleeves' : i === 1 ? 'coat' : i === 2 && r.id === 'north' && m === 'december' ? 'winter-boot' : i === 3 && r.id === 'north' ? 'snowflake' : icons[i]} /></span><span class="item-label">{item}</span></li>)}</ol>
       <p class="route-advice">{r.note}</p><a class="route-link" href={`/region/${r.region}/`}>Explore {r.label} →</a>
     </div>;
   }))}</div>
