@@ -23,7 +23,7 @@ Our [Japan weather in December guide](/month/december/) compares city temperatur
 
 ## Does it snow in Tokyo in December?
 
-Do not count on it. Tokyo’s average December high is 12.0°C and average low is 3.8°C. Those averages describe a relatively mild city winter compared with Sapporo, where the corresponding figures are 2.0°C and −4.0°C.
+Do not count on it. Tokyo’s average December high is 12.0°C and average low is 3.8°C. Those averages describe a relatively mild city winter compared with Sapporo, where the corresponding figures are 2.0°C and −4.0°C. For Tokyo temperatures, sunshine and outfits, see [Tokyo in December](/blog/tokyo-in-december-weather/).
 
 An average low above freezing does not prove snow is impossible. It simply does not support promising visitors a snowy Tokyo Christmas. If seeing snow is essential, choose a destination for that purpose and verify conditions near departure.
 

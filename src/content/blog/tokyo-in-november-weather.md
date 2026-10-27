@@ -62,4 +62,5 @@ Compare [November rain in five Japanese cities](/blog/is-japan-rainy-in-november
 |---|---|
 | Compare regions and city climate data | [Japan in November](/month/november/) |
 | Choose between autumn and winter | [November vs December](/blog/japan-in-november-vs-december/) |
+| Travelling later in the season | [Tokyo in December](/blog/tokyo-in-december-weather/) |
 | Choose another season for Tokyo | [Tokyo regional guide](/region/tokyo/) |

@@ -44,6 +44,8 @@ These are climate averages rather than forecasts or temperature limits. Wind, ra
 
 ## What to wear in Tokyo, Osaka and Kyoto
 
+Staying mainly in Tokyo? The [Tokyo in December weather guide](/blog/tokyo-in-december-weather/) has a day-by-day outfit table and year-end checks.
+
 | Part of your day | Outfit starting point | Keep accessible |
 |---|---|---|
 | Morning sightseeing | Long sleeves, sweater or fleece, warm outer coat | Scarf if needed |

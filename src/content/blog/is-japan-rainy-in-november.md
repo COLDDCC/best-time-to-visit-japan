@@ -1,13 +1,24 @@
 ---
 title: "Is Japan Rainy in November? Rainfall by City & What to Expect"
-seoTitle: "Is Japan Rainy in November? 5-City Rain Comparison"
-description: "Bring an umbrella? Compare five cities using JMA rainfall data, then use the rain checklist and indoor backup table to plan your route."
+seoTitle: "Is Japan Rainy in November? How Much It Rains by City"
+description: "Mostly no: Tokyo averages 96 mm of rain in November vs 235 mm in October, Osaka 73 mm. The Sea of Japan coast is about twice as wet. See all 5 cities."
 pubDate: 2026-10-15
-updatedDate: 2026-10-25
+updatedDate: 2026-10-27
+faqs:
+  - question: "Is November the rainy season in Japan?"
+    answer: "No. Japan's main rainy season (tsuyu) is in early summer. November is relatively dry in Tokyo (96.3 mm) and Osaka (72.5 mm) compared with October, although rain is still possible and the Sea of Japan coast is much wetter (Niigata: 203.5 mm)."
+  - question: "Does it rain a lot in Japan in November?"
+    answer: "Not in the main tourist cities. Tokyo's November precipitation normal is 96.3 mm, less than half of October's 234.8 mm, and Osaka's is 72.5 mm. Niigata on the Sea of Japan coast averages 203.5 mm, so a route there needs more rain gear. These are monthly totals from JMA 1991–2020 normals, not a forecast."
+  - question: "Is November or December drier in Japan?"
+    answer: "In Tokyo and Osaka, December is drier by monthly totals (Tokyo 57.9 mm, Osaka 55.5 mm) but noticeably colder. On the Sea of Japan coast the pattern reverses: Niigata gets wetter from November (203.5 mm) to December (225.9 mm)."
+  - question: "Does it snow in Japan in November?"
+    answer: "Snow in November is mainly a concern for Hokkaido, northern Japan and mountain areas. Sapporo's average November low is 1.6°C, so some precipitation there can fall as snow. Snow is not something to plan around in Tokyo or Osaka in November."
+  - question: "Is November sunny in Tokyo?"
+    answer: "Tokyo's November sunshine normal is 149.8 hours, more than October's 129.4 hours, which fits the drier, clearer autumn pattern. Individual days can still be cloudy or wet."
 image: "/images/month-october.webp"
 imageAlt: "Vivid red, gold and green Japanese maple leaves on a stone surface"
 tags: ["weather", "november", "rain"]
-quickAnswer: "November is relatively dry in Tokyo and Osaka compared with October, but it is not dry everywhere in Japan. The Sea of Japan coast can be much wetter. Pack for your destinations, rather than relying on one national rainfall average."
+quickAnswer: "Mostly no. November is not Japan's rainy season, and Tokyo (96.3 mm) and Osaka (72.5 mm) are far drier than in October. The exception is the Sea of Japan coast: Niigata averages 203.5 mm. Pack a compact umbrella for city trips and proper rain gear if your route crosses to the Sea of Japan side."
 ---
 
 <figure class="rain-chart" aria-labelledby="november-rain-chart-title">
@@ -61,7 +72,7 @@ For a first-time Tokyo–Kyoto–Osaka itinerary, keep outdoor attractions flexi
 
 ## Is November wetter than October or December?
 
-For Tokyo and Osaka, November is drier than October by monthly precipitation, and December is drier again. Niigata follows a different pattern: its precipitation increases toward winter. That difference matters if your itinerary crosses from Tokyo to Japan’s Sea of Japan coast.
+For Tokyo and Osaka, November is drier than October by monthly precipitation, and December is drier again. Tokyo also averages more sunshine in November (149.8 hours) than in October (129.4 hours). Niigata follows a different pattern: its precipitation increases toward winter. That difference matters if your itinerary crosses from Tokyo to Japan’s Sea of Japan coast.
 
 A lower monthly total does not guarantee that a particular seven-day visit will stay dry. You also cannot turn 96.3 mm into a personal probability of rain without information about daily rainfall and its distribution.
 

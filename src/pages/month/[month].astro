@@ -10,7 +10,7 @@ import Callout from "../../components/Callout.astro";
 import AffiliateCTA from "../../components/AffiliateCTA.astro";
 import TravelVisualGuide from "../../components/TravelVisualGuide.astro";
 import LateYearWeather from "../../components/LateYearWeather.astro";
-import { lateYearGuides } from "../../data/late-year-weather";
+import { lateYearGuides, lateYearCities } from "../../data/late-year-weather";
 import CurrentWeather from "../../components/CurrentWeather.astro";
 
 export function getStaticPaths() {
@@ -49,12 +49,14 @@ const seasonMap: Record<string, string> = {
 const season = seasonMap[month.month] ?? "";
 
 const seasonalGuide = month.month === "november" ? lateYearGuides.november : month.month === "december" ? lateYearGuides.december : null;
-const title = seasonalGuide ? `Japan Weather in ${month.label}: Temperatures, ${month.month === "november" ? "Rain" : "Snow"} & What to Wear` : `Japan in ${month.label} ${currentYear}: Weather & Travel Guide`;
-const meta = seasonalGuide ? `Japan weather in ${month.label}: compare city temperatures and precipitation, learn what to expect from ${month.month === "november" ? "rain" : "snow"}, and plan what to wear.` : `${month.label} in Japan: ${month.tempLow}°C to ${month.tempHigh}°C, ${month.rainDays} rain days, crowds ${month.crowdLevel}/5. Best for ${month.bestFor}.`;
+const tokyoClimate = lateYearCities.find((c) => c.name === "Tokyo");
+const tokyoMonth = seasonalGuide && tokyoClimate ? tokyoClimate[month.month as "november" | "december"] : null;
+const title = seasonalGuide ? `Japan Weather in ${month.label}: Temps, ${month.month === "november" ? "Rain" : "Snow"} & What to Wear` : `Japan Weather in ${month.label}: Temperatures & Travel Guide`;
+const meta = seasonalGuide && tokyoMonth ? `Japan weather in ${month.label}: Tokyo averages ${tokyoMonth[0].toFixed(1)}°C highs and ${tokyoMonth[1].toFixed(1)}°C lows with ${tokyoMonth[2]} mm of ${month.month === "november" ? "rain" : "precipitation"}. Compare 6 cities, ${month.month === "november" ? "rain" : "snow"} odds and what to wear.` : `${month.label} in Japan: ${month.tempLow}°C to ${month.tempHigh}°C, ${month.rainDays} rain days, crowds ${month.crowdLevel}/5. Best for ${month.bestFor}.`;
 
 
 const monthFaqs = [
-  ...(seasonalGuide ? [{ q: month.month === "november" ? "Is Japan rainy in November?" : "Does it snow in Japan in December?", a: seasonalGuide.answer }, { q: `What should I wear in Japan in ${month.label}?`, a: seasonalGuide.packing }] : []),
+  ...(seasonalGuide ? [{ q: month.month === "november" ? "Is Japan rainy in November?" : "Does it snow in Japan in December?", a: seasonalGuide.answer }, { q: `What should I wear in Japan in ${month.label}?`, a: seasonalGuide.packing }, ...(tokyoMonth ? [{ q: `What is the temperature in Tokyo in ${month.label}?`, a: `Tokyo's ${month.label} averages are a daily high of ${tokyoMonth[0].toFixed(1)}°C and a daily low of ${tokyoMonth[1].toFixed(1)}°C, with ${tokyoMonth[2]} mm of monthly precipitation (JMA 1991–2020 normals). Mornings and evenings feel noticeably colder than the afternoon high.` }] : [])] : []),
   {
     q: `What is the weather like in Japan in ${month.label}?`,
     a: seasonalGuide ? seasonalGuide.answer : `In ${month.label}, Japan averages ${month.tempLow}°C to ${month.tempHigh}°C with about ${month.rainDays} rainy days. It's best for ${month.bestFor}.`,
@@ -76,7 +78,7 @@ const articleSchema = JSON.stringify({
   "description": meta,
   "author": { "@type": "Organization", "name": "When to Visit Japan", "url": "https://best-time-japan.com/about" },
   "publisher": { "@type": "Organization", "name": "When to Visit Japan", "logo": { "@type": "ImageObject", "url": "https://best-time-japan.com/favicon.svg" } },
-  ...(seasonalGuide && { "dateModified": "2026-10-15" }),
+  ...(seasonalGuide && { "dateModified": "2026-10-27" }),
   "mainEntityOfPage": { "@type": "WebPage", "@id": canonical },
 });
 

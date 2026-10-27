@@ -1,11 +1,20 @@
 ---
 title: "Japan in November vs December: Weather, Autumn Leaves & Snow"
-seoTitle: "Japan in November vs December: Which Month Is Better?"
-description: "Choose your month with a side-by-side weather table, foliage and snow trade-offs, and packing guides for each route."
+seoTitle: "Japan Weather in November vs December, Compared"
+description: "Tokyo's average high drops from 16.7°C in November to 12°C in December, and rain from 96 to 58 mm. Compare 6 cities, autumn leaves vs snow, and pick a month."
 pubDate: 2026-10-15
-updatedDate: 2026-10-25
+updatedDate: 2026-10-27
 tags: ["weather", "november", "december", "planning"]
-quickAnswer: "Choose November if your priority is milder city sightseeing and autumn gardens. Choose December if you prefer winter illuminations or a trip focused on northern or mountain snow destinations, while checking current snow conditions. For Tokyo and Osaka, December is colder and has lower average precipitation. Neither month has one weather pattern across the whole country."
+quickAnswer: "Choose November for milder city sightseeing and autumn gardens; choose December for winter illuminations or a snow-focused trip to northern or mountain areas. In Tokyo, the average daily high falls from 16.7°C in November to 12.0°C in December, and precipitation from 96.3 mm to 57.9 mm, so December is colder but drier. Neither month has one weather pattern across the whole country."
+faqs:
+  - question: "Is November or December better to visit Japan?"
+    answer: "November suits travelers who want milder walking weather and autumn leaves in central Japan. December suits winter illuminations and snow-country trips. For a first Tokyo–Kyoto–Osaka trip focused on outdoor sightseeing, November is usually the more comfortable choice."
+  - question: "How much colder is December than November in Japan?"
+    answer: "In Tokyo the average daily high drops from 16.7°C to 12.0°C and the low from 8.8°C to 3.8°C. Osaka goes from 17.8°C/10.2°C to 12.3°C/5.3°C, and Sapporo from 8.7°C/1.6°C to 2.0°C/−4.0°C (JMA 1991–2020 normals)."
+  - question: "Is November or December rainier in Japan?"
+    answer: "In Tokyo and Osaka, November is wetter: Tokyo averages 96.3 mm in November vs 57.9 mm in December, and Osaka 72.5 mm vs 55.5 mm. On the Sea of Japan coast it is the reverse, with Niigata rising from 203.5 mm to 225.9 mm."
+  - question: "Can I see autumn leaves in Japan in December?"
+    answer: "Some late color can remain into early December in places, but November is the more reliable month for a central-Japan foliage trip. Timing varies by location, elevation and year, so check local foliage reports."
 ---
 
 If your trip crosses both months, use our [late-November to early-December guide](/blog/japan-weather-late-november-early-december/).

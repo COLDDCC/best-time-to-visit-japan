@@ -36,7 +36,7 @@ for (const file of files) {
   }
 }
 for (const url of locations) assert.ok(url.endsWith('/'), `Sitemap needs slash: ${url}`);
-for (const slug of ['is-japan-rainy-in-november', 'japan-in-november-vs-december', 'what-to-wear-in-japan-in-november', 'what-to-wear-in-japan-in-december', 'does-it-snow-in-japan-in-december', 'japan-weather-late-november-early-december']) {
+for (const slug of ['is-japan-rainy-in-november', 'japan-in-november-vs-december', 'what-to-wear-in-japan-in-november', 'what-to-wear-in-japan-in-december', 'does-it-snow-in-japan-in-december', 'japan-weather-late-november-early-december', 'tokyo-in-december-weather']) {
   const html = readFileSync(`${root}/blog/${slug}/index.html`, 'utf8');
   const title = html.match(/<title>(.*?)<\/title>/)[1].replaceAll('&amp;', '&');
   assert.ok(title.length <= 55, `${slug}: title too long`);
