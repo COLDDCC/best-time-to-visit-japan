@@ -93,7 +93,7 @@ const initial = cities.some((c) => c.id === defaultCity) ? defaultCity : "tokyo"
           <p class="text-sm font-bold text-zinc-900 m-0">${Math.round(d.temperature_2m_max[i])}°</p>
           <p class="text-xs text-zinc-500 m-0">${Math.round(d.temperature_2m_min[i])}°</p>
           <div class="lf-rainbar" aria-hidden="true"><span style="width:${rain}%"></span></div>
-          <p class="text-[11px] text-blue-700 m-0">${rain}% rain</p>`;
+          <p class="text-[11px] text-blue-700 m-0" title="Chance of rain">☂ ${rain}%</p>`;
         return li;
       }));
       const t = new Date().toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", timeZone: "Asia/Tokyo" });
