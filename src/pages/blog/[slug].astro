@@ -2,6 +2,7 @@
 import "../../styles/global.css";
 import { pagePath } from "../../utils/urls";
 import TravelVisualGuide from "../../components/TravelVisualGuide.astro";
+import LiveForecast from "../../components/LiveForecast.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Nav from "../../components/Nav.astro";
 import Footer from "../../components/Footer.astro";
@@ -22,6 +23,7 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", { year: "numeric", month:
 const wordCount = (post.body ?? "").trim().split(/\s+/).filter(Boolean).length;
 const readingTime = Math.max(1, Math.round(wordCount / 200));
 
+const showForecast = post.data.tags.includes("weather") || post.data.tags.includes("packing");
 const planningMonths = ["november", "december", "january"].filter(month => post.data.tags.includes(month));
 const faqSchema = JSON.stringify({
   "@context": "https://schema.org", "@type": "FAQPage",
@@ -62,6 +64,8 @@ const articleSchema = JSON.stringify({
         Published {dateFormatter.format(post.data.pubDate)} · {readingTime} min read
         {post.data.updatedDate && <> · Updated {dateFormatter.format(post.data.updatedDate)}</>}
       </p>
+
+      {showForecast && <LiveForecast defaultCity={post.id.includes("snow") ? "sapporo" : "tokyo"} />}
 
       <div class="post-content text-zinc-700 leading-relaxed">
         <Content />
