@@ -52,7 +52,7 @@ const seasonalGuide = month.month === "november" ? lateYearGuides.november : mon
 const tokyoClimate = lateYearCities.find((c) => c.name === "Tokyo");
 const tokyoMonth = seasonalGuide && tokyoClimate ? tokyoClimate[month.month as "november" | "december"] : null;
 const title = seasonalGuide ? `Japan Weather in ${month.label}: Temps, ${month.month === "november" ? "Rain" : "Snow"} & What to Wear` : `Japan Weather in ${month.label}: Temperatures & Travel Guide`;
-const meta = seasonalGuide && tokyoMonth ? `Japan weather in ${month.label}: Tokyo averages ${tokyoMonth[0].toFixed(1)}°C highs and ${tokyoMonth[1].toFixed(1)}°C lows with ${tokyoMonth[2]} mm of ${month.month === "november" ? "rain" : "precipitation"}. Compare 6 cities, ${month.month === "november" ? "rain" : "snow"} odds and what to wear.` : `${month.label} in Japan: ${month.tempLow}°C to ${month.tempHigh}°C, ${month.rainDays} rain days, crowds ${month.crowdLevel}/5. Best for ${month.bestFor}.`;
+const meta = seasonalGuide && tokyoMonth ? `Japan weather in ${month.label}: Tokyo averages ${tokyoMonth[0].toFixed(1)}°C highs and ${tokyoMonth[1].toFixed(1)}°C lows with ${tokyoMonth[2]} mm of ${month.month === "november" ? "rain" : "precipitation"}. Compare ${lateYearCities.length} cities, ${month.month === "november" ? "rain" : "snow"} odds and what to wear.` : `${month.label} in Japan: ${month.tempLow}°C to ${month.tempHigh}°C, ${month.rainDays} rain days, crowds ${month.crowdLevel}/5. Best for ${month.bestFor}.`;
 
 
 const monthFaqs = [
