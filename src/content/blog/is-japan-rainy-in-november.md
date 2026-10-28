@@ -1,7 +1,7 @@
 ---
 title: "Is Japan Rainy in November? Rainfall by City & What to Expect"
 seoTitle: "Is Japan Rainy in November? How Much It Rains by City"
-description: "Mostly no: Tokyo averages 96 mm of rain in November vs 235 mm in October, Osaka 73 mm. The Sea of Japan coast is about twice as wet. See all 5 cities."
+description: "Mostly no: Tokyo averages 96 mm of rain in November vs 235 mm in October, Osaka 73 mm. The Sea of Japan coast is about twice as wet. Compare rainfall and rainy days across 7 cities."
 pubDate: 2026-10-15
 updatedDate: 2026-10-28
 faqs:
