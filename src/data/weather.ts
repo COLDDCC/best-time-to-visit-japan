@@ -1,3 +1,5 @@
+import { lateYearCities } from "./late-year-weather";
+
 export interface MonthData {
   month: string;
   label: string;
@@ -638,7 +640,7 @@ export const monthlyData: MonthData[] = [
     label: "November",
     tempLow: 7,
     tempHigh: 15,
-    rainDays: 8,
+    rainDays: lateYearCities.find(city => city.name === "Tokyo")!.rainDays.november,
     crowdLevel: 4,
     bestFor: "peak autumn leaves in Kyoto & Tokyo, gardens and crisp clear days",
     image: "/images/month-november.webp",

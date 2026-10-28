@@ -21,3 +21,10 @@ for (const days of [7, 14]) for (const laundry of [true, false]) for (const cold
   assert.ok(plan.items.every(row => Number.isInteger(row.qty) && row.qty > 0));
 }
 console.log('Packing checks passed: quantities, laundry, warmth, route conditions and 48 trip combinations.');
+
+assert.equal(item({rainDaysPerWeek:2}, 'raincover').label, 'Compact umbrella');
+assert.match(item({rainDaysPerWeek:2.01}, 'raincover').label, /umbrella \+ light waterproof/);
+assert.match(item({rainDaysPerWeek:3}, 'footwear').label, /Water-resistant/);
+assert.match(item({rainDaysPerWeek:3.01}, 'footwear').label, /Waterproof/);
+assert.match(item({rainDaysPerWeek:1,seaOfJapan:true}, 'footwear').label, /Waterproof/);
+assert.equal(item({rainDaysPerWeek:1.73,days:7}, 'raincover').label,item({rainDaysPerWeek:1.73,days:14}, 'raincover').label);

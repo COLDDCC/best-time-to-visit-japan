@@ -1,0 +1,48 @@
+---
+import { lateYearCities, expectedWetDays } from '../data/late-year-weather';
+export interface Props { month: 'november' | 'december'; highlight?: string; }
+const { month, highlight } = Astro.props;
+const rows = [...lateYearCities].sort((a,b) => a.rainDays[month] - b.rainDays[month]);
+const priorities = (name: string) => name === 'Sapporo' ? 'Warm coat + waterproof shoes; winter boots for snow / ice' : name === 'Niigata' ? 'Waterproof jacket + waterproof shoes' : name.startsWith('Naha') ? 'Light layers + wind / rain shell' : name === 'Kyoto' ? 'Removable jacket + grippy shoes for wet stone' : 'Removable jacket + compact umbrella';
+const headers = ['City / station','Wet days / 7-day trip','High / low °C','Precipitation mm','Rainy days ≥1 mm','Packing priority'];
+---
+<section class="city-decision" aria-labelledby="city-decision-title">
+  <h2 id="city-decision-title">Compare cities. Pack for your route.</h2>
+  <p>Sorted by estimated wet days, driest first. Select a column to sort; swipe for all columns.</p>
+  <div class="decision-scroll" tabindex="0" role="region" aria-label="City weather and packing decisions">
+    <table data-city-table>
+      <caption>{month === 'november' ? 'November' : 'December'} · JMA 1991–2020 station normals</caption>
+      <thead><tr>{headers.map((title,i)=><th scope="col" aria-sort={i === 1 ? 'ascending' : 'none'}><button type="button" data-sort={i} aria-label={`Sort by ${title}`}>{title} <span aria-hidden="true">↕</span></button>{i===4 && <a href="/blog/is-japan-rainy-in-november/">rainy days by city</a>}</th>)}</tr></thead>
+      <tbody>{rows.map(city=><tr data-city={city.name} class:list={{highlight: city.name === highlight}}>
+        <th scope="row" data-value={city.name}><a href={city.source}>{city.name}</a></th>
+        <td data-value={expectedWetDays(city.rainDays[month],7,month)}><strong>≈ {expectedWetDays(city.rainDays[month],7,month).toFixed(1)}</strong></td>
+        <td data-value={city[month][0]}><a href={city.source}>{city[month][0].toFixed(1)} / {city[month][1].toFixed(1)}</a></td>
+        <td data-value={city[month][2]}><a href={city.rainSource}>{city[month][2].toFixed(1)}</a></td>
+        <td data-value={city.rainDays[month]}><a href={city.rainSource}>{city.rainDays[month].toFixed(1)}</a></td>
+        <td data-value={priorities(city.name)}>{priorities(city.name)}</td>
+      </tr>)}</tbody>
+    </table>
+  </div>
+  <p class="method">A “rainy day” means daily precipitation ≥1 mm, including melted snow. Trip estimate = monthly wet days ÷ {month === 'november' ? 30 : 31} × trip length, rounded to one decimal. This assumes the monthly average rate throughout your stay: a 30-year climate estimate, <strong>not a forecast or a promise of how many days it will rain</strong>. Wet days may still have dry hours. Every measurement links to its JMA station record.</p>
+  <p data-sort-status role="status" class="sort-status"></p>
+</section>
+<script>
+  document.querySelectorAll<HTMLTableElement>('[data-city-table]').forEach(table => {
+    table.querySelectorAll<HTMLButtonElement>('[data-sort]').forEach(button => button.addEventListener('click', () => {
+      const index = Number(button.dataset.sort), header = button.closest('th')!;
+      const ascending = header.getAttribute('aria-sort') !== 'ascending';
+      const rows = Array.from(table.tBodies[0].rows);
+      rows.sort((a,b) => {
+        const x = a.cells[index].dataset.value!, y = b.cells[index].dataset.value!;
+        return (index > 0 && index < 5 ? Number(x)-Number(y) : x.localeCompare(y)) * (ascending ? 1 : -1);
+      });
+      rows.forEach(row => table.tBodies[0].append(row));
+      table.querySelectorAll('thead th').forEach(th => th.setAttribute('aria-sort','none'));
+      header.setAttribute('aria-sort',ascending ? 'ascending' : 'descending');
+      table.closest('section')!.querySelector('[data-sort-status]')!.textContent = `${button.textContent?.replace('↕','').trim()}: ${ascending ? 'ascending' : 'descending'}.`;
+    }));
+  });
+</script>
+<style>
+.city-decision{margin-top:2rem;border-top:1px solid #dfe4df;padding-top:1.5rem;min-width:0}.city-decision h2{font-family:Georgia,serif;font-size:1.55rem;margin:0 0 .6rem;line-height:1.25}.city-decision p{font-size:.8rem;line-height:1.6;color:#586861}.decision-scroll{overflow:auto;max-width:100%;margin:1rem 0;border:1px solid #dfe4df;border-radius:.6rem}table{width:100%;min-width:860px;border-collapse:separate;border-spacing:0;font-size:.78rem;text-align:left}caption{text-align:left;padding:.8rem;background:#eef2eb;color:#586861}th,td{padding:.8rem .6rem;border-bottom:1px solid #dfe4df;background:#fcfcf8;vertical-align:top}thead th{background:#e9eee5;font-size:.7rem}button{font:inherit;font-weight:600;text-align:left;color:#264b3c;background:none;border:0;padding:0;cursor:pointer;min-height:44px}a{text-decoration:underline;text-underline-offset:3px;color:#355c50}thead a{display:block;font-size:.65rem}th:first-child{position:sticky;left:0;width:110px;min-width:110px;max-width:110px;z-index:2}td:nth-child(2),thead th:nth-child(2){position:sticky;left:110px;min-width:100px;width:100px;z-index:1;box-shadow:3px 0 5px #00000008}.highlight>*{background:#e5eee1}.method{padding:.85rem;background:#edf1e8;border-radius:.5rem}.sort-status{min-height:1.3em}button:focus-visible,.decision-scroll:focus-visible{outline:2px solid #42665d;outline-offset:3px}*{box-sizing:border-box}
+</style>

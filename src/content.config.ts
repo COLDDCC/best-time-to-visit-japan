@@ -7,6 +7,7 @@ const blog = defineCollection({
     title: z.string(),
     description: z.string(),
     quickAnswer: z.string().optional(),
+    cityTable: z.boolean().optional(),
     seoTitle: z.string().max(55).optional(),
     faqs: z.array(z.object({ question: z.string(), answer: z.string() })).default([]),
     pubDate: z.coerce.date(),

@@ -1,16 +1,19 @@
-// JMA climatological normals, 1991–2020. Precipitation includes melted snow.
-export const climateSource = "https://www.data.jma.go.jp/stats/en/normal/normal.html";
+// JMA 1991–2020, days ≥1.0 mm. Precipitation includes melted snow.
+// Station main-element and precipitation-detail links are retained per city. Verified 2026-10-28.
+export const climateSource = "https://www.data.jma.go.jp/stats/data/en/normal/normal.html";
 export const lateYearCities = [
-  { name: "Tokyo", november: [16.7, 8.8, 96.3], december: [12.0, 3.8, 57.9] },
-  { name: "Osaka", november: [17.8, 10.2, 72.5], december: [12.3, 5.3, 55.5] },
-  { name: "Sapporo", november: [8.7, 1.6, 113.8], december: [2.0, -4.0, 114.5] },
-  { name: "Fukuoka", november: [18.2, 10.6, 91.4], december: [12.6, 5.8, 67.5] },
-  { name: "Niigata", november: [14.7, 6.9, 203.5], december: [8.7, 2.4, 225.9] },
-  { name: "Naha (Okinawa)", november: [25.0, 20.4, 119.1], december: [21.5, 16.8, 110.0] },
+  {"name": "Tokyo", "november": [16.7, 8.8, 96.3], "december": [12.0, 3.8, 57.9], "rainDays": {"november": 7.4, "december": 5.2}, "source": "https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=44&block_no=47662&view=p1", "rainSource": "https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=44&block_no=47662&view=a1", "seaOfJapan": false},
+  {"name": "Osaka", "november": [17.8, 10.2, 72.5], "december": [12.3, 5.3, 55.5], "rainDays": {"november": 6.2, "december": 6.1}, "source": "https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=62&block_no=47772&view=p1", "rainSource": "https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=62&block_no=47772&view=a1", "seaOfJapan": false},
+  {"name": "Kyoto", "november": [17.3, 8.4, 73.9], "december": [11.6, 3.5, 57.3], "rainDays": {"november": 6.3, "december": 6.6}, "source": "https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=61&block_no=47759&view=p1", "rainSource": "https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=61&block_no=47759&view=a1", "seaOfJapan": false},
+  {"name": "Sapporo", "november": [8.7, 1.6, 113.8], "december": [2.0, -4.0, 114.5], "rainDays": {"november": 14.6, "december": 16.0}, "source": "https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=14&block_no=47412&view=p1", "rainSource": "https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=14&block_no=47412&view=a1", "seaOfJapan": false},
+  {"name": "Fukuoka", "november": [18.2, 10.6, 91.4], "december": [12.6, 5.8, 67.5], "rainDays": {"november": 8.5, "december": 8.5}, "source": "https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=82&block_no=47807&view=p1", "rainSource": "https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=82&block_no=47807&view=a1", "seaOfJapan": false},
+  {"name": "Niigata", "november": [14.3, 6.9, 203.5], "december": [8.7, 2.4, 225.9], "rainDays": {"november": 17.7, "december": 21.5}, "source": "https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=54&block_no=47604&view=p1", "rainSource": "https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=54&block_no=47604&view=a1", "seaOfJapan": true},
+  {"name": "Naha (Okinawa)", "november": [25.0, 20.4, 119.1], "december": [21.5, 16.8, 110.0], "rainDays": {"november": 8.2, "december": 9.3}, "source": "https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=91&block_no=47936&view=p1", "rainSource": "https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=91&block_no=47936&view=a1", "seaOfJapan": false},
 ];
+export function expectedWetDays(rainDays: number, days: number, month: 'november' | 'december') { return rainDays / (month === 'november' ? 30 : 31) * days; }
 export const lateYearGuides = {
   november: {
-    answer: "November is cool in Tokyo and Osaka and relatively dry compared with September and October. Tokyo averages a daily high of 16.7°C and low of 8.8°C, with 96.3 mm of precipitation. It is not the main rainy season, but rain remains possible. Hokkaido is much colder, while Japan’s Sea of Japan coast can be considerably wetter.",
+    answer: `November is cool in Tokyo and Osaka and relatively dry compared with September and October. Tokyo averages a daily high of 16.7°C and low of 8.8°C, with 96.3 mm of precipitation. Tokyo averages ${lateYearCities[0].rainDays.november} days with daily precipitation ≥1 mm (JMA 1991–2020), not a forecast for your dates. It is not the main rainy season, but rain remains possible. Hokkaido is much colder, while Japan’s Sea of Japan coast can be considerably wetter.`,
     timing: ["Early November: prepare for cool city mornings and warmer afternoons; northern and mountain destinations need warmer layers.", "Mid-November: allow for changing temperatures between cities and higher elevations. Check local foliage reports rather than assuming every destination peaks together.", "Late November: pack warmer evening layers, especially if your trip continues into December. Northern and mountain routes may have wintry conditions."],
     links: [["is-japan-rainy-in-november", "Is Japan rainy in November?"], ["what-to-wear-in-japan-in-november", "What to wear in November"], ["tokyo-in-november-weather", "Tokyo in November: rain & outfits"]],
     packing: "For Tokyo and Osaka, bring long sleeves, a removable warm layer, a jacket and a compact umbrella. Add a winter coat and suitable footwear for Hokkaido or mountain routes; Okinawa needs lighter clothing.",

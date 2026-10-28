@@ -3,7 +3,7 @@ title: "Is Japan Rainy in November? Rainfall by City & What to Expect"
 seoTitle: "Is Japan Rainy in November? How Much It Rains by City"
 description: "Mostly no: Tokyo averages 96 mm of rain in November vs 235 mm in October, Osaka 73 mm. The Sea of Japan coast is about twice as wet. See all 5 cities."
 pubDate: 2026-10-15
-updatedDate: 2026-10-27
+updatedDate: 2026-10-28
 faqs:
   - question: "Is November the rainy season in Japan?"
     answer: "No. Japan's main rainy season (tsuyu) is in early summer. November is relatively dry in Tokyo (96.3 mm) and Osaka (72.5 mm) compared with October, although rain is still possible and the Sea of Japan coast is much wetter (Niigata: 203.5 mm)."
@@ -34,19 +34,19 @@ quickAnswer: "Mostly no. November is not Japan's rainy season, and Tokyo (96.3 m
 
 ## November rain: the answer by city
 
-| City | Average November precipitation | What it means for your trip |
-|---|---:|---|
-| Osaka | **72.5 mm** | Relatively dry compared with October; keep a compact umbrella |
-| Tokyo | **96.3 mm** | Often suitable for outdoor sightseeing, with occasional wet days |
-| Sapporo | **113.8 mm** | Colder; some precipitation may fall as snow |
-| Naha, Okinawa | **119.1 mm** | Warmer, but rain remains possible |
-| Niigata | **203.5 mm** | Wetter Sea of Japan coast; plan indoor alternatives |
+| City / JMA station | November precipitation | Rainy days ≥1 mm | What it means for your trip |
+|---|---:|---:|---|
+| [Osaka](https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=62&block_no=47772&view=a1) | 72.5 mm | 6.2 | Compact umbrella |
+| [Kyoto](https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=61&block_no=47759&view=a1) | 73.9 mm | 6.3 | Grip for wet stone paths |
+| [Tokyo](https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=44&block_no=47662&view=a1) | 96.3 mm | 7.4 | Occasional wet days |
+| [Naha](https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=91&block_no=47936&view=a1) | 119.1 mm | 8.2 | Light rain and wind protection |
+| [Fukuoka](https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=82&block_no=47807&view=a1) | 91.4 mm | 8.5 | Compact umbrella |
+| [Sapporo](https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=14&block_no=47412&view=a1) | 113.8 mm | 14.6 | Precipitation may include snow |
+| [Niigata](https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=54&block_no=47604&view=a1) | 203.5 mm | 17.7 | Waterproof outer layer and shoes |
 
-**Quick decision:** For a Tokyo–Kyoto–Osaka trip, November is generally a reasonable choice for outdoor sightseeing. Rain is possible, so pack a small umbrella and keep one indoor backup. Kyoto has its own climate observations; Osaka's figure is not a Kyoto measurement.
+JMA 1991–2020 normals. A rainy day means daily precipitation ≥1 mm, including melted snow; it need not be wet all day. These monthly counts are not forecasts for your dates. Each station link opens the original precipitation table.
 
-*Source: [JMA 1991–2020 climate normals](https://www.data.jma.go.jp/stats/en/normal/normal.html). These are monthly precipitation totals, not the number of rainy days or a forecast for your dates. In colder regions, precipitation includes melted snow.*
-
-**Is November Japan's rainy season?** No—the main early-summer rainy season has ended. For detailed clothing advice, see [what to wear in Japan in November](/blog/what-to-wear-in-japan-in-november/).
+See [what to pack for these conditions](/blog/what-to-wear-in-japan-in-november/) for a trip-length estimate and an editable list that adjusts rain gear to your destination.
 
 ## Is November Japan’s rainy season?
 
@@ -68,7 +68,7 @@ These are 1991–2020 station normals. In cold places, some precipitation falls 
 
 If minimizing precipitation is your main priority, the historical station totals in the table favor **Osaka (72.5 mm)** and **Tokyo (96.3 mm)** over **Niigata (203.5 mm)**. This is a comparison of monthly precipitation, **not** a ranking of the probability of rainy days or a guarantee of sunshine. Sapporo's total can include snow.
 
-For a first-time Tokyo–Kyoto–Osaka itinerary, keep outdoor attractions flexible and use the local forecast as your dates approach. Osaka's figures should not be treated as measurements from Kyoto itself.
+For a first-time Tokyo–Kyoto–Osaka itinerary, keep outdoor attractions flexible and use the local forecast as your dates approach. Use Kyoto’s own row for that stop rather than substituting Osaka’s measurements.
 
 ## Is November wetter than October or December?
 
@@ -80,7 +80,7 @@ A lower monthly total does not guarantee that a particular seven-day visit will 
 
 Tokyo’s November normal is 96.3 mm, compared with 234.8 mm in October. That supports describing November as relatively dry, rather than rain-free. Keep one indoor option available for a wet afternoon.
 
-Kyoto needs its own station record. Nearby Osaka offers regional context, but its 72.5 mm figure should not be presented as Kyoto’s rainfall. Kyoto’s temple walks also involve outdoor paths and steps, so wet-weather footwear matters even on an otherwise city-focused trip.
+Kyoto’s own JMA station averages 73.9 mm and 6.3 days with at least 1 mm in November. Kyoto’s temple walks also involve outdoor paths and steps, so wet-weather footwear matters even on an otherwise city-focused trip.
 
 ## Should you bring an umbrella or rain jacket?
 

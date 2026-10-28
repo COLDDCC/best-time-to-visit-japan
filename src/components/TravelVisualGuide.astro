@@ -1,16 +1,17 @@
 ---
 import PackingPlanner from './PackingPlanner.astro';
+import CityDecisionTable from './CityDecisionTable.astro';
 import TravelLineIcon from './TravelLineIcon.astro';
 import { lateYearCities, climateSource } from '../data/late-year-weather';
-export interface Props { month?: 'november' | 'december'; }
-const { month = 'november' } = Astro.props;
+export interface Props { month?: 'november' | 'december'; months?: ('november' | 'december')[]; cityTable?: boolean; }
+const { month = 'november', months = ['november', 'december'], cityTable = false } = Astro.props;
 const key = `outfit-${month}`;
-const months = ['november', 'december'] as const;
+
 const routes = [
   { id:'city', label:'Tokyo & Osaka', station:'Tokyo', photo:'/images/region-tokyo.webp', alt:'Tokyo skyline with Mount Fuji in the distance', region:'tokyo', tone:'Cool city days',
     november:['Long sleeves + sweater','Removable jacket','Walking shoes with grip','Compact umbrella'],
     december:['Base layer + sweater','Warm outer coat','Closed walking shoes','Compact umbrella'],
-    note:'Osaka has its own readings in the table. Check Kyoto separately. Add warmth for evenings outdoors.' },
+    note:'Compare Tokyo, Osaka and Kyoto in the city table. Add warmth for evenings outdoors.' },
   { id:'north', label:'Hokkaido', station:'Sapporo', photo:'/images/region-hokkaido.webp', alt:'Sapporo city lights at dusk', region:'hokkaido', tone:'Colder northern routes',
     november:['Warm base + mid-layer','Warmer coat','Footwear for the forecast','Rain / snow protection'],
     december:['Insulating base + mid-layer','Insulated winter coat','Winter-suitable footwear','Snow / wind protection'],
@@ -29,14 +30,16 @@ const icons = ['shirt','jacket','shoe','umbrella'] as const;
   <div class="outfit-panels">{months.flatMap(m=>routes.map(r=>{
     const values=lateYearCities.find(c=>c.name===r.station)![m];
     return <div class="route-panel" data-month={m} data-route={r.id}>
-      <div class="climate-note"><div class="weather-symbol"><TravelLineIcon name={r.id==='north'?'snowflake':r.id==='south'?'sun':'wind'} /></div><div><p class="route-tone">{r.tone}</p><h3>{r.label} <span>in {m==='november'?'November':'December'}</span></h3><p class="temperature">{values[0].toFixed(1)}° <span>/ {values[1].toFixed(1)}°C</span></p><p class="micro">{r.station} · average daily high / low</p></div></div>
+      <div class="climate-note"><div class="weather-symbol"><TravelLineIcon name={r.id==='north'?'snowflake':r.id==='south'?'sun':'wind'} /></div><div><p class="route-tone">{r.tone}</p><h3>{r.label} <span>in {m==='november'?'November':'December'}</span></h3>{!cityTable && <p class="temperature">{values[0].toFixed(1)}° <span>/ {values[1].toFixed(1)}°C</span></p><p class="micro">{r.station} · average daily high / low</p>}</div></div>
       <figure class="capsule-outfit"><img src={`/images/outfits/${r.id}-capsule.webp`} alt={r.id === 'city' ? 'Generated outfit example: warm coat, sweater, long sleeves, trousers, walking shoes, scarf and umbrella' : r.id === 'north' ? 'Generated snow-country outfit example: insulated coat, fleece, thermal top, trousers, winter boots, hat and gloves' : 'Generated Okinawa outfit example: light jacket, long and short sleeve tops, trousers, walking shoes and umbrella'} width="1200" height="800" loading="lazy" decoding="async" /><figcaption><span>AI-generated outfit illustration</span>{r.id === 'north' ? 'Snow-condition example. Choose this level of footwear and insulation only when your route and forecast require it.' : r.id === 'city' && m === 'november' ? 'A warmer city outfit. Swap the coat for a lighter jacket if the November forecast and your comfort allow.' : r.id === 'city' ? 'A city-day starting outfit; adjust layers for outdoor evenings and heated interiors.' : 'Lighter island layers. Use the forecast for your specific island and dates.'}</figcaption></figure>
       <ol class="outfit-items">{r[m].map((item,i)=><li><span class="item-number">0{i+1}</span><span class="garment"><TravelLineIcon name={i === 0 && r.id !== 'south' ? 'long-sleeves' : i === 1 ? 'coat' : i === 2 && r.id === 'north' && m === 'december' ? 'winter-boot' : i === 3 && r.id === 'north' ? 'snowflake' : icons[i]} /></span><span class="item-label">{item}</span></li>)}</ol>
-      <p class="route-advice">{r.note}</p><a class="route-link" href={`/region/${r.region}/`}>Explore {r.label} →</a>
+      <p class="route-advice">{r.id === 'city' && !cityTable ? 'Add warmth for evenings outdoors; check each destination’s local forecast.' : r.note}</p><a class="route-link" href={`/region/${r.region}/`}>Explore {r.label} →</a>
     </div>;
   }))}</div>
-  <details class="climate-table"><summary>Compare all city temperatures & packing needs <span aria-hidden="true">＋</span></summary><div class="table-scroll" tabindex="0" role="region" aria-label="City climate comparison"><table><caption>November vs December · JMA station averages, °C</caption><thead><tr><th scope="col">City / station</th><th scope="col">Nov high / low</th><th scope="col">Dec high / low</th><th scope="col">Packing priority</th></tr></thead><tbody>{lateYearCities.map(c=><tr><th scope="row">{c.name}</th><td>{c.november[0]} / {c.november[1]}</td><td>{c.december[0]} / {c.december[1]}</td><td>{c.name==='Sapporo'?'Warmth + footwear for snow / ice':c.name.startsWith('Naha')?'Lighter layers + wind / rain cover':c.name==='Niigata'?'Rain / snow protection + warm layers':'Removable layers + walking comfort'}</td></tr>)}</tbody></table></div></details>
+  {!cityTable && <details class="climate-table"><summary>Compare all city temperatures & packing needs <span aria-hidden="true">＋</span></summary><div class="table-scroll" tabindex="0" role="region" aria-label="City climate comparison"><table><caption>November vs December · JMA station averages, °C</caption><thead><tr><th scope="col">City / station</th><th scope="col">Nov high / low</th><th scope="col">Dec high / low</th><th scope="col">Packing priority</th></tr></thead><tbody>{lateYearCities.map(c=><tr><th scope="row">{c.name}</th><td>{c.november[0]} / {c.november[1]}</td><td>{c.december[0]} / {c.december[1]}</td><td>{c.name==='Sapporo'?'Warmth + footwear for snow / ice':c.name.startsWith('Naha')?'Lighter layers + wind / rain cover':c.name==='Niigata'?'Rain / snow protection + warm layers':'Removable layers + walking comfort'}</td></tr>)}</tbody></table></div></details>}
+  {cityTable && <CityDecisionTable month={month} highlight="Tokyo" />}
   <PackingPlanner month={month} />
+  {months.length === 1 && <p class="source-note">Travelling next month? <a href="/blog/what-to-wear-in-japan-in-december/">December packing guide →</a></p>}
   <p class="source-note">Climate: <a href={climateSource}>JMA 1991–2020 normals</a>, not a forecast. Photos show destinations, not conditions on your dates. The line drawings are packing symbols; choose clothing for the local forecast.</p>
 </section>
 <style>

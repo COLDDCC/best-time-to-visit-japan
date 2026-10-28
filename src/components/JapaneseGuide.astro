@@ -46,7 +46,7 @@ const faqs=[
     <div class="ja-panel"><h2>東京の気温の目安</h2><p>{weather!.tempLow}〜{weather!.tempHigh}℃</p><small>旅行日の予報ではありません</small></div>
     <div class="ja-panel"><h2>服装の考え方</h2><p>{month!.packing}</p></div>
    </section>
-   <section class="ja-panel mt-5"><h2>計画するときの注意点</h2><p>{month!.note}</p><p class="mt-2">東京の月別データでは降雨日数の目安は{weather!.rainDays}日です。雨の定義や観測期間によって値は変わるため、旅行日の降水確率としては使えません。</p></section>
+   <section class="ja-panel mt-5"><h2>計画するときの注意点</h2><p>{month!.note}</p><p class="mt-2">東京の月別データでは降雨日数の目安は{weather!.rainDays}日です。{slug === 'november' ? '11月は気象庁1991–2020年平年値、日降水量1 mm以上（融雪を含む）です。旅行日の予報ではありません。' : '雨の定義や観測期間によって値は変わるため、旅行日の降水確率としては使えません。'}</p></section>
    <section class="mt-8"><h2 class="text-2xl font-bold mb-4">行き先で変わる旅の条件</h2><div class="ja-table-wrap"><table><thead><tr><th>エリア</th><th>予定を決める前に</th></tr></thead><tbody><tr><td><a href="/ja/region/hokkaido/">北海道・北日本</a></td><td>都市と山の気温差、雪や路面、交通情報を確認。</td></tr><tr><td><a href="/ja/region/tokyo/">東京・本州の街歩き</a></td><td>朝晩の気温差と、目的地の混雑・営業情報を確認。</td></tr><tr><td><a href="/ja/region/okinawa/">沖縄・南の島</a></td><td>本州の気温を流用せず、風・波・天候を個別に確認。</td></tr></tbody></table></div></section>
    <div class="flex flex-wrap gap-3 mt-6"><a href="/ja/monthly-guide/" class="ja-button">ほかの月と比較 →</a><a href={`/month/${slug}/`} lang="en" class="ja-outline">詳しい英語版を読む ↗</a></div>
   </>}

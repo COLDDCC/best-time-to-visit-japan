@@ -1,5 +1,6 @@
 "use client";
 
+import { lateYearCities } from "../../data/late-year-weather";
 import { useState } from "react";
 
 interface CompareItem {
@@ -24,7 +25,7 @@ const monthlyCompare: Record<string, CompareItem> = {
   august: { label: "August", tempHigh: 32, tempLow: 24, rainDays: 12, crowdLevel: 5, costLevel: "Very High", bestFor: "Obon, Nebuta, Fuji climbing", verdict: "Peak summer with Obon crowds and heat. Hokkaido and highlands are the escape; Fuji climbing season." },
   september: { label: "September", tempHigh: 27, tempLow: 19, rainDays: 14, crowdLevel: 2, costLevel: "Low", bestFor: "Cheap flights, early koyo", verdict: "The value month: cheap flights, thin crowds. Typhoon risk, but Hokkaido already shows autumn color." },
   october: { label: "October", tempHigh: 21, tempLow: 13, rainDays: 10, crowdLevel: 4, costLevel: "Moderate", bestFor: "Koyo start, perfect weather", verdict: "Crisp, dry and beautiful. Autumn leaves begin in the north and mountains. The consensus best month." },
-  november: { label: "November", tempHigh: 15, tempLow: 7, rainDays: 8, crowdLevel: 4, costLevel: "Moderate", bestFor: "Peak koyo, Kyoto gardens", verdict: "Peak autumn leaves in Kyoto & Tokyo. Brilliant colors, dry air, and manageable crowds." },
+  november: { label: "November", tempHigh: 15, tempLow: 7, rainDays: lateYearCities.find(city => city.name === "Tokyo")!.rainDays.november, crowdLevel: 4, costLevel: "Moderate", bestFor: "Peak koyo, Kyoto gardens", verdict: "Peak autumn leaves in Kyoto & Tokyo. Brilliant colors, dry air, and manageable crowds." },
   december: { label: "December", tempHigh: 10, tempLow: 2, rainDays: 6, crowdLevel: 3, costLevel: "Moderate", bestFor: "Illuminations, winter landscapes", verdict: "Winter illuminations, cozy onsen, and New Year shrines. Cold but festive and atmospheric." },
 };
 

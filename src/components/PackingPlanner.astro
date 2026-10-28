@@ -1,14 +1,16 @@
 ---
 import { buildPackingPlan } from '../data/packing-plan';
+import { lateYearCities, expectedWetDays } from '../data/late-year-weather';
 export interface Props { month: 'november' | 'december'; }
 const { month } = Astro.props;
-const initial = buildPackingPlan({ days:7,laundry:true,cold:false,route:'city',month });
+const initial = buildPackingPlan({ days:7,laundry:true,cold:false,route:'city',month, rainDaysPerWeek:expectedWetDays(lateYearCities[0].rainDays[month],7,month),destination:'Tokyo' });
 ---
 <section class="packing-planner" id="packing-planner" data-default-month={month} aria-labelledby="packing-planner-title">
   <p class="planner-eyebrow">From outfit to suitcase</p>
   <h3 id="packing-planner-title">How many should you actually bring?</h3>
   <p class="planner-intro">A starting list for one adult. Change your trip length, laundry plan and warmth preference.</p>
   <div class="planner-controls">
+    <label>Destination<select data-setting="destination">{lateYearCities.map(city=><option value={city.name}>{city.name}</option>)}</select></label>
     <label>Trip length<select data-setting="days"><option value="7">7 days</option><option value="14">14 days</option></select></label>
     <label>Laundry<select data-setting="laundry"><option value="yes">One wash halfway</option><option value="no">No laundry</option></select></label>
     <label>How you feel the cold<select data-setting="cold"><option value="no">Standard warmth</option><option value="yes">I feel cold easily</option></select></label>
@@ -24,6 +26,7 @@ const initial = buildPackingPlan({ days:7,laundry:true,cold:false,route:'city',m
 </section>
 <script>
   import { buildPackingPlan, type PackingOptions, type PackingRoute } from '../data/packing-plan';
+  import { lateYearCities, expectedWetDays } from '../data/late-year-weather';
   document.querySelectorAll<HTMLElement>('.packing-planner').forEach(root=>{
     const guide=root.closest<HTMLElement>('.travel-visual')!;
     const settings=Object.fromEntries(Array.from(root.querySelectorAll<HTMLSelectElement>('[data-setting]')).map(el=>[el.dataset.setting!,el]));
@@ -37,7 +40,17 @@ const initial = buildPackingPlan({ days:7,laundry:true,cold:false,route:'city',m
       checks=saved.checks&&typeof saved.checks==='object'?saved.checks:{};
       for(const [key,el]of Object.entries(settings))if(Array.from(el.options).some(o=>o.value===saved.settings?.[key]))el.value=saved.settings[key];
     }catch{}
-    function options():PackingOptions{return {days:settings.days.value==='14'?14:7,laundry:settings.laundry.value==='yes',cold:settings.cold.value==='yes',route:(guide.querySelector<HTMLInputElement>('.route-choice:checked')?.value||'city') as PackingRoute,month:guide.querySelector<HTMLInputElement>('.month-choice:checked')?.value==='november'?'november':'december'};}
+    function options():PackingOptions {
+      const city=lateYearCities.find(city=>city.name===settings.destination.value)!;
+      const month=guide.querySelector<HTMLInputElement>('.month-choice:checked')?.value==='november'?'november':'december';
+      return {days:settings.days.value==='14'?14:7,laundry:settings.laundry.value==='yes',cold:settings.cold.value==='yes',route:city.name==='Sapporo'?'north':city.name.startsWith('Naha')?'south':'city',month,rainDaysPerWeek:expectedWetDays(city.rainDays[month],7,month),seaOfJapan:city.seaOfJapan,destination:city.name};
+    }
+    function syncRoute() {
+      const city=settings.destination.value;
+      const route=city==='Sapporo'?'north':city.startsWith('Naha')?'south':'city';
+      const radio=guide.querySelector<HTMLInputElement>(`.route-choice[value="${route}"]`);if(radio)radio.checked=true;
+      guide.querySelectorAll<HTMLElement>('[data-city]').forEach(row=>row.classList.toggle('highlight',row.dataset.city===city));
+    }
     const itemKey=(item:{id:string;label:string;qty:number})=>`${item.id}|${item.label}|${item.qty}`;
     function save(){try{localStorage.setItem(storageKey,JSON.stringify({checks,settings:Object.fromEntries(Object.entries(settings).map(([key,el])=>[key,el.value]))}));}catch{status.textContent='Browser storage unavailable; you can still download your list.';}}
     function cell(tag:string,value:string){const node=document.createElement(tag);node.textContent=value;if(tag==='th')node.setAttribute('scope','row');return node;}
@@ -46,11 +59,11 @@ const initial = buildPackingPlan({ days:7,laundry:true,cold:false,route:'city',m
       plan.decisions.forEach(item=>{const row=document.createElement('tr');row.append(cell('th',item.item),cell('td',item.decision),cell('td',item.reason));decisionRows.append(row);});
     }
     function exportText(){const plan=buildPackingPlan(options());return `Japan packing list\n${plan.summary}\nQuantities include worn items. Tops: two wears; underwear/socks: daily.\n\n`+plan.items.map(item=>`${checks[itemKey(item)]?'[x]':'[ ]'} ${item.qty} × ${item.label} — ${item.why}`).join('\n')+`\n\nAdjust to the local forecast and your activities.\n${location.origin}${location.pathname}\n`;}
-    Object.values(settings).forEach(el=>el.addEventListener('change',()=>{render();save();}));
-    guide.querySelectorAll<HTMLInputElement>('.month-choice,.route-choice').forEach(el=>el.addEventListener('change',render));
+    Object.values(settings).forEach(el=>el.addEventListener('change',()=>{syncRoute();render();save();}));
+    guide.querySelectorAll<HTMLInputElement>('.month-choice,.route-choice').forEach(el=>el.addEventListener('change',()=>{if(el.classList.contains('route-choice'))settings.destination.value=el.value==='north'?'Sapporo':el.value==='south'?'Naha (Okinawa)':'Tokyo';syncRoute();render();save();}));
     root.querySelector('[data-copy-list]')!.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(exportText());status.textContent='Packing list copied.';}catch{status.textContent='Copy is unavailable. Use Download .txt instead.';}});
     root.querySelector('[data-download-list]')!.addEventListener('click',()=>{const url=URL.createObjectURL(new Blob([exportText()],{type:'text/plain;charset=utf-8'})),link=document.createElement('a');link.href=url;link.download=`japan-${options().month}-${options().route}-${options().days}-day-packing.txt`;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);status.textContent='Your text list is ready.';});
-    render();
+    syncRoute();render();
   });
 </script>
 <style>

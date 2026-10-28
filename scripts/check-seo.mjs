@@ -43,4 +43,17 @@ for (const slug of ['is-japan-rainy-in-november', 'japan-in-november-vs-december
   assert.ok(html.includes('Plan by month') && (!html.includes('class="post-hero"') || html.indexOf('Plan by month') < html.indexOf('class="post-hero"')), `${slug}: month links must precede image`);
 }
 assert.equal(errors.size, 0, [...errors].join('\n'));
+
+const packingHtml = readFileSync(`${root}/blog/what-to-wear-in-japan-in-november/index.html`, 'utf8');
+assert.match(packingHtml, /data-city="Kyoto"/);
+assert.match(packingHtml, /Rainy days ≥1 mm/);
+assert.match(packingHtml, /aria-sort="ascending"/);
+assert.match(packingHtml, /images\/og\/what-to-wear-november.png/);
+assert.ok(!packingHtml.includes('og-default.png'));
+assert.equal((packingHtml.match(/data-month="november"/g) || []).length, 3);
+assert.equal((packingHtml.match(/data-month="december"/g) || []).length, 0);
+for (const path of ['month/november', 'ja/month/november', 'zh-cn/month/november']) {
+  assert.ok(readFileSync(`${root}/${path}/index.html`, 'utf8').includes('7.4'), `${path}: Tokyo wet days must agree`);
+}
+
 console.log(`SEO checks passed: ${files.length} pages, canonical/sitemap/schema identities, internal links and priority titles.`);
