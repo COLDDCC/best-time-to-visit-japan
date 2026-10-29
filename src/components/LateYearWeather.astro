@@ -1,4 +1,5 @@
 ---
+import ClimateFootnote from "./ClimateFootnote.astro";
 import { lateYearCities, lateYearGuides, climateSource } from "../data/late-year-weather";
 const { month } = Astro.props as { month: "november" | "december" };
 const guide = lateYearGuides[month];
@@ -12,11 +13,11 @@ const label = month === "november" ? "November" : "December";
   <div class="overflow-x-auto mb-4">
     <table class="w-full text-sm text-left border-collapse">
       <caption class="text-left text-zinc-600 mb-3">1991–2020 climate averages; temperatures in °C</caption>
-      <thead><tr>{["City / station", "Average high", "Average low", "Precipitation (mm)"].map(h => <th scope="col" class="p-3 border-b border-zinc-300 whitespace-nowrap">{h}</th>)}</tr></thead>
-      <tbody>{lateYearCities.map(city => <tr><th scope="row" class="p-3 border-b border-zinc-200">{city.name}</th>{city[month].map(value => <td class="p-3 border-b border-zinc-200">{value.toFixed(1)}</td>)}</tr>)}</tbody>
+      <thead><tr>{["City / station", "Average high", "Average low", "Precipitation (mm)", "Wet days ≥1 mm"].map(h => <th scope="col" class="p-3 border-b border-zinc-300 whitespace-nowrap">{h}</th>)}</tr></thead>
+      <tbody>{lateYearCities.map(city => <tr><th scope="row" class="p-3 border-b border-zinc-200">{city.name}</th>{city[month].map(value => <td class="p-3 border-b border-zinc-200">{value.toFixed(1)}</td>)}<td class="p-3 border-b border-zinc-200"><a href={city.rainSource}>{city.rainDays[month].toFixed(1)}</a></td></tr>)}</tbody>
     </table>
   </div>
-  <p class="text-sm text-zinc-600 mb-6">Source: <a href={climateSource} class="underline">Japan Meteorological Agency</a>, 1991–2020 normals. Precipitation includes rain and melted snow; it is not a rainy-day count. These averages are not a forecast for your travel dates. Kyoto needs its own station data and should not be treated as identical to Osaka.</p>
+  <ClimateFootnote />
   <h3 class="text-xl font-bold mb-3">Early, mid and late {label}</h3>
   <div class="overflow-x-auto mb-6" tabindex="0" role="region" aria-label={`${label} timing comparison`}>
     <table class="w-full text-sm text-left border-collapse"><thead><tr><th scope="col" class="p-3 border-b border-zinc-300">When</th><th scope="col" class="p-3 border-b border-zinc-300">What to prepare</th></tr></thead><tbody>{guide.timing.map(item => { const split = item.indexOf(':'); return <tr><th scope="row" class="p-3 border-b border-zinc-200 whitespace-nowrap">{item.slice(0, split)}</th><td class="p-3 border-b border-zinc-200 leading-relaxed">{item.slice(split + 1).trim()}</td></tr>; })}</tbody></table>

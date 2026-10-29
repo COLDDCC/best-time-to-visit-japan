@@ -8,6 +8,8 @@ const blog = defineCollection({
     description: z.string(),
     quickAnswer: z.string().optional(),
     cityTable: z.boolean().optional(),
+    climateTable: z.enum(["rain", "comparison", "station"]).optional(),
+    station: z.enum(["Tokyo", "Kyoto"]).optional(),
     seoTitle: z.string().max(55).optional(),
     faqs: z.array(z.object({ question: z.string(), answer: z.string() })).default([]),
     pubDate: z.coerce.date(),

@@ -1,15 +1,18 @@
 ---
-title: "Tokyo in November: Rain, Weather & What to Wear"
-seoTitle: "Tokyo in November: Rain, Weather & What to Wear"
-description: "Plan a Tokyo November day with a climate snapshot, morning-to-evening outfit table, shoe choices and a checkable rain backup list."
+title: "Tokyo Weather in November: Rain, Sunshine & Daylight"
+seoTitle: "Tokyo Weather in November: Rain, Sunshine & Daylight"
+description: "Tokyo weather in November: JMA temperatures, 7.4 wet days, 149.8 sunshine hours, early-to-late month planning and sunset times."
 quickAnswer: "Tokyo in November is cool rather than reliably warm: average daily highs are 16.7°C and lows 8.8°C. Rain is possible, so start with removable layers, walking shoes with grip and a compact umbrella."
+climateTable: station
+station: Tokyo
 pubDate: 2026-10-25
-tags: ["tokyo", "november", "weather", "packing"]
+updatedDate: 2026-10-28
+tags: ["tokyo", "november", "weather"]
 image: "/images/region-tokyo.webp"
 imageAlt: "Tokyo city skyline"
 faqs:
   - question: "Does it rain a lot in Tokyo in November?"
-    answer: "Tokyo's November precipitation normal is 96.3 mm, lower than October's 234.8 mm. This is a monthly total, not a rainy-day count or a guarantee that your dates will be dry."
+    answer: "Tokyo averages 7.4 days with at least 1 mm of precipitation in November, equivalent to about 1.7 wet days over seven days at the monthly average rate. These climate normals do not predict your dates."
   - question: "What should I wear in Tokyo in November?"
     answer: "Start with long sleeves, trousers, a removable sweater and a jacket. Add a scarf for cool evenings if needed, and take a compact umbrella and comfortable shoes with grip."
   - question: "Can I use Tokyo's weather forecast for a mountain day trip?"
@@ -40,11 +43,23 @@ Source: [Japan Meteorological Agency climate normals](https://www.data.jma.go.jp
 
 Use the [November packing list](/blog/what-to-wear-in-japan-in-november/) for a shoe comparison and regional extensions. Broken-in shoes are a practical starting point for city walks; choose winter footwear according to snow and ice conditions on the actual route.
 
-## Early or late November?
+## Early, mid and late November in Tokyo
 
-[JNTO's November guide](https://www.japan.travel/en/guide/november/) describes increasingly chilly mornings and evenings, with autumn color varying by place. Use a monthly average to shortlist clothing, then check daily highs and lows near departure. Do not treat an early-November afternoon and a late-November evening as the same packing problem.
+The station table gives full-month normals, not separate forecasts for each ten-day period. Use this timing guide for planning choices, then check the forecast for your actual dates.
 
-For trips continuing into winter, compare [late November and early December](/blog/japan-weather-late-november-early-december/).
+| Timing | Planning emphasis | Before you go |
+|---|---|---|
+| Early November | Keep a removable daytime layer accessible | Check the day's high and evening low |
+| Mid-November | Schedule outdoor gardens before late afternoon | Check foliage reports and venue closing times |
+| Late November | Prepare for colder evenings and a possible December extension | Check your coldest destination separately |
+
+Read the [late-November and early-December guide](/blog/japan-weather-late-november-early-december/) for a trip crossing the month boundary.
+
+## Sunshine and sunset are different measurements
+
+Tokyo's JMA normal is **149.8 hours of sunshine during November**, about five hours per day averaged across the month. This measures bright sunshine, not the length of daylight, and does not promise five sunny hours on each travel day.
+
+The [National Astronomical Observatory of Japan's Tokyo calendar for November 2026](https://eco.mtk.nao.ac.jp/koyomi/dni/2026/s1311.html.en) lists sunset at **16:35 JST on November 14**. Use its daily table for your date; allow time to finish outdoor sightseeing before dusk and check each garden's actual closing time. Sunset time is not an admission deadline.
 
 ## A rain backup you can use
 
@@ -54,7 +69,7 @@ For trips continuing into winter, compare [late November and early December](/bl
 - [ ] Wear shoes with grip for wet paving and steps
 - [ ] Check the [JMA forecast](https://www.jma.go.jp/bosai/forecast/) near departure and during the trip
 
-Compare [November rain in five Japanese cities](/blog/is-japan-rainy-in-november/) if you are adding Osaka, Hokkaido or the Sea of Japan coast. Their conditions differ from Tokyo.
+Compare [November rainy days in seven Japanese cities](/blog/is-japan-rainy-in-november/) if you are adding Osaka, Hokkaido or the Sea of Japan coast. Their conditions differ from Tokyo.
 
 ## Build the rest of your route
 

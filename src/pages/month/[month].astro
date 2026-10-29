@@ -8,6 +8,7 @@ import { regionGuides } from "../../data/regions.ts";
 import Icon from "../../components/Icon.astro";
 import Callout from "../../components/Callout.astro";
 import AffiliateCTA from "../../components/AffiliateCTA.astro";
+import ClimateTable from "../../components/ClimateTable.astro";
 import TravelVisualGuide from "../../components/TravelVisualGuide.astro";
 import LateYearWeather from "../../components/LateYearWeather.astro";
 import { lateYearGuides, lateYearCities } from "../../data/late-year-weather";
@@ -51,12 +52,12 @@ const season = seasonMap[month.month] ?? "";
 const seasonalGuide = month.month === "november" ? lateYearGuides.november : month.month === "december" ? lateYearGuides.december : null;
 const tokyoClimate = lateYearCities.find((c) => c.name === "Tokyo");
 const tokyoMonth = seasonalGuide && tokyoClimate ? tokyoClimate[month.month as "november" | "december"] : null;
-const title = seasonalGuide ? `Japan Weather in ${month.label}: Temps, ${month.month === "november" ? "Rain" : "Snow"} & What to Wear` : `Japan Weather in ${month.label}: Temperatures & Travel Guide`;
-const meta = seasonalGuide && tokyoMonth ? `Japan weather in ${month.label}: Tokyo averages ${tokyoMonth[0].toFixed(1)}°C highs and ${tokyoMonth[1].toFixed(1)}°C lows with ${tokyoMonth[2]} mm of ${month.month === "november" ? "rain" : "precipitation"}. Compare ${lateYearCities.length} cities, ${month.month === "november" ? "rain" : "snow"} odds and what to wear.` : `${month.label} in Japan: ${month.tempLow}°C to ${month.tempHigh}°C, ${month.rainDays} rain days, crowds ${month.crowdLevel}/5. Best for ${month.bestFor}.`;
+const title = month.month === "november" ? "Japan in November: Weather, Autumn Leaves & Crowds" : seasonalGuide ? `Japan Weather in ${month.label}: Temps, ${month.month === "november" ? "Rain" : "Snow"} & What to Wear` : `Japan Weather in ${month.label}: Temperatures & Travel Guide`;
+const meta = month.month === "november" ? "Plan Japan in November: compare seven cities, autumn foliage reports and crowd planning, then explore Tokyo, Kyoto and practical trip guides." : seasonalGuide && tokyoMonth ? `Japan weather in ${month.label}: Tokyo averages ${tokyoMonth[0].toFixed(1)}°C highs and ${tokyoMonth[1].toFixed(1)}°C lows with ${tokyoMonth[2]} mm of ${month.month === "november" ? "rain" : "precipitation"}. Compare ${lateYearCities.length} cities, ${month.month === "november" ? "rain" : "snow"} odds and what to wear.` : `${month.label} in Japan: ${month.tempLow}°C to ${month.tempHigh}°C, ${month.rainDays} rain days, crowds ${month.crowdLevel}/5. Best for ${month.bestFor}.`;
 
 
 const monthFaqs = [
-  ...(seasonalGuide ? [{ q: month.month === "november" ? "Is Japan rainy in November?" : "Does it snow in Japan in December?", a: seasonalGuide.answer }, { q: `What should I wear in Japan in ${month.label}?`, a: seasonalGuide.packing }, ...(tokyoMonth ? [{ q: `What is the temperature in Tokyo in ${month.label}?`, a: `Tokyo's ${month.label} averages are a daily high of ${tokyoMonth[0].toFixed(1)}°C and a daily low of ${tokyoMonth[1].toFixed(1)}°C, with ${tokyoMonth[2]} mm of monthly precipitation (JMA 1991–2020 normals). Mornings and evenings feel noticeably colder than the afternoon high.` }] : [])] : []),
+  ...(seasonalGuide && month.month !== "november" ? [{ q: month.month === "november" ? "Is Japan rainy in November?" : "Does it snow in Japan in December?", a: seasonalGuide.answer }, { q: `What should I wear in Japan in ${month.label}?`, a: seasonalGuide.packing }, ...(tokyoMonth ? [{ q: `What is the temperature in Tokyo in ${month.label}?`, a: `Tokyo's ${month.label} averages are a daily high of ${tokyoMonth[0].toFixed(1)}°C and a daily low of ${tokyoMonth[1].toFixed(1)}°C, with ${tokyoMonth[2]} mm of monthly precipitation (JMA 1991–2020 normals). Mornings and evenings feel noticeably colder than the afternoon high.` }] : [])] : []),
   {
     q: `What is the weather like in Japan in ${month.label}?`,
     a: seasonalGuide ? seasonalGuide.answer : `In ${month.label}, Japan averages ${month.tempLow}°C to ${month.tempHigh}°C with about ${month.rainDays} rainy days. It's best for ${month.bestFor}.`,
@@ -148,12 +149,14 @@ const monthSpotlight = monthSpotlights[month.month];
       <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 mb-3 leading-tight break-words">{title}</h1>
       <p class="text-base md:text-lg text-zinc-700 leading-relaxed mb-5">{month.label} in a nutshell &mdash; the weather, the crowds, and where to go. Then dig into the details below.</p>
 
-      <img src={month.image} alt={month.imageAlt} width={heroW} height={heroH} loading="eager" fetchpriority="high" decoding="async" class="w-full h-44 sm:h-64 md:h-80 object-cover rounded-2xl shadow-sm border border-zinc-100 mb-6" />
+      {month.month === "november" && <p class="mb-4 leading-relaxed">November suits cool city walks and autumn gardens. Check local foliage reports, allow for crowds at famous sites, and choose clothing for your actual route.</p>}
+
 
       {seasonalGuide && (
         <nav aria-label={`${month.label} travel guides`} class="mb-6 rounded-2xl border border-zinc-200 bg-zinc-50 p-4 md:p-5">
           <p class="text-sm font-bold text-zinc-900 mb-3">Plan your {month.label} trip</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {month.month === "november" && <><a class="underline p-3" href="/blog/tokyo-in-november-weather/">Tokyo weather in November →</a><a class="underline p-3" href="/blog/kyoto-in-november/">Kyoto in November →</a></>}
             <a class="rounded-lg bg-white border border-zinc-200 px-4 py-3 text-sm font-semibold text-accent-700 hover:border-accent-300" href={`/blog/what-to-wear-in-japan-in-${month.month}/`}>What to wear &amp; pack →</a>
             <a class="rounded-lg bg-white border border-zinc-200 px-4 py-3 text-sm font-semibold text-accent-700 hover:border-accent-300" href={month.month === "november" ? "/blog/is-japan-rainy-in-november/" : "/blog/does-it-snow-in-japan-in-december/"}>{month.month === "november" ? "Does it rain in November?" : "Where does it snow in December?"} →</a>
             <a class="rounded-lg bg-white border border-zinc-200 px-4 py-3 text-sm font-semibold text-accent-700 hover:border-accent-300" href="/blog/japan-in-november-vs-december/">November vs December →</a>
@@ -162,7 +165,9 @@ const monthSpotlight = monthSpotlights[month.month];
         </nav>
       )}
 
-      {seasonalGuide && <><TravelVisualGuide month={month.month} /><LateYearWeather month={month.month} /></>}
+      <img src={month.image} alt={month.imageAlt} width={heroW} height={heroH} loading="eager" fetchpriority="high" decoding="async" class="w-full h-44 sm:h-64 md:h-80 object-cover rounded-2xl shadow-sm border border-zinc-100 mb-6" />
+
+      {month.month === "november" ? <><ClimateTable /><a href="/blog/what-to-wear-in-japan-in-november/" class="underline">Full November packing list →</a><p class="my-4">Rain varies by region. <a class="underline" href="/blog/is-japan-rainy-in-november/">Compare November rainy days by city →</a></p></> : seasonalGuide && <><TravelVisualGuide month={month.month} /><LateYearWeather month={month.month} /></>}
 
       <!-- Live conditions and 7-day forecast -->
       <LiveForecast />

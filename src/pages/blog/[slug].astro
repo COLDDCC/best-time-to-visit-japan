@@ -1,6 +1,7 @@
 ---
 import "../../styles/global.css";
 import { pagePath } from "../../utils/urls";
+import ClimateTable from "../../components/ClimateTable.astro";
 import TravelVisualGuide from "../../components/TravelVisualGuide.astro";
 import LiveForecast from "../../components/LiveForecast.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -55,7 +56,8 @@ const articleSchema = JSON.stringify({
       {planningMonths.length > 0 && <nav aria-label="Plan by month" class="flex flex-wrap gap-2 mb-4">
         {planningMonths.map(month => <a href={`/month/${month}/`} class="rounded-full border border-accent-200 bg-accent-50 px-4 py-2 text-sm font-medium text-accent-700">{month[0].toUpperCase() + month.slice(1)} weather & trip guide →</a>)}
       </nav>}
-      {planningMonths.some(m => m === "november" || m === "december") && <TravelVisualGuide month={planningMonths.includes("november") ? "november" : "december"} months={post.data.cityTable ? ["november"] : undefined} cityTable={post.data.cityTable} />}
+      {(post.data.tags.includes("packing") || post.id === "does-it-snow-in-japan-in-december") && planningMonths.some(m => m === "november" || m === "december") && <TravelVisualGuide month={planningMonths.includes("november") ? "november" : "december"} months={post.data.cityTable ? ["november"] : undefined} cityTable={post.data.cityTable} />}
+      {post.data.climateTable && <ClimateTable mode={post.data.climateTable} station={post.data.station} />}
       {post.data.image && !post.data.cityTable && (
         <img src={post.data.image} alt={post.data.imageAlt ?? post.data.title} width="1280" height="720" loading="eager" fetchpriority="high" decoding="async" class="post-hero" />
       )}

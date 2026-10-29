@@ -1,4 +1,5 @@
 ---
+import ClimateFootnote from './ClimateFootnote.astro';
 import { lateYearCities, expectedWetDays } from '../data/late-year-weather';
 export interface Props { month: 'november' | 'december'; highlight?: string; }
 const { month, highlight } = Astro.props;
@@ -23,11 +24,18 @@ const headers = ['City / station','Wet days / 7-day trip','High / low °C','Prec
       </tr>)}</tbody>
     </table>
   </div>
-  <p class="method">A “rainy day” means daily precipitation ≥1 mm, including melted snow. Trip estimate = monthly wet days ÷ {month === 'november' ? 30 : 31} × trip length, rounded to one decimal. This assumes the monthly average rate throughout your stay: a 30-year climate estimate, <strong>not a forecast or a promise of how many days it will rain</strong>. Wet days may still have dry hours. Every measurement links to its JMA station record.</p>
+  <ClimateFootnote />
   <p data-sort-status role="status" class="sort-status"></p>
 </section>
 <script>
   document.querySelectorAll<HTMLTableElement>('[data-city-table]').forEach(table => {
+    const guide = table.closest('.travel-visual');
+    const highlightRoute = () => {
+      const route = guide?.querySelector<HTMLInputElement>('.route-choice:checked')?.value;
+      const city = route === 'north' ? 'Sapporo' : route === 'south' ? 'Naha (Okinawa)' : 'Tokyo';
+      table.querySelectorAll<HTMLElement>('[data-city]').forEach(row => row.classList.toggle('highlight', row.dataset.city === city));
+    };
+    guide?.querySelectorAll('.route-choice').forEach(input => input.addEventListener('change', highlightRoute));
     table.querySelectorAll<HTMLButtonElement>('[data-sort]').forEach(button => button.addEventListener('click', () => {
       const index = Number(button.dataset.sort), header = button.closest('th')!;
       const ascending = header.getAttribute('aria-sort') !== 'ascending';

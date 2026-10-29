@@ -2,8 +2,19 @@
 title: "Japan Weather in Late November & Early December: A Trip Guide"
 seoTitle: "Japan Weather: Late November to Early December"
 description: "Crossing both months? Compare city climate tables, layer your packing list and keep outdoor plans flexible with this route-based guide."
+climateTable: comparison
 pubDate: 2026-10-15
+updatedDate: 2026-10-28
 tags: ["weather", "november", "december", "planning"]
+image: "/images/month-november.webp"
+imageAlt: "Kiyomizu-dera temple in Kyoto"
+faqs:
+  - question: "Does December 1 mark the start of snowy weather?"
+    answer: "No. Conditions depend on the destination, elevation and weather systems, rather than the calendar boundary."
+  - question: "Can I use one coat for the whole trip?"
+    answer: "It depends on the route. A Tokyo-only trip and an Okinawa–Hokkaido trip have very different requirements. Pack for the coldest planned conditions and use removable layers."
+  - question: "Should I book an autumn or winter itinerary?"
+    answer: "Build around the activities that matter most, then verify current conditions. Do not assume both peak foliage and reliable resort snow at every stop."
 quickAnswer: "For a late-November to early-December Japan trip, pack for cool-to-cold city days and colder evenings, with extra winter protection if your route includes Hokkaido or mountains. Tokyo and Osaka generally cool toward winter, but there is no sudden nationwide weather change on December 1."
 ---
 
@@ -13,18 +24,13 @@ This guide is for trips that cross the month boundary. For choosing one month ov
 
 A Tokyo–Kyoto–Osaka itinerary needs different preparation from a trip to Sapporo or Okinawa. Start with destination-specific climate information, then check the forecast for the actual dates.
 
-| Station | November average high / low | December average high / low |
-|---|---:|---:|
-| Tokyo | 16.7°C / 8.8°C | 12.0°C / 3.8°C |
-| Osaka | 17.8°C / 10.2°C | 12.3°C / 5.3°C |
-| Sapporo | 8.7°C / 1.6°C | 2.0°C / −4.0°C |
-| Naha, Okinawa | 25.0°C / 20.4°C | 21.5°C / 16.8°C |
+
 
 These are full-month 1991–2020 averages, shown as context. **They are not separate averages for late November or early December.** Do not calculate a precise temperature for your travel week by averaging the two columns. Individual cold or warm spells can differ substantially.
 
 ## Tokyo, Kyoto and Osaka: plan flexible city days
 
-Bring removable layers for daytime sightseeing and a warmer layer for evenings outdoors. Check Kyoto’s own forecast rather than treating Osaka’s temperatures as exact Kyoto data.
+Bring removable layers for daytime sightseeing and a warmer layer for evenings outdoors. Use the [Kyoto November guide](/blog/kyoto-in-november/) and check Kyoto’s own forecast rather than substituting Osaka’s.
 
 A practical schedule keeps outdoor gardens and longer walks movable within each city stay. Put an indoor alternative on the same day’s shortlist so that a rainy period does not force a long, last-minute journey. Confirm opening hours and reservations before swapping activities.
 
@@ -37,6 +43,8 @@ Late November and early December can overlap with foliage viewing in parts of ce
 Use current reports for the specific park or temple. Elevation matters: a nearby mountain may already have passed its foliage season while a lower urban garden still has color. If leaves are your priority, choose destinations based on current local information rather than adding an arbitrary north-to-south route.
 
 ## Is rain likely to disrupt the trip?
+
+Tokyo averages 7.4 wet days in November and 5.2 in December; Kyoto 6.3 and 6.6; Osaka 6.2 and 6.1. Niigata instead rises from 17.7 to 21.5. These full-month rates help with rain protection, but cannot predict a specific week crossing the boundary.
 
 Rain is possible in either month. Tokyo and Osaka have lower December precipitation normals than November, while the Sea of Japan coast follows a different winter pattern. Those monthly totals cannot predict how many wet days you will experience during a particular ten-day trip.
 
@@ -65,14 +73,6 @@ Keep layers accessible on transfer days. Heated interiors and cold outdoor eveni
 3. Confirm access and conditions for mountain or snow-related excursions.
 4. Check the exact dates and opening times of evening illumination events.
 5. Leave room to move outdoor plans within each city stay.
-
-## Quick questions
-
-**Does December 1 mark the start of snowy weather?** No. Conditions depend on the destination, elevation and weather systems, rather than the calendar boundary.
-
-**Can I use one coat for the whole trip?** It depends on the route. A Tokyo-only trip and an Okinawa–Hokkaido trip have very different requirements. Pack for the coldest planned conditions and use removable layers.
-
-**Should I book an autumn or winter itinerary?** Build around the activities that matter most, then verify current conditions. Do not promise yourself both peak foliage and reliable resort snow at every stop.
 
 ## Sources and data limits
 

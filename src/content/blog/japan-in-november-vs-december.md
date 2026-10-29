@@ -1,9 +1,10 @@
 ---
 title: "Japan in November vs December: Weather, Autumn Leaves & Snow"
 seoTitle: "Japan Weather in November vs December, Compared"
-description: "Tokyo's average high drops from 16.7°C in November to 12°C in December, and rain from 96 to 58 mm. Compare 6 cities, autumn leaves vs snow, and pick a month."
+description: "Tokyo's average high drops from 16.7°C in November to 12°C in December, and rain from 96 to 58 mm. Compare 7 cities, autumn leaves vs snow, and pick a month."
+climateTable: comparison
 pubDate: 2026-10-15
-updatedDate: 2026-10-27
+updatedDate: 2026-10-28
 tags: ["weather", "november", "december", "planning"]
 quickAnswer: "Choose November for milder city sightseeing and autumn gardens; choose December for winter illuminations or a snow-focused trip to northern or mountain areas. In Tokyo, the average daily high falls from 16.7°C in November to 12.0°C in December, and precipitation from 96.3 mm to 57.9 mm, so December is colder but drier. Neither month has one weather pattern across the whole country."
 faqs:
@@ -50,18 +51,13 @@ These are planning distinctions, not guarantees about your dates. A mountain res
 
 The following figures are monthly mean temperatures at individual JMA stations, not average daily highs or lows.
 
-| Station | November mean | December mean |
-|---|---:|---:|
-| Tokyo | 12.5°C | 7.7°C |
-| Osaka | 13.8°C | 8.7°C |
-| Sapporo | 5.2°C | −0.9°C |
-| Fukuoka | 14.2°C | 9.1°C |
-| Niigata | 10.5°C | 5.3°C |
-| Naha, Okinawa | 22.5°C | 19.0°C |
 
-For daily high and low averages, see the [November weather page](/month/november/) and [December weather page](/month/december/). Kyoto needs a separate station record; Osaka is useful regional context but should not be substituted for Kyoto’s exact conditions.
+
+For daily high and low averages, see the [November weather page](/month/november/) and [December weather page](/month/december/). The shared station table includes Kyoto; see [Kyoto in November](/blog/kyoto-in-november/) for local planning.
 
 ## Which month is less rainy?
+
+By wet-day counts (daily precipitation ≥1 mm), Tokyo drops from 7.4 days in November to 5.2 in December; Osaka changes little, from 6.2 to 6.1. Kyoto rises slightly from 6.3 to 6.6, and Niigata from 17.7 to 21.5. Lower monthly millimetres do not always mean fewer wet days. Use the shared table for all seven stations.
 
 Tokyo’s precipitation normal falls from 96.3 mm in November to 57.9 mm in December. Osaka’s falls from 72.5 mm to 55.5 mm. On those routes, December is the drier month by monthly totals.
 
@@ -87,7 +83,7 @@ Use the [November packing guide](/blog/what-to-wear-in-japan-in-november/) or [D
 
 ## Is either month cheaper or quieter?
 
-Do not assume either month is always cheaper. Compare accommodation for your exact dates and route. Foliage destinations, winter resorts, events and year-end travel can have different demand patterns. Near New Year, verify attraction opening hours and transport arrangements individually.
+Use the [Japan crowd calendar](/crowd-calendar/) to check holiday and seasonal demand windows, then compare accommodation for your exact dates. Confirm attraction opening hours and transport arrangements near New Year.
 
 ## How to choose
 

@@ -46,7 +46,7 @@ const faqs=[
     <div class="zh-panel"><h2>东京气温参考</h2><p>{weather!.tempLow}〜{weather!.tempHigh}℃</p><small>不是旅行当天的预报</small></div>
     <div class="zh-panel"><h2>怎么穿衣</h2><p>{month!.packing}</p></div>
    </section>
-   <section class="zh-panel mt-5"><h2>安排行程要注意</h2><p>{month!.note}</p><p class="mt-2">东京月度数据中的参考降雨天数为{weather!.rainDays}天。{slug === 'november' ? '11月使用 JMA 1991–2020 平年值，日降水量至少 1 mm（包括融雪）；不是出行预报。' : '数值会随降雨定义和统计时段变化，不能换算为旅行当天的降雨概率。'}</p></section>
+   <section class="zh-panel mt-5"><h2>安排行程要注意</h2><p>{month!.note}</p><p class="mt-2">东京月度数据中的参考降雨天数为{weather!.rainDays}天。{['november', 'december'].includes(slug!) ? '11、12月使用 JMA 1991–2020 平年值，日降水量至少 1 mm（包括融雪）；不是出行预报。' : '数值会随降雨定义和统计时段变化，不能换算为旅行当天的降雨概率。'}</p></section>
    <section class="mt-8"><h2 class="text-2xl font-bold mb-4">不同地区，要分别考虑什么</h2><div class="zh-table-wrap"><table><thead><tr><th>地区</th><th>确定行程前</th></tr></thead><tbody><tr><td><a href="/zh-cn/region/hokkaido/">北海道与北日本</a></td><td>查询城市与山区温差、积雪路况及交通信息。</td></tr><tr><td><a href="/zh-cn/region/tokyo/">东京与本州城市游</a></td><td>留意早晚温差、目的地人流与营业信息。</td></tr><tr><td><a href="/zh-cn/region/okinawa/">冲绳与南部海岛</a></td><td>不要套用本州气温，单独查询天气、风与海浪。</td></tr></tbody></table></div></section>
    <div class="flex flex-wrap gap-3 mt-6"><a href="/zh-cn/monthly-guide/" class="zh-button">比较其他月份 →</a><a href={`/month/${slug}/`} lang="en" class="zh-outline">查看更详细的英文版 ↗</a></div>
   </>}

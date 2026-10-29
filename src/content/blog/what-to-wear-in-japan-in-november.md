@@ -32,18 +32,9 @@ quickAnswer: "Tokyo averages 7.4 rainy days in November: about 1.7 per 7-day tri
 
 For a city itinerary, comfortable walking shoes are usually more practical than packing snow boots solely because it is November. Check your actual route before deciding.
 
-## Tokyo in November: what to wear from morning to night
+## Tokyo: removable layers for a city day
 
-| Part of your day | A practical starting outfit |
-|---|---|
-| Cool morning walk | Long sleeves, sweater and jacket |
-| Warmer afternoon | Remove one layer and carry it in a small bag |
-| Evening lights or dinner walk | Put the warm layer back on; add a scarf if needed |
-| Wet afternoon | Compact umbrella and shoes with grip; keep an indoor stop available |
-
-Tokyo's November climate averages are 16.7°C for the daily high and 8.8°C for the daily low. They are not an hourly forecast. Check the [Tokyo November rain and outfit guide](/blog/tokyo-in-november-weather/), particularly before a day trip outside the city.
-
-For Tokyo and Osaka, removable layers also help on heated trains and indoors. Carry a small bag for the layer you take off. In Kyoto, choose shoes that are easy to remove at temples and grip wet stone steps.
+Use long sleeves, a removable sweater and a jacket, then adjust for heated trains and outdoor evenings. For Tokyo's rain, sunshine and daylight details, see [Tokyo weather in November](/blog/tokyo-in-november-weather/); Kyoto has its own [November city guide](/blog/kyoto-in-november/).
 
 ## Hokkaido and mountain routes: pack for colder conditions
 

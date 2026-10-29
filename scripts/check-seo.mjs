@@ -57,3 +57,25 @@ for (const path of ['month/november', 'ja/month/november', 'zh-cn/month/november
 }
 
 console.log(`SEO checks passed: ${files.length} pages, canonical/sitemap/schema identities, internal links and priority titles.`);
+
+const novemberCluster = ['is-japan-rainy-in-november', 'japan-in-november-vs-december', 'japan-weather-late-november-early-december', 'tokyo-in-november-weather', 'kyoto-in-november'];
+for (const slug of novemberCluster) {
+  const html = readFileSync(`${root}/blog/${slug}/index.html`, 'utf8');
+  assert.ok(html.includes('href="/month/november/"'), `${slug}: missing hub backlink`);
+  const rows = [...html.matchAll(/<tr[^>]*data-climate-city="Tokyo"[^>]*>/g)];
+  if (slug !== 'kyoto-in-november') {
+    assert.equal(rows.length, 1, `${slug}: render a single shared Tokyo row`);
+    assert.match(rows[0][0], /data-november-wet-days="7.4"/);
+  }
+  assert.ok(!html.includes('Your weather-to-outfit guide'), `${slug}: packing UI belongs on packing pages`);
+}
+const hub = readFileSync(`${root}/month/november/index.html`, 'utf8');
+assert.match(hub, /Japan in November: Weather, Autumn Leaves &amp; Crowds/);
+assert.ok(!hub.includes('Your weather-to-outfit guide'));
+for (const slug of [...novemberCluster, 'what-to-wear-in-japan-in-november']) assert.ok(hub.includes(`/blog/${slug}/`));
+const crossing = readFileSync(`${root}/blog/japan-weather-late-november-early-december/index.html`, 'utf8');
+const crossingSchemas = [...crossing.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(m => JSON.parse(m[1]));
+assert.equal(crossingSchemas.find(s => s['@type'] === 'FAQPage').mainEntity.length, 3);
+assert.ok(crossingSchemas.find(s => s['@type'] === 'BlogPosting').image);
+for (const path of ['month/december', 'ja/month/december', 'zh-cn/month/december']) assert.ok(readFileSync(`${root}/${path}/index.html`, 'utf8').includes('5.2'));
+console.log('November cluster checks passed: shared station rows, six hub links, page roles and cross-month FAQ/image.');
